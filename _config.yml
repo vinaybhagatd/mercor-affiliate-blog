@@ -1,0 +1,23 @@
+title: Mercor Remote Jobs Blog
+description: Weekly story-driven breakdowns of remote roles across 11 categories.
+url: "https://vinaybhagatd.github.io"
+baseurl: "/mercor-affiliate-blog"
+
+markdown: kramdown
+theme: minima
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+permalink: pretty
+
+collections:
+  posts:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
