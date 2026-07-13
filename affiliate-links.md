@@ -1,10 +1,10 @@
-# \---
+\---
 
-# layout: default
+layout: default
 
-# title: Affiliate Links
+title: Affiliate Links
 
-# \---
+\---
 
 
 
