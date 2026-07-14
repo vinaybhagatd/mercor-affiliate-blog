@@ -1,85 +1,44 @@
 ---
 layout: default
-
-title: Remote Science Jobs \& Roles
-
-og\_image: /assets/og/sciences/latest-og.png
+title: Remote Science Jobs & Roles
+category: sciences
+og_image: /assets/og/sciences/latest-og.png
 ---
 
+# 🔬 Welcome to Remote Science Roles
 
+Remote science careers are expanding rapidly as research, analysis, and experimentation move into digital and distributed environments.  
+Whether you're studying biological systems, analyzing environmental data, conducting lab‑adjacent research, or supporting scientific teams — remote science roles let you contribute to global innovation from anywhere.
 
+From research assistance to data modeling, scientific writing to lab coordination, remote science roles offer flexibility, intellectual challenge, and meaningful impact.
 
-\# 👋 Welcome to Remote Science Roles
-
-
-
-Remote science roles blend research with digital collaboration.  
-
-From biotech to environmental science, remote teams now push innovation forward from anywhere.
-
-
-
-
-
-
-
-\## ⭐ What Remote Science Work Looks Like
-
-
+## ⭐ What Remote Science Work Looks Like
 
 Remote science roles often include:
 
+- Reviewing and analyzing scientific data  
+- Supporting research teams with documentation  
+- Running simulations and models  
+- Conducting literature reviews  
+- Preparing reports, summaries, and presentations  
+- Coordinating with labs and research partners  
+- Ensuring compliance with scientific standards  
 
+**Tools used:** Python, R, MATLAB, Jupyter, PubMed, Zotero, Excel  
+**Skills required:** Analytical thinking, scientific literacy, documentation, communication  
+**Salary range:** ₹7L–₹32L  
+**Growth path:** Research Assistant → Scientist → Senior Scientist → Research Lead
 
-\- Research documentation  
-
-\- Data analysis  
-
-\- Lab coordination  
-
-\- Scientific writing  
-
-\- Experiment planning  
-
-
-
-\*\*Tools used:\*\* Benchling, Labguru, Excel  
-
-\*\*Skills required:\*\* Research, precision, documentation  
-
-\*\*Salary range:\*\* ₹8L–₹30L  
-
-\*\*Growth path:\*\* Researcher → senior scientist → science lead  
-
-
-
-
-
-
-
-\## 📚 Latest Remote Science Posts
-
-
+## 📚 Latest Remote Science Posts
 
 <ul>
-
 {% for post in site.categories.sciences %}
-
-&#x20; <li><a href="{{ post.url | relative\_url }}">{{ post.title }}</a> — {{ post.date | date: "%B %d, %Y" }}</li>
-
+  <li>
+    <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a> — {{ post.date | date: "%B %d, %Y" }}
+  </li>
 {% endfor %}
-
 </ul>
 
+## 🚀 Apply for Remote Roles
 
-
-
-
-
-
-\## 🚀 Apply for Remote Roles  
-
-👉 [Apply for free to Sciences jobs](https://t.mercor.com/rOCAC)
-
-
-
+👉 [Apply for free to Science roles](https://t.mercor.com/rOCAC)

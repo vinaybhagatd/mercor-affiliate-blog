@@ -1,85 +1,44 @@
 ---
 layout: default
-
-title: Remote Operations Jobs \& Roles
-
-og\_image: /assets/og/operations/latest-og.png
+title: Remote Operations Jobs & Roles
+category: operations
+og_image: /assets/og/operations/latest-og.png
 ---
 
+# ⚙️ Welcome to Remote Operations Roles
 
+Remote operations roles are the backbone of modern distributed companies.  
+Whether you're coordinating teams, managing workflows, optimizing processes, or ensuring smooth day‑to‑day execution — remote operations roles let you keep organizations running efficiently from anywhere.
 
+From project coordination to process optimization, customer operations to business support, remote operations careers offer stability, growth, and the chance to make a measurable impact.
 
-\# 👋 Welcome to Remote Operations Roles
+## ⭐ What Remote Operations Work Looks Like
 
+Remote operations roles often include:
 
+- Managing daily workflows and processes  
+- Coordinating across teams and departments  
+- Tracking KPIs and performance metrics  
+- Handling customer operations and support  
+- Improving internal systems and documentation  
+- Ensuring smooth project execution  
+- Supporting leadership with operational insights  
 
-Remote operations is the glue that holds companies together.  
+**Tools used:** Notion, Asana, Trello, Slack, HubSpot, Google Workspace  
+**Skills required:** Organization, communication, problem‑solving, process literacy  
+**Salary range:** ₹7L–₹28L  
+**Growth path:** Coordinator → Operations Specialist → Operations Manager → Director of Operations
 
-If you enjoy solving problems and keeping systems running smoothly, this category is built for you.
-
-
-
-
-
-
-
-\## ⭐ What Remote Operations Work Looks Like
-
-
-
-Remote ops roles often include:
-
-
-
-\- Process optimization  
-
-\- Vendor management  
-
-\- SOP creation  
-
-\- Project coordination  
-
-\- Customer operations  
-
-
-
-\*\*Tools used:\*\* Notion, Asana, HubSpot  
-
-\*\*Skills required:\*\* Organization, communication, adaptability  
-
-\*\*Salary range:\*\* ₹7L–₹25L  
-
-\*\*Growth path:\*\* Coordinator → ops manager → ops lead  
-
-
-
-
-
-
-
-\## 📚 Latest Remote Operations Posts
-
-
+## 📚 Latest Remote Operations Posts
 
 <ul>
-
 {% for post in site.categories.operations %}
-
-&#x20; <li><a href="{{ post.url | relative\_url }}">{{ post.title }}</a> — {{ post.date | date: "%B %d, %Y" }}</li>
-
+  <li>
+    <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a> — {{ post.date | date: "%B %d, %Y" }}
+  </li>
 {% endfor %}
-
 </ul>
 
+## 🚀 Apply for Remote Roles
 
-
-
-
-
-
-\## 🚀 Apply for Remote Roles  
-
-👉 [Apply for free to Operations jobs](https://t.mercor.com/rOCAC)
-
-
-
+👉 [Apply for free to Operations roles](https://t.mercor.com/rOCAC)

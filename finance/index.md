@@ -1,89 +1,44 @@
 ---
 layout: default
-
-title: Remote Finance Jobs \& Roles
-
-og\_image: /assets/og/finance/latest-og.png
+title: Remote Finance Jobs & Roles
+category: finance
+og_image: /assets/og/finance/latest-og.png
 ---
 
+# 💰 Welcome to Remote Finance Roles
 
+Remote finance careers are evolving rapidly as global companies embrace distributed teams.  
+Whether you're analyzing markets, managing budgets, forecasting revenue, or ensuring compliance — remote finance roles let you work with precision and impact from anywhere.
 
+From accounting to financial analysis, auditing to fintech operations, remote finance roles offer stability, growth, and the chance to support high‑performing organizations worldwide.
 
-\# 👋 Welcome to Remote Finance Roles
-
-
-
-Remote finance teams keep companies alive.  
-
-From forecasting to reconciliation, finance pros now operate seamlessly across borders.
-
-
-
-If you enjoy numbers, clarity, and strategy, remote finance roles offer deep impact.
-
-
-
-
-
-
-
-\## ⭐ What Remote Finance Work Looks Like
-
-
+## ⭐ What Remote Finance Work Looks Like
 
 Remote finance roles often include:
 
+- Financial analysis and reporting  
+- Budget planning and forecasting  
+- Accounting and reconciliation  
+- Compliance and audit support  
+- Payroll and invoicing  
+- Risk assessment and mitigation  
+- Supporting leadership with financial insights  
 
+**Tools used:** Excel, QuickBooks, Zoho Books, SAP, Oracle, Power BI  
+**Skills required:** Analytical thinking, accuracy, communication, financial literacy  
+**Salary range:** ₹8L–₹30L  
+**Growth path:** Analyst → Senior Analyst → Finance Manager → Director of Finance
 
-\- FP\&A  
-
-\- Budgeting  
-
-\- Financial modeling  
-
-\- Reporting  
-
-\- Audit support  
-
-
-
-\*\*Tools used:\*\* Excel, Netsuite, QuickBooks  
-
-\*\*Skills required:\*\* Analysis, accuracy, communication  
-
-\*\*Salary range:\*\* ₹10L–₹35L  
-
-\*\*Growth path:\*\* Analyst → senior analyst → finance manager  
-
-
-
-
-
-
-
-\## 📚 Latest Remote Finance Posts
-
-
+## 📚 Latest Remote Finance Posts
 
 <ul>
-
 {% for post in site.categories.finance %}
-
-&#x20; <li><a href="{{ post.url | relative\_url }}">{{ post.title }}</a> — {{ post.date | date: "%B %d, %Y" }}</li>
-
+  <li>
+    <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a> — {{ post.date | date: "%B %d, %Y" }}
+  </li>
 {% endfor %}
-
 </ul>
 
+## 🚀 Apply for Remote Roles
 
-
-
-
-
-
-\## 🚀 Apply for Remote Roles  
-
-👉 [Apply for free to Finance jobs](https://t.mercor.com/rOCAC)
-
-
-
+👉 [Apply for free to Finance roles](https://t.mercor.com/rOCAC)

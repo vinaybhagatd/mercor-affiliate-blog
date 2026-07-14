@@ -1,85 +1,44 @@
 ---
 layout: default
-
-title: Remote Language Jobs \& Roles
-
-og\_image: /assets/og/language/latest-og.png
+title: Remote Language Jobs & Roles
+category: language
+og_image: /assets/og/language/latest-og.png
 ---
 
+# 🗣️ Welcome to Remote Language Roles
 
+Remote language careers are expanding rapidly as global companies rely on multilingual communication, localization, and culturally accurate content.  
+Whether you're translating documents, teaching languages, editing text, or supporting international teams — remote language roles let you work with clarity and impact from anywhere.
 
+From translation to transcription, language teaching to localization, remote language roles offer flexibility, stability, and the chance to help people understand each other across borders.
 
-\# 👋 Welcome to Remote Language Roles
-
-
-
-Remote language work is all about clarity and connection.  
-
-Translators, editors, and localization specialists help companies speak to the world.
-
-
-
-
-
-
-
-\## ⭐ What Remote Language Work Looks Like
-
-
+## ⭐ What Remote Language Work Looks Like
 
 Remote language roles often include:
 
+- Translating documents, websites, and product content  
+- Teaching languages through online platforms  
+- Transcribing audio and video content  
+- Editing and proofreading text  
+- Localizing content for cultural accuracy  
+- Supporting global teams with communication  
+- Reviewing grammar, tone, and clarity  
 
+**Tools used:** Google Workspace, Grammarly, Duolingo for Schools, Notion, CAT tools  
+**Skills required:** Grammar mastery, clarity, cultural literacy, communication  
+**Salary range:** ₹5L–₹20L  
+**Growth path:** Translator → Senior Translator → Localization Specialist → Language Lead
 
-\- Translation  
-
-\- Localization  
-
-\- Editing  
-
-\- Proofreading  
-
-\- Transcription  
-
-
-
-\*\*Tools used:\*\* Smartling, Lokalise, Google Workspace  
-
-\*\*Skills required:\*\* Grammar, cultural awareness, accuracy  
-
-\*\*Salary range:\*\* ₹5L–₹20L  
-
-\*\*Growth path:\*\* Translator → senior linguist → localization lead  
-
-
-
-
-
-
-
-\## 📚 Latest Remote Language Posts
-
-
+## 📚 Latest Remote Language Posts
 
 <ul>
-
 {% for post in site.categories.language %}
-
-&#x20; <li><a href="{{ post.url | relative\_url }}">{{ post.title }}</a> — {{ post.date | date: "%B %d, %Y" }}</li>
-
+  <li>
+    <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a> — {{ post.date | date: "%B %d, %Y" }}
+  </li>
 {% endfor %}
-
 </ul>
 
+## 🚀 Apply for Remote Roles
 
-
-
-
-
-
-\## 🚀 Apply for Remote Roles  
-
-👉 [Apply for free to Language jobs](https://t.mercor.com/rOCAC)
-
-
-
+👉 [Apply for free to Language roles](https://t.mercor.com/rOCAC)

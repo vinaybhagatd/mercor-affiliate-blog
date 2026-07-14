@@ -1,85 +1,44 @@
 ---
 layout: default
-
-title: Remote Misc Jobs \& Roles
-
-og\_image: /assets/og/misc/latest-og.png
+title: Remote Miscellaneous Jobs & Roles
+category: misc
+og_image: /assets/og/misc/latest-og.png
 ---
 
+# 🧩 Welcome to Remote Miscellaneous Roles
 
+Not every remote job fits neatly into a single category — and that’s exactly what makes the Misc section so exciting.  
+Whether you're supporting operations, managing communities, assisting executives, handling customer success, or working in unique hybrid roles, remote miscellaneous jobs offer flexibility and variety.
 
+These roles often blend skills from multiple fields, giving you the freedom to explore diverse responsibilities and carve out a unique career path.
 
-\# 👋 Welcome to Remote Misc Roles
+## ⭐ What Remote Misc Work Looks Like
 
+Remote miscellaneous roles often include:
 
+- Customer success and support  
+- Executive assistance and coordination  
+- Community management  
+- Virtual assistance  
+- Research and documentation  
+- Administrative support  
+- Hybrid operational tasks  
 
-This category covers everything that doesn’t fit neatly into one box — and that’s what makes it exciting.  
+**Tools used:** Notion, Slack, HubSpot, Google Workspace, Zendesk  
+**Skills required:** Communication, organization, adaptability, problem‑solving  
+**Salary range:** ₹5L–₹22L  
+**Growth path:** Assistant → Specialist → Manager → Operations Lead
 
-Customer support, admin work, coordination, and more all thrive remotely.
-
-
-
-
-
-
-
-\## ⭐ What Remote Misc Work Looks Like
-
-
-
-Remote misc roles often include:
-
-
-
-\- Customer support  
-
-\- Admin assistance  
-
-\- Scheduling  
-
-\- Coordination  
-
-\- Documentation  
-
-
-
-\*\*Tools used:\*\* Notion, Slack, Google Workspace  
-
-\*\*Skills required:\*\* Communication, organization, empathy  
-
-\*\*Salary range:\*\* ₹4L–₹18L  
-
-\*\*Growth path:\*\* Assistant → coordinator → operations lead  
-
-
-
-
-
-
-
-\## 📚 Latest Remote Misc Posts
-
-
+## 📚 Latest Remote Misc Posts
 
 <ul>
-
 {% for post in site.categories.misc %}
-
-&#x20; <li><a href="{{ post.url | relative\_url }}">{{ post.title }}</a> — {{ post.date | date: "%B %d, %Y" }}</li>
-
+  <li>
+    <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a> — {{ post.date | date: "%B %d, %Y" }}
+  </li>
 {% endfor %}
-
 </ul>
 
+## 🚀 Apply for Remote Roles
 
-
-
-
-
-
-\## 🚀 Apply for Remote Roles  
-
-👉 [Apply for free to Misc jobs](https://t.mercor.com/rOCAC)
-
-
-
+👉 [Apply for free to Misc roles](https://t.mercor.com/rOCAC)
