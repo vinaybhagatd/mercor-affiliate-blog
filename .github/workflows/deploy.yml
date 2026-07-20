@@ -1,0 +1,40 @@
+yaml
+name: Deploy Mercor Affiliate System
+
+on:
+  push:
+    branches:
+      - main   # or 'master' depending on your repo setup
+  workflow_dispatch: # allows manual trigger
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Setup Ruby (for Jekyll if you’re using GitHub Pages + Jekyll)
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1' # match your Jekyll version requirements
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install
+
+      # Step 4: Build site
+      - name: Build site with Jekyll
+        run: bundle exec jekyll build --trace
+
+      # Step 5: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
