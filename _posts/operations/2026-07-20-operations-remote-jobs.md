@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Remote Operations Jobs — Updated Weekly"
-category: operations
+categories: operations
 thumbnail: /assets/images/thumbnails/operations.png
 ---
 

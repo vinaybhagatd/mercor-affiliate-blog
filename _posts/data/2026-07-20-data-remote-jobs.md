@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Remote Data Jobs — Updated Weekly"
-category: data
+categories: data
 thumbnail: /assets/images/thumbnails/data.png
 ---
 

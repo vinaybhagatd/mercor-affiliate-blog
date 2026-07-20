@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Remote Finance Jobs — Updated Weekly"
-category: finance
+categories: finance
 thumbnail: /assets/images/thumbnails/finance.png
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Remote Creative Jobs — Updated Weekly"
-category: creative
+categories: creative
 thumbnail: /assets/images/thumbnails/creative.png
 ---
 

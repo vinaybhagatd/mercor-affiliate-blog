@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Remote Language Jobs — Updated Weekly"
-category: language
+categories: language
 thumbnail: /assets/images/thumbnails/language.png
 ---
 

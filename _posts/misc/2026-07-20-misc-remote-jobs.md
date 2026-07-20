@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Remote Miscellaneous Jobs — Updated Weekly"
-category: misc
+categories: misc
 thumbnail: /assets/images/thumbnails/misc.png
 ---
 
