@@ -1,28 +1,36 @@
-# ⚙️ Remote Operations: Keep Companies Running From Anywhere
+---
+layout: post
+title: "Remote Operations Jobs — Updated Weekly"
+category: operations
+thumbnail: /assets/images/thumbnails/operations.png
+---
 
-Looking to streamline operations in a remote work environment? As an operations manager, you can optimize processes and improve efficiency from anywhere.
+# ⚙️ Remote Operations: Keep Global Teams Running Smoothly
+
+Operations professionals coordinate workflows, teams, and systems.
 
 ## Day in the Life
-You might start by reviewing operational data, planning projects, and collaborating with cross-functional teams. Flexible schedules allow for a balance between work and personal life.
+You may manage schedules, track KPIs, or streamline processes.
 
 ## Tools Used
-- Slack for communication
-- Salesforce or ServiceNow
+- Notion  
+- Asana  
+- CRM systems  
 
 ## Skills Required
-- Strong project management skills
-- Excellent problem-solving abilities
-- Proficiency in relevant software tools
+- Organization  
+- Communication  
+- Process optimization  
 
 ## Salary Range
-$50,000 - $150,000 per year
+$55,000 – $150,000 per year
 
 ## Growth Path
-Start as a Remote Operations Coordinator and move up to become an Operations Manager or even a Supply Chain Specialist.
+Start as an Operations Associate and grow into an Operations Manager or Director.
 
 ---
-### Grow Your Remote Operations Career
-{% include cta-operations.html %}
 
+### Want Better Remote Operations Opportunities?
+{% include cta-operations.html %}
 
 [Explore Remote Operations Roles Today!](https://www.mercor.com/remote-operations)

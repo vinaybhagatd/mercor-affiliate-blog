@@ -1,27 +1,36 @@
-# 🛠️ Remote Engineering: Why Developers Are Getting Hired Faster Than Ever
+---
+layout: post
+title: "Remote Engineering Jobs — Updated Weekly"
+category: engineering
+thumbnail: /assets/images/thumbnails/engineering.png
+---
 
-Looking to apply your engineering skills in a remote work environment? As a remote engineer, you can design and innovate from anywhere while enjoying flexibility.
+# 🛠️ Remote Engineering: Build Global Systems from Anywhere
+
+Remote engineers design, build, and optimize systems for companies worldwide.
 
 ## Day in the Life
-Your day might start with reviewing projects, collaborating on code, and participating in virtual meetings. Flexibility allows for a balance between work and personal life.
+You may work on product development, system architecture, or remote troubleshooting.
 
 ## Tools Used
-- Git for version control
-- JIRA for project management
+- GitHub  
+- Jira  
+- Cloud platforms  
 
 ## Skills Required
-- Strong technical skills
-- Excellent problem-solving abilities
-- Proficiency in relevant software tools
+- Strong technical fundamentals  
+- Problem‑solving  
+- Collaboration  
 
 ## Salary Range
-$70,000 - $200,000 per year
+$80,000 – $220,000 per year
 
 ## Growth Path
-Start as a Remote Software Engineer and move up to become a Lead Developer or even a Technical Lead.
+Start as a Remote Engineer and grow into a Senior Architect or Engineering Manager.
 
 ---
-### Build Your Engineering Career From Anywhere
+
+### Want Better Remote Engineering Opportunities?
 {% include cta-engineering.html %}
 
 [Explore Remote Engineering Roles Today!](https://www.mercor.com/remote-engineering)

@@ -1,27 +1,35 @@
-# 🎨 Remote Creative: Design, Writing & Media Roles Hiring Now
+---
+layout: post
+title: "Remote Creative Jobs — Updated Weekly"
+category: creative
+thumbnail: /assets/images/thumbnails/creative.png
+---
 
-Are you a creative professional looking for flexible remote work? As a remote graphic designer, you can bring your ideas to life from anywhere in India.
+# 🎨 Remote Creative: Build Global Brands from Your Laptop
+
+Creative professionals shape brand identity, content, and design.
 
 ## Day in the Life
-You might start by brainstorming concepts, designing graphics, and collaborating with clients. Flexible schedules allow for a balance between work and personal life.
+You may design graphics, write copy, or produce digital content.
 
 ## Tools Used
-- Adobe Creative Suite
-- Sketch or Figma
+- Canva  
+- Adobe Creative Suite  
 
 ## Skills Required
-- Strong design skills
-- Excellent communication abilities
-- Proficiency in relevant software tools
+- Creativity  
+- Storytelling  
+- Visual communication  
 
 ## Salary Range
-$40,000 - $120,000 per year
+$50,000 – $160,000 per year
 
 ## Growth Path
-Start as a Remote Graphic Designer and move up to become a Creative Director or even a UX/UI Specialist.
+Start as a Creative Specialist and grow into a Senior Designer or Creative Director.
 
 ---
-### Unlock More Creative Remote Opportunities
+
+### Want Better Remote Creative Opportunities?
 {% include cta-creative.html %}
 
 [Explore Remote Creative Roles Today!](https://www.mercor.com/remote-creative)

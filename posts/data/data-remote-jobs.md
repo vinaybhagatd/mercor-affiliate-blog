@@ -1,27 +1,36 @@
-# 📊 Remote Data: The Best Roles You Can Apply for Today
+---
+layout: post
+title: "Remote Data Jobs — Updated Weekly"
+category: data
+thumbnail: /assets/images/thumbnails/data.png
+---
 
-Are you passionate about data and want to work remotely? As a remote data analyst, you can leverage your skills in analytics while enjoying the flexibility of working from anywhere.
+# 📊 Remote Data: Turn Global Insights into Action
+
+Data professionals help companies make smarter decisions from anywhere.
 
 ## Day in the Life
-You might start by analyzing datasets, creating reports, and collaborating with other teams. Flexible schedules allow for a balance between work and personal life.
+You may clean datasets, build dashboards, or run predictive models.
 
 ## Tools Used
-- Tableau for data visualization
-- R or Python for data analysis
+- Python  
+- SQL  
+- Power BI / Tableau  
 
 ## Skills Required
-- Strong analytical skills
-- Proficiency in relevant software tools
-- Excellent problem-solving abilities
+- Analytical thinking  
+- Data visualization  
+- Statistical modeling  
 
 ## Salary Range
-$55,000 - $160,000 per year
+$75,000 – $200,000 per year
 
 ## Growth Path
-Start as a Remote Data Analyst and move up to become a Lead Data Scientist or even a Big Data Engineer.
+Start as a Data Analyst and grow into a Senior Data Scientist or Machine Learning Engineer.
 
 ---
-### Level Up Your Remote Data Career
+
+### Want Better Remote Data Opportunities?
 {% include cta-data.html %}
 
 [Explore Remote Data Roles Today!](https://www.mercor.com/remote-data)

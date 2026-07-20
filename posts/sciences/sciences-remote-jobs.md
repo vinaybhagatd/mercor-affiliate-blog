@@ -1,27 +1,35 @@
-# 🔬 Remote Sciences: Research & Analysis Jobs You Can Do Online
+---
+layout: post
+title: "Remote Science Jobs — Updated Weekly"
+category: sciences
+thumbnail: /assets/images/thumbnails/sciences.png
+---
 
-Passionate about science and seeking a flexible remote work environment? As a remote scientist, you can conduct research and publish findings from anywhere.
+# 🔬 Remote Sciences: Research and Innovate from Anywhere
+
+Scientists now collaborate globally through remote labs and digital platforms.
 
 ## Day in the Life
-You might start by reviewing experiments, analyzing data, and collaborating with other researchers. Flexible schedules allow for a balance between work and personal life.
+You may analyze data, write research papers, or support experiments remotely.
 
 ## Tools Used
-- Python or R for data analysis
-- LabView for experimental setup
+- Statistical software  
+- Research databases  
 
 ## Skills Required
-- Strong scientific knowledge
-- Excellent analytical skills
-- Proficiency in relevant software tools
+- Scientific reasoning  
+- Documentation  
+- Data analysis  
 
 ## Salary Range
-$55,000 - $180,000 per year
+$70,000 – $190,000 per year
 
 ## Growth Path
-Start as a Remote Research Scientist and move up to become a Lead Biotech Specialist or even a Product Development Manager.
+Start as a Research Associate and grow into a Senior Scientist or Research Lead.
 
 ---
-### Explore Remote Roles in Science & Research
+
+### Want Better Remote Science Opportunities?
 {% include cta-sciences.html %}
 
-[Explore Remote Science Roles Today!](https://www.mercor.com/remote-science)
+[Explore Remote Science Roles Today!](https://www.mercor.com/remote-sciences)
