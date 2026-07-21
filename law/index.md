@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Remote Law Jobs & Roles
-category: law
+categories: law
 og_image: /assets/og/law/latest-og.png
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Remote Language Jobs & Roles
-category: language
+categories: language
 og_image: /assets/og/language/latest-og.png
 ---
 

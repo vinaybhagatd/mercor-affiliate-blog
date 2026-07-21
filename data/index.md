@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Remote Data Jobs & Roles
-category: data
+categories: data
 og_image: /assets/og/data/latest-og.png
 ---
 

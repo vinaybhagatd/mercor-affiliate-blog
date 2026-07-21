@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Remote Creative Jobs & Roles
-category: creative
+categories: creative
 og_image: /assets/og/creative/latest-og.png
 ---
 

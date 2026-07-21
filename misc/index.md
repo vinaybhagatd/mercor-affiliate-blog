@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Remote Miscellaneous Jobs & Roles
-category: misc
+categories: misc
 og_image: /assets/og/misc/latest-og.png
 ---
 

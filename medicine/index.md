@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Remote Medicine Jobs & Roles
+categories: medicine
 og_image: /assets/og/medicine/latest-og.png
 ---
 

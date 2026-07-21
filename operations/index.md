@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Remote Operations Jobs & Roles
-category: operations
+categories: operations
 og_image: /assets/og/operations/latest-og.png
 ---
 

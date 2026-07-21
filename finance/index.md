@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Remote Finance Jobs & Roles
-category: finance
+categories: finance
 og_image: /assets/og/finance/latest-og.png
 ---
 

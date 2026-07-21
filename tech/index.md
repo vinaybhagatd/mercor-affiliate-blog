@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Remote Tech Jobs & Roles
-category: tech
+categories: tech
 og_image: /assets/og/tech/latest-og.png
 ---
 

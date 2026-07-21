@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Remote Science Jobs & Roles
-category: sciences
+categories: sciences
 og_image: /assets/og/sciences/latest-og.png
 ---
 

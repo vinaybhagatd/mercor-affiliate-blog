@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Remote Engineering Jobs & Roles
-category: engineering
+categories: engineering
 og_image: /assets/og/engineering/latest-og.png
 ---
 
