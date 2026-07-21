@@ -1,10 +1,12 @@
---- 
-layout: default 
-title: "Remote Law Jobs" 
---- 
-<h1>📚 Latest Remote Law Posts</h1> 
-<ul> 
-{} 
-  <li><a href="{{ post.url }}">{{ post.title }}</a></li> 
-{} 
-</ul> 
+﻿---
+layout: default
+title: "Remote Law Jobs"
+---
+
+<h1>📚 Latest Remote Law Posts</h1>
+
+<ul>
+  {% for post in site.categories.law %}
+    <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+  {% endfor %}
+</ul>
