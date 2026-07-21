@@ -33,3 +33,5 @@ Start as a Creative Specialist and grow into a Senior Designer or Creative Direc
 {% include cta-creative.html %}
 
 [Explore Remote Creative Roles Today!](https://www.mercor.com/remote-creative)
+<!-- normalize -->
+
