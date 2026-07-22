@@ -32,10 +32,13 @@ Remote creative roles often include:
 ## 📚 Latest Remote Creative Posts
 
 <ul>
-{% for post in site.categories.creative %}
-  <li>
-    <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a> — {{ post.date | date: "%B %d, %Y" }}
-  </li>
+{% assign creative_posts = site.categories.creative %}
+{% if creative_posts == empty %}
+  {% assign creative_posts = site.posts | where_exp: "post", "post.categories contains 'creative'" %}
+{% endif %}
+
+{% for post in creative_posts %}
+  <li><a href="{{ post.url }}">{{ post.title }}</a></li>
 {% endfor %}
 </ul>
 

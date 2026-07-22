@@ -2,6 +2,7 @@ title: Mercor Affiliate Blog
 description: Remote job breakdowns across 11 categories
 url: "https://vinaybhagatd.github.io"
 baseurl: "/mercor-affiliate-blog"
+future: true
 
 markdown: kramdown
 highlighter: rouge
