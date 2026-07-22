@@ -4,7 +4,6 @@ title: "Remote Creative Jobs - Updated Weekly"
 categories: creative
 thumbnail: /assets/images/thumbnails/creative.png
 ---
-
 # 🎨 Remote Creative: Build Global Brands from Your Laptop
 
 Creative professionals shape brand identity, content, and design.
@@ -33,5 +32,5 @@ Start as a Creative Specialist and grow into a Senior Designer or Creative Direc
 {% include cta-creative.html %}
 
 [Explore Remote Creative Roles Today!](https://www.mercor.com/remote-creative)
-<!-- normalize -->
+<!-- force-normalize -->
 
