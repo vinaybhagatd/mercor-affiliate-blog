@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Remote Creative Jobs - Updated Weekly"
-categories: creative
+categories:
+  - creative
 thumbnail: /assets/images/thumbnails/creative.png
 ---
 # 🎨 Remote Creative: Build Global Brands from Your Laptop

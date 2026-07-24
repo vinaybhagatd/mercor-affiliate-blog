@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Remote Science Jobs — Updated Weekly"
-categories: sciences
+categories:
+  - sciences
 thumbnail: /assets/images/thumbnails/sciences.png
 ---
 

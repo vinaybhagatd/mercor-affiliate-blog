@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Remote Tech Jobs — Updated Weekly"
-categories: tech
+categories:
+  - tech
 thumbnail: /assets/images/thumbnails/tech.png
 ---
 

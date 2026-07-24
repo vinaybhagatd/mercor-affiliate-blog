@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Remote Engineering Jobs — Updated Weekly"
-categories: engineering
+categories:
+  - engineering
 thumbnail: /assets/images/thumbnails/engineering.png
 ---
 

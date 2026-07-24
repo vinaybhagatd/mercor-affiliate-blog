@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Remote Medicine Jobs — Updated Weekly"
-categories: medicine
+categories:
+  - medicine
 thumbnail: /assets/images/thumbnails/medicine.png
 ---
 

@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Remote Law Jobs — Updated Weekly"
-categories: law
+categories:
+  - law
 thumbnail: /assets/images/thumbnails/law.png
 ---
 
