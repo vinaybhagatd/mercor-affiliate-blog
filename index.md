@@ -46,55 +46,38 @@ Choose a category to dive into detailed role breakdowns, insights, and weekly up
 
 ---
 
----
+<h2>Latest Remote Creative Posts</h2>
+{% include category-loop.html category="creative" %}
 
-## 🩺 Latest Medicine Posts
-{% for post in site.categories.medicine limit:5 %}
-<div class="post-with-thumb">
-  <img src="
-•	 
-" alt="Medicine thumbnail" class="thumb"> <a href="{{ post.url | relative_url }}">{{ post.title }}</a> </div> {% endfor %}
-⚖️ Latest Law Posts
-{% for post in site.categories.law limit:5 %} <div class="post-with-thumb"> <img src="
-•	 
-" alt="Law thumbnail" class="thumb"> <a href="{{ post.url | relative_url }}">{{ post.title }}</a> </div> {% endfor %}
-🛠️ Latest Engineering Posts
-{% for post in site.categories.engineering limit:5 %} <div class="post-with-thumb"> <img src="
-•	 
-" alt="Engineering thumbnail" class="thumb"> <a href="{{ post.url | relative_url }}">{{ post.title }}</a> </div> {% endfor %}
-📊 Latest Data Posts
-{% for post in site.categories.data limit:5 %} <div class="post-with-thumb"> <img src="
-•	 
-" alt="Data thumbnail" class="thumb"> <a href="{{ post.url | relative_url }}">{{ post.title }}</a> </div> {% endfor %}
-💰 Latest Finance Posts
-{% for post in site.categories.finance limit:5 %} <div class="post-with-thumb"> <img src="
-•	 
-" alt="Finance thumbnail" class="thumb"> <a href="{{ post.url | relative_url }}">{{ post.title }}</a> </div> {% endfor %}
-⚙️ Latest Operations Posts
-{% for post in site.categories.operations limit:5 %} <div class="post-with-thumb"> <img src="
-•	 
-" alt="Operations thumbnail" class="thumb"> <a href="{{ post.url | relative_url }}">{{ post.title }}</a> </div> {% endfor %}
-🔬 Latest Sciences Posts
-{% for post in site.categories.sciences limit:5 %} <div class="post-with-thumb"> <img src="
-•	 
-" alt="Sciences thumbnail" class="thumb"> <a href="{{ post.url | relative_url }}">{{ post.title }}</a> </div> {% endfor %}
-🎨 Latest Creative Posts
-{% for post in site.categories.creative limit:5 %} <div class="post-with-thumb"> <img src="
-•	 
-" alt="Creative thumbnail" class="thumb"> <a href="{{ post.url | relative_url }}">{{ post.title }}</a> </div> {% endfor %}
-🗣️ Latest Language Posts
-{% for post in site.categories.language limit:5 %} <div class="post-with-thumb"> <img src="
-•	 
-" alt="Language thumbnail" class="thumb"> <a href="{{ post.url | relative_url }}">{{ post.title }}</a> </div> {% endfor %}
-💻 Latest Tech Posts
-{% for post in site.categories.tech limit:5 %} <div class="post-with-thumb"> <img src="
-•	 
-" alt="Tech thumbnail" class="thumb"> <a href="{{ post.url | relative_url }}">{{ post.title }}</a> </div> {% endfor %}
-🧩 Latest Misc Posts
-{% for post in site.categories.misc limit:5 %} <div class="post-with-thumb"> <img src="
-•	 
-" alt="Misc thumbnail" class="thumb"> <a href="{{ post.url | relative_url }}">{{ post.title }}</a> </div> {% endfor %}
+<h2>Latest Remote Engineering Posts</h2>
+{% include category-loop.html category="engineering" %}
 
+<h2>Latest Remote Data Posts</h2>
+{% include category-loop.html category="data" %}
+
+<h2>Latest Remote Finance Posts</h2>
+{% include category-loop.html category="finance" %}
+
+<h2>Latest Remote Operations Posts</h2>
+{% include category-loop.html category="operations" %}
+
+<h2>Latest Remote Medicine Posts</h2>
+{% include category-loop.html category="medicine" %}
+
+<h2>Latest Remote Law Posts</h2>
+{% include category-loop.html category="law" %}
+
+<h2>Latest Remote Sciences Posts</h2>
+{% include category-loop.html category="sciences" %}
+
+<h2>Latest Remote Arts Posts</h2>
+{% include category-loop.html category="arts" %}
+
+<h2>Latest Remote Language Posts</h2>
+{% include category-loop.html category="language" %}
+
+<h2>Latest Remote Miscellaneous Posts</h2>
+{% include category-loop.html category="misc" %}
 
 ---
 

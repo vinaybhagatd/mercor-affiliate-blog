@@ -32,11 +32,7 @@ Remote language roles often include:
 ## 📚 Latest Remote Language Posts
 
 <ul>
-{% for post in site.categories.language %}
-  <li>
-    <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a> — {{ post.date | date: "%B %d, %Y" }}
-  </li>
-{% endfor %}
+{% include category-loop.html category="language" %}
 </ul>
 
 ## 🚀 Apply for Remote Roles

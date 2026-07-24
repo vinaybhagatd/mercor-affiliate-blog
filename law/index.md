@@ -32,11 +32,7 @@ Remote law roles often include:
 ## 📚 Latest Remote Law Posts
 
 <ul>
-{% for post in site.categories.law %}
-  <li>
-    <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a> — {{ post.date | date: "%B %d, %Y" }}
-  </li>
-{% endfor %}
+{% include category-loop.html category="law" %}
 </ul>
 
 ## 🚀 Apply for Remote Roles

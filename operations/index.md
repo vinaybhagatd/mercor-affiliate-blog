@@ -32,11 +32,7 @@ Remote operations roles often include:
 ## 📚 Latest Remote Operations Posts
 
 <ul>
-{% for post in site.categories.operations %}
-  <li>
-    <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a> — {{ post.date | date: "%B %d, %Y" }}
-  </li>
-{% endfor %}
+{% include category-loop.html category="operations" %}
 </ul>
 
 ## 🚀 Apply for Remote Roles

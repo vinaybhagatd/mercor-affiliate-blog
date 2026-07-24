@@ -32,11 +32,7 @@ Remote finance roles often include:
 ## 📚 Latest Remote Finance Posts
 
 <ul>
-{% for post in site.categories.finance %}
-  <li>
-    <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a> — {{ post.date | date: "%B %d, %Y" }}
-  </li>
-{% endfor %}
+{% include category-loop.html category="finance" %}
 </ul>
 
 ## 🚀 Apply for Remote Roles

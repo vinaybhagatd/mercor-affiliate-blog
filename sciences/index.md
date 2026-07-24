@@ -32,11 +32,7 @@ Remote science roles often include:
 ## 📚 Latest Remote Science Posts
 
 <ul>
-{% for post in site.categories.sciences %}
-  <li>
-    <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a> — {{ post.date | date: "%B %d, %Y" }}
-  </li>
-{% endfor %}
+{% include category-loop.html category="sciences" %}
 </ul>
 
 ## 🚀 Apply for Remote Roles

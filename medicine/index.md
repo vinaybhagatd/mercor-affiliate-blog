@@ -30,12 +30,8 @@ Remote medicine roles often include:
 
 ## 📚 Latest Remote Medicine Posts
 
-<ul>
-{% for post in site.categories.medicine %}
-  <li>
-    <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a> — {{ post.date | date: "%B %d, %Y" }}
-  </li>
-{% endfor %}
+<ul>{% include category-loop.html category="medicine" %}
+
 </ul>
 
 ## 🚀 Apply for Remote Roles
