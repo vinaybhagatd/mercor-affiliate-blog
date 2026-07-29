@@ -1,0 +1,11 @@
+{% extends "_includes/base.njk" %}
+
+{% block content %}
+  <h1>{{ title }}</h1>
+
+  {% if thumbnail %}
+    <img src="{{ thumbnail }}" alt="{{ title }}" class="thumb">
+  {% endif %}
+
+  {{ content | safe }}
+{% endblock %}

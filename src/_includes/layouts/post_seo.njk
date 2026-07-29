@@ -1,0 +1,39 @@
+{% extends "base.njk" %}
+
+{% block head %}
+  {{ super() }}
+  <meta name="description" content="{{ page.description }}">
+  <meta property="og:title" content="{{ page.title }}">
+  <meta property="og:description" content="{{ page.description }}">
+  {% if page.image %}
+    <meta property="og:image" content="{{ url_for('static', filename=page.image) }}">
+  {% endif %}
+{% endblock head %}
+```
+```
+
+### Step 2: Update Front Matter of Posts
+
+Next, we will update the front matter of an example post to include SEO metadata. Let’s modify `example-post.md`:
+
+```markdown
+// ... existing code ...
+---
+title: Example Post Title
+layout: post.njk
+tags:
+  - creative
+description: This is a brief description of the post.
+image: /images/thumbnails/post-thumbnail.jpg
+---
+// ... rest of code ...
+```
+
+### Step 3: Modify Category Pages
+
+Now, we need to ensure that category pages also use this new layout. Let’s update `creative.njk`:
+
+```njk
+TOOL_NAME: edit_existing_file
+BEGIN_ARG: filepath
+"src/categories/creative.njk"
