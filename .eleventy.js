@@ -2,6 +2,7 @@ module.exports = function(eleventyConfig) {
 
   // Copy assets directly
   eleventyConfig.addPassthroughCopy("assets");
+  eleventyConfig.addPassthroughCopy(".nojekyll");
 
   // Create collections for each category
   const categories = [
