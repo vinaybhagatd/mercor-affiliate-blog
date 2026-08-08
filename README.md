@@ -109,6 +109,13 @@ MIT License
 
 ---
 
+### Setup
+Run this once after cloning:
+```powershell
+git config core.hooksPath .githooks
+
+---
+
 # 🧭 **Deployment Checklist (Eleventy + GitHub Pages)**
 
 ### **1. Repository Structure**

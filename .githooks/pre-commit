@@ -1,2 +1,2 @@
 #!/bin/sh
-pwsh .git/hooks/pre-commit.ps1
+pwsh .githooks/pre-commit.ps1
