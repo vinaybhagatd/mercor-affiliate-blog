@@ -41,3 +41,14 @@ orchestrator.log
 .continue/
 *.txt
 *.md~
+
+# Ignore SSH keys and system files
+*.pub
+id_ed25519
+known_hosts
+.ssh/
+Users/LMTest/.ssh/
+
+# Ignore Eleventy build output
+_site/
+
