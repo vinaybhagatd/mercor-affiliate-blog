@@ -1,112 +1,112 @@
 param(
-    [string]$OutputDirectory = "C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts",
-    [string]$LogFile = "C:\Users\LMTest\promotional\mercor-affiliate-blog\createblog.log"
+    [string]$ProjectDir = "C:\Users\LMTest\promotional\mercor-affiliate-blog",
+    [string]$LogDir     = "C:\Users\LMTest\promotional\mercor-affiliate-blog\hermes-logs",
+    [int]$MaxLogs       = 10,
+    [int]$LastRuns      = 5,
+    [switch]$OpenSummary
 )
 
-function Log($text) {
-    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-    "$timestamp - $text" | Out-File -FilePath $LogFile -Append
+# Ensure log directory exists
+if (-not (Test-Path $LogDir)) {
+    New-Item -ItemType Directory -Path $LogDir | Out-Null
 }
 
-# Define the 11 Mercor job categories
-$categories = @(
-    "Medicine",
-    "Law",
-    "Engineering",
-    "Data",
-    "Finance",
-    "Operations",
-    "Sciences",
-    "Creative",
-    "Language",
-    "Tech",
-    "Misc"
-)
+# Collect all .ps1 files in the project folder
+$ps1Files = Get-ChildItem -Path $ProjectDir -Filter "*.ps1" -Recurse
 
-try {
-    Log "Starting CreateBlog Agent..."
-    Write-Output "Starting CreateBlog Agent..."
+# Build prompt with issues, Hermes analysis, and script snippets
+$issuesPrompt = @"
+You are an expert PowerShell coder with 10+ years of experience.
+Analyze and fix issues in the Mercor Affiliate Blog system.
 
-    # Ensure output directory exists
-    if (-not (Test-Path $OutputDirectory)) {
-        New-Item -ItemType Directory -Path $OutputDirectory -Force | Out-Null
-        Log "Created output directory: $OutputDirectory"
-    }
+### Outputs Preparation:
+Please provide actual script snippets so I can further refine the corrections based on exact logic and flows within those scripts. For each script identified, the corrections aim to address specific issues such as handling paths with spaces or aligning with specific project requirements like Eleventy v2.0.1 compatibility, along with a consistent approach to error handling and logging.
 
-    foreach ($category in $categories) {
-        $safeCategory = $category -replace '\s','-'
-        $filePath = Join-Path $OutputDirectory "$safeCategory.md"
+=== Known Issues & Hermes Analysis Report ===
+Diagnostics.ps1:
+- Missing subscripts detection logic fails when paths are relative.
+- Error handling inconsistent (Write-Error vs Write-Output).
+- Parallel execution not awaited; jobs terminate early.
+- Diff generation incomplete when file count > 20.
 
-        # Special case: Medical category gets full sample content
-        if ($category -eq "Medicine") {
-            $content = @"
----
-title: "Remote Medical Support Roles: Why They Matter More Than Ever"
-date: $(Get-Date -Format "yyyy-MM-dd")
-category: $category
-description: "Exploring the importance of remote medical support roles."
-tags: []
-style: "Blended conversational Marketing Style of Molly Keyser + Sam Browne — story driven, punchy, emotional, no emojis"
----
+CreateBlog1.ps1:
+- Category logic incorrect: "arts" and "services" still generated.
+- Metadata missing canonical URLs.
+- Markdown conversion inconsistent.
+- ConvertTo-Json depth not set → truncated config.
 
-If you’ve ever felt the pull toward meaningful work — the kind that actually helps people breathe easier — remote medical support roles are exactly that. You don’t need a hospital hallway or a white coat to make an impact. You just need your brain, your empathy, and a laptop.
+Orchestrator.ps1:
+- Config subscripts fail with spaces in path.
+- Deadlocks due to improper Start-Job usage.
+- Summary skips failed jobs.
+- Regression: missing absolute folder paths.
 
-And honestly? The world needs you more than ever.
+QAValidator.ps1:
+- Validation rules incomplete (duplicate slugs not caught).
+- Regex too permissive.
+- Error reporting inconsistent.
+- Regression: missing SEO metadata detection.
 
-A Day in the Life (The Real Version)
-You start your morning reviewing patient notes. Not the scary kind — the human kind. Someone’s confused about their medication. Someone else needs help scheduling a follow up. You’re the calm voice in the chaos.
+MercorDebug.ps1:
+- Debug logs not timestamped.
+- Verbose mode ignored.
+- Pipeline variables not cleared.
+- Regression: failed subscripts not captured.
 
-Midday, you’re coordinating with doctors, updating digital records, and helping patients navigate telehealth platforms. It’s structured, but never boring. Every message you send makes someone’s day a little easier.
+MercorDebugLoader.ps1:
+- Loader fails with hyphenated paths.
+- Import-Module errors not handled.
+- Regression: cached modules not reloaded.
+- Logging inconsistent.
 
-Tools You’ll Use
-• Telemedicine platforms (Practo, Doxy.me)
-• EMR/EHR systems
-• Secure messaging tools
-• Google Workspace
-• Scheduling dashboards
+Other Scripts (general):
+- Inconsistent Set-Location vs absolute paths.
+- No standardized logging.
+- Retry logic missing in Invoke-RestMethod/WebRequest.
+- Ad-hoc error handling.
+- GitHub Actions integration fails on non-zero exit codes.
 
-Skills You Need
-• Clear communication
-• Medical terminology basics
-• Patient empathy
-• Attention to detail
-• Ability to stay calm under pressure
+=== Script Snippets ===
+"@"
 
-Salary Range
-\$800 – \$1,500 per month depending on specialization and experience.
-
-Growth Path
-You can start in patient coordination and grow into telehealth operations, medical QA, EMR administration, or even remote clinical support roles. The ladder is real, and every step opens a new door.
-
-Ready to Step Into a Medical Role That Actually Matters?
-Mercor connects you with global startups hiring remote medical support talent right now. Explore remote medical roles
-"@
-        }
-        else {
-            # Placeholder content for other categories
-            $content = @"
----
-title: "Remote $category Roles: Opportunities and Growth"
-date: $(Get-Date -Format "yyyy-MM-dd")
-category: $category
-description: "Exploring remote $category opportunities in the Mercor Affiliate system."
-tags: []
-style: "Blended conversational Marketing Style of Molly Keyser + Sam Browne — story driven, punchy, emotional, no emojis"
----
-
-This is a placeholder blog for the $category category. Expand with story-driven, punchy, emotional content in the Molly Keyser + Sam Browne blended marketing style (no emojis).
-"@
-        }
-
-        $content | Out-File -FilePath $filePath -Encoding utf8
-        Log "Created blog post for category: $category at $filePath"
-        Write-Output "Blog post created: $filePath"
-    }
-
-    Log "All 11 blog posts generated successfully."
-    Write-Output "All 11 blog posts generated successfully."
+foreach ($file in $ps1Files) {
+    $content = Get-Content $file.FullName -Raw
+    $issuesPrompt += "`n=== $($file.Name) ===`n$content`n"
 }
-catch {
-    Log "Error: $($_.Exception.Message)"
-    Write-Output "Error creating blog posts: $($_.Exception.Message)"
+
+# Timestamped log file
+$timestamp = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
+$logFile   = Join-Path $LogDir "hermes-$timestamp.log"
+
+# Send to Hermes
+$response = Send-OllamaRequest -Prompt $issuesPrompt
+$response | Out-File -FilePath $logFile -Encoding UTF8
+
+Write-Output "Hermes response saved to $logFile"
+
+# Summary status
+if ($OpenSummary) {
+    Write-Host "Summary output will be displayed..."
 }
+
+# Monetization hooks for CreateBlog.ps1
+$blogContent = @"
+## ${category} Blog
+
+### Solution & Takeaways
+`AFFILIATE_LINK_PLACEHOLDER`
+
+### Call to Action
+📌 **Free Resource:** [Download our UX Case Study Template](EMAIL_CAPTURE_PLACEHOLDER)
+
+### Disclosure
+Disclosure: Some of the links in this post are affiliate links. This means if you click and purchase, we may earn a commission at no extra cost to you. We only recommend products we trust and use ourselves.
+
+### Conclusion
+"
+
+# Save blog with monetization hooks
+$blogFile = Join-Path $LogDir "$category-blogs.md"
+Set-Content -Path $blogFile -Value $blogContent -Encoding UTF8
+
+Write-Host "Blog saved to: `n`$blogFile"
