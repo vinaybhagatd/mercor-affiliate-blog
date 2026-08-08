@@ -1,0 +1,2 @@
+#!/bin/sh
+pwsh .git/hooks/pre-commit.ps1

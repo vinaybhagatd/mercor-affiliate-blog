@@ -1,0 +1,68 @@
+#!/usr/bin/env pwsh
+# Git pre-commit hook (PowerShell native)
+# 1. Run PSScriptAnalyzer on all active PowerShell scripts
+# 2. Block sensitive files from being committed
+# 3. Warn on large files (>5 MB)
+
+Write-Host "🔍 Running PSScriptAnalyzer on active PowerShell scripts..."
+
+$errors = @()
+Get-ChildItem -Recurse -Filter *.ps1 |
+    Where-Object {
+        $_.FullName -notmatch 'mercor_backups|orchestrator_backups|node_modules'
+    } | ForEach-Object {
+        Write-Output "Analyzing $($_.FullName)..."
+        $result = Invoke-ScriptAnalyzer $_.FullName -Severity ParseError,Error
+        if ($result) { $errors += $result }
+    }
+
+if ($errors.Count -gt 0) {
+    Write-Host "❌ Commit blocked: ScriptAnalyzer found errors." -ForegroundColor Red
+    exit 1
+}
+
+Write-Host "✅ ScriptAnalyzer passed. Proceeding with sensitive file check..."
+
+# Sensitive file patterns
+$blockedPatterns = @(
+    'id_ed25519',
+    '\.ssh',
+    'known_hosts',
+    '\.pub$',
+    '_site/'
+)
+
+$stagedFiles = git diff --cached --name-only
+$foundBlocked = $false
+
+foreach ($file in $stagedFiles) {
+    foreach ($pattern in $blockedPatterns) {
+        if ($file -match $pattern) {
+            Write-Host "❌ Commit blocked: sensitive file detected -> $file" -ForegroundColor Red
+            $foundBlocked = $true
+        }
+    }
+}
+
+if ($foundBlocked) {
+    exit 1
+}
+
+# Large file warning (>5 MB)
+$largeFiles = @()
+foreach ($file in $stagedFiles) {
+    if (Test-Path $file) {
+        $size = (Get-Item $file).Length
+        if ($size -gt 5MB) {
+            $largeFiles += $file
+        }
+    }
+}
+
+if ($largeFiles.Count -gt 0) {
+    Write-Host "⚠️ Warning: Large files staged (>5 MB):" -ForegroundColor Yellow
+    $largeFiles | ForEach-Object { Write-Host "   $_" }
+}
+
+Write-Host "✅ All checks passed. Commit allowed." -ForegroundColor Green
+exit 0
