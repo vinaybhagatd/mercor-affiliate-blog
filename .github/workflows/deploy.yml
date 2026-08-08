@@ -29,6 +29,15 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      # Run PowerShell automation scripts
+      - name: Run PowerShell automation scripts
+        shell: pwsh
+        run: |
+          pwsh -File ./Orchestrator.ps1
+          pwsh -File ./QAValidator.ps1
+          pwsh -File ./create-categories.ps1
+          pwsh -File ./Diagnostics.ps1
+
       # Build Eleventy site
       - name: Build Eleventy
         run: npx @11ty/eleventy
