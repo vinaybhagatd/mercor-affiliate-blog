@@ -1,0 +1,43 @@
+# Build output
+_site/
+_site/**
+
+# Node.js dependencies
+node_modules/
+package-lock.json
+
+# Logs
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*.err
+*.out
+
+# Backups and generated diffs/summaries
+mercor_backups/
+orchestrator_backups/
+orchestrator_diffs/
+orchestrator_summaries/
+pipeline-logs/
+hermes-logs/
+
+# Local config and temp files
+config.json
+createblog.log
+diagnostics.log
+diagnostics_log_*.txt
+loader.log
+mercordebug.log
+orchestrator.log
+
+# Editor/IDE artifacts
+.vscode/
+.idea/
+*.iml
+
+# Misc
+.continue/
+*.txt
+*.md~
