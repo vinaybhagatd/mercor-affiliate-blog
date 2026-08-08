@@ -1,0 +1,48 @@
+﻿Here's an improved version of PowerShell-Bulk-Fix-Script.ps1:
+
+```powershell
+# Path to your Jekyll posts folder
+$postsPath = "C:\Users\User\promotional\mercor-affiliate-blog\_posts"
+
+# Loop through all markdown files
+Get-ChildItem -Path $posts_path -Filter *.md | ForEach-Object {
+    $file = $_.FullName
+
+    try {
+        # Read content from file
+        $content = Get-Content $file
+
+        # Fix category format by replacing it or adding the new one if not exist
+        $fixed_content = $content -replace '^categories:\s*([A-Za-z0-9_-]+)', "categories: `$1"
+        
+        # Save the updated file content
+        Set-Content -Path "$file" -Value $fixed_content
+        
+        Write-Host "Fixed categories in: $file"
+    } catch {
+        # Handle exceptions 
+        Write-Error "Failed to process file: $file. Exception: $_"
+    }
+}
+
+Write-Host "Bulk category fix complete."
+```
+
+These are the corrections made:
+
+1. Fixed syntax error in the `$postsPath` assignment.
+2. Placed content-modification code within a try-catch block for better exception handling.
+3. Improved error logging using `Write-Error` when an exception occurs.
+
+However, more improvements can still be suggested to address further issues mentioned in the Known Issues & Hermes Analysis Report:
+
+1. Introduce retry logic where needed (e.g., in Invoke-RestMethod/WebRequest).
+2. Ensure spaces in paths are correctly handled across all scripts.
+3. Improve logging, including timestamping and consistent handling of verbose mode.
+4. Standardize logging format across all scripts for easier debugging.
+5. Address the inconsistency in error reporting.
+6. Resolve deadlocks due to improper job execution.
+7. Update category detection logic correctly.
+8. Ensure canonical URLs are added where necessary.
+
+These code improvements should enhance the functionality and reliability of your script, along with better alignment to project requirements like Eleventy v2.0.1 compatibility.

@@ -1,0 +1,27 @@
+﻿===================================
+Orchestrator Run Summary
+Timestamp: 20260806_203755
+Overall Status: FAILED
+Details: Error occurred: A parameter cannot be found that matches parameter name 'and'.
+
+--- Per-Script Status ---
+Script: 
+                    param($s)
+                    try {
+                        & $s
+                        if ($s -eq ".\\CreateBlog.ps1") {
+                            return "Blog generation completed successfully."
+                        } else {
+                            return "SUCCESS"
+                        }
+                    } catch {
+                        return "FAILED: $($_.Exception.Message)"
+                    }
+                
+Status: FAILED: Could not find file 'C:\Users\LMTest\Documents\createblog.log'.
+
+Script: Overall
+Status: FAILED
+
+
+===================================

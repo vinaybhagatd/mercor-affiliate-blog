@@ -1,0 +1,34 @@
+﻿===================================
+Orchestrator Run Summary
+Timestamp: 20260806_231338
+Overall Status: FAILED
+Details: Error occurred: A parameter cannot be found that matches parameter name 'and'.
+
+--- Per-Script Status ---
+Script: Overall
+Status: FAILED
+
+Script: 
+                        param($s,$outDir)
+                        try {
+                            & $s -OutputDirectory $outDir
+                            return "Blog generation completed successfully."
+                        } catch {
+                            return "FAILED: $($_.Exception.Message)"
+                        }
+                    
+Status: Error creating blog posts: The process cannot access the file 'C:\Users\LMTest\promotional\mercor-affiliate-blog\createblog.log' because it is being used by another process. Blog generation completed successfully.
+
+Script: 
+                        param($s,$logFile)
+                        try {
+                            & $s -LogFile $logFile
+                            return "SUCCESS"
+                        } catch {
+                            return "FAILED: $($_.Exception.Message)"
+                        }
+                    
+Status: MercorDebug completed successfully. SUCCESS
+
+
+===================================

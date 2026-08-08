@@ -1,0 +1,233 @@
+﻿=== Pipeline Run (2026-08-07_15-43-51) ===
+
+    Write-Output "=== Qwen Analysis ==="
+    The output you provided shows the progress of Eleventy (a static site generator) building your project. Here's a breakdown of what’s happening:
+
+---
+
+### **Key Observations**
+1. **File Generation**:
+   - Eleventy is converting Markdown files (`src/posts/creative.md`, `src/categories/data.njk`, etc.) into HTML files in the `_site` directory.
+   - Files like `_site/index.html` (the homepage) and category pages (`_site/categories/...`) are being generated.
+
+2. **Build Process**:
+   - The build completed successfully in **0.73 seconds**, with each file write taking ~0.73 ms.
+   - This suggests a lightweight build process, possibly using the "v2.0.1" version of Eleventy.
+
+---
+
+### **What’s Being Done**
+- **Posts**: 
+  - `src/posts/creative.md` → `_site/posts/creative/index.html`
+  - Sub-posts (e.g., `example-post.md`) are generated as nested files in the `posts/creative` directory.
+- **Categories**:
+  - `src/categories/data.njk` → `_site/categories/data/index.html`
+  - Similar logic applies to other categories like `engineering`, `finance`, etc.
+- **Home Page**:
+  - `src/index.njk` → `_site/index.html`
+
+---
+
+### **Why the Logs Are Here**
+- **Debugging**: Eleventy logs help verify that files are being processed correctly (e.g., `posts/creative.md` is written to `_site/posts/creative/index.html`).
+- **Output Structure**:
+  - `_site/` contains all static content.
+  - The `index.html` in each post directory is the rendered version of the Markdown file.
+
+---
+
+### **Common Questions**
+If you’re encountering issues, here’s how to address them:
+
+1. **Missing Files**:
+   - Check if `src/posts/creative.md` exists and is correctly formatted.
+   - Ensure all templates (e.g., `data.njk`, `index.njk`) are in the right directories.
+
+2. **Performance**:
+   - The build time is fast, but you can optimize by:
+     - Using `eleventy-plugin-serve` for faster development server.
+     - Minifying CSS/JS and enabling caching in production.
+
+3. **Duplicate Files**:
+   - If `example-post/index.html` appears twice, check your Markdown files for duplicate entries or misconfigured templates.
+
+---
+
+### **Next Steps**
+If you have a specific issue (e.g., build errors, missing content, or performance concerns), share more details! For example:
+- Are there any error messages in the logs?
+- Is the site not rendering as expected?
+- Do you need help with custom templates or plugins?
+
+Let me know, and I’ll tailor my response to your needs! 🚀 = Send-LMStudioRequest -Prompt 
+> mercor-affiliate-blog@1.0.0 build
+> eleventy
+
+[11ty] Writing _site/posts/creative/index.html from ./src/posts/creative.md (liquid)
+[11ty] Writing _site/posts/data/index.html from ./src/posts/data.md (liquid)
+[11ty] Writing _site/posts/engineering/index.html from ./src/posts/engineering.md (liquid)
+[11ty] Writing _site/posts/finance/index.html from ./src/posts/finance.md (liquid)
+[11ty] Writing _site/posts/language/index.html from ./src/posts/language.md (liquid)
+[11ty] Writing _site/posts/law/index.html from ./src/posts/law.md (liquid)
+[11ty] Writing _site/posts/medicine/index.html from ./src/posts/medicine.md (liquid)
+[11ty] Writing _site/posts/misc/index.html from ./src/posts/misc.md (liquid)
+[11ty] Writing _site/posts/operations/index.html from ./src/posts/operations.md (liquid)
+[11ty] Writing _site/posts/sciences/index.html from ./src/posts/sciences.md (liquid)
+[11ty] Writing _site/posts/tech/index.html from ./src/posts/tech.md (liquid)
+[11ty] Writing _site/posts/example-post/index.html from ./src/posts/example-post.md (liquid)
+[11ty] Writing _site/posts/creative/example-post2/index.html from ./src/posts/creative/example-post2.md (liquid)
+[11ty] Writing _site/posts/creative/example-post/index.html from ./src/posts/creative/example-post.md (liquid)
+[11ty] Writing _site/categories/data/index.html from ./src/categories/data.njk
+[11ty] Writing _site/index.html from ./src/index.njk
+[11ty] Writing _site/categories/creative/index.html from ./src/categories/creative.njk
+[11ty] Writing _site/categories/engineering/index.html from ./src/categories/engineering.njk
+[11ty] Writing _site/categories/finance/index.html from ./src/categories/finance.njk
+[11ty] Writing _site/categories/language/index.html from ./src/categories/language.njk
+[11ty] Writing _site/categories/law/index.html from ./src/categories/law.njk
+[11ty] Writing _site/categories/medicine/index.html from ./src/categories/medicine.njk
+[11ty] Writing _site/categories/misc/index.html from ./src/categories/misc.njk
+[11ty] Writing _site/categories/operations/index.html from ./src/categories/operations.njk
+[11ty] Writing _site/categories/sciences/index.html from ./src/categories/sciences.njk
+[11ty] Writing _site/categories/tech/index.html from ./src/categories/tech.njk
+[11ty] Copied 13 files / Wrote 26 files in 0.73 seconds (28.1ms each, v2.0.1)
+
+    Write-Output The output you provided shows the progress of Eleventy (a static site generator) building your project. Here's a breakdown of what’s happening:
+
+---
+
+### **Key Observations**
+1. **File Generation**:
+   - Eleventy is converting Markdown files (`src/posts/creative.md`, `src/categories/data.njk`, etc.) into HTML files in the `_site` directory.
+   - Files like `_site/index.html` (the homepage) and category pages (`_site/categories/...`) are being generated.
+
+2. **Build Process**:
+   - The build completed successfully in **0.73 seconds**, with each file write taking ~0.73 ms.
+   - This suggests a lightweight build process, possibly using the "v2.0.1" version of Eleventy.
+
+---
+
+### **What’s Being Done**
+- **Posts**: 
+  - `src/posts/creative.md` → `_site/posts/creative/index.html`
+  - Sub-posts (e.g., `example-post.md`) are generated as nested files in the `posts/creative` directory.
+- **Categories**:
+  - `src/categories/data.njk` → `_site/categories/data/index.html`
+  - Similar logic applies to other categories like `engineering`, `finance`, etc.
+- **Home Page**:
+  - `src/index.njk` → `_site/index.html`
+
+---
+
+### **Why the Logs Are Here**
+- **Debugging**: Eleventy logs help verify that files are being processed correctly (e.g., `posts/creative.md` is written to `_site/posts/creative/index.html`).
+- **Output Structure**:
+  - `_site/` contains all static content.
+  - The `index.html` in each post directory is the rendered version of the Markdown file.
+
+---
+
+### **Common Questions**
+If you’re encountering issues, here’s how to address them:
+
+1. **Missing Files**:
+   - Check if `src/posts/creative.md` exists and is correctly formatted.
+   - Ensure all templates (e.g., `data.njk`, `index.njk`) are in the right directories.
+
+2. **Performance**:
+   - The build time is fast, but you can optimize by:
+     - Using `eleventy-plugin-serve` for faster development server.
+     - Minifying CSS/JS and enabling caching in production.
+
+3. **Duplicate Files**:
+   - If `example-post/index.html` appears twice, check your Markdown files for duplicate entries or misconfigured templates.
+
+---
+
+### **Next Steps**
+If you have a specific issue (e.g., build errors, missing content, or performance concerns), share more details! For example:
+- Are there any error messages in the logs?
+- Is the site not rendering as expected?
+- Do you need help with custom templates or plugins?
+
+Let me know, and I’ll tailor my response to your needs! 🚀
+
+    Write-Output "
+=== Hermes Fix Plan ==="
+    It seems like everything looks normal based on the output. However, if you encounter any issues such as missing files, performance concerns, or duplicate content, please let me know so that I can assist you further.
+
+For example:
+
+1. **Missing Files**: Check for the existence of your source Markdown files in `src/posts/` and ensure they are correctly formatted.
+2. **Performance Concerns**: You might benefit from using plugins like `eleventy-plugin-serve` for a faster development server, as well as minifying CSS/JS and enabling caching for production builds.
+3. **Duplicate Content**: This may happen if there are duplicate entries in your Markdown files or misconfigured templates.
+
+If you have any specific questions or encounter errors, please provide more context so I can tailor the response accordingly to help resolve these issues. = Send-OllamaRequest -Prompt The output you provided shows the progress of Eleventy (a static site generator) building your project. Here's a breakdown of what’s happening:
+
+---
+
+### **Key Observations**
+1. **File Generation**:
+   - Eleventy is converting Markdown files (`src/posts/creative.md`, `src/categories/data.njk`, etc.) into HTML files in the `_site` directory.
+   - Files like `_site/index.html` (the homepage) and category pages (`_site/categories/...`) are being generated.
+
+2. **Build Process**:
+   - The build completed successfully in **0.73 seconds**, with each file write taking ~0.73 ms.
+   - This suggests a lightweight build process, possibly using the "v2.0.1" version of Eleventy.
+
+---
+
+### **What’s Being Done**
+- **Posts**: 
+  - `src/posts/creative.md` → `_site/posts/creative/index.html`
+  - Sub-posts (e.g., `example-post.md`) are generated as nested files in the `posts/creative` directory.
+- **Categories**:
+  - `src/categories/data.njk` → `_site/categories/data/index.html`
+  - Similar logic applies to other categories like `engineering`, `finance`, etc.
+- **Home Page**:
+  - `src/index.njk` → `_site/index.html`
+
+---
+
+### **Why the Logs Are Here**
+- **Debugging**: Eleventy logs help verify that files are being processed correctly (e.g., `posts/creative.md` is written to `_site/posts/creative/index.html`).
+- **Output Structure**:
+  - `_site/` contains all static content.
+  - The `index.html` in each post directory is the rendered version of the Markdown file.
+
+---
+
+### **Common Questions**
+If you’re encountering issues, here’s how to address them:
+
+1. **Missing Files**:
+   - Check if `src/posts/creative.md` exists and is correctly formatted.
+   - Ensure all templates (e.g., `data.njk`, `index.njk`) are in the right directories.
+
+2. **Performance**:
+   - The build time is fast, but you can optimize by:
+     - Using `eleventy-plugin-serve` for faster development server.
+     - Minifying CSS/JS and enabling caching in production.
+
+3. **Duplicate Files**:
+   - If `example-post/index.html` appears twice, check your Markdown files for duplicate entries or misconfigured templates.
+
+---
+
+### **Next Steps**
+If you have a specific issue (e.g., build errors, missing content, or performance concerns), share more details! For example:
+- Are there any error messages in the logs?
+- Is the site not rendering as expected?
+- Do you need help with custom templates or plugins?
+
+Let me know, and I’ll tailor my response to your needs! 🚀
+    Write-Output It seems like everything looks normal based on the output. However, if you encounter any issues such as missing files, performance concerns, or duplicate content, please let me know so that I can assist you further.
+
+For example:
+
+1. **Missing Files**: Check for the existence of your source Markdown files in `src/posts/` and ensure they are correctly formatted.
+2. **Performance Concerns**: You might benefit from using plugins like `eleventy-plugin-serve` for a faster development server, as well as minifying CSS/JS and enabling caching for production builds.
+3. **Duplicate Content**: This may happen if there are duplicate entries in your Markdown files or misconfigured templates.
+
+If you have any specific questions or encounter errors, please provide more context so I can tailor the response accordingly to help resolve these issues.
+
+Summary: Qwen analysis SUCCESS, Hermes fixes SUCCESS.
