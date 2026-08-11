@@ -233,6 +233,7 @@ GitHub Actions handles everything.
 
 ![RunPrompt Tests](https://github.com/vinaybhagatd/mercor-affiliate-blog/actions/workflows/runprompt-tests.yml/badge.svg)
 
+![PowerShell Analyzer](https://github.com/vinaybhagatd/mercor-affiliate-blog/actions/workflows/powershell-analyzer.yml/badge.svg)
 
 
 

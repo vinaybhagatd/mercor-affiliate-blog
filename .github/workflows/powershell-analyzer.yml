@@ -1,116 +1,20 @@
-name: PowerShell Script Analyzer
+name: PowerShell Analyzer
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
 
 jobs:
-  analyze-critical:
+  analyze:
     runs-on: windows-latest
-    name: Critical Ruleset (CI/CD)
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Setup PowerShell
-      uses: actions/setup-powershell@v2
+      - name: Setup PowerShell
+        uses: actions/setup-powershell@v2
 
-    - name: Install PSScriptAnalyzer
-      run: |
-        Install-Module -Name PSScriptAnalyzer -Force -Scope CurrentUser
-
-    - name: Run PSScriptAnalyzer with CI/CD ruleset
-      run: |
-        Invoke-ScriptAnalyzer `
-          -Path .\scripts `
-          -Settings .\PSScriptAnalyzerSettings.CICD.psd1 `
-          -Recurse `
-          -Severity Error | Out-File -FilePath critical-analysis-report.txt
-
-    - name: Upload critical analysis report
-      uses: actions/upload-artifact@v4
-      with:
-        name: critical-analysis-report
-        path: critical-analysis-report.txt
-
-  analyze-style:
-    runs-on: windows-latest
-    name: Full Ruleset (Warnings Only)
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    - name: Setup PowerShell
-      uses: actions/setup-powershell@v2
-
-    - name: Install PSScriptAnalyzer
-      run: |
-        Install-Module -Name PSScriptAnalyzer -Force -Scope CurrentUser
-
-    - name: Run PSScriptAnalyzer with full ruleset (warnings only)
-      continue-on-error: true
-      run: |
-        Invoke-ScriptAnalyzer `
-          -Path .\scripts `
-          -Settings .\PSScriptAnalyzerSettings.psd1 `
-          -Recurse `
-          -Severity Warning | Out-File -FilePath style-analysis-report.txt
-
-    - name: Upload style analysis report
-      uses: actions/upload-artifact@v4
-      with:
-        name: style-analysis-report
-        path: style-analysis-report.txt
-
-  merge-summary:
-    runs-on: windows-latest
-    name: Merge Reports into Summary
-    needs: [analyze-critical, analyze-style]
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    - name: Download critical report
-      uses: actions/download-artifact@v4
-      with:
-        name: critical-analysis-report
-        path: reports
-
-    - name: Download style report
-      uses: actions/download-artifact@v4
-      with:
-        name: style-analysis-report
-        path: reports
-
-    - name: Merge reports into combined summary
-      run: |
-        Get-Content reports/critical-analysis-report.txt, reports/style-analysis-report.txt |
-          Out-File -FilePath combined-analysis-summary.txt -Encoding UTF8
-
-    - name: Upload combined summary
-      uses: actions/upload-artifact@v4
-      with:
-        name: combined-analysis-summary
-        path: combined-analysis-summary.txt
-
-  post-summary:
-    runs-on: ubuntu-latest
-    name: Post Combined Summary to PR
-    needs: merge-summary
-
-    steps:
-    - name: Download combined summary
-      uses: actions/download-artifact@v4
-      with:
-        name: combined-analysis-summary
-        path: reports
-
-    - name: Post summary as PR comment
-      uses: marocchino/sticky-pull-request-comment@v2
-      with:
-        path: reports/combined-analysis-summary.txt
+      - name: Run ScriptAnalyzer
+        run: pwsh -File ./powershell-analyzer.ps1
