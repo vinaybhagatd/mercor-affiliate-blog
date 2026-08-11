@@ -11,18 +11,15 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Setup PowerShell
-        uses: actions/setup-powershell@v2
+        uses: actions/checkout@v4
 
       - name: Install Pester
         run: |
-          Install-Module -Name Pester -Force -Scope CurrentUser
+          pwsh -Command "Install-Module -Name Pester -Force -Scope CurrentUser"
 
       - name: Run Pester tests
         run: |
-          Invoke-Pester .\RunPrompt.Tests.ps1 -Output Detailed -PassThru | Export-Clixml -Path TestResults.xml
+          pwsh -Command "Invoke-Pester .\RunPrompt.Tests.ps1 -Output Detailed -PassThru | Export-Clixml -Path TestResults.xml"
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
