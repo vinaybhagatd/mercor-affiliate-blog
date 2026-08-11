@@ -1,0 +1,24 @@
+name: RunPrompt Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup PowerShell
+        uses: actions/setup-powershell@v2
+
+      - name: Install Pester v6
+        run: |
+          Install-Module -Name Pester -RequiredVersion 6.0.1 -Force -Scope CurrentUser
+
+      - name: Run Pester tests
+        run: |
+          Invoke-Pester .\RunPrompt.Tests.ps1 -Output Detailed

@@ -91,13 +91,33 @@ if ($OpenSummary) {
 
 # Monetization hooks for CreateBlog.ps1
 $blogContent = @"
-## ${category} Blog
+layout post
+title   <Dynamic Title>
+categories  <One of the 11 categories>
+thumbnail   /assets/images/thumbnails/<category>.png
 
-### Solution & Takeaways
-`AFFILIATE_LINK_PLACEHOLDER`
+🎨 <Category Headline>
+<Category professionals description>
 
-### Call to Action
-📌 **Free Resource:** [Download our UX Case Study Template](EMAIL_CAPTURE_PLACEHOLDER)
+Day in the Life
+<Persona-specific daily tasks>
+
+Tools Used
+<List of tools>
+
+Skills Required
+<List of skills>
+
+Salary Range
+<$X – $Y per year>
+
+Growth Path
+<Career progression>
+
+Want Better Remote <Category> Opportunities?
+{% include cta-<category>.html %}
+
+Explore Remote <Category> Roles Today!
 
 ### Disclosure
 Disclosure: Some of the links in this post are affiliate links. This means if you click and purchase, we may earn a commission at no extra cost to you. We only recommend products we trust and use ourselves.
