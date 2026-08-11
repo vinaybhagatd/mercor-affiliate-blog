@@ -235,6 +235,13 @@ GitHub Actions handles everything.
 
 ![PowerShell Analyzer](https://github.com/vinaybhagatd/mercor-affiliate-blog/actions/workflows/powershell-analyzer.yml/badge.svg)
 
+## CI Status
+
+| Workflow              | Status                                                                 |
+|-----------------------|------------------------------------------------------------------------|
+| PowerShell Analyzer   | ![Analyzer](https://github.com/vinaybhagatd/mercor-affiliate-blog/actions/workflows/powershell-analyzer.yml/badge.svg) |
+| Eleventy Build        | ![Eleventy](https://github.com/vinaybhagatd/mercor-affiliate-blog/actions/workflows/eleventy.yml/badge.svg) |
+| RunPrompt Tests       | ![RunPrompt Tests](https://github.com/vinaybhagatd/mercor-affiliate-blog/actions/workflows/runprompt-tests.yml/badge.svg) |
 
 
 
