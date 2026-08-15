@@ -1,7 +1,6 @@
 ﻿<#
 .SYNOPSIS
     QAValidator.ps1 - Validates Mercor Affiliate Blog posts for compliance
-    and blocks commits if validation fails.
 .DESCRIPTION
     Checks front matter, categories, required sections, disclosure, and placeholder text.
     Produces QAReport.txt with summary and details. Blocks commits if any failures exist.
@@ -12,8 +11,15 @@ param (
     [string] $OutputFile = ".\QAReport.txt"
 )
 
-$approvedCategories = @("creative", "data", "engineering", "finance", "language", "law", "medicine", "misc", "operations", "sciences", "tech")
-$requiredSections = @("Day in the Life", "Tools Used", "Skills Required", "Salary Range", "Growth Path", "Want Better Remote", "Explore Remote")
+$approvedCategories = @(
+    "creative", "data", "engineering", "finance", "language",
+    "law", "medicine", "misc", "operations", "sciences", "tech"
+)
+
+$requiredSections = @(
+    "Day in the Life", "Tools Used", "Skills Required",
+    "Salary Range", "Growth Path", "Want Better Remote", "Explore Remote"
+)
 
 $results = @()
 $hasFailures = $false
@@ -29,10 +35,18 @@ Get-ChildItem -Path $SiteDir -Recurse -Filter "*.md" | ForEach-Object {
     $issues = @()
 
     # Front matter checks
-    if ($content -notmatch "layout\s+post") { $issues += "Missing or incorrect layout front matter." }
-    if ($content -notmatch "title\s+") { $issues += "Missing title in front matter." }
-    if ($content -notmatch "categories\s+") { $issues += "Missing categories in front matter." }
-    if ($content -notmatch "thumbnail\s+/assets/images/thumbnails/") { $issues += "Missing thumbnail path in front matter." }
+    if ($content -notmatch "layout\s+post") {
+        $issues += "Missing or incorrect layout front matter."
+    }
+    if ($content -notmatch "title\s+") {
+        $issues += "Missing title in front matter."
+    }
+    if ($content -notmatch "categories\s+") {
+        $issues += "Missing categories in front matter."
+    }
+    if ($content -notmatch "thumbnail\s+/assets/images/thumbnails/") {
+        $issues += "Missing thumbnail path in front matter."
+    }
 
     # Category validation
     $categoryMatch = [regex]::Match($content, "categories\s+(\w+)")
@@ -64,13 +78,13 @@ Get-ChildItem -Path $SiteDir -Recurse -Filter "*.md" | ForEach-Object {
     }
 
     if ($issues.Count -gt 0) {
-        $results += "Validation failed for $file:`n - " + ($issues -join "`n - ")
+        $results += "Validation failed for ${file}:`n - " + ($issues -join "`n - ")
         $hasFailures = $true
         $failedCount++
         $failedFiles += $file
     }
     else {
-        $results += "Validation passed for $file"
+        $results += "Validation passed for ${file}"
         $passedCount++
     }
 }
@@ -92,4 +106,3 @@ else {
     Write-Host "QA validation passed. Results saved to $OutputFile"
     exit 0   # Success
 }
-
