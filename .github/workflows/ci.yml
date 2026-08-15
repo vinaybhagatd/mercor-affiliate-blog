@@ -1,0 +1,23 @@
+      # 🔹 Run ScriptAnalyzer for Errors (blocking)
+      - name: Run ScriptAnalyzer for Errors
+        run: pwsh -Command "Invoke-ScriptAnalyzer -Path . -Recurse -Settings .\\PSScriptAnalyzerSettings.psd1 -Severity Error"
+
+      # 🔹 Collect Warnings (non-blocking)
+      - name: Run ScriptAnalyzer for Warnings
+        run: pwsh -Command "
+          $settingsPath = '.\\PSScriptAnalyzerSettings.psd1';
+          $warnings = Invoke-ScriptAnalyzer -Path . -Recurse -Settings $settingsPath -Severity Warning;
+          if ($warnings) {
+            $warnings | Format-Table RuleName, Severity, ScriptName, Line, Message -AutoSize |
+              Out-String | Set-Content .\\WarningsReport.txt -Encoding UTF8
+          } else {
+            'No warnings found.' | Set-Content .\\WarningsReport.txt -Encoding UTF8
+          }
+        "
+
+      # 🔹 Upload Warnings Artifact
+      - name: Upload Warnings Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: warnings-report
+          path: WarningsReport.txt

@@ -1,0 +1,28 @@
+name: RunPrompt Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Pester
+        run: |
+          pwsh -Command "Install-Module -Name Pester -Force -Scope CurrentUser"
+
+      - name: Run Pester tests
+        run: |
+          pwsh -Command "Invoke-Pester .\RunPrompt.Tests.ps1 -Output Detailed -PassThru | Export-Clixml -Path TestResults.xml"
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: runprompt-test-results
+          path: TestResults.xml

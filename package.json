@@ -2,6 +2,7 @@
   "name": "mercor-affiliate-blog",
   "version": "1.0.0",
   "scripts": {
+    "eleventy": "npx @11ty/eleventy",
     "build": "eleventy",
     "serve": "eleventy --serve"
   },

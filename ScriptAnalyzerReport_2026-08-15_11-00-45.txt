@@ -1,0 +1,255 @@
+
+RuleName                            Severity     ScriptName Line  Message
+--------                            --------     ---------- ----  -------
+PSUseConsistentIndentation          Warning      BulkFix-Sc 30    Indentation not consistent
+                                                 ripts.ps1
+PSUseDeclaredVarsMoreThanAssignment Warning      BulkFix-Sc 24    The variable 'errors' is assigned but
+s                                                ripts.ps1        never used.
+
+
+RuleName                            Severity     ScriptName Line  Message
+--------                            --------     ---------- ----  -------
+PSUseConsistentIndentation          Warning      Fix-GetCon 1     Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 3     Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 6     Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 7     Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 8     Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 9     Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 10    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 11    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 13    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 14    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 15    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 16    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 17    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 19    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 21    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 23    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 24    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 26    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 28    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 29    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 31    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 32    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 33    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 35    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 36    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 37    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 40    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 41    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 43    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 44    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 45    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 47    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 48    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 50    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 51    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 52    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+PSUseConsistentIndentation          Warning      Fix-GetCon 54    Indentation not consistent
+                                                 tentUsage.
+                                                 ps1
+
+
+RuleName                            Severity     ScriptName Line  Message
+--------                            --------     ---------- ----  -------
+PSUseConsistentIndentation          Warning      Orchestrat 30    Indentation not consistent
+                                                 or_clean.p
+                                                 s1
+PSUseConsistentIndentation          Warning      Orchestrat 31    Indentation not consistent
+                                                 or_clean.p
+                                                 s1
+PSUseConsistentIndentation          Warning      Orchestrat 32    Indentation not consistent
+                                                 or_clean.p
+                                                 s1
+PSUseConsistentIndentation          Warning      Orchestrat 34    Indentation not consistent
+                                                 or_clean.p
+                                                 s1
+PSUseConsistentIndentation          Warning      Orchestrat 35    Indentation not consistent
+                                                 or_clean.p
+                                                 s1
+PSUseConsistentIndentation          Warning      Orchestrat 68    Indentation not consistent
+                                                 or_clean.p
+                                                 s1
+PSUseConsistentWhitespace           Warning      Orchestrat 68    Use space before closing brace.
+                                                 or_clean.p
+                                                 s1
+PSUseConsistentWhitespace           Warning      Orchestrat 34    Use space before and after binary and
+                                                 or_clean.p       assignment operators.
+                                                 s1
+PSUseConsistentWhitespace           Warning      Orchestrat 35    Use space before and after binary and
+                                                 or_clean.p       assignment operators.
+                                                 s1
+PSUseConsistentWhitespace           Warning      Orchestrat 35    Use space before and after binary and
+                                                 or_clean.p       assignment operators.
+                                                 s1
+
+
+RuleName                            Severity     ScriptName Line  Message
+--------                            --------     ---------- ----  -------
+PSUseConsistentIndentation          Warning      Orchestrat 30    Indentation not consistent
+                                                 or.ps1
+PSUseConsistentIndentation          Warning      Orchestrat 31    Indentation not consistent
+                                                 or.ps1
+PSUseConsistentIndentation          Warning      Orchestrat 32    Indentation not consistent
+                                                 or.ps1
+PSUseConsistentIndentation          Warning      Orchestrat 34    Indentation not consistent
+                                                 or.ps1
+PSUseConsistentIndentation          Warning      Orchestrat 35    Indentation not consistent
+                                                 or.ps1
+PSUseConsistentIndentation          Warning      Orchestrat 68    Indentation not consistent
+                                                 or.ps1
+PSUseConsistentWhitespace           Warning      Orchestrat 68    Use space before closing brace.
+                                                 or.ps1
+PSUseConsistentWhitespace           Warning      Orchestrat 34    Use space before and after binary and
+                                                 or.ps1           assignment operators.
+PSUseConsistentWhitespace           Warning      Orchestrat 35    Use space before and after binary and
+                                                 or.ps1           assignment operators.
+PSUseConsistentWhitespace           Warning      Orchestrat 35    Use space before and after binary and
+                                                 or.ps1           assignment operators.
+
+
+RuleName                            Severity     ScriptName Line  Message
+--------                            --------     ---------- ----  -------
+PSUseConsistentIndentation          Warning      QAValidato 26    Indentation not consistent
+                                                 r_clean.ps
+                                                 1
+PSUseConsistentIndentation          Warning      QAValidato 27    Indentation not consistent
+                                                 r_clean.ps
+                                                 1
+PSUseConsistentIndentation          Warning      QAValidato 96    Indentation not consistent
+                                                 r_clean.ps
+                                                 1
+PSUseConsistentIndentation          Warning      QAValidato 97    Indentation not consistent
+                                                 r_clean.ps
+                                                 1
+PSUseConsistentIndentation          Warning      QAValidato 98    Indentation not consistent
+                                                 r_clean.ps
+                                                 1
+PSUseConsistentIndentation          Warning      QAValidato 99    Indentation not consistent
+                                                 r_clean.ps
+                                                 1
+PSUseConsistentIndentation          Warning      QAValidato 100   Indentation not consistent
+                                                 r_clean.ps
+                                                 1
+PSUseConsistentIndentation          Warning      QAValidato 101   Indentation not consistent
+                                                 r_clean.ps
+                                                 1
+PSUseConsistentIndentation          Warning      QAValidato 102   Indentation not consistent
+                                                 r_clean.ps
+                                                 1
+
+
+RuleName                            Severity     ScriptName Line  Message
+--------                            --------     ---------- ----  -------
+PSUseConsistentIndentation          Warning      QAValidato 26    Indentation not consistent
+                                                 r_fixed.ps
+                                                 1
+PSUseConsistentIndentation          Warning      QAValidato 27    Indentation not consistent
+                                                 r_fixed.ps
+                                                 1
+PSUseConsistentIndentation          Warning      QAValidato 96    Indentation not consistent
+                                                 r_fixed.ps
+                                                 1
+PSUseConsistentIndentation          Warning      QAValidato 97    Indentation not consistent
+                                                 r_fixed.ps
+                                                 1
+PSUseConsistentIndentation          Warning      QAValidato 98    Indentation not consistent
+                                                 r_fixed.ps
+                                                 1
+PSUseConsistentIndentation          Warning      QAValidato 99    Indentation not consistent
+                                                 r_fixed.ps
+                                                 1
+PSUseConsistentIndentation          Warning      QAValidato 100   Indentation not consistent
+                                                 r_fixed.ps
+                                                 1
+PSUseConsistentIndentation          Warning      QAValidato 101   Indentation not consistent
+                                                 r_fixed.ps
+                                                 1
+PSUseConsistentIndentation          Warning      QAValidato 102   Indentation not consistent
+                                                 r_fixed.ps
+                                                 1
+PSUseConsistentIndentation          Warning      QAValidato 114   Indentation not consistent
+                                                 r_fixed.ps
+                                                 1
+PSUseConsistentIndentation          Warning      QAValidato 115   Indentation not consistent
+                                                 r_fixed.ps
+                                                 1
+PSUseConsistentIndentation          Warning      QAValidato 116   Indentation not consistent
+                                                 r_fixed.ps
+                                                 1
+PSUseConsistentIndentation          Warning      QAValidato 117   Indentation not consistent
+                                                 r_fixed.ps
+                                                 1
+

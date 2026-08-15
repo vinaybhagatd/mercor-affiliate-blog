@@ -1,18 +1,10 @@
-\---
+﻿---
+title: "Remote Sciences Roles: Opportunities and Growth"
+date: 2026-08-06
+category: Sciences
+description: "Exploring remote Sciences opportunities in the Mercor Affiliate system."
+tags: []
+style: "Blended conversational Marketing Style of Molly Keyser + Sam Browne â€” story driven, punchy, emotional, no emojis"
+---
 
-title: Remote Science Jobs
-
-tags: sciences
-
-thumbnail: /assets/images/thumbnails/sciences.png
-
-layout: post.njk
-
-\---
-
-
-
-Find remote roles in biology, chemistry, environmental science, and scientific research support.
-
-
-
+This is a placeholder blog for the Sciences category. Expand with story-driven, punchy, emotional content in the Molly Keyser + Sam Browne blended marketing style (no emojis).

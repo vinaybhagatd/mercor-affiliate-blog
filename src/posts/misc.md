@@ -1,18 +1,10 @@
-\---
+﻿---
+title: "Remote Misc Roles: Opportunities and Growth"
+date: 2026-08-06
+category: Misc
+description: "Exploring remote Misc opportunities in the Mercor Affiliate system."
+tags: []
+style: "Blended conversational Marketing Style of Molly Keyser + Sam Browne â€” story driven, punchy, emotional, no emojis"
+---
 
-title: Remote Miscellaneous Jobs
-
-tags: misc
-
-thumbnail: /assets/images/thumbnails/misc.png
-
-layout: post.njk
-
-\---
-
-
-
-A curated list of remote roles that don’t fit neatly into other categories — unique opportunities updated weekly.
-
-
-
+This is a placeholder blog for the Misc category. Expand with story-driven, punchy, emotional content in the Molly Keyser + Sam Browne blended marketing style (no emojis).

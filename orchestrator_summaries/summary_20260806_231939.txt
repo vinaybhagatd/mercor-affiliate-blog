@@ -1,0 +1,34 @@
+﻿===================================
+Orchestrator Run Summary
+Timestamp: 20260806_231939
+Overall Status: FAILED
+Details: Error occurred: A parameter cannot be found that matches parameter name 'and'.
+
+--- Per-Script Status ---
+Script: Overall
+Status: FAILED
+
+Script: 
+                        param($s,$outDir)
+                        try {
+                            & $s -OutputDirectory $outDir
+                            return "Blog generation completed successfully."
+                        } catch {
+                            return "FAILED: $($_.Exception.Message)"
+                        }
+                    
+Status: Starting CreateBlog Agent... Blog post created: C:\Users\LMTest\promotional\mercor-affiliate-blog\_site\Medicine.md Blog post created: C:\Users\LMTest\promotional\mercor-affiliate-blog\_site\Law.md Blog post created: C:\Users\LMTest\promotional\mercor-affiliate-blog\_site\Engineering.md Blog post created: C:\Users\LMTest\promotional\mercor-affiliate-blog\_site\Data.md Blog post created: C:\Users\LMTest\promotional\mercor-affiliate-blog\_site\Finance.md Blog post created: C:\Users\LMTest\promotional\mercor-affiliate-blog\_site\Operations.md Blog post created: C:\Users\LMTest\promotional\mercor-affiliate-blog\_site\Sciences.md Blog post created: C:\Users\LMTest\promotional\mercor-affiliate-blog\_site\Creative.md Blog post created: C:\Users\LMTest\promotional\mercor-affiliate-blog\_site\Language.md Blog post created: C:\Users\LMTest\promotional\mercor-affiliate-blog\_site\Tech.md Blog post created: C:\Users\LMTest\promotional\mercor-affiliate-blog\_site\Misc.md All 11 blog posts generated successfully. Blog generation completed successfully.
+
+Script: 
+                        param($s,$logFile)
+                        try {
+                            & $s -LogFile $logFile
+                            return "SUCCESS"
+                        } catch {
+                            return "FAILED: $($_.Exception.Message)"
+                        }
+                    
+Status: MercorDebug completed successfully. SUCCESS
+
+
+===================================

@@ -1,0 +1,23 @@
+# PowerShell ScriptAnalyzer / Formatter reports
+PreCommitReport.txt
+WarningsReport.txt
+ScriptAnalyzerReport_*.txt
+FormatterReport_*.txt
+BulkFixReport.txt
+
+# Diagnostic logs
+diagnostics.log
+diagnostics_log_*.txt
+loader.log
+mercordebug.log
+orchestrator.log
+pipeline-logs/
+hermes-logs/
+
+# General hygiene reports
+*.err
+*.out
+*.tmp
+*.bak
+*.swp
+*.swo

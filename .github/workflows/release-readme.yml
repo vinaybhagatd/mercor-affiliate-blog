@@ -1,0 +1,58 @@
+name: Auto-Generate Working Scripts README & Release
+
+on:
+  push:
+    tags:
+      - "working-scripts-*"
+
+permissions:
+  contents: write   # allow creating releases and uploading assets
+
+jobs:
+  generate-readme-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get commit metadata (GitHub context)
+        id: commit
+        run: |
+          echo "commit_hash=${GITHUB_SHA}" >> $GITHUB_OUTPUT
+          echo "commit_message=${{ github.event.head_commit.message }}" >> $GITHUB_OUTPUT
+          echo "commit_date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+          echo "tag_name=${GITHUB_REF##*/}" >> $GITHUB_OUTPUT
+          echo "timestamp=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_OUTPUT
+
+      - name: Generate README.md
+        run: |
+          cat > README.md << 'EOF'
+          # 📦 Working Scripts Bundle – ${{ steps.commit.outputs.tag_name }}
+          ...
+          EOF
+
+      - name: Archive Artifacts with Timestamp
+        run: |
+          mkdir -p artifacts/${{ steps.commit.outputs.timestamp }}
+          cp blogs/*-QAReport.txt artifacts/${{ steps.commit.outputs.timestamp }}/ || true
+          cp blogs/*-Diff.txt artifacts/${{ steps.commit.outputs.timestamp }}/ || true
+          cp blogs/QA-Summary.csv artifacts/${{ steps.commit.outputs.timestamp }}/ || true
+          cp README.md artifacts/${{ steps.commit.outputs.timestamp }}/
+          zip -r artifacts/${{ steps.commit.outputs.timestamp }}/_site.zip _site || true
+          zip -r artifacts/working-scripts-bundle-${{ steps.commit.outputs.timestamp }}.zip artifacts/${{ steps.commit.outputs.timestamp }}
+
+      - name: Cleanup Old Bundles (keep last 5)
+        run: |
+          ls -t artifacts/working-scripts-bundle-*.zip | tail -n +6 | xargs -r rm --
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.commit.outputs.tag_name }}
+          name: "Working Scripts ${{ steps.commit.outputs.tag_name }}"
+          body_path: README.md
+          files: |
+            artifacts/working-scripts-bundle-${{ steps.commit.outputs.timestamp }}.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,77 @@
+param(
+    [switch]$Restore
+)
+
+$files = Get-ChildItem -Path . -Filter *.ps1 -Recurse
+$totalFiles = 0
+$totalCleaned = 0
+$totalBadChars = 0
+$totalRestored = 0
+$totalSkipped = 0
+
+if ($Restore) {
+    foreach ($file in $files) {
+        $backupFile = "$($file.FullName).bak"
+        if (Test-Path $backupFile) {
+            Copy-Item $backupFile $file.FullName -Force
+            $totalRestored++
+            Write-Host "Restored $($file.Name) from backup."
+        }
+    }
+
+    Write-Host "`n=== Restore Summary ==="
+    Write-Host "Total .ps1 files scanned : $($files.Count)"
+    Write-Host "Files restored            : $totalRestored"
+    return
+}
+
+foreach ($file in $files) {
+    $totalFiles++
+    $backupFile = "$($file.FullName).bak"
+
+    if (Test-Path $backupFile) {
+        $totalSkipped++
+        Write-Host "Skipped $($file.Name) because backup already exists."
+        continue
+    }
+
+    $lines = Get-Content $file.FullName
+    $badLines = @()
+    $charReport = @()
+
+    for ($i = 0; $i -lt $lines.Count; $i++) {
+        foreach ($ch in $lines[$i].ToCharArray()) {
+            if ([int]$ch -gt 127) {
+                $badLines += "Line $($i+1): $($lines[$i])"
+                $charReport += "File: $($file.Name) Line $($i+1) → '$ch' (U+{0:X4})" -f [int]$ch
+            }
+        }
+    }
+
+    if ($badLines.Count -gt 0) {
+        $totalCleaned++
+        $totalBadChars += $charReport.Count
+
+        # Log bad lines and Unicode report
+        $logFile = "$($file.FullName).removed.log"
+        $badLines + "`n=== Unicode Report ===" + $charReport | Set-Content $logFile -Encoding UTF8
+
+        # Backup original file
+        Copy-Item $file.FullName $backupFile -Force
+
+        # Clean file in place
+        -join ((Get-Content $file.FullName -Raw).ToCharArray() | Where-Object { [int]$_ -le 127 }) |
+        Set-Content $file.FullName -Encoding ASCII
+
+        Write-Host "Cleaned and replaced $($file.Name). Backup saved as $($file.Name).bak"
+    }
+    else {
+        Write-Host "No non-ASCII characters found in $($file.Name)"
+    }
+}
+
+Write-Host "`n=== Summary Report ==="
+Write-Host "Total .ps1 files scanned : $totalFiles"
+Write-Host "Files cleaned            : $totalCleaned"
+Write-Host "Files skipped (backup exists) : $totalSkipped"
+Write-Host "Total bad characters removed : $totalBadChars"

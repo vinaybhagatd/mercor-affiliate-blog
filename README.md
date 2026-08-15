@@ -109,6 +109,13 @@ MIT License
 
 ---
 
+### Setup
+Run this once after cloning:
+```powershell
+git config core.hooksPath .githooks
+
+---
+
 # 🧭 **Deployment Checklist (Eleventy + GitHub Pages)**
 
 ### **1. Repository Structure**
@@ -222,6 +229,19 @@ bash
 git push
 GitHub Actions handles everything.
 
+## Build & Test Status
+
+![RunPrompt Tests](https://github.com/vinaybhagatd/mercor-affiliate-blog/actions/workflows/runprompt-tests.yml/badge.svg)
+
+![PowerShell Analyzer](https://github.com/vinaybhagatd/mercor-affiliate-blog/actions/workflows/powershell-analyzer.yml/badge.svg)
+
+## CI Status
+
+| Workflow              | Status                                                                 |
+|-----------------------|------------------------------------------------------------------------|
+| PowerShell Analyzer   | ![Analyzer](https://github.com/vinaybhagatd/mercor-affiliate-blog/actions/workflows/powershell-analyzer.yml/badge.svg) |
+| Eleventy Build        | ![Eleventy](https://github.com/vinaybhagatd/mercor-affiliate-blog/actions/workflows/eleventy.yml/badge.svg) |
+| RunPrompt Tests       | ![RunPrompt Tests](https://github.com/vinaybhagatd/mercor-affiliate-blog/actions/workflows/runprompt-tests.yml/badge.svg) |
 
 
 
