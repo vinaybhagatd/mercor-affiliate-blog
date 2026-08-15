@@ -21,3 +21,43 @@ hermes-logs/
 *.bak
 *.swp
 *.swo
+
+# Build output
+_site/
+build.log
+createblog.log
+
+# Logs
+*.log
+logs/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Eleventy build output
+_site/
+
+# Logs
+*.log
+logs/
+
+# VSCode
+.vscode/
+
+# PowerShell analyzer reports
+PreCommitReport.txt
+UnicodeMasterReport.log
+
+# Temporary removed files
+*.removed.log
+
+# Build artifacts
+build/
+dist/
+
+QAReport.txt
+deploy.yml
+
