@@ -1,41 +1,69 @@
-name: Deploy
+name: MABS CI/CD Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+  workflow_dispatch:   # allow manual trigger
+
+permissions:
+  contents: write      # allow creating releases, pushing artifacts
+  pages: write         # allow deployment to GitHub Pages
+  id-token: write      # Required for OIDC authentication purpose
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+  build-and-validate:
+    runs-on: windows-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup PowerShell
+        uses: actions/setup-python@v5
         with:
-          node-version: '18'
+          python-version: '3.x'   # required for some PowerShell modules
 
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+      - name: Run BatchCreateBlogs.ps1
+        shell: pwsh
+        run: |
+          .\BatchCreateBlogs.ps1
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Run QAValidator.ps1
+        shell: pwsh
+        run: |
+          .\QAValidator.ps1
 
-      - name: Build site
-        run: npm run build
-
-      - name: Upload artifact
+      - name: Upload QA Report
         uses: actions/upload-artifact@v4
         with:
-          name: site
-          path: ./_site
+          name: QAReport
+          path: QAReport.txt
+
+      - name: Fail if QA validation failed
+        shell: pwsh
+        run: |
+          if (Select-String -Path QAReport.txt -Pattern "failed") {
+            Write-Error "QA validation failed. Fix issues before publishing."
+          }
+
+  deploy:
+    needs: build-and-validate
+    runs-on: ubuntu-latest
+    if: success()   # only run if validation passes
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
 
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
