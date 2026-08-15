@@ -15,7 +15,7 @@ $passedCount = 0
 $failedCount = 0
 $failedFiles = @()
 
-Get-ChildItem -Path $SiteDir -Recurse -Filter *.md | ForEach-Object {
+Get-ChildItem -Path $SiteDir -Recurse -Filter "*.md" | ForEach-Object {
     $file = $_.FullName
     $content = -Path 
 
