@@ -5,6 +5,9 @@ on:
     tags:
       - "working-scripts-*"
 
+permissions:
+  contents: write   # allow creating releases and uploading assets
+
 jobs:
   generate-readme-and-release:
     runs-on: ubuntu-latest
