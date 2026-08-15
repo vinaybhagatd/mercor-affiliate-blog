@@ -1,0 +1,68 @@
+{
+  "creative": {
+    "tools": ["Adobe Photoshop", "Illustrator", "Figma"],
+    "skills": ["Graphic Design", "Storytelling", "Branding"],
+    "salary": "$45,000 – $80,000 per year",
+    "growth": "Junior Designer → Senior Designer → Art Director → Creative Director"
+  },
+  "data": {
+    "tools": ["SQL", "Python", "R", "Tableau"],
+    "skills": ["Data Analysis", "Statistics", "Machine Learning"],
+    "salary": "$60,000 – $110,000 per year",
+    "growth": "Data Analyst → Data Scientist → Lead Data Scientist → Head of Analytics"
+  },
+  "engineering": {
+    "tools": ["GitHub", "Docker", "Jenkins", "VS Code"],
+    "skills": ["Software Development", "DevOps", "System Architecture"],
+    "salary": "$70,000 – $120,000 per year",
+    "growth": "Junior Engineer → Senior Engineer → Engineering Manager → CTO"
+  },
+  "finance": {
+    "tools": ["Excel", "QuickBooks", "SAP", "Tableau"],
+    "skills": ["Accounting", "Financial Analysis", "Risk Management"],
+    "salary": "$60,000 – $100,000 per year",
+    "growth": "Analyst → Senior Analyst → Finance Manager → CFO"
+  },
+  "language": {
+    "tools": ["Grammarly", "CAT Tools", "MS Word"],
+    "skills": ["Translation", "Editing", "Copywriting"],
+    "salary": "$40,000 – $75,000 per year",
+    "growth": "Translator → Senior Editor → Localization Manager → Head of Content"
+  },
+  "law": {
+    "tools": ["LexisNexis", "Westlaw", "Case Management Software"],
+    "skills": ["Legal Research", "Contract Drafting", "Negotiation"],
+    "salary": "$70,000 – $130,000 per year",
+    "growth": "Associate → Senior Associate → Partner → Managing Partner"
+  },
+  "medicine": {
+    "tools": ["EMR Systems", "Telemedicine Platforms", "Diagnostic Tools"],
+    "skills": ["Clinical Knowledge", "Patient Care", "Medical Research"],
+    "salary": "$80,000 – $150,000 per year",
+    "growth": "Resident → Attending Physician → Department Head → Chief Medical Officer"
+  },
+  "misc": {
+    "tools": ["Slack", "Zoom", "Google Workspace"],
+    "skills": ["Adaptability", "Problem Solving", "Communication"],
+    "salary": "$35,000 – $70,000 per year",
+    "growth": "Entry-Level → Specialist → Manager → Director"
+  },
+  "operations": {
+    "tools": ["ERP Systems", "Project Management Tools", "Excel"],
+    "skills": ["Process Optimization", "Logistics", "Leadership"],
+    "salary": "$55,000 – $95,000 per year",
+    "growth": "Coordinator → Operations Manager → Director of Operations → COO"
+  },
+  "sciences": {
+    "tools": ["Lab Equipment", "MATLAB", "SPSS"],
+    "skills": ["Research", "Data Analysis", "Critical Thinking"],
+    "salary": "$50,000 – $90,000 per year",
+    "growth": "Research Assistant → Scientist → Principal Investigator → Director of Research"
+  },
+  "tech": {
+    "tools": ["GitHub", "Docker", "VS Code", "Jira"],
+    "skills": ["Cloud Computing", "DevOps", "JavaScript", "AI/ML"],
+    "salary": "$70,000 – $120,000 per year",
+    "growth": "Junior Developer → Senior Engineer → Tech Lead → CTO"
+  }
+}

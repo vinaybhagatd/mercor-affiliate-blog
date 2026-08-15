@@ -1,0 +1,12 @@
+Category,Tools,Skills,Salary,Growth
+creative,"Adobe Photoshop; Illustrator; Figma","Graphic Design; Storytelling; Branding","$45,000 – $80,000 per year","Junior Designer → Senior Designer → Art Director → Creative Director"
+data,"SQL; Python; R; Tableau","Data Analysis; Statistics; Machine Learning","$60,000 – $110,000 per year","Data Analyst → Data Scientist → Lead Data Scientist → Head of Analytics"
+engineering,"GitHub; Docker; Jenkins; VS Code","Software Development; DevOps; System Architecture","$70,000 – $120,000 per year","Junior Engineer → Senior Engineer → Engineering Manager → CTO"
+finance,"Excel; QuickBooks; SAP; Tableau","Accounting; Financial Analysis; Risk Management","$60,000 – $100,000 per year","Analyst → Senior Analyst → Finance Manager → CFO"
+language,"Grammarly; CAT Tools; MS Word","Translation; Editing; Copywriting","$40,000 – $75,000 per year","Translator → Senior Editor → Localization Manager → Head of Content"
+law,"LexisNexis; Westlaw; Case Management Software","Legal Research; Contract Drafting; Negotiation","$70,000 – $130,000 per year","Associate → Senior Associate → Partner → Managing Partner"
+medicine,"EMR Systems; Telemedicine Platforms; Diagnostic Tools","Clinical Knowledge; Patient Care; Medical Research","$80,000 – $150,000 per year","Resident → Attending Physician → Department Head → Chief Medical Officer"
+misc,"Slack; Zoom; Google Workspace","Adaptability; Problem Solving; Communication","$35,000 – $70,000 per year","Entry-Level → Specialist → Manager → Director"
+operations,"ERP Systems; Project Management Tools; Excel","Process Optimization; Logistics; Leadership","$55,000 – $95,000 per year","Coordinator → Operations Manager → Director of Operations → COO"
+sciences,"Lab Equipment; MATLAB; SPSS","Research; Data Analysis; Critical Thinking","$50,000 – $90,000 per year","Research Assistant → Scientist → Principal Investigator → Director of Research"
+tech,"GitHub; Docker; VS Code; Jira","Cloud Computing; DevOps; JavaScript; AI/ML","$70,000 – $120,000 per year","Junior Developer → Senior Engineer → Tech Lead → CTO"

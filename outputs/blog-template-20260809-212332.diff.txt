@@ -1,0 +1,677 @@
+
+InputObject
+-----------                                                           
+Loading md-coder-qwen3-8b 0% Γáï                                      
+Loading md-coder-qwen3-8b 2% Γá╣                                      
+Loading md-coder-qwen3-8b 4% Γá╕                                      
+Loading md-coder-qwen3-8b 6% Γá┤                                      
+Loading md-coder-qwen3-8b 7% Γáª                                      
+Loading md-coder-qwen3-8b 9% Γáº                                      
+Loading md-coder-qwen3-8b 11% ΓáÅ                                     
+Loading md-coder-qwen3-8b 11% Γáï                                     
+Loading md-coder-qwen3-8b 12% Γáï                                     
+Loading md-coder-qwen3-8b 14% Γá╣                                     
+Loading md-coder-qwen3-8b 15% Γá╕                                     
+Loading md-coder-qwen3-8b 17% Γá╝                                     
+Loading md-coder-qwen3-8b 17% Γá┤                                     
+Loading md-coder-qwen3-8b 18% Γáª                                     
+Loading md-coder-qwen3-8b 18% Γáº                                     
+Loading md-coder-qwen3-8b 19% Γáº                                     
+Loading md-coder-qwen3-8b 19% Γáç                                     
+Loading md-coder-qwen3-8b 21% Γáç                                     
+Loading md-coder-qwen3-8b 21% ΓáÅ                                     
+Loading md-coder-qwen3-8b 21% Γáï                                     
+Loading md-coder-qwen3-8b 22% Γáï                                     
+Loading md-coder-qwen3-8b 22% ΓáÖ                                     
+Loading md-coder-qwen3-8b 23% ΓáÖ                                     
+Loading md-coder-qwen3-8b 23% Γá╣                                     
+Loading md-coder-qwen3-8b 23% Γá╕                                     
+Loading md-coder-qwen3-8b 24% Γá╕                                     
+Loading md-coder-qwen3-8b 24% Γá╝                                     
+Loading md-coder-qwen3-8b 26% Γá╝                                     
+Loading md-coder-qwen3-8b 26% Γá┤                                     
+Loading md-coder-qwen3-8b 27% Γá┤                                     
+Loading md-coder-qwen3-8b 27% Γáª                                     
+Loading md-coder-qwen3-8b 27% Γáº                                     
+Loading md-coder-qwen3-8b 28% Γáº                                     
+Loading md-coder-qwen3-8b 28% Γáç                                     
+Loading md-coder-qwen3-8b 29% Γáç                                     
+Loading md-coder-qwen3-8b 29% ΓáÅ                                     
+Loading md-coder-qwen3-8b 29% Γáï                                     
+Loading md-coder-qwen3-8b 30% Γáï                                     
+Loading md-coder-qwen3-8b 30% ΓáÖ                                     
+Loading md-coder-qwen3-8b 31% ΓáÖ                                     
+Loading md-coder-qwen3-8b 31% Γá╣                                     
+Loading md-coder-qwen3-8b 32% Γá╣                                     
+Loading md-coder-qwen3-8b 32% Γá╕                                     
+Loading md-coder-qwen3-8b 32% Γá╝                                     
+Loading md-coder-qwen3-8b 33% Γá╝                                     
+Loading md-coder-qwen3-8b 33% Γá┤                                     
+Loading md-coder-qwen3-8b 34% Γá┤                                     
+Loading md-coder-qwen3-8b 34% Γáª                                     
+Loading md-coder-qwen3-8b 34% Γáº                                     
+Loading md-coder-qwen3-8b 34% Γáº                                     
+Loading md-coder-qwen3-8b 34% Γáç                                     
+Loading md-coder-qwen3-8b 35% Γáç                                     
+Loading md-coder-qwen3-8b 35% ΓáÅ                                     
+Loading md-coder-qwen3-8b 36% ΓáÅ                                     
+Loading md-coder-qwen3-8b 36% Γáï                                     
+Loading md-coder-qwen3-8b 36% ΓáÖ                                     
+Loading md-coder-qwen3-8b 37% ΓáÖ                                     
+Loading md-coder-qwen3-8b 37% Γá╣                                     
+Loading md-coder-qwen3-8b 38% Γá╣                                     
+Loading md-coder-qwen3-8b 38% Γá╕                                     
+Loading md-coder-qwen3-8b 38% Γá╝                                     
+Loading md-coder-qwen3-8b 38% Γá╝                                     
+Loading md-coder-qwen3-8b 38% Γá┤                                     
+Loading md-coder-qwen3-8b 39% Γá┤                                     
+Loading md-coder-qwen3-8b 39% Γáª                                     
+Loading md-coder-qwen3-8b 40% Γáª                                     
+Loading md-coder-qwen3-8b 40% Γáº                                     
+Loading md-coder-qwen3-8b 40% Γáç                                     
+Loading md-coder-qwen3-8b 41% Γáç                                     
+Loading md-coder-qwen3-8b 41% ΓáÅ                                     
+Loading md-coder-qwen3-8b 41% ΓáÅ                                     
+Loading md-coder-qwen3-8b 41% Γáï                                     
+Loading md-coder-qwen3-8b 41% ΓáÖ                                     
+Loading md-coder-qwen3-8b 42% ΓáÖ                                     
+Loading md-coder-qwen3-8b 100% ΓáÖ                                    
+[KOkay, I need to help the user update their PowerShell scripts, Cre…
+First, looking at the requirements for CreateBlog.ps1. The blog needs…
+The main challenge here is generating the content dynamically. The ti…
+For QAValidator.ps1, it needs to check that each blog has all require…
+Let me start with CreateBlog.ps1. The logic would involve creating a …
+Wait, but how does the user want these sections filled? They mentione…
+For the QAValidator, I need to check each post in the `_site` directo…
+I need to make sure that the QAValidator script uses regular expressi…
+Another point is that the user wants block commits if placeholders ar…
+I should also consider the order of checks. The script might need to …
+Potential issues to watch out for:                                    
+1. Ensuring that all required sections are present in each blog.      
+2. Correctly generating the thumbnail path with the category name.    
+3. Validating the categories against the list provided.               
+4. Properly handling the Disclosure section at the end.               
+5. Detecting and flagging placeholders in the content.                
+Let me structure the CreateBlog.ps1 script to generate the blog posts…
+- Generate a unique title based on category and some dynamic text.    
+- Select a random category from the list of 11.                       
+- Create the front-matter with layout post, title, categories, thumbn…
+- Write the content sections with placeholders for each required part.
+- Add the Disclosure section at the end.                              
+For QAValidator.ps1:                                                  
+- Scan all posts in the `_site` directory.                            
+- Check each post's front-matter for valid fields (layout, title, cat…
+- Validate that categories are in the allowed list.                   
+- Check that the Disclosure section is present and correctly formatte…
+- Search for placeholders like "Lorem ipsum" or similar and flag them.
+I need to make sure that the QAValidator script uses a regex to find …
+Testing the scripts would be important to ensure they meet all requir…
+Finally, the output should include both updated scripts with the new …
+### Updated `CreateBlog.ps1` Logic                                    
+**Goal:** Generate blogs with strict template formatting and placehol…
+# CreateBlog.ps1                                                      
+param (                                                               
+    [string]$category = "creative",  # Default category               
+    [string]$title = "Dynamic Title"  # Dynamic title (e.g., "Day in …
+)                                                                     
+# Generate blog content with placeholders                             
+$content = @(                                                         
+    "$([System.IO.File]::ReadLines('path/to/dynamic-title-generator.p…
+    "### Disclosure",                                                 
+    "Disclosure: Some of the links in this post are affiliate links. …
+)                                                                     
+# Add required sections                                               
+$content += @"                                                        
+### Day in the Life                                                   
+### Tools Used                                                        
+<List of tools>                                                       
+### Skills Required                                                   
+<List of skills>                                                      
+### Salary Range                                                      
+### Growth Path                                                       
+# Generate thumbnail path                                             
+$thumbnailPath = "/assets/images/thumbnails/$category.png"            
+# Front-matter for the blog                                           
+$frontMatter = @"                                                     
+title: $title                                                         
+categories: $category                                                 
+thumbnail: $thumbnailPath                                             
+"@                                                                    
+# Combine everything into a single file                               
+$outputFile = "blog-$title.md"                                        
+$content | Out-File -FilePath $outputFile                             
+Write-Host "Blog generated at: $outputFile"                           
+### Updated `QAValidator.ps1` Logic                                   
+**Goal:** Enforce template compliance and flag placeholders.          
+# QAValidator.ps1                                                     
+$categories = @("creative", "data", "engineering", "finance", "langua…
+$placeholderRegex = "(?:Lorem ipsum|Placeholder)"                     
+foreach ($post in Get-ChildItem -Path "_site" -Recurse) {             
+    if (-not $post.FullName -match 'layout: post') {                  
+        Write-Error "Missing `layout: post` in front-matter of $post.…
+        continue                                                      
+    if (-not $post.FullName -match 'title:') {                        
+        Write-Error "Missing `title:` in front-matter of $post.FullNa…
+        continue                                                      
+    if (-not $post.FullName -match 'categories:') {                   
+        Write-Error "Missing `categories:` in front-matter of $post.F…
+        continue                                                      
+    if (-not $post.FullName -match 'thumbnail:') {                    
+        Write-Error "Missing `thumbnail:` in front-matter of $post.Fu…
+        continue                                                      
+    # Validate category                                               
+    if ($post.FullName -notin $categories) {                          
+        Write-Error "Invalid category: $post.FullName. Must be one of…
+        continue                                                      
+    if (-not $post.FullName -match '### Day in the Life') {           
+        Write-Error "Missing `Day in the Life` section in $post.FullN…
+        continue                                                      
+    if (-not $post.FullName -match '### Tools Used') {                
+        Write-Error "Missing `Tools Used` section in $post.FullName"  
+        continue                                                      
+    if (-not $post.FullName -match '### Skills Required') {           
+        Write-Error "Missing `Skills Required` section in $post.FullN…
+        continue                                                      
+    if (-not $post.FullName -match '### Salary Range') {              
+        Write-Error "Missing `Salary Range` section in $post.FullName"
+        continue                                                      
+    if (-not $post.FullName -match '### Growth Path') {               
+        Write-Error "Missing `Growth Path` section in $post.FullName" 
+        continue                                                      
+    if (-not $post.FullName -match 'Want Better Remote <Category> Opp…
+        Write-Error "Missing CTA section for category: $post.FullName"
+        continue                                                      
+    # Check Disclosure section                                        
+    if ($post.FullName -notin $placeholderRegex) {                    
+        Write-Host "Γ£à Disclosure section found in $post.FullName"   
+    } else {                                                          
+        Write-Host "ΓÜá∩╕Å Block commit: Placeholder text detected in…
+### Key Features                                                      
+1. **Template Enforcement**                                           
+   - Fixed layout, title, categories, and thumbnail paths.            
+   - Required sections (`Day in the Life`, etc.) are enforced via reg…
+2. **Placeholder Detection**                                          
+   - Uses `Lorem ipsum`/`Placeholder` regex to flag block commits.    
+3. **Category Validation**                                            
+   - Ensures only 11 allowed categories (e.g., "creative", "tech").   
+4. **Output Format**                                                  
+   - Generates `.md` files with the required structure and disclosure…
+### Example Output (`blog-Title.md`)                                  
+```markdown                                                           
+layout: post                                                          
+title: Dynamic Title                                                  
+categories: creative                                                  
+thumbnail: /assets/images/thumbnails/creative.png                     
+### Day in the Life                                                   
+<Persona-specific daily tasks>                                        
+### Tools Used                                                        
+<List of tools>                                                       
+### Skills Required                                                   
+<List of skills>                                                      
+### Salary Range                                                      
+<$X ΓÇô $Y per year>                                                  
+### Growth Path                                                       
+<Career progression>                                                  
+Want Better Remote creative Opportunities?                            
+{% include cta-creative.html %}                                       
+```                                                                   
+---                                                                   
+### Notes                                                             
+- Replace `dynamic-title-generator.ps1` with a script to generate dyn…
+- Ensure `_site` directory exists and contains valid blog posts.      
+Loading md-coder-qwen3-8b ΓáÖ                                         
+Loading md-coder-qwen3-8b 0% Γá╕                                      
+Loading md-coder-qwen3-8b 2% Γá╝                                      
+Loading md-coder-qwen3-8b 4% Γáª                                      
+Loading md-coder-qwen3-8b 6% Γáº                                      
+Loading md-coder-qwen3-8b 7% Γáç                                      
+Loading md-coder-qwen3-8b 10% ΓáÅ                                     
+Loading md-coder-qwen3-8b 10% Γáï                                     
+Loading md-coder-qwen3-8b 10% ΓáÖ                                     
+Loading md-coder-qwen3-8b 12% Γá╕                                     
+Loading md-coder-qwen3-8b 14% Γá╝                                     
+Loading md-coder-qwen3-8b 15% Γá┤                                     
+Loading md-coder-qwen3-8b 15% Γáª                                     
+Loading md-coder-qwen3-8b 17% Γáº                                     
+Loading md-coder-qwen3-8b 17% Γáç                                     
+Loading md-coder-qwen3-8b 18% Γáç                                     
+Loading md-coder-qwen3-8b 18% ΓáÅ                                     
+Loading md-coder-qwen3-8b 19% ΓáÅ                                     
+Loading md-coder-qwen3-8b 19% Γáï                                     
+Loading md-coder-qwen3-8b 19% ΓáÖ                                     
+Loading md-coder-qwen3-8b 21% ΓáÖ                                     
+Loading md-coder-qwen3-8b 21% Γá╣                                     
+Loading md-coder-qwen3-8b 22% Γá╣                                     
+Loading md-coder-qwen3-8b 22% Γá╕                                     
+Loading md-coder-qwen3-8b 22% Γá╝                                     
+Loading md-coder-qwen3-8b 23% Γá╝                                     
+Loading md-coder-qwen3-8b 23% Γá┤                                     
+Loading md-coder-qwen3-8b 24% Γá┤                                     
+Loading md-coder-qwen3-8b 24% Γáª                                     
+Loading md-coder-qwen3-8b 24% Γáº                                     
+Loading md-coder-qwen3-8b 26% Γáº                                     
+Loading md-coder-qwen3-8b 26% Γáç                                     
+Loading md-coder-qwen3-8b 27% Γáç                                     
+Loading md-coder-qwen3-8b 27% ΓáÅ                                     
+Loading md-coder-qwen3-8b 27% Γáï                                     
+Loading md-coder-qwen3-8b 28% Γáï                                     
+Loading md-coder-qwen3-8b 28% ΓáÖ                                     
+Loading md-coder-qwen3-8b 29% ΓáÖ                                     
+Loading md-coder-qwen3-8b 29% Γá╣                                     
+Loading md-coder-qwen3-8b 29% Γá╕                                     
+Loading md-coder-qwen3-8b 30% Γá╕                                     
+Loading md-coder-qwen3-8b 30% Γá╝                                     
+Loading md-coder-qwen3-8b 31% Γá╝                                     
+Loading md-coder-qwen3-8b 31% Γá┤                                     
+Loading md-coder-qwen3-8b 31% Γáª                                     
+Loading md-coder-qwen3-8b 32% Γáª                                     
+Loading md-coder-qwen3-8b 32% Γáº                                     
+Loading md-coder-qwen3-8b 33% Γáº                                     
+Loading md-coder-qwen3-8b 33% Γáç                                     
+Loading md-coder-qwen3-8b 33% ΓáÅ                                     
+Loading md-coder-qwen3-8b 34% ΓáÅ                                     
+Loading md-coder-qwen3-8b 34% Γáï                                     
+Loading md-coder-qwen3-8b 34% Γáï                                     
+Loading md-coder-qwen3-8b 34% ΓáÖ                                     
+Loading md-coder-qwen3-8b 34% Γá╣                                     
+Loading md-coder-qwen3-8b 35% Γá╣                                     
+Loading md-coder-qwen3-8b 35% Γá╕                                     
+Loading md-coder-qwen3-8b 36% Γá╕                                     
+Loading md-coder-qwen3-8b 36% Γá╝                                     
+Loading md-coder-qwen3-8b 36% Γá┤                                     
+Loading md-coder-qwen3-8b 37% Γá┤                                     
+Loading md-coder-qwen3-8b 37% Γáª                                     
+Loading md-coder-qwen3-8b 38% Γáª                                     
+Loading md-coder-qwen3-8b 38% Γáº                                     
+Loading md-coder-qwen3-8b 38% Γáç                                     
+Loading md-coder-qwen3-8b 38% Γáç                                     
+Loading md-coder-qwen3-8b 38% ΓáÅ                                     
+Loading md-coder-qwen3-8b 39% ΓáÅ                                     
+Loading md-coder-qwen3-8b 39% Γáï                                     
+Loading md-coder-qwen3-8b 40% Γáï                                     
+Loading md-coder-qwen3-8b 40% ΓáÖ                                     
+Loading md-coder-qwen3-8b 40% ΓáÖ                                     
+Loading md-coder-qwen3-8b 40% Γá╣                                     
+Loading md-coder-qwen3-8b 40% Γá╕                                     
+Loading md-coder-qwen3-8b 41% Γá╕                                     
+Loading md-coder-qwen3-8b 41% Γá╝                                     
+Loading md-coder-qwen3-8b 41% Γá┤                                     
+Loading md-coder-qwen3-8b 42% Γá┤                                     
+Loading md-coder-qwen3-8b 42% Γáª                                     
+Loading md-coder-qwen3-8b 43% Γáª                                     
+Loading md-coder-qwen3-8b 43% Γáº                                     
+Loading md-coder-qwen3-8b 43% Γáç                                     
+Loading md-coder-qwen3-8b 43% Γáç                                     
+Loading md-coder-qwen3-8b 43% ΓáÅ                                     
+Loading md-coder-qwen3-8b 44% ΓáÅ                                     
+Loading md-coder-qwen3-8b 44% Γáï                                     
+Loading md-coder-qwen3-8b 44% ΓáÖ                                     
+Loading md-coder-qwen3-8b 45% ΓáÖ                                     
+Loading md-coder-qwen3-8b 45% Γá╣                                     
+Loading md-coder-qwen3-8b 45% Γá╣                                     
+Loading md-coder-qwen3-8b 45% Γá╕                                     
+Loading md-coder-qwen3-8b 46% Γá╕                                     
+Loading md-coder-qwen3-8b 46% Γá╝                                     
+Loading md-coder-qwen3-8b 46% Γá┤                                     
+Loading md-coder-qwen3-8b 46% Γá┤                                     
+Loading md-coder-qwen3-8b 46% Γáª                                     
+Loading md-coder-qwen3-8b 47% Γáª                                     
+Loading md-coder-qwen3-8b 47% Γáº                                     
+Loading md-coder-qwen3-8b 47% Γáç                                     
+Loading md-coder-qwen3-8b 48% Γáç                                     
+Loading md-coder-qwen3-8b 48% ΓáÅ                                     
+Loading md-coder-qwen3-8b 48% ΓáÅ                                     
+Loading md-coder-qwen3-8b 48% Γáï                                     
+Loading md-coder-qwen3-8b 48% ΓáÖ                                     
+Loading md-coder-qwen3-8b 49% ΓáÖ                                     
+Loading md-coder-qwen3-8b 49% Γá╣                                     
+Loading md-coder-qwen3-8b 49% Γá╕                                     
+Loading md-coder-qwen3-8b 49% Γá╕                                     
+Loading md-coder-qwen3-8b 49% Γá╕                                     
+Loading md-coder-qwen3-8b 49% Γá╝                                     
+Loading md-coder-qwen3-8b 49% Γá┤                                     
+Loading md-coder-qwen3-8b 50% Γá┤                                     
+Loading md-coder-qwen3-8b 50% Γáª                                     
+Loading md-coder-qwen3-8b 50% Γáº                                     
+Loading md-coder-qwen3-8b 51% Γáº                                     
+Loading md-coder-qwen3-8b 51% Γáç                                     
+Loading md-coder-qwen3-8b 51% Γáç                                     
+Loading md-coder-qwen3-8b 51% ΓáÅ                                     
+Loading md-coder-qwen3-8b 51% Γáï                                     
+Loading md-coder-qwen3-8b 52% Γáï                                     
+Loading md-coder-qwen3-8b 52% ΓáÖ                                     
+Loading md-coder-qwen3-8b 52% ΓáÖ                                     
+Loading md-coder-qwen3-8b 52% Γá╣                                     
+Loading md-coder-qwen3-8b 52% Γá╕                                     
+Loading md-coder-qwen3-8b 53% Γá╕                                     
+Loading md-coder-qwen3-8b 53% Γá╝                                     
+Loading md-coder-qwen3-8b 53% Γá╝                                     
+Loading md-coder-qwen3-8b 53% Γá┤                                     
+Loading md-coder-qwen3-8b 53% Γáª                                     
+Loading md-coder-qwen3-8b 53% Γáª                                     
+Loading md-coder-qwen3-8b 53% Γáº                                     
+Loading md-coder-qwen3-8b 54% Γáº                                     
+Loading md-coder-qwen3-8b 54% Γáç                                     
+Loading md-coder-qwen3-8b 54% ΓáÅ                                     
+Loading md-coder-qwen3-8b 54% ΓáÅ                                     
+Loading md-coder-qwen3-8b 54% Γáï                                     
+Loading md-coder-qwen3-8b 55% Γáï                                     
+Loading md-coder-qwen3-8b 55% ΓáÖ                                     
+Loading md-coder-qwen3-8b 55% ΓáÖ                                     
+Loading md-coder-qwen3-8b 55% Γá╣                                     
+Loading md-coder-qwen3-8b 55% Γá╕                                     
+Loading md-coder-qwen3-8b 56% Γá╕                                     
+Loading md-coder-qwen3-8b 56% Γá╝                                     
+Loading md-coder-qwen3-8b 56% Γá╝                                     
+Loading md-coder-qwen3-8b 56% Γá┤                                     
+Loading md-coder-qwen3-8b 56% Γáª                                     
+Loading md-coder-qwen3-8b 56% Γáª                                     
+Loading md-coder-qwen3-8b 56% Γáº                                     
+Loading md-coder-qwen3-8b 56% Γáº                                     
+Loading md-coder-qwen3-8b 56% Γáç                                     
+Loading md-coder-qwen3-8b 56% ΓáÅ                                     
+Loading md-coder-qwen3-8b 57% ΓáÅ                                     
+Loading md-coder-qwen3-8b 57% Γáï                                     
+Loading md-coder-qwen3-8b 57% Γáï                                     
+Loading md-coder-qwen3-8b 57% ΓáÖ                                     
+Loading md-coder-qwen3-8b 57% Γá╣                                     
+Loading md-coder-qwen3-8b 57% Γá╣                                     
+Loading md-coder-qwen3-8b 58% Γá╣                                     
+Loading md-coder-qwen3-8b 58% Γá╕                                     
+Loading md-coder-qwen3-8b 58% Γá╝                                     
+Loading md-coder-qwen3-8b 58% Γá╝                                     
+Loading md-coder-qwen3-8b 58% Γá┤                                     
+Loading md-coder-qwen3-8b 58% Γá┤                                     
+Loading md-coder-qwen3-8b 58% Γáª                                     
+Loading md-coder-qwen3-8b 58% Γáº                                     
+Loading md-coder-qwen3-8b 59% Γáº                                     
+Loading md-coder-qwen3-8b 59% Γáç                                     
+Loading md-coder-qwen3-8b 59% Γáç                                     
+Loading md-coder-qwen3-8b 59% ΓáÅ                                     
+Loading md-coder-qwen3-8b 59% Γáï                                     
+Loading md-coder-qwen3-8b 59% Γáï                                     
+Loading md-coder-qwen3-8b 59% ΓáÖ                                     
+Loading md-coder-qwen3-8b 60% ΓáÖ                                     
+Loading md-coder-qwen3-8b 60% Γá╣                                     
+Loading md-coder-qwen3-8b 60% Γá╣                                     
+Loading md-coder-qwen3-8b 60% Γá╕                                     
+Loading md-coder-qwen3-8b 60% Γá╝                                     
+Loading md-coder-qwen3-8b 60% Γá╝                                     
+Loading md-coder-qwen3-8b 60% Γá┤                                     
+Loading md-coder-qwen3-8b 61% Γá┤                                     
+Loading md-coder-qwen3-8b 61% Γáª                                     
+Loading md-coder-qwen3-8b 61% Γáº                                     
+Loading md-coder-qwen3-8b 61% Γáº                                     
+Loading md-coder-qwen3-8b 61% Γáç                                     
+Loading md-coder-qwen3-8b 61% Γáç                                     
+Loading md-coder-qwen3-8b 61% ΓáÅ                                     
+Loading md-coder-qwen3-8b 62% ΓáÅ                                     
+Loading md-coder-qwen3-8b 62% Γáï                                     
+Loading md-coder-qwen3-8b 62% ΓáÖ                                     
+Loading md-coder-qwen3-8b 62% ΓáÖ                                     
+Loading md-coder-qwen3-8b 62% Γá╣                                     
+Loading md-coder-qwen3-8b 62% Γá╣                                     
+Loading md-coder-qwen3-8b 62% Γá╕                                     
+Loading md-coder-qwen3-8b 62% Γá╕                                     
+Loading md-coder-qwen3-8b 62% Γá╝                                     
+Loading md-coder-qwen3-8b 62% Γá┤                                     
+Loading md-coder-qwen3-8b 63% Γá┤                                     
+Loading md-coder-qwen3-8b 63% Γáª                                     
+Loading md-coder-qwen3-8b 63% Γáª                                     
+Loading md-coder-qwen3-8b 63% Γáº                                     
+Loading md-coder-qwen3-8b 63% Γáº                                     
+Loading md-coder-qwen3-8b 63% Γáç                                     
+Loading md-coder-qwen3-8b 63% ΓáÅ                                     
+Loading md-coder-qwen3-8b 63% ΓáÅ                                     
+Loading md-coder-qwen3-8b 63% Γáï                                     
+Loading md-coder-qwen3-8b 64% Γáï                                     
+Loading md-coder-qwen3-8b 64% ΓáÖ                                     
+Loading md-coder-qwen3-8b 64% Γá╣                                     
+Loading md-coder-qwen3-8b 64% Γá╣                                     
+Loading md-coder-qwen3-8b 64% Γá╕                                     
+Loading md-coder-qwen3-8b 64% Γá╕                                     
+Loading md-coder-qwen3-8b 64% Γá╝                                     
+Loading md-coder-qwen3-8b 64% Γá╝                                     
+Loading md-coder-qwen3-8b 64% Γá┤                                     
+Loading md-coder-qwen3-8b 64% Γáª                                     
+Loading md-coder-qwen3-8b 65% Γáª                                     
+Loading md-coder-qwen3-8b 65% Γáº                                     
+Loading md-coder-qwen3-8b 65% Γáº                                     
+Loading md-coder-qwen3-8b 65% Γáç                                     
+Loading md-coder-qwen3-8b 65% ΓáÅ                                     
+Loading md-coder-qwen3-8b 65% ΓáÅ                                     
+Loading md-coder-qwen3-8b 65% Γáï                                     
+Loading md-coder-qwen3-8b 100% Γáï                                    
+[KOkay, I need to update the CreateBlog.ps1 and QAValidator.ps1 scri…
+First, the blog structure needs to follow a specific format. The user…
+So, in CreateBlog.ps1, I'll need to generate these sections dynamical…
+Wait, the user mentioned that the thumbnail is /assets/images/thumbna…
+Next, the sections like Day in the Life, Tools Used, etc., need to be…
+Wait, no. Wait the second part of the task says: "Block commit if pla…
+So in CreateBlog.ps1, each section (Day in the Life, Tools Used, etc.…
+Wait, but the task says: "Block commit if placeholder text is detecte…
+So in the CreateBlog.ps1, when generating each section, we need to en…
+Now, moving on to QAValidator.ps1. The validator needs to check sever…
+- Each blog must have the required sections: Day in the Life, Tools U…
+- Front-matter must include layout, title, categories, thumbnail.     
+- Categories must be one of 11 predefined ones (creative, data, engin…
+- The Disclosure section must be present at the end.                  
+- Block commit if any placeholder text is found.                      
+So in QAValidator.ps1, I need to:                                     
+1. Read all files in the _site directory (assuming that's where the b…
+2. For each file, check if it has the required sections.              
+3. Check the front-matter for correct layout, title, categories, thum…
+4. Validate the categories against the list of 11.                    
+5. Ensure the Disclosure is present at the end.                       
+6. Check for placeholder texts like 'Lorem ipsum' or 'Placeholder'.   
+How to implement this in PowerShell? Maybe using regular expressions …
+For example, in QAValidator.ps1, I can:                               
+- Use a regex to find the required sections (Day in the Life, Tools U…
+- Check that each section is present.                                 
+- Check that front-matter has layout, title, categories, thumbnail.   
+- Validate the categories against the list.                           
+- Search for placeholder texts and block if found.                    
+Now, putting it all together:                                         
+In CreateBlog.ps1, generate the blog with dynamic sections, ensuring …
+Wait, but how to dynamically generate the sections? Maybe using Power…
+But if the user is using placeholders, the script should detect them.…
+So in CreateBlog.ps1:                                                 
+- Define example content for each section (Day in the Life, Tools Use…
+- Generate the blog with these examples.                              
+- Check for placeholders in each section.                             
+- If any placeholder is found, block the commit.                      
+In QAValidator.ps1:                                                   
+- For each file in _site:                                             
+  - Check if all required sections are present.                       
+  - Check front-matter has layout, title, categories, thumbnail.      
+  - Validate categories are in the list.                              
+  - Check for placeholders (like 'Lorem ipsum').                      
+  - If any of these fail, block commit.                               
+Now, implementing this in PowerShell. For example, in CreateBlog.ps1: 
+# Generate blog content with dynamic sections                         
+$sections = @{                                                        
+    "Day in the Life" = "Example Day in the Life content here."       
+    "Tools Used" = "Example Tools Used content here."                 
+    "Skills Required" = "Example Skills Required content here."       
+    "Salary Range" = "$X ΓÇô $Y per year"                             
+    "Growth Path" = "Career progression details here."                
+    "CTA" = "{% include cta-<category>.html %}"                       
+$blogContent = "layout: post\ntitle: <Dynamic Title>\ncategories: <ca…
+                                                                      
+# Check for placeholders                                              
+if ($blogContent -match 'Lorem ipsum' -or $blogContent -match 'Placeh…
+    Write-Host "Placeholder text detected in blog content. Commit blo…
+    exit 1                                                            
+}                                                                     
+Then, save the blog content to a file.                                
+In QAValidator.ps1:                                                   
+# Read all files in _site directory                                   
+Get-ChildItem -Path "_site" | ForEach-Object {                        
+    $file = $_.FullName                                               
+    $content = Get-Content -Path $file                                
+                                                                      
+    if (-not ($content -match 'Day in the Life')) {                   
+        Write-Host "Missing Day in the Life section in $file. Commit …
+        exit 1                                                        
+    if (-not ($content -match 'Tools Used')) {                        
+        Write-Host "Missing Tools Used section in $file. Commit block…
+        exit 1                                                        
+    if (-not ($content -match 'Skills Required')) {                   
+        Write-Host "Missing Skills Required section in $file. Commit …
+        exit 1                                                        
+    if (-not ($content -match 'Salary Range')) {                      
+        Write-Host "Missing Salary Range section in $file. Commit blo…
+        exit 1                                                        
+    if (-not ($content -match 'Growth Path')) {                       
+        Write-Host "Missing Growth Path section in $file. Commit bloc…
+        exit 1                                                        
+    if (-not ($content -match 'CTA')) {                               
+        Write-Host "Missing CTA section in $file. Commit blocked."    
+        exit 1                                                        
+    $frontMatter = $content | Select-Object -Skip 2                   
+    if ($frontMatter -notlike '*layout: post*') {                     
+        Write-Host "Invalid front-matter: missing layout. Commit bloc…
+        exit 1                                                        
+    if ($frontMatter -notlike '*title: <Dynamic Title>*') {           
+        Write-Host "Invalid front-matter: missing title. Commit block…
+        exit 1                                                        
+    if ($frontMatter -notlike '*categories: <category>*') {           
+        Write-Host "Invalid front-matter: missing categories. Commit …
+        exit 1                                                        
+    if ($frontMatter -notlike '*thumbnail: /assets/images/thumbnails/…
+        Write-Host "Invalid front-matter: missing thumbnail. Commit b…
+        exit 1                                                        
+    # Check categories are valid                                      
+    $categories = $content | Select-String -Pattern 'categories: [a-z…
+    if ($categories.Count -eq 0) {                                    
+        Write-Host "Missing categories in front-matter. Commit blocke…
+        exit 1                                                        
+    foreach ($category in $categories) {                              
+        if ($category -notin @('creative', 'data', 'engineering', 'fi…
+            Write-Host "Invalid category: $category. Commit blocked." 
+            exit 1                                                    
+        }                                                             
+    # Check for placeholders                                          
+    if ($content -match 'Lorem ipsum' -or $content -match 'Placeholde…
+        Write-Host "Placeholder text detected in $file. Commit blocke…
+        exit 1                                                        
+    }                                                                 
+    # If all checks passed, proceed                                   
+    Write-Host "Blog file $file is valid."                            
+}                                                                     
+This should cover the required checks. Now, ensuring that the CreateB…
+Here's the updated implementation for `CreateBlog.ps1` and `QAValidat…
+### **Update: CreateBlog.ps1**                                        
+# Generate blog with required structure and placeholder checks        
+$sections = @{                                                        
+    "Day in the Life" = "Example Day in the Life content here."       
+    "Tools Used" = "Example Tools Used content here."                 
+    "Skills Required" = "Example Skills Required content here."       
+    "Salary Range" = "$X ΓÇô $Y per year"                             
+    "Growth Path" = "Career progression details here."                
+    "CTA" = "{% include cta-<category>.html %}"                       
+}                                                                     
+# Build blog content with placeholders                                
+$blogContent = @"                                                     
+title: <Dynamic Title>                                                
+categories: <category>                                                
+thumbnail: /assets/images/thumbnails/<category>.png                   
+### <Category Headline>                                               
+<Category professionals description>                                  
+Day in the Life                                                       
+Tools Used                                                            
+<Tool list here>                                                      
+Skills Required                                                       
+<Skill list here>                                                     
+Salary Range                                                          
+Growth Path                                                           
+### Disclosure                                                        
+Disclosure: Some of the links in this post are affiliate links. This …
+# Check for placeholder texts (e.g., "Lorem ipsum", "Placeholder")    
+if ($blogContent -match 'Lorem ipsum' -or $blogContent -match 'Placeh…
+    Write-Host "Placeholder text detected in blog content. Commit blo…
+    exit 1                                                            
+}                                                                     
+# Save the generated blog                                             
+$blogFilePath = "$PSScriptRoot/blog.md"                               
+Set-Content -Path $blogFilePath -Value $blogContent                   
+Write-Host "Blog saved to: $blogFilePath"                             
+### **Update: QAValidator.ps1**                                       
+# Validate all `_site` files against the template and disclosure      
+Get-ChildItem -Path "_site" | ForEach-Object {                        
+    $file = $_.FullName                                               
+    $content = Get-Content -Path $file                                
+    # Check required sections                                         
+    if (-not ($content -match 'Day in the Life')) {                   
+        Write-Host "Missing Day in the Life section in $file. Commit …
+        exit 1                                                        
+    }                                                                 
+    if (-not ($content -match 'Tools Used')) {                        
+        Write-Host "Missing Tools Used section in $file. Commit block…
+        exit 1                                                        
+    }                                                                 
+    if (-not ($content -match 'Skills Required')) {                   
+        Write-Host "Missing Skills Required section in $file. Commit …
+        exit 1                                                        
+    }                                                                 
+    if (-not ($content -match 'Salary Range')) {                      
+        Write-Host "Missing Salary Range section in $file. Commit blo…
+        exit 1                                                        
+    }                                                                 
+    if (-not ($content -match 'Growth Path')) {                       
+        Write-Host "Missing Growth Path section in $file. Commit bloc…
+        exit 1                                                        
+    }                                                                 
+    if (-not ($content -match 'CTA')) {                               
+        Write-Host "Missing CTA section in $file. Commit blocked."    
+        exit 1                                                        
+    }                                                                 
+    # Validate front-matter                                           
+    $frontMatter = $content | Select-Object -Skip 2                   
+    if ($frontMatter -notlike '*layout: post*') {                     
+        Write-Host "Invalid front-matter: missing layout. Commit bloc…
+        exit 1                                                        
+    }                                                                 
+    if ($frontMatter -notlike '*title: <Dynamic Title>*') {           
+        Write-Host "Invalid front-matter: missing title. Commit block…
+        exit 1                                                        
+    }                                                                 
+    if ($frontMatter -notlike '*categories: <category>*') {           
+        Write-Host "Invalid front-matter: missing categories. Commit …
+        exit 1                                                        
+    }                                                                 
+    if ($frontMatter -notlike '*thumbnail: /assets/images/thumbnails/…
+        Write-Host "Invalid front-matter: missing thumbnail. Commit b…
+        exit 1                                                        
+    }                                                                 
+    # Validate categories                                             
+    $categories = $content | Select-String -Pattern 'categories: [a-z…
+    if ($categories.Count -eq 0) {                                    
+        Write-Host "Missing categories in front-matter. Commit blocke…
+        exit 1                                                        
+    }                                                                 
+    foreach ($category in $categories) {                              
+        if ($category -notin @('creative', 'data', 'engineering', 'fi…
+            Write-Host "Invalid category: $category. Commit blocked." 
+            exit 1                                                    
+        }                                                             
+    }                                                                 
+                                                                      
+    # Check for placeholder texts (e.g., "Lorem ipsum", "Placeholder")
+    if ($content -match 'Lorem ipsum' -or $content -match 'Placeholde…
+        Write-Host "Placeholder text detected in $file. Commit blocke…
+        exit 1                                                        
+    }                                                                 
+                                                                      
+    Write-Host "Blog file $file is valid."                            
+}                                                                     
+                                                                      
+                                                                      
+### **Key Features**                                                  
+1. **Template Enforcement**: Ensures all required sections and front-…
+2. **Category Validation**: Restricts categories to the specified lis…
+3. **Placeholder Detection**: Blocks commits if `Lorem ipsum` or `Pla…
+4. **Dynamic Content**: Uses variables for placeholder content (e.g.,…
+                                                                      
+This setup ensures compliance with the blog format and disclosure req…
+

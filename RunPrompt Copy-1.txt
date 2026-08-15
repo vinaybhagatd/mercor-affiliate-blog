@@ -1,0 +1,130 @@
+Set-StrictMode -Version Latest
+param (
+    [string]$PromptFile,
+    [string]$TargetModel = "md-coder-qwen3-8b:2"
+)
+# Initialize variables
+$safeLines = @()
+$updatedScriptPath = $null
+$aiResponse = ""
+
+function Convert-ToSafeScript {
+    param (
+        [string[]]$Lines,
+        [string]$UpdatedScriptPath,
+        [string]$NotesFilePath
+    )
+
+    $safeLinesLocal = @()
+    $commentedLines = @()
+    $heredocOpen = $false
+
+    foreach ($line in $Lines) {
+        if ($null -eq $line) { continue }
+        $trimmed = $line.Trim()
+
+        if ($trimmed -match '^\$[A-Za-z_]+\s*=\s*@"$') {
+            $heredocOpen = $true
+            $safeLinesLocal += $trimmed
+            continue
+        }
+
+        if ($trimmed -eq '@"') {
+            $heredocOpen = $false
+            $safeLinesLocal += $trimmed
+            continue
+        }
+
+        if ($trimmed -match '^(function|param|if|else|elseif|switch|for\s*\(|foreach|while|do|try|catch|throw|return|Write-|Set-|Get-|New-|Remove-|Import-|Export-|Out-|Start-|Stop-|Invoke-|Test-|#)' `
+            -or $trimmed -match '^\$[A-Za-z_]' `
+            -or $trimmed -eq '') {
+            $safeLinesLocal += $trimmed
+        }
+        else {
+            $comment = "# $trimmed"
+            $safeLinesLocal += $comment
+            $commentedLines += $trimmed
+        }
+    }
+
+    if ($heredocOpen) {
+        $safeLinesLocal += '@"'
+    }
+
+    $safeLinesLocal = $safeLinesLocal -replace '(\$[A-Za-z_][A-Za-z0-9_]*)\:', '${1}:'
+
+    $safeLinesLocal | Out-File -FilePath $UpdatedScriptPath -Encoding UTF8
+
+    if ($NotesFilePath -and $commentedLines.Count -gt 0) {
+        $commentedLines | Out-File -FilePath $NotesFilePath -Encoding UTF8
+    }
+
+    return $safeLinesLocal
+}
+
+Write-Host "Running prompt from $PromptFile using $TargetModel..."
+
+if (-not (Test-Path $PromptFile)) {
+    Write-Error "❌ Prompt file not found: $PromptFile"
+    exit
+}
+
+$promptText = Get-Content -Path $PromptFile -Raw
+
+$lmstudioExe = "C:\Users\LMTest\.lmstudio\bin\lms.exe"
+
+$timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
+$outputFile = "C:\Users\LMTest\promotional\mercor-affiliate-blog\outputs\blog-template-$timestamp.out.txt"
+$diffFile = "C:\Users\LMTest\promotional\mercor-affiliate-blog\outputs\blog-template-$timestamp.diff.txt"
+$updatedScriptPath = "C:\Users\LMTest\promotional\mercor-affiliate-blog\scripts\blog-template-$timestamp.updated.ps1"
+$notesPath = "C:\Users\LMTest\promotional\mercor-affiliate-blog\outputs\blog-template-$timestamp.notes.txt"
+
+& $lmstudioExe chat $TargetModel -p $promptText --dont-fetch-catalog -y | Out-File -FilePath $outputFile -Encoding UTF8 | Out-Null
+
+Write-Host "✅ Output saved to $outputFile"
+Write-Host "📊 Diff saved to $diffFile"
+
+$aiResponse = Get-Content -Path $outputFile -Raw
+if (-not $aiResponse) {
+    Write-Error "❌ No AI response captured. Skipping sanitization."
+    exit
+}
+
+$outputLines = $aiResponse -split "`r?`n"
+$safeLines = Convert-ToSafeScript -Lines $outputLines -UpdatedScriptPath $updatedScriptPath -NotesFilePath $notesPath
+
+Write-Host "📝 Updated script exported to $updatedScriptPath"
+Write-Host "🗒️ Notes saved to $notesPath"
+
+Write-Host "▶️ Valid PowerShell code preview:"
+if ($safeLines -and $safeLines.Count -gt 0) {
+    foreach ($line in $safeLines) {
+        if ($null -ne $line -and -not $line.StartsWith("#")) {
+            Write-Host $line
+        }
+    }
+} else {
+    Write-Warning "⚠️ No safe lines to preview."
+}
+
+if ($null -eq $updatedScriptPath) {
+    Write-Error "❌ No updated script path was generated. Skipping execution."
+} elseif (-not (Test-Path $updatedScriptPath)) {
+    Write-Error "❌ Script file not found: $updatedScriptPath"
+} else {
+    $invalidLines = $safeLines | Where-Object {
+        $null -ne $_ -and -not $_.StartsWith("#") -and -not ($_ -match '^(function|param|if|else|elseif|switch|for|foreach|while|do|try|catch|throw|return|Write-|Set-|Get-|New-|Remove-|Import-|Export-|Out-|Start-|Stop|Invoke|Test|\$)')
+    }
+    if ($invalidLines.Count -gt 0) {
+        Write-Warning "⚠️ Detected possible non-PowerShell lines in sanitized script:"
+        $invalidLines | ForEach-Object { Write-Warning $_ }
+        Write-Warning "Execution skipped to prevent errors."
+    } else {
+        Write-Host "▶️ Executing $updatedScriptPath..."
+        try {
+            & "$updatedScriptPath"
+        } catch {
+            Write-Error "Error executing ${updatedScriptPath}: $_"
+        }
+    }
+}

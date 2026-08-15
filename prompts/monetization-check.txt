@@ -1,0 +1,27 @@
+You are extending QAValidator.ps1 to verify monetization hooks in the Mercor Affiliate Blog system.
+
+Task:
+Implement automated checks for:
+1. Affiliate Links
+   - Inspect `_site` HTML files.
+   - Confirm outbound links include affiliate IDs (?affid=).
+   - Warn if missing, block commit if repeated.
+
+2. Lead Magnets
+   - Detect CTA keywords (“Download”, “Free Guide”, “Lead Magnet”).
+   - Ensure a <form> element exists with an email input (type="email").
+   - Block commit if missing.
+
+3. Disclosure Compliance
+   - If affiliate links exist, confirm the following Disclosure section is present at the end of the blog:
+     ### Disclosure
+     Disclosure: Some of the links in this post are affiliate links. This means if you click and purchase, we may earn a commission at no extra cost to you. We only recommend products we trust and use ourselves.
+   - Block commit if missing.
+
+4. Debugging Support
+   - Print offending file paths for missing affiliate IDs, missing disclosure, or missing lead magnet forms.
+   - Exit with error code 1 if compliance fails.
+
+Output:
+- QAValidator.ps1 extension that enforces monetization compliance automatically.
+- Ensure commits are blocked if affiliate IDs or disclosures are missing.

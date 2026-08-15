@@ -1,0 +1,27 @@
+﻿===================================
+Orchestrator Run Summary
+Timestamp: 20260806_201545
+Overall Status: FAILED
+Details: Error occurred: A parameter cannot be found that matches parameter name 'and'.
+
+--- Per-Script Status ---
+Script: 
+                    param($s)
+                    try {
+                        & $s
+                        if ($s -eq "CreateBlog.ps1") {
+                            return "Blog generation completed successfully."
+                        } else {
+                            return "SUCCESS"
+                        }
+                    } catch {
+                        return "FAILED: $($_.Exception.Message)"
+                    }
+                
+Status: FAILED: The term 'CreateBlog.ps1' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+
+Script: Overall
+Status: FAILED
+
+
+===================================

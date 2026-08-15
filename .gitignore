@@ -1,54 +1,32 @@
-# Build output
+# Ignore build output
 _site/
-_site/**
 
-# Node.js dependencies
-node_modules/
-package-lock.json
+# Ignore validation reports
+QAReport.txt
 
-# Logs
+# Ignore OS/system files
+.DS_Store
+Thumbs.db
+
+# Ignore logs and temp files
 *.log
 *.tmp
-*.bak
-*.swp
-*.swo
-*.err
-*.out
 
-# Backups and generated diffs/summaries
-mercor_backups/
-orchestrator_backups/
-orchestrator_diffs/
-orchestrator_summaries/
-pipeline-logs/
-hermes-logs/
+# Ignore node_modules if using Eleventy/Jekyll plugins
+node_modules/
 
-# Local config and temp files
-config.json
-createblog.log
-diagnostics.log
-diagnostics_log_*.txt
-loader.log
-mercordebug.log
-orchestrator.log
+# Ignore PowerShell history
+*.pshistory
 
-# Editor/IDE artifacts
+# Ignore editor/IDE settings
 .vscode/
 .idea/
-*.iml
 
-# Misc
-.continue/
-*.txt
-*.md~
-
-# Ignore SSH keys and system files
-*.pub
-id_ed25519
-known_hosts
-.ssh/
-Users/LMTest/.ssh/
-
-# Ignore Eleventy build output
-_site/
-
+# Keep source files tracked
+!blogs/
+!*.ps1
+!blogData.csv
+!blogData.json
+!assets/
+!_includes/
+!_layouts/

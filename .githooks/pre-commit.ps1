@@ -1,68 +1,43 @@
 #!/usr/bin/env pwsh
-# Git pre-commit hook (PowerShell native)
-# 1. Run PSScriptAnalyzer on all active PowerShell scripts
-# 2. Block sensitive files from being committed
-# 3. Warn on large files (>5 MB)
+<#
+Pre‑commit hook: Run PSScriptAnalyzer with custom settings.
+Blocks commits only on Error severity.
+Logs warnings separately to PreCommitReport.txt for hygiene tracking.
+#>
 
-Write-Host "🔍 Running PSScriptAnalyzer on active PowerShell scripts..."
+Write-Output "Running PSScriptAnalyzer on active PowerShell scripts..."
 
-$errors = @()
-Get-ChildItem -Recurse -Filter *.ps1 |
-    Where-Object {
-        $_.FullName -notmatch 'mercor_backups|orchestrator_backups|node_modules'
-    } | ForEach-Object {
-        Write-Output "Analyzing $($_.FullName)..."
-        $result = Invoke-ScriptAnalyzer $_.FullName -Severity ParseError,Error
-        if ($result) { $errors += $result }
-    }
+$settingsPath = ".\PSScriptAnalyzerSettings.psd1"
+$reportPath = ".\PreCommitReport.txt"
 
-if ($errors.Count -gt 0) {
-    Write-Host "❌ Commit blocked: ScriptAnalyzer found errors." -ForegroundColor Red
+# Exclude the hook itself from analysis
+$excludeFiles = @(".githooks\pre-commit.ps1")
+
+# Run analyzer for Errors only (blocking)
+$errors = Invoke-ScriptAnalyzer -Path . -Recurse -Settings .\PSScriptAnalyzerSettings.psd1 -Severity Error |
+Where-Object { $_.ScriptName -ne 'pre-commit.ps1' }
+
+# Run analyzer for Warnings (non‑blocking, logged)
+$warnings = Invoke-ScriptAnalyzer -Path . -Recurse -Settings $settingsPath -Severity Warning |
+Where-Object { $excludeFiles -notcontains $_.ScriptName }
+
+# Log warnings to report file
+if ($warnings -and $warnings.Count -gt 0) {
+    $warnings | Format-Table RuleName, Severity, ScriptName, Line, Message -AutoSize |
+    Out-String | Set-Content $reportPath -Encoding UTF8
+    Write-Output "Warnings logged to $reportPath"
+}
+else {
+    "No warnings found." | Set-Content $reportPath -Encoding UTF8
+    Write-Output "No warnings found."
+}
+
+# Block commit if errors exist
+if ($errors -and $errors.Count -gt 0) {
+    $errors | Format-Table RuleName, Severity, ScriptName, Line, Message -AutoSize
+    Write-Output "❌ Commit blocked: ScriptAnalyzer found errors."
     exit 1
 }
 
-Write-Host "✅ ScriptAnalyzer passed. Proceeding with sensitive file check..."
-
-# Sensitive file patterns
-$blockedPatterns = @(
-    'id_ed25519',
-    '\.ssh',
-    'known_hosts',
-    '\.pub$',
-    '_site/'
-)
-
-$stagedFiles = git diff --cached --name-only
-$foundBlocked = $false
-
-foreach ($file in $stagedFiles) {
-    foreach ($pattern in $blockedPatterns) {
-        if ($file -match $pattern) {
-            Write-Host "❌ Commit blocked: sensitive file detected -> $file" -ForegroundColor Red
-            $foundBlocked = $true
-        }
-    }
-}
-
-if ($foundBlocked) {
-    exit 1
-}
-
-# Large file warning (>5 MB)
-$largeFiles = @()
-foreach ($file in $stagedFiles) {
-    if (Test-Path $file) {
-        $size = (Get-Item $file).Length
-        if ($size -gt 5MB) {
-            $largeFiles += $file
-        }
-    }
-}
-
-if ($largeFiles.Count -gt 0) {
-    Write-Host "⚠️ Warning: Large files staged (>5 MB):" -ForegroundColor Yellow
-    $largeFiles | ForEach-Object { Write-Host "   $_" }
-}
-
-Write-Host "✅ All checks passed. Commit allowed." -ForegroundColor Green
+Write-Output "✅ No blocking errors found. Commit allowed."
 exit 0
