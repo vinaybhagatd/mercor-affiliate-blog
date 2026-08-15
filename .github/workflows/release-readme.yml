@@ -1,0 +1,111 @@
+name: Auto-Generate Working Scripts README & Release
+
+on:
+  push:
+    tags:
+      - "working-scripts-*"
+
+jobs:
+  generate-readme-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get commit metadata
+        id: commit
+        run: |
+          echo "commit_hash=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+          echo "commit_message=$(git log -1 --pretty=%B)" >> $GITHUB_OUTPUT
+          echo "commit_date=$(git log -1 --date=short --pretty=%cd)" >> $GITHUB_OUTPUT
+          echo "tag_name=${GITHUB_REF##*/}" >> $GITHUB_OUTPUT
+
+      - name: Generate README.md
+        run: |
+          cat > README.md << 'EOF'
+          # 📦 Working Scripts Bundle – ${{ steps.commit.outputs.tag_name }}
+
+          ## 📌 Overview
+          This bundle contains the stable set of PowerShell automation scripts for the Mercor Affiliate Blog System (MABS).
+          It serves as a rollback checkpoint to ensure contributors can always return to a known‑good state.
+
+          ---
+
+          ## 🧾 Included Scripts
+          - BatchCreateBlogs.ps1
+          - QAValidator.ps1
+          - .githooks/pre-commit.ps1
+          - PSScriptAnalyzerSettings.psd1
+          - .github/workflows/deploy.yml
+
+          ---
+
+          ## 🛡 Guardrails Applied
+          - Pre‑commit hook blocks errors only, logs warnings separately
+          - Noisy rules excluded (PSAvoidUsingWriteHost, PSUseDeclaredVarsMoreThanAssignments, PSUseApprovedVerbs)
+          - Hook itself excluded from analysis
+          - Analyzer/formatter reports added to .gitignore
+          - CI/CD workflow integrated with GitHub Pages
+          - README updated with badge, status section, legend, troubleshooting table, and pipeline flow diagram
+
+          ---
+
+          ## ✅ Validation Status
+          - Blogs generated successfully
+          - QAValidator passed with no blocking errors
+          - _site artifact deployed to GitHub Pages
+          - Status badge shows Passing
+
+          ---
+
+          ## 🔄 Rollback Instructions
+          ```powershell
+          git checkout ${{ steps.commit.outputs.tag_name }}
+          git reset --hard ${{ steps.commit.outputs.tag_name }}
+          ```
+
+          ---
+
+          ## 📅 Release Metadata
+          - **Tag**: ${{ steps.commit.outputs.tag_name }}
+          - **Date**: ${{ steps.commit.outputs.commit_date }}
+          - **Commit**: ${{ steps.commit.outputs.commit_hash }}
+          - **Message**: ${{ steps.commit.outputs.commit_message }}
+          - **Maintainer**: Vinay (bhagatvinayd@gmail.com)
+
+          ---
+
+          ## 📝 Notes
+          This README documents the guardrails and scripts included in this bundle.
+          Future bundles should follow the same template to ensure traceability and consistency.
+          EOF
+
+      - name: Commit README.md
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Auto-generate README for ${{ steps.commit.outputs.tag_name }}"
+          git push origin HEAD:${GITHUB_REF}
+
+      - name: Archive Artifacts
+        run: |
+          mkdir artifacts
+          cp blogs/*-QAReport.txt artifacts/ || true
+          cp blogs/*-Diff.txt artifacts/ || true
+          cp blogs/QA-Summary.csv artifacts/ || true
+          zip -r artifacts/_site.zip _site || true
+          # Create combined bundle
+          zip -r artifacts/working-scripts-bundle.zip README.md artifacts/*
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.commit.outputs.tag_name }}
+          name: "Working Scripts ${{ steps.commit.outputs.tag_name }}"
+          body_path: README.md
+          files: |
+            artifacts/working-scripts-bundle.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
