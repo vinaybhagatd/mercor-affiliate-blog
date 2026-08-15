@@ -30,19 +30,31 @@ jobs:
           name: QAReport
           path: QAReport.txt
 
+      - name: Upload site folder
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: _site
+
   deploy:
     needs: build-and-validate
     runs-on: ubuntu-latest
-    if: success()   # only run if validation passes
+    if: success()
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Download site artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: _site
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload site artifact
+      - name: Upload site artifact to Pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
