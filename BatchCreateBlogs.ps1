@@ -1,8 +1,8 @@
- | #
+#
 .SYNOPSIS
-    BatchCreateBlogs.ps1 - Generates blog posts for all 11 categories
-    using CreateBlog.ps1 with default titles, copies them into _site
-    with correct filenames, and runs QAValidator.ps1 afterwards.
+BatchCreateBlogs.ps1 - Generates blog posts for all 11 categories
+using CreateBlog.ps1 with default titles, copies them into _site
+with correct filenames, and runs QAValidator.ps1 afterwards.
 # | # List of approved categories
 $categories = @(
     "creative", "data", "engineering", "finance", "language", "law", "medicine", "misc", "operations", "sciences", "tech"
