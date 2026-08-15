@@ -1,9 +1,15 @@
 <#
 .SYNOPSIS
     QAValidator.ps1 - Validates Mercor Affiliate Blog posts for compliance
-    and blocks commits if validation fails.#>
+    and blocks commits if validation fails.
+.DESCRIPTION
+    Checks front matter, categories, required sections, disclosure, and placeholder text.
+    Produces QAReport.txt with summary and details. Blocks commits if any failures exist.
+#>
+
 param (
-    [string] $SiteDir = ".\_site", [string] $OutputFile = ".\QAReport.txt"
+    [string] $SiteDir = ".\_site",
+    [string] $OutputFile = ".\QAReport.txt"
 )
 
 $approvedCategories = @("creative", "data", "engineering", "finance", "language", "law", "medicine", "misc", "operations", "sciences", "tech")
@@ -15,9 +21,10 @@ $passedCount = 0
 $failedCount = 0
 $failedFiles = @()
 
+# Enumerate all markdown files in the site directory
 Get-ChildItem -Path $SiteDir -Recurse -Filter "*.md" | ForEach-Object {
     $file = $_.FullName
-    $content = -Path 
+    $content = Get-Content $file -Raw
 
     $issues = @()
 
@@ -57,15 +64,13 @@ Get-ChildItem -Path $SiteDir -Recurse -Filter "*.md" | ForEach-Object {
     }
 
     if ($issues.Count -gt 0) {
-        $results += "Validation failed for ${file}:
- - " + ($issues -join "
- - ")
+        $results += "Validation failed for $file:`n - " + ($issues -join "`n - ")
         $hasFailures = $true
         $failedCount++
         $failedFiles += $file
     }
     else {
-        $results += "Validation passed for ${file}"
+        $results += "Validation passed for $file"
         $passedCount++
     }
 }
@@ -73,24 +78,17 @@ Get-ChildItem -Path $SiteDir -Recurse -Filter "*.md" | ForEach-Object {
 # Build summary line
 $summary = "Summary: $passedCount blog(s) passed, $failedCount blog(s) failed."
 if ($failedCount -gt 0) {
-    $summary += "
-Failed files:
-" + ($failedFiles -join "
-")
+    $summary += "`nFailed files:`n" + ($failedFiles -join "`n")
 }
 
 # Save results with summary at top
-Set-Content -Path $OutputFile -Value ($summary + "
-
-" + ($results -join "
-
-")) -Encoding UTF8
+Set-Content -Path $OutputFile -Value ($summary + "`n`n" + ($results -join "`n`n")) -Encoding UTF8
 
 if ($hasFailures) {
     Write-Error "QA validation failed. See $OutputFile for details."
     exit 1   # Non-zero exit code blocks commit
 }
 else {
-    Write-Output "QA validation passed. Results saved to $OutputFile"
+    Write-Host "QA validation passed. Results saved to $OutputFile"
     exit 0   # Success
 }
