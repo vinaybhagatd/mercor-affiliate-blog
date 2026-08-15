@@ -1,4 +1,4 @@
- | #
+﻿#
 .SYNOPSIS
     Runs PowerShell ScriptAnalyzer across the repository and enforces failures on warnings/errors.
 
@@ -40,3 +40,4 @@ else {
     Write-Output " ScriptAnalyzer passed with no issues."
     exit 0
 }
+

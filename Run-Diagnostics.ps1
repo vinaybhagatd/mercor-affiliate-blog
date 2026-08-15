@@ -1,4 +1,4 @@
-# Invoke-Diagnostics.ps1
+﻿# Invoke-Diagnostics.ps1
 # Automates running the Diagnostics Agent in Continue
 # Creates a daily timestamped log file
 
@@ -14,3 +14,4 @@ continue run Diagnostics | Tee-Object -FilePath $LOGFILE -Append
 
 Write-Output " Diagnostics Complete =  =  = "
 Write-Output "Logs saved to: $LOGFILE"
+

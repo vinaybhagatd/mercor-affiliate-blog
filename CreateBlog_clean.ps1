@@ -1,4 +1,4 @@
-param(
+﻿param(
     [string]$ProjectDir = "C:\Users\LMTest\promotional\mercor-affiliate-blog", [string]$LogDir = "C:\Users\LMTest\promotional\mercor-affiliate-blog\hermes-logs", [int]$MaxLogs = 10, [int]$LastRuns = 5, [switch]$OpenSummary
 )
 
@@ -61,7 +61,7 @@ Other Scripts (general):
 
 foreach ($file in $ps1Files) {
     $content = -Path 
-    $issuesPrompt + = " $($file.Name) =  =  = $content
+    $issuesPrompt += " $($file.Name) =  =  = $content
 "
 }
 
@@ -98,3 +98,4 @@ Disclosure: Some of the links in this post are affiliate links. This means if yo
 $blogFile = "$category-blogs.md"
 Set-Content -Path $blogFile -Value $blogContent -Encoding UTF8
 Write-Output "Blog created: $blogFile"
+

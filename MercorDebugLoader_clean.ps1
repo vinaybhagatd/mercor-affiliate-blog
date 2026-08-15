@@ -1,4 +1,4 @@
-# MercorDebugLoader.ps1
+﻿# MercorDebugLoader.ps1
 # Loader script to verify MercorDebug + Orchestrator + subscripts
 
 $projectPath = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
@@ -45,3 +45,4 @@ else {
 }
 
 Write-Output " =  =  = MercorDebugLoader complete =  =  = "
+

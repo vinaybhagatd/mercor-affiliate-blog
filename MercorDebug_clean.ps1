@@ -1,4 +1,4 @@
-param(
+﻿param(
     [string]$LogFile = "C:\Users\LMTest\promotional\mercor-affiliate-blog\mercordebug.log", [string]$OrchestratorPath = "C:\Users\LMTest\promotional\mercor-affiliate-blog\Orchestrator.ps1"
 )
 
@@ -44,3 +44,4 @@ catch {
     Log "Unhandled error: $($_.Exception.Message)"
     Write-Output "Error in MercorDebug: $($_.Exception.Message)"
 }
+

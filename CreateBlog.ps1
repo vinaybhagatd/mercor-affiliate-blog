@@ -1,4 +1,4 @@
-param (
+﻿param (
     [string] $Category, [string] $Title, [string] $OutputDir = ".\blogs", [string] $DataFile = ".\blogData.csv"   # default to CSV, but can be .json too
 )
 
@@ -71,3 +71,4 @@ Disclosure: Some of the links in this post are affiliate links. This means if yo
 
 Set-Content -Path $blogFile -Value $blogContent -Encoding UTF8
 Write-Output "Blog file created: $blogFile"
+

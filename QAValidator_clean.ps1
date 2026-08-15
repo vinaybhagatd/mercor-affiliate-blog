@@ -1,4 +1,4 @@
-function Send-OllamaRequest {
+﻿function Send-OllamaRequest {
     param(
         [string]$Prompt, [string]$Model = "hermes", # adjust to the model you want
         [string]$LmsPath = "C:\Users\LMTest\.lmstudio\bin\lms.exe"
@@ -49,7 +49,7 @@ Analyze and fix issues in the Mercor Affiliate Blog system. =  =  = Known Issues
 
 foreach ($file in $ps1Files) {
     $content = Get-Content -Path -Path -Path -Path -Path -Path -Path -Path -Path -Path -Path -Path -Path -Path -Path $file.FullName -Raw
-    $issuesPrompt + = " $($file.Name) =  =  = $content
+    $issuesPrompt += " $($file.Name) =  =  = $content
 "
 }
 
@@ -114,15 +114,15 @@ function Repair-PowerShellFormatting {
         $content = Get-Content -Path -Path -Path -Path -Path -Path -Path -Path -Path -Path -Path -Path -Path -Path -Path $_.FullName -Raw
         $formatted = Invoke-Formatter -ScriptDefinition $content
         Set-Content -Path $_.FullName -Value $formatted -Encoding UTF8
-        $log + = "Formatted $($_.FullName)"
+        $log += "Formatted $($_.FullName)"
     }
 
     # Step 2: Run ScriptAnalyzer after formatting
-    $log + = " ScriptAnalyzer Results =  =  = "
+    $log += " ScriptAnalyzer Results =  =  = "
     $results = Invoke-ScriptAnalyzer -Path $RootPath -Recurse -Severity Warning, Error, Information
     if ($results) {
         foreach ($r in $results) {
-            $log + = ("[{0}] {1} (Rule: {2}) in {3} at line {4}" -f `
+            $log += ("[{0}] {1} (Rule: {2}) in {3} at line {4}" -f `
                     $r.Severity, $r.Message, $r.RuleName, $r.ScriptPath, $r.Line)
         }
 
@@ -130,10 +130,10 @@ function Repair-PowerShellFormatting {
         $warningCount = ($results | Where-Object { $_.Severity -eq 'Warning' }).Count
         $infoCount = ($results | Where-Object { $_.Severity -eq 'Information' }).Count
 
-        $log + = " Summary =  =  = "
-        $log + = "Errors: $errorCount"
-        $log + = "Warnings: $warningCount"
-        $log + = "Information: $infoCount"
+        $log += " Summary =  =  = "
+        $log += "Errors: $errorCount"
+        $log += "Warnings: $warningCount"
+        $log += "Information: $infoCount"
 
         if ($errorCount -gt 0) {
             Write-Error "ScriptAnalyzer found $errorCount errors. Exiting with code 1."
@@ -141,11 +141,11 @@ function Repair-PowerShellFormatting {
         }
     }
     else {
-        $log + = "No ScriptAnalyzer issues found."
-        $log + = " Summary =  =  = "
-        $log + = "Errors: 0"
-        $log + = "Warnings: 0"
-        $log + = "Information: 0"
+        $log += "No ScriptAnalyzer issues found."
+        $log += " Summary =  =  = "
+        $log += "Errors: 0"
+        $log += "Warnings: 0"
+        $log += "Information: 0"
     }
 
     # Save combined report
@@ -155,3 +155,4 @@ function Repair-PowerShellFormatting {
 
 # Call the function as part of QAValidator workflow
 Repair-PowerShellFormatting -RootPath $ProjectDir -ReportFile (Join-Path $LogDir "FormatterReport.txt")
+

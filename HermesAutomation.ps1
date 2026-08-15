@@ -1,4 +1,4 @@
-# HermesAutomation.ps1
+﻿# HermesAutomation.ps1
 param(
     [string]$ProjectDir = "C:\Users\LMTest\promotional\mercor-affiliate-blog", [string[]]$Categories = @("creative", "data", "engineering", "finance", "language", "law", "medicine", "misc", "operations", "sciences", "tech"), [switch]$OpenSummary
 )
@@ -80,3 +80,4 @@ if ($OpenSummary) {
         Write-Log "No blogs directory found." "WARN"
     }
 }
+

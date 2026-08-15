@@ -1,4 +1,4 @@
-# Orchestrator.ps1
+﻿# Orchestrator.ps1
 # Logs, backups, diffs, and summaries are written inside mercor-affiliate-blog folder
 # Passes -LogFile into Diagnostics.ps1 and MercorDebug.ps1
 
@@ -20,7 +20,7 @@ function Write-Summary($status, $details, $scriptStatuses) {
 
     $scriptBlock = ""
     foreach ($s in $scriptStatuses.Keys) {
-        $scriptBlock + = "Script: $s
+        $scriptBlock += "Script: $s
 Status: $($scriptStatuses[$s])
 
 "
@@ -64,7 +64,7 @@ function Invoke-Task {
         $closeBraces = ([regex]::Matches($content, '}')).Count
         if ($openBraces -gt $closeBraces) {
             $diff = $openBraces - $closeBraces
-            $content + = "
+            $content += "
 " + ("}" * $diff)
             Log "Added $diff closing brace(s)."
         }
@@ -141,7 +141,7 @@ function Invoke-Task {
                         }
                     } -ArgumentList $resolvedPath
                 }
-                $jobs + = $job
+                $jobs += $job
             }
 
             Log "Waiting for jobs to complete..."
@@ -210,3 +210,4 @@ catch {
 finally {
     Log "Orchestrator script cleanup complete."
 }
+

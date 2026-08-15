@@ -1,4 +1,4 @@
-param(
+﻿param(
     [switch]$Restore
 )
 
@@ -46,8 +46,8 @@ foreach ($file in $files) {
     for ($i = 0; $i -lt $lines.Count; $i++) {
         foreach ($ch in $lines[$i].ToCharArray()) {
             if ([int]$ch -gt 127) {
-                $badLines + = "Line $($i+1): $($lines[$i])"
-                $charReport + = "File: $($file.Name) Line $($i+1) - | '$ch' (U+{0:X4})" -f [int]$ch
+                $badLines += "Line $($i+1): $($lines[$i])"
+                $charReport += "File: $($file.Name) Line $($i+1) - | '$ch' (U+{0:X4})" -f [int]$ch
             }
         }
     }
@@ -88,7 +88,7 @@ if ($rawSelf -match '[^\x00-\x7F]') {
         $badLines + " Unicode Report =  =  = " + $charReport | Set-Content $logFile -Encoding UTF8
 
         # Add to master report
-        $masterReport + = $charReport
+        $masterReport += $charReport
         Write-Output "Cleaned $($file.Name). Backup saved as $($file.Name).bak"
     }
     else {
@@ -106,3 +106,4 @@ else {
     Write-Output "
 No non-ASCII characters found in project."
 }
+

@@ -1,4 +1,4 @@
-function Get-BadCharInfo {
+﻿function Get-BadCharInfo {
     param([string]$Text)
 
     $info = [System.Collections.Generic.List[object]]::new()
@@ -41,7 +41,7 @@ function Get-HighlightedText {
     for ($i = 0; $i -lt $lines.Length; $i++) {
         $annotated = ''
         foreach ($ch in $lines[$i].ToCharArray()) {
-            $annotated + = if ([int]$ch -gt 127) { "[BAD $('{0:X4}' -f [int]$ch)]" } else { $ch }
+            $annotated += if ([int]$ch -gt 127) { "[BAD $('{0:X4}' -f [int]$ch)]" } else { $ch }
         }
 
         $annotatedLines.Add(("{0, 4}: {1}" -f ($i + 1), $annotated))
@@ -63,7 +63,7 @@ foreach ($file in $files) {
 
     if ($bad) {
         $totalCleaned++
-        $totalBadChars + = $bad.Count
+        $totalBadChars += $bad.Count
 
         $logFile = "$($file.FullName).removed.log"
         $cleanFile = "$($file.DirectoryName)\$($file.BaseName)_clean.ps1"
@@ -74,14 +74,14 @@ foreach ($file in $files) {
         )
 
         foreach ($entry in $badInfo) {
-            $badLog + = ("Line {0}, Col {1}: {2} ({3}) {4}" -f `
+            $badLog += ("Line {0}, Col {1}: {2} ({3}) {4}" -f `
                     $entry.Line, $entry.Column, $entry.Unicode, $entry.Decimal, $entry.Character)
         }
 
-        $badLog + = ''
-        $badLog + = 'Annotated content with bad-char markers:'
-        $badLog + = ''
-        $badLog + = Get-HighlightedText -Text $raw
+        $badLog += ''
+        $badLog += 'Annotated content with bad-char markers:'
+        $badLog += ''
+        $badLog += Get-HighlightedText -Text $raw
 
         $badLog | Set-Content -Path $logFile -Encoding UTF8
 
@@ -99,3 +99,4 @@ Write-Output " Summary Report =  =  = "
 Write-Output "Total .ps1 files scanned : $totalFiles"
 Write-Output "Files cleaned            : $totalCleaned"
 Write-Output "Total bad characters removed : $totalBadChars"
+

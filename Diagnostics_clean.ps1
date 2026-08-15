@@ -1,4 +1,4 @@
-# Diagnostics.ps1
+﻿# Diagnostics.ps1
 param(
     [string]$ProjectDir = "C:\Users\LMTest\promotional\mercor-affiliate-blog", [string]$DiagnosticsFile = "diagnostics.log"
 )
@@ -33,9 +33,9 @@ function Invoke-Diagnostics {
         $mem = Get-CimInstance Win32_PhysicalMemory | Measure-Object -Property Capacity -Sum
 
         $report = @()
-        $report + = "OS: $($os.Caption) $($os.Version)"
-        $report + = "CPU: $($cpu.Name)"
-        $report + = "Total Memory (GB): {0:N2}" -f ($mem.Sum / 1GB)
+        $report += "OS: $($os.Caption) $($os.Version)"
+        $report += "CPU: $($cpu.Name)"
+        $report += "Total Memory (GB): {0:N2}" -f ($mem.Sum / 1GB)
 
         $report | Out-File -FilePath $OutputPath -Encoding UTF8
         Write-Log "Diagnostics complete. Report saved to ${OutputPath}"
@@ -48,3 +48,4 @@ function Invoke-Diagnostics {
 # Run diagnostics
 $outputPath = Join-Path $ProjectDir $DiagnosticsFile
 Invoke-Diagnostics -OutputPath $outputPath
+

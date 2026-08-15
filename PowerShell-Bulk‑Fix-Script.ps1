@@ -1,8 +1,8 @@
-# Path to your Jekyll posts folder
+﻿# Path to your Jekyll posts folder
 $postsPath = "C:\Users\User\promotional\mercor-affiliate-blog\_posts"
 
 # Loop through all markdown files
-Get-ChildItem -Path $postsPath -Filter *.md | ForEach-Object {
+Get-ChildItem -Path $postsPath -Filter "*.md" | ForEach-Object {
 
     $file = $_.FullName
     $content = -Path 
@@ -22,3 +22,4 @@ Get-ChildItem -Path $postsPath -Filter *.md | ForEach-Object {
 }
 
 Write-Output "Bulk category fix complete."
+

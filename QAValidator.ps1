@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     QAValidator.ps1 - Validates Mercor Affiliate Blog posts for compliance
     and blocks commits if validation fails.
@@ -92,3 +92,4 @@ else {
     Write-Host "QA validation passed. Results saved to $OutputFile"
     exit 0   # Success
 }
+

@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
 BatchCreateBlogs.ps1 - Generates blog posts for all 11 categories using CreateBlog.ps1 with default titles, copies them into _site
 with correct filenames, and runs QAValidator.ps1 afterwards.#>
@@ -42,3 +42,4 @@ if (Test-Path $qaValidatorPath) {
 else {
     Write-Warning "QAValidator.ps1 not found. Skipping validation."
 }
+

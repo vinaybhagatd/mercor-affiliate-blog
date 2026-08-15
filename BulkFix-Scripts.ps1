@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     BulkFix-Scripts.ps1
     Provides Invoke-BulkFix function to sanitize PowerShell scripts and generate a summary report.
@@ -73,3 +73,4 @@ function Invoke-BulkFix {
 if ($MyInvocation.InvocationName -eq $MyInvocation.MyCommand.Name) {
     Invoke-BulkFix -TargetDir . -AsciiOnly -SummaryPath .\BulkFixReport.txt
 }
+
