@@ -1,38 +1,52 @@
-name: Deploy GitHub Pages
-
-permissions:
-  contents: write
-  pages: write
-  id-token: write
+name: MABS CI/CD Pipeline
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
-  build-deploy:
-    runs-on: ubuntu-latest
+  build-and-validate:
+    runs-on: windows-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.1'
-
-      - name: Install dependencies
+      - name: Run BatchCreateBlogs.ps1
+        shell: pwsh
         run: |
-          gem install bundler
-          bundle install
+          .\BatchCreateBlogs.ps1
 
-      - name: Build site with Jekyll
-        run: bundle exec jekyll build
+      - name: Run QAValidator.ps1
+        shell: pwsh
+        run: |
+          .\QAValidator.ps1
+
+      - name: Upload QA Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: QAReport
+          path: QAReport.txt
+
+  deploy:
+    needs: build-and-validate
+    runs-on: ubuntu-latest
+    if: success()   # only run if validation passes
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
+        id: deployment
+        uses: actions/deploy-pages@v4
