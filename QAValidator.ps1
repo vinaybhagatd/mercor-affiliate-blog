@@ -1,8 +1,8 @@
- | #
+<#
 .SYNOPSIS
     QAValidator.ps1 - Validates Mercor Affiliate Blog posts for compliance
-    and blocks commits if validation fails.
-# | param (
+    and blocks commits if validation fails.#>
+param (
     [string] $SiteDir = ".\_site", [string] $OutputFile = ".\QAReport.txt"
 )
 
