@@ -22,50 +22,50 @@ Get-ChildItem -Path $SiteDir -Recurse -Filter *.md | ForEach-Object {
     $issues = @()
 
     # Front matter checks
-    if ($content -notmatch "layout\s+post") { $issues + = "Missing or incorrect layout front matter." }
-    if ($content -notmatch "title\s+") { $issues + = "Missing title in front matter." }
-    if ($content -notmatch "categories\s+") { $issues + = "Missing categories in front matter." }
-    if ($content -notmatch "thumbnail\s+/assets/images/thumbnails/") { $issues + = "Missing thumbnail path in front matter." }
+    if ($content -notmatch "layout\s+post") { $issues += "Missing or incorrect layout front matter." }
+    if ($content -notmatch "title\s+") { $issues += "Missing title in front matter." }
+    if ($content -notmatch "categories\s+") { $issues += "Missing categories in front matter." }
+    if ($content -notmatch "thumbnail\s+/assets/images/thumbnails/") { $issues += "Missing thumbnail path in front matter." }
 
     # Category validation
     $categoryMatch = [regex]::Match($content, "categories\s+(\w+)")
     if ($categoryMatch.Success) {
         $category = $categoryMatch.Groups[1].Value
         if ($approvedCategories -notcontains $category) {
-            $issues + = "Invalid category '$category'. Must be one of: $($approvedCategories -join ', ')."
+            $issues += "Invalid category '$category'. Must be one of: $($approvedCategories -join ', ')."
         }
     }
     else {
-        $issues + = "No category found in front matter."
+        $issues += "No category found in front matter."
     }
 
     # Required sections
     foreach ($section in $requiredSections) {
         if ($content -notmatch $section) {
-            $issues + = "Missing required section: $section"
+            $issues += "Missing required section: $section"
         }
     }
 
     # Disclosure check
     if ($content -notmatch "Disclosure: Some of the links in this post are affiliate links") {
-        $issues + = "Missing Disclosure section at end of blog."
+        $issues += "Missing Disclosure section at end of blog."
     }
 
     # Placeholder text check
     if ($content -match "Lorem ipsum" -or $content -match "Placeholder") {
-        $issues + = "Placeholder text detected."
+        $issues += "Placeholder text detected."
     }
 
     if ($issues.Count -gt 0) {
-        $results + = "Validation failed for ${file}:
+        $results += "Validation failed for ${file}:
  - " + ($issues -join "
  - ")
         $hasFailures = $true
         $failedCount++
-        $failedFiles + = $file
+        $failedFiles += $file
     }
     else {
-        $results + = "Validation passed for ${file}"
+        $results += "Validation passed for ${file}"
         $passedCount++
     }
 }
@@ -73,7 +73,7 @@ Get-ChildItem -Path $SiteDir -Recurse -Filter *.md | ForEach-Object {
 # Build summary line
 $summary = "Summary: $passedCount blog(s) passed, $failedCount blog(s) failed."
 if ($failedCount -gt 0) {
-    $summary + = "
+    $summary += "
 Failed files:
 " + ($failedFiles -join "
 ")
