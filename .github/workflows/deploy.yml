@@ -1,15 +1,15 @@
-name: MABS CI/CD Pipeline
+name: Deploy Mercor Affiliate Blog
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
-  workflow_dispatch:   # allow manual trigger
 
 permissions:
-  contents: write      # allow creating releases, pushing artifacts
-  pages: write         # allow deployment to GitHub Pages
-  id-token: write      # Required for OIDC authentication purpose
+  contents: write
+  pages: write
+  id-token: write
 
 jobs:
   build-and-validate:
@@ -19,40 +19,45 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup PowerShell
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'   # required for some PowerShell modules
-
       - name: Run BatchCreateBlogs.ps1
         shell: pwsh
-        run: |
-          .\BatchCreateBlogs.ps1
+        run: .\BatchCreateBlogs.ps1
 
       - name: Run QAValidator.ps1
         shell: pwsh
-        run: |
-          .\QAValidator.ps1
+        run: .\QAValidator.ps1
 
       - name: Upload QA Report
         uses: actions/upload-artifact@v4
         with:
           name: QAReport
           path: QAReport.txt
-      
+
+      - name: Upload site folder
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: _site
+
   deploy:
     needs: build-and-validate
     runs-on: ubuntu-latest
-    if: success()   # only run if validation passes
+    if: success()
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Download site artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: _site
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload site artifact
+      - name: Upload site artifact to Pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
