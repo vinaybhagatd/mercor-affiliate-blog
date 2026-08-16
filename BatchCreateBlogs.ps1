@@ -2,7 +2,7 @@
 .SYNOPSIS
 BatchCreateBlogs.ps1
 Generates blog files for all categories in HTML format, copies them into _site,
-updates index.html with links to each blog, and runs QAValidator.ps1.
+creates/updates index.html with links to each blog, and runs QAValidator.ps1.
 #>
 
 # Define categories
@@ -13,6 +13,33 @@ $categories = @(
 
 Write-Host "Starting batch blog generation..."
 
+# Ensure _site directory exists
+$siteDir = ".\_site"
+if (-not (Test-Path $siteDir)) {
+    New-Item -ItemType Directory -Path $siteDir | Out-Null
+}
+
+# Ensure index.html scaffold exists
+$indexPath = "$siteDir\index.html"
+if (-not (Test-Path $indexPath)) {
+    $scaffold = @"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mercor Affiliate Blog</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+"@
+    foreach ($cat in $categories) {
+        $scaffold += "<h2>Latest Remote $($cat.Substring(0,1).ToUpper() + $cat.Substring(1)) Posts</h2>`r`n"
+        $scaffold += "<ul class=""category-list""></ul>`r`n`r`n"
+    }
+    $scaffold += "</body>`r`n</html>"
+    Set-Content $indexPath $scaffold -Encoding UTF8
+}
+
 foreach ($cat in $categories) {
     $title = "The Future of Remote $($cat.Substring(0,1).ToUpper() + $cat.Substring(1)) Careers"
     Write-Host "Generating blog for category: $cat"
@@ -22,19 +49,16 @@ foreach ($cat in $categories) {
     .\CreateBlog.ps1 -Category $cat -Title $title -OutputDirectory ".\blogs"
 
     # Copy blog into _site with proper filename
-    $siteFile = ".\_site\$($cat.Substring(0,1).ToUpper() + $cat.Substring(1)).html"
+    $siteFile = "$siteDir\$($cat.Substring(0,1).ToUpper() + $cat.Substring(1)).html"
     Copy-Item $blogFile $siteFile -Force
 
     # Build link line for homepage
     $linkLine = "    <li><a href='$($cat.Substring(0,1).ToUpper() + $cat.Substring(1)).html'>$title</a></li>"
 
     # Insert into index.html under the correct category list
-    $indexPath = ".\_site\index.html"
     $indexContent = Get-Content $indexPath
-
     $pattern = "(?<=<h2>Latest Remote $($cat.Substring(0,1).ToUpper() + $cat.Substring(1)) Posts</h2>\s*<ul class=""category-list"">)"
     $updatedContent = $indexContent -replace $pattern, "$linkLine`r`n"
-
     $updatedContent | Set-Content $indexPath
 }
 
