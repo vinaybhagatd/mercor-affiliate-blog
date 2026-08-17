@@ -7,8 +7,8 @@ creates/updates index.html with links to each blog, and runs QAValidator.ps1.
 
 # Define categories
 $categories = @(
-    "creative", "data", "engineering", "finance", "language",
-    "law", "medicine", "misc", "operations", "sciences", "tech"
+    "creative","data","engineering","finance","language",
+    "law","medicine","misc","operations","sciences","tech"
 )
 
 Write-Host "Starting batch blog generation..."
@@ -53,13 +53,17 @@ foreach ($cat in $categories) {
     Copy-Item $blogFile $siteFile -Force
 
     # Build link line for homepage
-    $linkLine = "    <li><a href='$($cat.Substring(0,1).ToUpper() + $cat.Substring(1)).html'>$title</a></li>"
+    $linkLine = "<li><a href='$($cat.Substring(0,1).ToUpper() + $cat.Substring(1)).html'>$title</a></li>"
 
-    # Insert into index.html under the correct category list
-    $indexContent = Get-Content $indexPath
-    $pattern = "(?<=<h2>Latest Remote $($cat.Substring(0,1).ToUpper() + $cat.Substring(1)) Posts</h2>\s*<ul class=""category-list"">)"
-    $updatedContent = $indexContent -replace $pattern, "$linkLine`r`n"
-    $updatedContent | Set-Content $indexPath
+    # Load index.html as XML and append link into correct <ul>
+    [xml]$doc = Get-Content $indexPath
+    $ulNodes = $doc.SelectNodes("//h2[text()='Latest Remote $($cat.Substring(0,1).ToUpper() + $cat.Substring(1)) Posts']/following-sibling::ul[@class='category-list'][1]")
+
+    foreach ($ul in $ulNodes) {
+        $ul.InnerXml += $linkLine
+    }
+
+    $doc.Save($indexPath)
 }
 
 Write-Host "All blogs generated and copied to _site. Homepage index.html updated."
