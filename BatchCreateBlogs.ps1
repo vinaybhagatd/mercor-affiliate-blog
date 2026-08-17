@@ -53,17 +53,13 @@ foreach ($cat in $categories) {
     Copy-Item $blogFile $siteFile -Force
 
     # Build link line for homepage
-    $linkLine = "<li><a href='$($cat.Substring(0,1).ToUpper() + $cat.Substring(1)).html'>$title</a></li>"
+    $linkLine = "    <li><a href='$($cat.Substring(0,1).ToUpper() + $cat.Substring(1)).html'>$title</a></li>"
 
-    # Load index.html as XML and append link into correct <ul>
-    [xml]$doc = Get-Content $indexPath
-    $ulNodes = $doc.SelectNodes("//h2[text()='Latest Remote $($cat.Substring(0,1).ToUpper() + $cat.Substring(1)) Posts']/following-sibling::ul[@class='category-list'][1]")
-
-    foreach ($ul in $ulNodes) {
-        $ul.InnerXml += $linkLine
-    }
-
-    $doc.Save($indexPath)
+    # Insert into index.html under the correct category list using regex
+    $indexContent = Get-Content $indexPath -Raw
+    $pattern = "(?<=<h2>Latest Remote $($cat.Substring(0,1).ToUpper() + $cat.Substring(1)) Posts</h2>\s*<ul class=""category-list"">)"
+    $updatedContent = [System.Text.RegularExpressions.Regex]::Replace($indexContent, $pattern, "$linkLine`r`n")
+    Set-Content $indexPath $updatedContent
 }
 
 Write-Host "All blogs generated and copied to _site. Homepage index.html updated."
