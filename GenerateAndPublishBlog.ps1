@@ -1,5 +1,6 @@
 # GenerateAndPublishBlog.ps1
 # Full automation: LM Studio → Eleventy → GitHub Pages
+# With suffix detection, escape cleanup, and empty-output guard
 
 param(
     [string]$Prompt = "Write a 50-word story about a remote creative professional.",
@@ -16,25 +17,45 @@ if (-not (Test-Path $blogPath)) {
     New-Item -ItemType Directory -Path $blogPath -Force | Out-Null
 }
 
-# Step 2: Detect or load model
-$model = & $lmStudioPath ps | Select-String "LOADED" | ForEach-Object { ($_ -split '\s+')[0] }
-if (-not $model) {
+# Step 2: Detect or load model (with suffix)
+$modelLine = & $lmStudioPath ps | Select-String "LOADED"
+if ($modelLine) {
+    $model = ($modelLine -split '\s+')[0]
+} else {
     Write-Host "No model loaded. Loading default model md-coder-qwen3-8b..."
     & $lmStudioPath load md-coder-qwen3-8b | Out-Null
-    $model = "md-coder-qwen3-8b"
+    # Re-check with suffix
+    $modelLine = & $lmStudioPath ps | Select-String "LOADED"
+    $model = ($modelLine -split '\s+')[0]
 }
 
 # Step 3: Run prompt
-$output = & $lmStudioPath chat $model -p $Prompt
+try {
+    $output = & $lmStudioPath chat $model -p $Prompt 2>$null
+} catch {
+    Write-Warning "Non-fatal LM Studio CLI error suppressed."
+    $output = ""
+}
 
-# Step 4: Validate category
+# Step 4: Clean output (remove ANSI escape codes)
+$cleanOutput = $output -replace '\x1B
+
+\[[0-9;]*[A-Za-z]', ''
+
+# Step 5: Guard against empty output
+if (-not $cleanOutput.Trim()) {
+    Write-Error "Model output was empty. Aborting commit."
+    exit 1
+}
+
+# Step 6: Validate category
 $validCategories = @("creative","data","engineering","finance","language","law","medicine","misc","operations","sciences","tech")
 if ($validCategories -notcontains $Category) {
     Write-Warning "Invalid category '$Category'. Defaulting to 'misc'."
     $Category = "misc"
 }
 
-# Step 5: Build filename + front matter
+# Step 7: Build filename + front matter
 $timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
 $fileName  = "post-$timestamp.md"
 $filePath  = Join-Path $blogPath $fileName
@@ -48,11 +69,11 @@ layout: post
 ---
 "@
 
-# Step 6: Save file
-$frontMatter + "`n" + $output | Out-File -FilePath $filePath -Encoding UTF8
+# Step 8: Save file
+$frontMatter + "`n" + $cleanOutput | Out-File -FilePath $filePath -Encoding UTF8
 Write-Host "✅ Blog post saved to $filePath"
 
-# Step 7: Git checks
+# Step 9: Git checks
 if (-not (Test-Path (Join-Path $repoPath ".git"))) {
     Write-Error "No Git repo found at $repoPath. Initialize with 'git init' and add remote before running."
     exit 1
@@ -66,7 +87,7 @@ if ($gitStatus) {
     git commit -m "Pre-automation cleanup $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
 }
 
-# Step 8: Commit and push new post
+# Step 10: Commit and push new post
 git add $filePath
 git commit -m "Automated post $timestamp [$Category]"
 git push origin main
