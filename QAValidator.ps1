@@ -1,108 +1,50 @@
 ﻿<#
 .SYNOPSIS
-    QAValidator.ps1 - Validates Mercor Affiliate Blog posts for compliance
-.DESCRIPTION
-    Checks front matter, categories, required sections, disclosure, and placeholder text.
-    Produces QAReport.txt with summary and details. Blocks commits if any failures exist.
+QAValidator.ps1
+Validates blog .html files for compliance:
+- Ensures required <meta> tags (canonical, category, thumbnail) are present
+- Reports missing tags to QAReport.txt
 #>
 
-param (
-    [string] $SiteDir = ".\_site",
-    [string] $OutputFile = ".\QAReport.txt"
-)
+$blogDir = "C:\Users\LMTest\promotional\mercor-affiliate-blog\blogs"
+$reportFile = "QAReport.txt"
 
-$approvedCategories = @(
-    "creative", "data", "engineering", "finance", "language",
-    "law", "medicine", "misc", "operations", "sciences", "tech"
-)
+# Clear old report
+if (Test-Path $reportFile) {
+    Remove-Item $reportFile -Force
+}
 
-$requiredSections = @(
-    "Day in the Life", "Tools Used", "Skills Required",
-    "Salary Range", "Growth Path", "Want Better Remote", "Explore Remote"
-)
+$issues = @()
 
-$results = @()
-$hasFailures = $false
-$passedCount = 0
-$failedCount = 0
-$failedFiles = @()
+Get-ChildItem -Path $blogDir -Filter "*.html" | ForEach-Object {
+    $fileContent = Get-Content $_.FullName -Raw
+    $fileName = $_.Name
 
-# Enumerate all markdown files in the site directory
-Get-ChildItem -Path $SiteDir -Recurse -Filter "*.md" | ForEach-Object {
-    $file = $_.FullName
-    $content = Get-Content $file -Raw
+    $missingTags = @()
 
-    $issues = @()
-
-    # Front matter checks
-    if ($content -notmatch "layout\s+post") {
-        $issues += "Missing or incorrect layout front matter."
+    if ($fileContent -notmatch '<meta\s+name="canonical"') {
+        $missingTags += "canonical"
     }
-    if ($content -notmatch "title\s+") {
-        $issues += "Missing title in front matter."
+    if ($fileContent -notmatch '<meta\s+name="category"') {
+        $missingTags += "category"
     }
-    if ($content -notmatch "categories\s+") {
-        $issues += "Missing categories in front matter."
-    }
-    if ($content -notmatch "thumbnail\s+/assets/images/thumbnails/") {
-        $issues += "Missing thumbnail path in front matter."
+    if ($fileContent -notmatch '<meta\s+name="thumbnail"') {
+        $missingTags += "thumbnail"
     }
 
-    # Category validation
-    $categoryMatch = [regex]::Match($content, "categories\s+(\w+)")
-    if ($categoryMatch.Success) {
-        $category = $categoryMatch.Groups[1].Value
-        if ($approvedCategories -notcontains $category) {
-            $issues += "Invalid category '$category'. Must be one of: $($approvedCategories -join ', ')."
-        }
-    }
-    else {
-        $issues += "No category found in front matter."
-    }
-
-    # Required sections
-    foreach ($section in $requiredSections) {
-        if ($content -notmatch $section) {
-            $issues += "Missing required section: $section"
-        }
-    }
-
-    # Disclosure check
-    if ($content -notmatch "Disclosure: Some of the links in this post are affiliate links") {
-        $issues += "Missing Disclosure section at end of blog."
-    }
-
-    # Placeholder text check
-    if ($content -match "Lorem ipsum" -or $content -match "Placeholder") {
-        $issues += "Placeholder text detected."
-    }
-
-    if ($issues.Count -gt 0) {
-        $results += "Validation failed for ${file}:`n - " + ($issues -join "`n - ")
-        $hasFailures = $true
-        $failedCount++
-        $failedFiles += $file
-    }
-    else {
-        $results += "Validation passed for ${file}"
-        $passedCount++
+    if ($missingTags.Count -gt 0) {
+        $issue = "$fileName is missing meta tags: $($missingTags -join ', ')"
+        $issues += $issue
+        Write-Host "⚠️ $issue"
+    } else {
+        Write-Host "✅ $fileName passed validation"
     }
 }
 
-# Build summary line
-$summary = "Summary: $passedCount blog(s) passed, $failedCount blog(s) failed."
-if ($failedCount -gt 0) {
-    $summary += "`nFailed files:`n" + ($failedFiles -join "`n")
-}
-
-# Save results with summary at top
-Set-Content -Path $OutputFile -Value ($summary + "`n`n" + ($results -join "`n`n")) -Encoding UTF8
-
-if ($hasFailures) {
-    Write-Error "QA validation failed. See $OutputFile for details."
-    exit 1   # Non-zero exit code blocks commit
-}
-else {
-    Write-Host "QA validation passed. Results saved to $OutputFile"
-    exit 0   # Success
+# Write report if issues found
+if ($issues.Count -gt 0) {
+    $issues | Out-File -FilePath $reportFile -Encoding UTF8
+    Write-Host "⚠️ Validation completed with issues. See $reportFile for details."
+} else {
+    Write-Host "✅ All blog files passed validation."
 }

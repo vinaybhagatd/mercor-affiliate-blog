@@ -1,70 +1,43 @@
 ﻿<#
 .SYNOPSIS
 BatchCreateBlogs.ps1
-Generates blog files for all categories in HTML format, copies them into _site,
-creates/updates index.html with links to each blog, and runs QAValidator.ps1.
+Generates blog posts for all 11 approved categories
+using the corrected CreateBlog.ps1 with <meta> tags,
+copies them into _site, and runs QAValidator.ps1 at the end.
 #>
 
-# Define categories
+# List of approved categories
 $categories = @(
     "creative","data","engineering","finance","language",
     "law","medicine","misc","operations","sciences","tech"
 )
 
-Write-Host "Starting batch blog generation..."
-
-# Ensure _site directory exists
-$siteDir = ".\_site"
-if (-not (Test-Path $siteDir)) {
-    New-Item -ItemType Directory -Path $siteDir | Out-Null
-}
-
-# Ensure index.html scaffold exists
-$indexPath = "$siteDir\index.html"
-if (-not (Test-Path $indexPath)) {
-    $scaffold = @"
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Mercor Affiliate Blog</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-"@
-    foreach ($cat in $categories) {
-        $scaffold += "<h2>Latest Remote $($cat.Substring(0,1).ToUpper() + $cat.Substring(1)) Posts</h2>`r`n"
-        $scaffold += "<ul class=""category-list""></ul>`r`n`r`n"
-    }
-    $scaffold += "</body>`r`n</html>"
-    Set-Content $indexPath $scaffold -Encoding UTF8
-}
-
 foreach ($cat in $categories) {
     $title = "The Future of Remote $($cat.Substring(0,1).ToUpper() + $cat.Substring(1)) Careers"
     Write-Host "Generating blog for category: $cat"
 
-    # Generate blog HTML file directly
-    $blogFile = ".\blogs\$cat-blogs.html"
-    .\CreateBlog.ps1 -Category $cat -Title $title -OutputDirectory ".\blogs"
+    # Call corrected CreateBlog.ps1 with AnalyticsProvider parameter
+    .\CreateBlog.ps1 -Category $cat -Title $title -AnalyticsProvider "GA4"
 
-    # Copy blog into _site with proper filename
-    $siteFile = "$siteDir\$($cat.Substring(0,1).ToUpper() + $cat.Substring(1)).html"
-    Copy-Item $blogFile $siteFile -Force
-
-    # Build link line for homepage
-    $linkLine = "    <li><a href='$($cat.Substring(0,1).ToUpper() + $cat.Substring(1)).html'>$title</a></li>"
-
-    # Insert into index.html under the correct category list using regex
-    $indexContent = Get-Content $indexPath -Raw
-    $pattern = "(?<=<h2>Latest Remote $($cat.Substring(0,1).ToUpper() + $cat.Substring(1)) Posts</h2>\s*<ul class=""category-list"">)"
-    $updatedContent = [System.Text.RegularExpressions.Regex]::Replace($indexContent, $pattern, "$linkLine`r`n")
-    Set-Content $indexPath $updatedContent
+    # Copy blog file into _site for deployment
+    $srcFile = ".\blogs\$cat-blogs.html"
+    $destFile = ".\_site\$($cat.Substring(0,1).ToUpper() + $cat.Substring(1)).html"
+    if (Test-Path $srcFile) {
+        Copy-Item $srcFile $destFile -Force
+        Write-Host "Copied blog to $destFile"
+    } else {
+        Write-Warning "Blog file not found: $srcFile"
+    }
 }
 
-Write-Host "All blogs generated and copied to _site. Homepage index.html updated."
+Write-Host "✅ All blogs generated and copied to _site."
 
-# Run QA validation
-Write-Host "Running QAValidator.ps1..."
+# Step 2: Run QAValidator.ps1 automatically
+Write-Host "🔍 Running QAValidator.ps1 for compliance checks..."
 .\QAValidator.ps1
-Write-Host "QA validation complete."
+
+if (Test-Path ".\QAReport.txt") {
+    Write-Host "⚠️ QA validation completed. See QAReport.txt for details."
+} else {
+    Write-Host "✅ QA validation passed with no issues."
+}
