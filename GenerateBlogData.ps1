@@ -1,15 +1,15 @@
-﻿<# 
+<# 
 .SYNOPSIS
-Generates Markdown blog files from JSON data for MABS.
+Generates JSON blog data files for MABS using LM Studio.
 Ensures proper folder structure and model availability.
 #>
 
 param(
-    [string]$JsonFolder = ".\BlogData",
-    [string]$OutputDir = ".\GeneratedBlogs"
+    [string]$OutputDir = ".\BlogData",
+    [int]$Count = 11
 )
 
-Write-Output "▶ Starting Blog Generation..."
+Write-Output "▶ Starting Blog Data Generation..."
 
 # ---------------------------------------------------------
 # 1. Ensure output folder exists
@@ -45,45 +45,23 @@ catch {
 }
 
 # ---------------------------------------------------------
-# 3. Process JSON files into Markdown
+# 3. Generate JSON blog data files
 # ---------------------------------------------------------
 
-$jsonFiles = Get-ChildItem $JsonFolder -Filter *.json -ErrorAction SilentlyContinue
+for ($i = 1; $i -le $Count; $i++) {
+    $fileName = Join-Path $OutputDir ("BlogData_$i.json")
 
-if ($jsonFiles.Count -eq 0) {
-    Write-Output "❌ No JSON files found in $JsonFolder"
-    exit 1
-}
+    # Example JSON structure (replace with LM Studio inference integration)
+    $jsonContent = @{
+        id = $i
+        title = "Blog Post $i"
+        category = "tech"
+        content = "Generated content placeholder for blog $i."
+        timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
+    } | ConvertTo-Json -Depth 3
 
-foreach ($file in $jsonFiles) {
-    try {
-        $data = Get-Content $file.FullName -Raw | ConvertFrom-Json
-
-        $title = $data.title
-        $category = $data.category
-        $content = $data.content
-        $timestamp = $data.timestamp
-
-        $mdFileName = Join-Path $OutputDir ($file.BaseName + ".md")
-
-        $mdContent = @"
----
-title: "$title"
-category: "$category"
-date: "$timestamp"
----
-
-# $title
-
-$content
-"@
-
-        $mdContent | Out-File $mdFileName -Encoding UTF8
-        Write-Output "✔ Generated blog: $mdFileName"
-    }
-    catch {
-        Write-Output "❌ Failed to process JSON: $($file.Name)"
-    }
+    $jsonContent | Out-File $fileName -Encoding UTF8
+    Write-Output "✔ Generated JSON file: $fileName"
 }
 
 # ---------------------------------------------------------
@@ -91,6 +69,7 @@ $content
 # ---------------------------------------------------------
 
 Write-Output "`n==============================="
-Write-Output "   BLOG GENERATION SUMMARY"
+Write-Output "   BLOG DATA GENERATION SUMMARY"
 Write-Output "==============================="
-Write-Output "✔ Blogs generated in $OutputDir"
+Write-Output "✔ $Count JSON files generated in $OutputDir"
+      

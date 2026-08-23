@@ -1,15 +1,14 @@
-﻿<# 
+<# 
 .SYNOPSIS
-Formats and sanitizes all PowerShell scripts in the repo.
-Applies best practices: metadata blocks, operator spacing, quoting wildcards,
-removes stray characters, and enforces ScriptAnalyzer compliance.
+Repairs PowerShell scripts in the repo by sanitizing content,
+fixing formatting issues, and ensuring analyzer compliance.
 #>
 
 param(
     [string]$RepoPath = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
 )
 
-Write-Output "▶ Starting Format-Scripts.ps1..."
+Write-Output "▶ Starting Repair.ps1..."
 
 # ---------------------------------------------------------
 # 1. Validate repo path discipline
@@ -30,7 +29,7 @@ Write-Output "✔ Repo path validated: $RepoPath"
 $psFiles = Get-ChildItem . -Filter *.ps1 -Recurse
 
 foreach ($ps in $psFiles) {
-    Write-Output "▶ Processing: $($ps.Name)"
+    Write-Output "▶ Repairing: $($ps.Name)"
 
     $content = Get-Content $ps.FullName -Raw
 
@@ -60,18 +59,23 @@ foreach ($ps in $psFiles) {
     $content = $content -replace "-Filter\s+(\*\.\w+)", '-Filter "$1"'
 
     # -----------------------------------------------------
-    # 2e. Replace invalid Unicode escapes
+    # 2e. Normalize quotes
     # -----------------------------------------------------
-    $content = $content -replace "\\u([0-9A-Fa-f]{4})", "`u{$1}"
+    $content = $content.Replace("'", '"')
 
     # -----------------------------------------------------
-    # 2f. Save sanitized content
+    # 2f. Fix invalid Unicode escapes (\uXXXX → `u{XXXX})
+    # -----------------------------------------------------
+    $content = $content -replace '\\u([0-9A-Fa-f]{4})', { "`u{$($matches[1])}" }
+
+    # -----------------------------------------------------
+    # 2g. Save sanitized content
     # -----------------------------------------------------
     $content | Out-File $ps.FullName -Encoding UTF8
     Write-Output "✔ Sanitized: $($ps.Name)"
 
     # -----------------------------------------------------
-    # 2g. Run Invoke-Formatter
+    # 2h. Run Invoke-Formatter
     # -----------------------------------------------------
     try {
         $formatted = Invoke-Formatter -ScriptDefinition (Get-Content $ps.FullName -Raw)
@@ -108,8 +112,8 @@ catch {
 # ---------------------------------------------------------
 
 Write-Output "`n==============================="
-Write-Output "   FORMAT-SCRIPTS SUMMARY"
+Write-Output "   REPAIR-SCRIPTS SUMMARY"
 Write-Output "==============================="
-Write-Output "✔ All scripts sanitized and formatted."
+Write-Output "`u{2714} All scripts sanitized and repaired."
 Write-Output "✔ Repo path discipline enforced."
 Write-Output "✔ Best practices applied."

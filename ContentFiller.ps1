@@ -1,63 +1,100 @@
-<#
+<# 
 .SYNOPSIS
-ContentFiller.ps1
-Fills blog skeletons for all 11 categories by replacing placeholder instructions
-with generated content from Qwen Coder via LM Studio CLI.
+Generates blog content using LM Studio with dynamic section injection from blogData.json.
+Always enforces Sam Browne + Molly Keyser writing style.
 #>
 
-$lmStudioPath = "C:\Users\LMTest\.lmstudio\bin\lms.exe"
-$blogDir      = "C:\Users\LMTest\promotional\mercor-affiliate-blog\_site"
-
-# Approved categories
-$categories = @(
-    "creative","data","engineering","finance","language",
-    "law","medicine","misc","operations","sciences","tech"
+param(
+    [string]$JsonFile = ".\blogData.json",
+    [string]$OutputDir = ".\GeneratedBlogs"
 )
 
-# Section placeholders → prompts
-$sections = @{
-    "Storytelling introduction of a remote" = "Write a 200-word Persona & Context story about a remote {category} professional, their challenges, and aspirations."
-    "A structured description of a typical day" = "Generate a 150-word 'Day in the Life' narrative for a remote {category} professional, focusing on workflows, meetings, and productivity strategies."
-    "Top {category} Productivity Tool" = "List and describe 3 top productivity tools used by remote {category} professionals, with practical examples."
-    "Skill 1" = "Provide a list of 3 essential skills for remote {category} professionals, with one-sentence explanations each."
-    "Entry Level: –" = "Give realistic salary ranges for remote {category} professionals at entry, mid, and senior levels."
-    "Storytelling arc showing career trajectory" = "Write a 150-word growth path narrative showing how a remote {category} professional advances in their career, including challenges and takeaways."
-}
+$lmstudioExe = "C:\Users\LMTest\.lmstudio\bin\lms.exe"
+$model = "qwen2.5-coder-1.5b-instruct"
 
-function Generate-Content {
-    param(
-        [string]$Prompt,
-        [string]$Model = "qwen-coder"
-    )
-    $result = & $lmStudioPath chat --model $Model --prompt $Prompt
-    return $result
-}
+# Load JSON
+$blogData = Get-Content $JsonFile -Raw | ConvertFrom-Json
 
-foreach ($cat in $categories) {
-    $file = Join-Path $blogDir "$($cat.Substring(0,1).ToUpper() + $cat.Substring(1)).html"
+# Style directive
+$styleDirective = @"
+Always write in the blended style of Sam Browne + Molly Keyser:
+- Story-driven narrative arc
+- Punchy and emotional tone
+- Persuasive marketing style
+- Structured, recruiter-friendly insights
+- Clear frameworks and actionable takeaways
+- No emojis
+"@
 
-    if (Test-Path $file) {
-        Write-Host "🔄 Processing $file"
+# Build dynamic Markdown template from JSON
+$markdownTemplate = @"
+---
+layout: $($blogData.layout)
+title: ""$($blogData.title)""
+description: ""$($blogData.description)""
+canonical: ""$($blogData.canonical)""
+og_title: ""$($blogData.og_title)""
+og_description: ""$($blogData.og_description)""
+og_image: ""$($blogData.og_image)""
+twitter_title: ""$($blogData.twitter_title)""
+twitter_description: ""$($blogData.twitter_description)""
+twitter_image: ""$($blogData.twitter_image)""
+date: ""$($blogData.date)""
+tags: [""$($blogData.tags[0])""]
+thumbnail: ""$($blogData.thumbnail)""
+permalink: ""$($blogData.permalink)""
+analytics: ""$($blogData.analytics)""
+---
 
-        $html = Get-Content $file -Raw
+# The Future of Remote $($blogData.tags[0]) Careers
 
-        foreach ($kvp in $sections.GetEnumerator()) {
-            $placeholder = $kvp.Key
-            $promptTemplate = $kvp.Value
-            $prompt = $promptTemplate -replace '\{category\}', $cat
+## Persona & Context
+$($blogData.sections.persona_context)
 
-            if ($html -match $placeholder) {
-                Write-Host "   → Generating content for: $placeholder"
-                $generated = Generate-Content -Prompt $prompt
-                $html = $html -replace [Regex]::Escape($placeholder), $generated
-            }
-        }
+## Salary Range
+- Entry Level: $($blogData.sections.salary_range.entry_level)
+- Mid Level: $($blogData.sections.salary_range.mid_level)
+- Senior Level: $($blogData.sections.salary_range.senior_level)
 
-        Set-Content -Path $file -Value $html -Encoding UTF8
-        Write-Host "✅ Finished filling $file"
-    } else {
-        Write-Warning "File not found: $file"
-    }
-}
+## Growth Path
+$($blogData.sections.growth_path)
 
-Write-Host "🎉 All categories processed. Blog skeletons now contain generated content."
+## Day in the Life
+$($blogData.sections.day_in_life)
+
+## Tools Used
+- $($blogData.sections.tools_used[0])
+- $($blogData.sections.tools_used[1])
+- $($blogData.sections.tools_used[2])
+
+## Skills Required
+- $($blogData.sections.skills_required[0])
+- $($blogData.sections.skills_required[1])
+- $($blogData.sections.skills_required[2])
+
+## Lead Magnet CTA
+$($blogData.sections.lead_magnet_cta)
+
+## Recommended Resources
+- $($blogData.sections.recommended_resources[0])
+- $($blogData.sections.recommended_resources[1])
+
+## Disclosure
+$($blogData.sections.disclosure)
+"@
+
+# Final prompt sent to LM Studio
+$finalPrompt = "$styleDirective`n`n$markdownTemplate"
+
+# Ensure output directory exists
+if (-not (Test-Path $OutputDir)) { New-Item -ItemType Directory -Path $OutputDir }
+
+# Run LM Studio
+$content = & $lmstudioExe chat --model $model --text $finalPrompt
+
+# Save output
+$timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
+$outFile = Join-Path $OutputDir "Blog-$timestamp.md"
+$content | Out-File $outFile -Encoding UTF8
+
+Write-Host "✅ Blog generated using dynamic JSON template: $outFile"

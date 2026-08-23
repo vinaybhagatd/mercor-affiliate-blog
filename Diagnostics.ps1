@@ -1,51 +1,212 @@
-﻿# Diagnostics.ps1
+﻿<# 
+.SYNOPSIS
+Runs full diagnostics for the MABS system:
+LM Studio, JSON validity, Markdown validity, QA, Eleventy, Git, folder structure.
+#>
+
 param(
-    [string]$ProjectDir = "C:\Users\LMTest\promotional\mercor-affiliate-blog", [string]$DiagnosticsFile = "diagnostics.log"
+    [string]$JsonFolder = ".\BlogData",
+    [string]$BlogsFolder = ".\GeneratedBlogs",
+    [string]$SiteFolder = ".\mercor-affiliate-blog\_site"
 )
 
-function Write-Log {
-    param([string]$Message, [string]$Level = "INFO")
-    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-    Write-Output "[${timestamp}][${Level}] ${Message}"
+$errors = @()
+$warnings = @()
+
+Write-Output "▶ Running MABS Diagnostics..."
+
+# ---------------------------------------------------------
+# 1. LM Studio CLI Check
+# ---------------------------------------------------------
+
+$lmPath = "C:\Users\LMTest\.lmstudio\bin\lms.exe"
+
+if (-not (Test-Path $lmPath)) {
+    $errors += "LM Studio CLI not found at expected path."
+} else {
+    Write-Output "✔ LM Studio CLI detected."
 }
 
-function Invoke-Diagnostics {
-    param([string]$OutputPath)
+# ---------------------------------------------------------
+# 2. Model Availability Check
+# ---------------------------------------------------------
 
+$model = "qwen2.5-coder-1.5b-instruct"
+
+try {
+    $modelList = & $lmPath list-models
+    if ($modelList -notmatch $model) {
+        $errors += "Model missing: $model"
+    } else {
+        Write-Output "✔ Model available: $model"
+    }
+}
+catch {
+    $errors += "Unable to query LM Studio models."
+}
+
+# ---------------------------------------------------------
+# 3. JSON Folder Check
+# ---------------------------------------------------------
+
+if (-not (Test-Path $JsonFolder)) {
+    $errors += "JSON folder missing: $JsonFolder"
+} else {
+    Write-Output "✔ JSON folder exists."
+}
+
+# ---------------------------------------------------------
+# 4. JSON Validity Check
+# ---------------------------------------------------------
+
+$jsonFiles = Get-ChildItem $JsonFolder -Filter *.json
+
+foreach ($file in $jsonFiles) {
     try {
-        Write-Log "Diagnostics started at ${OutputPath}"
-
-        # Example checks: ensure key files exist
-        $filesToCheck = @("HermesAutomation.ps1", "Orchestrator.ps1", "QAValidator.ps1")
-        foreach ($file in $filesToCheck) {
-            $path = Join-Path $ProjectDir $file
-            if (Test-Path $path) {
-                Write-Log "File exists: ${path}"
-            }
-            else {
-                Write-Log "Missing file: ${path}" "ERROR"
-            }
-        }
-
-        # Example system info
-        $os = Get-CimInstance Win32_OperatingSystem
-        $cpu = Get-CimInstance Win32_Processor
-        $mem = Get-CimInstance Win32_PhysicalMemory | Measure-Object -Property Capacity -Sum
-
-        $report = @()
-        $report += "OS: $($os.Caption) $($os.Version)"
-        $report += "CPU: $($cpu.Name)"
-        $report += "Total Memory (GB): {0:N2}" -f ($mem.Sum / 1GB)
-
-        $report | Out-File -FilePath $OutputPath -Encoding UTF8
-        Write-Log "Diagnostics complete. Report saved to ${OutputPath}"
+        $null = Get-Content $file.FullName -Raw | ConvertFrom-Json
+        Write-Output "✔ Valid JSON: $($file.Name)"
     }
     catch {
-        Write-Log "Error during diagnostics: $_" "ERROR"
+        $errors += "Invalid JSON: $($file.Name)"
     }
 }
 
-# Run diagnostics
-$outputPath = Join-Path $ProjectDir $DiagnosticsFile
-Invoke-Diagnostics -OutputPath $outputPath
+# ---------------------------------------------------------
+# 5. Markdown Folder Check
+# ---------------------------------------------------------
 
+if (-not (Test-Path $BlogsFolder)) {
+    $warnings += "Markdown folder missing: $BlogsFolder"
+} else {
+    Write-Output "✔ Markdown folder exists."
+}
+
+# ---------------------------------------------------------
+# 6. Markdown Validity Check
+# ---------------------------------------------------------
+
+$mdFiles = Get-ChildItem $BlogsFolder -Filter *.md -ErrorAction SilentlyContinue
+
+foreach ($md in $mdFiles) {
+    if ($md -notmatch "\.md$") {
+        $warnings += "Non-Markdown file detected: $($md.Name)"
+    } else {
+        Write-Output "✔ Markdown file detected: $($md.Name)"
+    }
+}
+
+# ---------------------------------------------------------
+# 7. QAValidator Presence Check
+# ---------------------------------------------------------
+
+if (-not (Test-Path ".\QAValidator.ps1")) {
+    $errors += "QAValidator.ps1 missing."
+} else {
+    Write-Output "✔ QAValidator.ps1 exists."
+}
+
+# ---------------------------------------------------------
+# 8. Eleventy Installation Check
+# ---------------------------------------------------------
+
+try {
+    $eleventy = npx @11ty/eleventy --version
+    Write-Output "✔ Eleventy installed."
+}
+catch {
+    $errors += "Eleventy not installed or not accessible."
+}
+
+# ---------------------------------------------------------
+# 9. Git Remote Check
+# ---------------------------------------------------------
+
+try {
+    $remote = git remote -v
+    if ($remote -match "origin") {
+        Write-Output "✔ Git remote 'origin' configured."
+    } else {
+        $warnings += "Git remote 'origin' not configured."
+    }
+}
+catch {
+    $errors += "Git not accessible."
+}
+
+# ---------------------------------------------------------
+# 10. Folder Structure Check
+# ---------------------------------------------------------
+
+$requiredFolders = @(
+    ".\BlogData",
+    ".\GeneratedBlogs",
+    ".\mercor-affiliate-blog",
+    ".\mercor-affiliate-blog\_site"
+)
+
+foreach ($folder in $requiredFolders) {
+    if (-not (Test-Path $folder)) {
+        $warnings += "Missing folder: $folder"
+    } else {
+        Write-Output "✔ Folder OK: $folder"
+    }
+}
+
+# ---------------------------------------------------------
+# 11. Unicode + Stray Character Check
+# ---------------------------------------------------------
+
+$psFiles = Get-ChildItem . -Filter *.ps1 -Recurse
+
+foreach ($ps in $psFiles) {
+    $content = Get-Content $ps.FullName -Raw
+
+    if ($content -match "\\u[0-9A-Fa-f]{4}") {
+        $errors += "Invalid Unicode escape in: $($ps.Name)"
+    }
+
+    if ($content -match "^\|") {
+        $errors += "Stray pipe character at start of: $($ps.Name)"
+    }
+}
+
+# ---------------------------------------------------------
+# 12. ScriptAnalyzer Compliance
+# ---------------------------------------------------------
+
+try {
+    $analysis = Invoke-ScriptAnalyzer -Path . -Recurse -Settings ".\PSScriptAnalyzerSettings.psd1"
+    foreach ($issue in $analysis) {
+        if ($issue.Severity -eq "Error") {
+            $errors += "ScriptAnalyzer Error: $($issue.RuleName) in $($issue.ScriptName)"
+        } else {
+            $warnings += "ScriptAnalyzer Warning: $($issue.RuleName) in $($issue.ScriptName)"
+        }
+    }
+    Write-Output "✔ ScriptAnalyzer executed."
+}
+catch {
+    $warnings += "ScriptAnalyzer not available."
+}
+
+# ---------------------------------------------------------
+# Final Output
+# ---------------------------------------------------------
+
+Write-Output "`n==============================="
+Write-Output "        MABS DIAGNOSTICS"
+Write-Output "==============================="
+
+if ($errors.Count -eq 0) {
+    Write-Output "✅ No blocking errors detected."
+} else {
+    Write-Output "❌ Blocking Errors:"
+    $errors | ForEach-Object { Write-Output " - $_" }
+}
+
+if ($warnings.Count -gt 0) {
+    Write-Output "`n⚠️ Warnings:"
+    $warnings | ForEach-Object { Write-Output " - $_" }
+}
+
+Write-Output "`nDiagnostics complete."

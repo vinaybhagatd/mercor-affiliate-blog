@@ -1,68 +1,61 @@
-{
-  "creative": {
-    "tools": ["Adobe Photoshop", "Illustrator", "Figma"],
-    "skills": ["Graphic Design", "Storytelling", "Branding"],
-    "salary": "$45,000 – $80,000 per year",
-    "growth": "Junior Designer → Senior Designer → Art Director → Creative Director"
-  },
-  "data": {
-    "tools": ["SQL", "Python", "R", "Tableau"],
-    "skills": ["Data Analysis", "Statistics", "Machine Learning"],
-    "salary": "$60,000 – $110,000 per year",
-    "growth": "Data Analyst → Data Scientist → Lead Data Scientist → Head of Analytics"
-  },
-  "engineering": {
-    "tools": ["GitHub", "Docker", "Jenkins", "VS Code"],
-    "skills": ["Software Development", "DevOps", "System Architecture"],
-    "salary": "$70,000 – $120,000 per year",
-    "growth": "Junior Engineer → Senior Engineer → Engineering Manager → CTO"
-  },
-  "finance": {
-    "tools": ["Excel", "QuickBooks", "SAP", "Tableau"],
-    "skills": ["Accounting", "Financial Analysis", "Risk Management"],
-    "salary": "$60,000 – $100,000 per year",
-    "growth": "Analyst → Senior Analyst → Finance Manager → CFO"
-  },
-  "language": {
-    "tools": ["Grammarly", "CAT Tools", "MS Word"],
-    "skills": ["Translation", "Editing", "Copywriting"],
-    "salary": "$40,000 – $75,000 per year",
-    "growth": "Translator → Senior Editor → Localization Manager → Head of Content"
-  },
-  "law": {
-    "tools": ["LexisNexis", "Westlaw", "Case Management Software"],
-    "skills": ["Legal Research", "Contract Drafting", "Negotiation"],
-    "salary": "$70,000 – $130,000 per year",
-    "growth": "Associate → Senior Associate → Partner → Managing Partner"
-  },
-  "medicine": {
-    "tools": ["EMR Systems", "Telemedicine Platforms", "Diagnostic Tools"],
-    "skills": ["Clinical Knowledge", "Patient Care", "Medical Research"],
-    "salary": "$80,000 – $150,000 per year",
-    "growth": "Resident → Attending Physician → Department Head → Chief Medical Officer"
-  },
-  "misc": {
-    "tools": ["Slack", "Zoom", "Google Workspace"],
-    "skills": ["Adaptability", "Problem Solving", "Communication"],
-    "salary": "$35,000 – $70,000 per year",
-    "growth": "Entry-Level → Specialist → Manager → Director"
-  },
-  "operations": {
-    "tools": ["ERP Systems", "Project Management Tools", "Excel"],
-    "skills": ["Process Optimization", "Logistics", "Leadership"],
-    "salary": "$55,000 – $95,000 per year",
-    "growth": "Coordinator → Operations Manager → Director of Operations → COO"
-  },
-  "sciences": {
-    "tools": ["Lab Equipment", "MATLAB", "SPSS"],
-    "skills": ["Research", "Data Analysis", "Critical Thinking"],
-    "salary": "$50,000 – $90,000 per year",
-    "growth": "Research Assistant → Scientist → Principal Investigator → Director of Research"
-  },
-  "tech": {
-    "tools": ["GitHub", "Docker", "VS Code", "Jira"],
-    "skills": ["Cloud Computing", "DevOps", "JavaScript", "AI/ML"],
-    "salary": "$70,000 – $120,000 per year",
-    "growth": "Junior Developer → Senior Engineer → Tech Lead → CTO"
-  }
+<# 
+.SYNOPSIS
+Generates blogData JSON files for all 11 categories using the universal template.
+#>
+
+$categories = @(
+    "creative","data","engineering","finance","language",
+    "law","medicine","misc","operations","sciences","tech"
+)
+
+$template = @{
+    layout = "post.njk"
+    title = "<SEO title>"
+    description = "<SEO-friendly summary>"
+    canonical = "/posts/<slug>/"
+    og_title = "<SEO title>"
+    og_description = "<SEO description>"
+    og_image = "/assets/images/thumbnails/<category>.png"
+    twitter_title = "<SEO title>"
+    twitter_description = "<SEO description>"
+    twitter_image = "/assets/images/thumbnails/<category>.png"
+    date = "<valid ISO date>"
+    tags = @("<category>")
+    thumbnail = "<category>.png"
+    permalink = "posts/<slug>/index.html"
+    analytics = "GA4"
+    sections = @{
+        persona_context = "Describe the professional in this category, their challenges, and aspirations."
+        salary_range = @{
+            entry_level = ""
+            mid_level = ""
+            senior_level = ""
+        }
+        growth_path = "Explain career trajectory, challenges, and actionable takeaways."
+        day_in_life = "Highlight workflows, meetings, and productivity strategies."
+        tools_used = @(
+            "Top <category> Productivity Tool",
+            "Best Remote Collaboration Platform",
+            "Essential <category> Learning Resource"
+        )
+        skills_required = @("Skill 1","Skill 2","Skill 3")
+        lead_magnet_cta = "Download our Free <category> Career Guide: Enter your email → Get the Guide"
+        recommended_resources = @("Affiliate Resource 1","Affiliate Resource 2")
+        disclosure = "Some of the links in this post are affiliate links. If you click and purchase, we may earn a commission at no extra cost to you. We only recommend products we trust and use ourselves."
+    }
+}
+
+# Output folder
+$outFolder = ".\BlogData"
+if (-not (Test-Path $outFolder)) { New-Item -ItemType Directory -Path $outFolder }
+
+foreach ($cat in $categories) {
+
+    $json = $template | ConvertTo-Json -Depth 10
+    $json = $json.Replace("<category>", $cat)
+
+    $filePath = Join-Path $outFolder "$cat.json"
+    $json | Out-File $filePath -Encoding UTF8
+
+    Write-Host "✅ Created: $filePath"
 }
