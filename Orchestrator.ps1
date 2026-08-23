@@ -1,89 +1,85 @@
 ﻿<# 
 .SYNOPSIS
-Runs the full MABS pipeline:
-Generate JSON → Generate Blogs → QA → Eleventy → Git Publish.
+Runs the full Mercor Affiliate Blog System (MABS) pipeline:
+Diagnostics → Blog Data → Blog Generation → QA → Eleventy Build → Publish
 #>
 
 param(
-    [string]$JsonFolder = ".\BlogData",
-    [string]$BlogsFolder = ".\GeneratedBlogs",
-    [string]$SiteFolder = ".\mercor-affiliate-blog\_site"
+    [string]$RepoPath = "C:\Users\LMTest\promotional\mercor-affiliate-blog",
+    [string]$ModelPath = "C:\Users\LMTest\.lmstudio\bin\lms.exe",
+    [string]$ModelName = "qwen/qwen2.5-coder-1.5b-instruct"
 )
 
 Write-Output "▶ Starting MABS Orchestrator..."
 
 # ---------------------------------------------------------
-# Step 1: Ensure LM Studio model available
+# 1. Validate repo path
 # ---------------------------------------------------------
-
-$lmPath = "C:\Users\LMTest\.lmstudio\bin\lms.exe"
-$model = "qwen2.5-coder-1.5b-instruct"
-
-try {
-    $modelList = & $lmPath ls
-    if ($modelList -notmatch $model) {
-        Write-Output "⚠️ Model missing. Attempting download..."
-        & $lmPath get $model
-        Write-Output "✔ Model downloaded: $model"
-    } else {
-        Write-Output "✔ Model available: $model"
-    }
-}
-catch {
-    Write-Output "❌ LM Studio not accessible."
+if (-not (Test-Path $RepoPath)) {
+    Write-Output "❌ Repo path not found: $RepoPath"
     exit 1
 }
+Set-Location $RepoPath
+Write-Output "✔ Repo path validated: $RepoPath"
 
 # ---------------------------------------------------------
-# Step 2: Generate JSON files
+# 2. Run Diagnostics
 # ---------------------------------------------------------
-
-Write-Output "▶ Generating JSON files..."
-.\GenerateBlogData.ps1 -OutputDir $JsonFolder
-Write-Output "✔ JSON generation complete."
-
-# ---------------------------------------------------------
-# Step 3: Generate Blogs from JSON
-# ---------------------------------------------------------
-
-Write-Output "▶ Generating blogs..."
-.\BatchCreateBlogs.ps1 -JsonFolder $JsonFolder -OutputDir $BlogsFolder
-Write-Output "✔ Blog generation complete."
+Write-Output "▶ Running diagnostics..."
+.\Diagnostics.ps1
+Write-Output "✔ Diagnostics complete."
 
 # ---------------------------------------------------------
-# Step 4: Run QA Validator
+# 3. Generate Blog Data (JSON)
 # ---------------------------------------------------------
+Write-Output "▶ Generating Blog Data..."
+for ($i=1; $i -le 10; $i++) {
+    $outputFile = ".\BlogData\BlogData_$i.json"
+    & $ModelPath chat $ModelName -p "Generate structured JSON blog data for post $i" | Out-File $outputFile -Encoding UTF8
+    Write-Output "✔ Generated JSON file: $outputFile"
+}
 
+# ---------------------------------------------------------
+# 4. Generate Blogs (Markdown)
+# ---------------------------------------------------------
+Write-Output "▶ Generating Blogs..."
+if (-not (Test-Path ".\GeneratedBlogs")) {
+    New-Item -ItemType Directory -Path ".\GeneratedBlogs" | Out-Null
+    Write-Output "✔ Created missing folder: .\GeneratedBlogs"
+}
+
+for ($i=1; $i -le 10; $i++) {
+    $outputFile = ".\GeneratedBlogs\BlogData_$i.md"
+    & $ModelPath chat $ModelName -p "Generate publish-ready blog post $i with YAML front matter, SEO metadata, and affiliate CTA" | Out-File $outputFile -Encoding UTF8
+    Write-Output "✔ Generated blog: $outputFile"
+}
+
+# ---------------------------------------------------------
+# 5. Run QA Validation
+# ---------------------------------------------------------
 Write-Output "▶ Running QA validation..."
-.\QAValidator.ps1 -InputDir $BlogsFolder
+.\QAValidator.ps1
 Write-Output "✔ QA validation complete."
 
 # ---------------------------------------------------------
-# Step 5: Build Eleventy Site
+# 6. Build Eleventy Site
 # ---------------------------------------------------------
-
 Write-Output "▶ Building Eleventy site..."
-npx @11ty/eleventy --input $BlogsFolder --output $SiteFolder
+npx eleventy
 Write-Output "✔ Eleventy build complete."
 
 # ---------------------------------------------------------
-# Step 6: Git Commit + Push
+# 7. Git Commit & Publish
 # ---------------------------------------------------------
-
-try {
-    git add .
-    git commit -m "Automated MABS publish"
-    git push origin main
-    Write-Output "✔ Git publish complete."
-}
-catch {
-    Write-Output "⚠️ Git publish failed. Check remote configuration."
-}
+Write-Output "▶ Publishing to GitHub..."
+git add .
+git commit -m "Automated MABS publish"
+git push origin main
+Write-Output "✔ Git publish complete."
 
 # ---------------------------------------------------------
 # Final Output
 # ---------------------------------------------------------
-
 Write-Output "`n==============================="
 Write-Output "        MABS ORCHESTRATOR"
 Write-Output "==============================="

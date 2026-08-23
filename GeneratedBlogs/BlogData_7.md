@@ -1,9 +1,10 @@
----
-title: "Blog Post 7"
-category: "tech"
-date: "2026-08-23 20:29:35"
----
+﻿
+[K[?25h[?25l
+[0K
 
-# Blog Post 7
+   Γºù qwen/qwen2.5-coder-1.5b-instruct - Pending...[0K
 
-Generated content placeholder for blog 7.
+[0K
+
+Γá╕ Resolving download plan...[0K
+[?25h
