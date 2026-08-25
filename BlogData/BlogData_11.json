@@ -1,7 +1,6 @@
-{
-  "title": "Blog Post 11",
-  "timestamp": "2026-08-23 20:29:35",
-  "content": "Generated content placeholder for blog 11.",
-  "id": 11,
-  "category": "tech"
+﻿{
+  "title": "Why I Choose Python for Data Science",
+  "category": "Technology",
+  "date": "2023-04-27",
+  "content": "Python is a versatile programming language that has gained immense popularity in the field of data science due to its simplicity, readability, and extensive libraries. In this blog post, I will explore why Python is an excellent choice for data scientists."
 }

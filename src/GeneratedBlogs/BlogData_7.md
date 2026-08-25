@@ -1,18 +1,6 @@
+﻿---
+title: "Exploring the Impact of Social Media on Mental Health"
+date: 2023-10-05
+category: Psychology
 ---
-title: "Unknown Title"
-description: "layout: blog-post"
-categories: medicine
-date: 2026-08-23T20:29:37
----
-layout: blog-post
-title: "Top 10 Reasons to Choose Our New Product"
-date: 2023-04-15T14:30:00Z
-author: John Doe
-categories:
-  - Technology
-  - Products
-description: Discover the top features and benefits of our latest product.
-tags: ['technology', 'products']
-image: /images/blog/product-image.jpg
-cta_link: https://www.example.com/affiliate-link
-cta_text: Shop Now
+In recent years, social media has become an integral part of our daily lives, offering a wealth of information and opportunities. However, it also presents significant challenges to mental health. This blog post will explore the impact of social media on mental health, highlighting both its positive and negative effects.

@@ -1,16 +1,6 @@
-$ModelPath = "C:\Users\LMTest\.lmstudio\bin\lms.exe"
-$ModelName = "qwen2.5-coder-1.5b-instruct"
-
-$prompt = @"
-Generate valid JSON for a blog post with this schema:
-{
-  "title": "string",
-  "category": "tech",
-  "date": "YYYY-MM-DD HH:mm:ss",
-  "content": "string with publish-ready blog text"
+﻿{
+  "title": "Exploring the World of AI and Machine Learning",
+  "category": "Technology",
+  "date": "2023-09-15",
+  "content": "In recent years, the field of artificial intelligence (AI) has experienced significant growth, with many exciting developments in machine learning. AI is now being used across a wide range of industries, from healthcare to finance, and it's becoming increasingly important for businesses to understand how to harness its power to improve their operations and drive innovation."
 }
-Ensure the JSON is valid and publish-ready.
-Blog number: 1
-"@
-
-& $ModelPath chat $ModelName -p $prompt | Out-File ".\BlogData\BlogData_1.json" -Encoding UTF8

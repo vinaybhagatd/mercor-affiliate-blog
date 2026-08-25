@@ -1,18 +1,8 @@
 module.exports = function(eleventyConfig) {
-
+  // Copy static assets
   eleventyConfig.addPassthroughCopy("assets");
-  eleventyConfig.addPassthroughCopy(".nojekyll");
 
-  // Unified posts collection: authored + generated
-  eleventyConfig.addCollection("posts", function(collectionApi) {
-    return [
-      // Authored posts
-      ...collectionApi.getFilteredByGlob("src/posts/**/*.md"),
-      // Generated posts (now inside src)
-      ...collectionApi.getFilteredByGlob("src/GeneratedBlogs/*.md")
-    ];
-  });
-
+  // Define categories
   const categories = [
     "creative",
     "engineering",
@@ -27,18 +17,25 @@ module.exports = function(eleventyConfig) {
     "tech"
   ];
 
-  categories.forEach(cat => {
-    eleventyConfig.addCollection(cat, function(collectionApi) {
-      return collectionApi.getFilteredByTag(cat);
+  // Generate collections for each category
+  categories.forEach(category => {
+    eleventyConfig.addCollection(category, function(collectionApi) {
+      return collectionApi.getFilteredByGlob("src/GeneratedBlogs/**/*.md")
+        .filter(item => item.data.category && item.data.category.toLowerCase() === category);
     });
   });
 
+  // Default Eleventy config
   return {
     dir: {
       input: "src",
       includes: "_includes",
-      layouts: "_layouts",
+      data: "_data",
       output: "_site"
-    }
+    },
+    markdownTemplateEngine: "liquid",
+    htmlTemplateEngine: "njk",
+    dataTemplateEngine: "njk",
+    passthroughFileCopy: true
   };
 };
