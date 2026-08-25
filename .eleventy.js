@@ -1,18 +1,35 @@
 module.exports = function(eleventyConfig) {
 
-  // Copy assets directly
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy(".nojekyll");
 
-  // Create collections for each category
+  // Unified posts collection: authored + generated
+  eleventyConfig.addCollection("posts", function(collectionApi) {
+    return [
+      // Authored posts
+      ...collectionApi.getFilteredByGlob("src/posts/**/*.md"),
+      // Generated posts (now inside src)
+      ...collectionApi.getFilteredByGlob("src/GeneratedBlogs/*.md")
+    ];
+  });
+
   const categories = [
-    "creative", "engineering", "data", "finance", "operations",
-    "medicine", "law", "sciences", "arts", "language", "misc"
+    "creative",
+    "engineering",
+    "data",
+    "finance",
+    "operations",
+    "medicine",
+    "law",
+    "sciences",
+    "language",
+    "misc",
+    "tech"
   ];
 
   categories.forEach(cat => {
-    eleventyConfig.addCollection(cat, function(collection) {
-      return collection.getFilteredByTag(cat);
+    eleventyConfig.addCollection(cat, function(collectionApi) {
+      return collectionApi.getFilteredByTag(cat);
     });
   });
 
