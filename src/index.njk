@@ -1,44 +1,23 @@
 ---
-layout: base.njk
-title: Mercor Affiliate Blog
+layout: base
+title: Home
 ---
 
-<h2>Latest Remote Creative Posts</h2>
-{% include "category-loop.njk" %}
-{% set category = "creative" %}
+{% block content %}
+  <h1>Welcome to Mercor Affiliate Blog</h1>
+  <p>Explore remote career insights across our categories.</p>
 
-<h2>Latest Remote Engineering Posts</h2>
-{% set category = "engineering" %}
-{% include "category-loop.njk" %}
+  <h2>Categories</h2>
+  <ul>
+    {% for cat in collections %}
+      <li><a href="/categories/{{ cat }}/">{{ cat }}</a></li>
+    {% endfor %}
+  </ul>
 
-<h2>Latest Remote Data Posts</h2>
-{% set category = "data" %}
-{% include "category-loop.njk" %}
-
-<h2>Latest Remote Finance Posts</h2>
-{% set category = "finance" %}
-{% include "category-loop.njk" %}
-
-<h2>Latest Remote Operations Posts</h2>
-{% set category = "operations" %}
-{% include "category-loop.njk" %}
-
-<h2>Latest Remote Medicine Posts</h2>
-{% set category = "medicine" %}
-{% include "category-loop.njk" %}
-
-<h2>Latest Remote Law Posts</h2>
-{% set category = "law" %}
-{% include "category-loop.njk" %}
-
-<h2>Latest Remote Sciences Posts</h2>
-{% set category = "sciences" %}
-{% include "category-loop.njk" %}
-
-<h2>Latest Remote Language Posts</h2>
-{% set category = "language" %}
-{% include "category-loop.njk" %}
-
-<h2>Latest Remote Miscellaneous Posts</h2>
-{% set category = "misc" %}
-{% include "category-loop.njk" %}
+  <h2>Latest Posts</h2>
+  <ul>
+    {% for post in collections.all | reverse | slice(0,5) %}
+      <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

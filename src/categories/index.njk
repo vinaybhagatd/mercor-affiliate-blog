@@ -1,9 +1,24 @@
 ---
-pagination:
-  data: collections
-  size: 1
-  alias: category
-permalink: "/categories/{{ category }}/index.html"
 layout: category
+pagination:
+  data: collections.all
+  size: 1
+  alias: post
+permalink: /categories/{{ post.data.categories and post.data.categories[0] or "uncategorized" }}/index.html
 ---
 
+{% block content %}
+  {% set catName = post.data.categories and post.data.categories[0] or "uncategorized" %}
+  <h1>{{ catName | capitalize }}</h1>
+
+  {% set posts = collections[catName] %}
+  {% if posts and posts | length %}
+    <ul>
+      {% for p in posts %}
+        <li><a href="{{ p.url }}">{{ p.data.title }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No posts found in this category yet.</p>
+  {% endif %}
+{% endblock %}

@@ -26,10 +26,15 @@ try {
 
     # Step 7: Build and serve with Eleventy
     Write-Host "🌐 Launching Eleventy server..."
-    npx eleventy --serve
+
+    # Run Eleventy directly, showing logs in this console
+    & npx.cmd eleventy --serve
+
+    # If Eleventy starts, open browser
+    Start-Sleep -Seconds 5
+    Start-Process "http://localhost:8080/"
 }
 catch {
     Write-Host "❌ Pipeline execution failed: $($_.Exception.Message)"
     exit 1
 }
- 

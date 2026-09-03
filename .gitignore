@@ -1,11 +1,41 @@
+# =========================
+# Node.js dependencies
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================
+# Eleventy build output
+# =========================
+_site/
+.cache/
+.tmp/
+
+# =========================
+# Build artifacts
+# =========================
+build/
+dist/
+build.log
+createblog.log
+deploy.yml
+
+# =========================
 # PowerShell ScriptAnalyzer / Formatter reports
+# =========================
 PreCommitReport.txt
 WarningsReport.txt
 ScriptAnalyzerReport_*.txt
 FormatterReport_*.txt
+QAReport.txt
 BulkFixReport.txt
+UnicodeMasterReport.log
 
+# =========================
 # Diagnostic logs
+# =========================
 diagnostics.log
 diagnostics_log_*.txt
 loader.log
@@ -14,50 +44,36 @@ orchestrator.log
 pipeline-logs/
 hermes-logs/
 
+# =========================
 # General hygiene reports
+# =========================
 *.err
 *.out
 *.tmp
 *.bak
 *.swp
 *.swo
-
-# Build output
-_site/
-build.log
-createblog.log
-
-# Logs
-*.log
-logs/
-
-# Node.js
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Eleventy build output
-_site/
-
-# Logs
-*.log
-logs/
-
-# VSCode
-.vscode/
-
-# PowerShell analyzer reports
-PreCommitReport.txt
-UnicodeMasterReport.log
-
-# Temporary removed files
 *.removed.log
 
-# Build artifacts
-build/
-dist/
+# =========================
+# Logs
+# =========================
+*.log
+logs/
 
-QAReport.txt
-deploy.yml
+# =========================
+# Editor / IDE artifacts
+# =========================
+.vscode/
+.idea/
+*.iml
+*.sln
+*.user
+*.vs/
+*.code-workspace
 
+# =========================
+# OS-specific junk
+# =========================
+.DS_Store
+Thumbs.db
