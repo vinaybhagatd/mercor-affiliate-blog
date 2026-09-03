@@ -1,0 +1,12 @@
+# Redirect short root aliases to category archives
+/data        /categories/data/        301
+/creative    /categories/creative/    301
+/engineering /categories/engineering/ 301
+/finance     /categories/finance/     301
+/operations  /categories/operations/  301
+/medicine    /categories/medicine/    301
+/law         /categories/law/         301
+/sciences    /categories/sciences/    301
+/language    /categories/language/    301
+/misc        /categories/misc/        301
+/tech        /categories/tech/        301

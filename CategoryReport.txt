@@ -1,0 +1,12 @@
+﻿=== Category Report (09/01/2026 23:47:40) ===
+âš ï¸ creative page reachable but no posts listed (http://localhost:8080/categories/creative/)
+âš ï¸ data page reachable but no posts listed (http://localhost:8080/categories/data/)
+âš ï¸ engineering page reachable but no posts listed (http://localhost:8080/categories/engineering/)
+âš ï¸ finance page reachable but no posts listed (http://localhost:8080/categories/finance/)
+âš ï¸ language page reachable but no posts listed (http://localhost:8080/categories/language/)
+âš ï¸ law page reachable but no posts listed (http://localhost:8080/categories/law/)
+âš ï¸ medicine page reachable but no posts listed (http://localhost:8080/categories/medicine/)
+âš ï¸ misc page reachable but no posts listed (http://localhost:8080/categories/misc/)
+âš ï¸ operations page reachable but no posts listed (http://localhost:8080/categories/operations/)
+âš ï¸ sciences page reachable but no posts listed (http://localhost:8080/categories/sciences/)
+âš ï¸ tech page reachable but no posts listed (http://localhost:8080/categories/tech/)

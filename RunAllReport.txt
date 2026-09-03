@@ -1,0 +1,180 @@
+RunAll Report - 09/02/2026 20:52:31
+=== Self-Heal ===
+✅ Found: .\eleventy.js
+✅ Found: .\_layouts\base.njk
+✅ Found: .\_layouts\post.njk
+✅ Found: .\_layouts\category.njk
+✅ Self-Heal complete.
+=== Generate Blog Data ===
+▶ Starting Blog Data Generation...
+✔ Output folder exists: .\src\posts
+⚠️ Model missing. Attempting download...
+✔ Model downloaded: qwen2.5-coder-1.5b-instruct
+✔ Generated JSON file: .\src\posts\BlogData_1.json
+✔ Generated JSON file: .\src\posts\BlogData_2.json
+✔ Generated JSON file: .\src\posts\BlogData_3.json
+✔ Generated JSON file: .\src\posts\BlogData_4.json
+✔ Generated JSON file: .\src\posts\BlogData_5.json
+✔ Generated JSON file: .\src\posts\BlogData_6.json
+✔ Generated JSON file: .\src\posts\BlogData_7.json
+✔ Generated JSON file: .\src\posts\BlogData_8.json
+✔ Generated JSON file: .\src\posts\BlogData_9.json
+✔ Generated JSON file: .\src\posts\BlogData_10.json
+✔ Generated JSON file: .\src\posts\BlogData_11.json
+
+===============================
+   BLOG DATA GENERATION SUMMARY
+===============================
+✔ 11 JSON files generated in .\src\posts
+✅ Generate Blog Data complete.
+=== Batch Blog Generation ===
+✅ Batch Blog Generation complete.
+=== QA Validation ===
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-blogdata_1.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-blogdata_10.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-blogdata_11.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-blogdata_2.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-blogdata_3.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-blogdata_4.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-blogdata_5.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-blogdata_6.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-blogdata_7.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-blogdata_8.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-blogdata_9.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-creative-role.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-data-role.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-engineering-role.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-finance-role.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-language-role.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-law-role.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-medicine-role.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-misc-role.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-operations-role.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-sciences-role.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-tech-role.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-ai-tools-transforming-finance.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-creative-careers-in-2026.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-data-roles-in-modern-enterprises.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-untitled-post-1.md
+   - Missing date
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-untitled-post-2.md
+   - Missing date
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-untitled-post-3.md
+   - Missing date
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-untitled-post-4.md
+   - Missing date
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-untitled-post-5.md
+   - Missing date
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-untitled-post-blogdata_10.md
+   - Missing date
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-untitled-post-blogdata_11.md
+   - Missing date
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-untitled-post-blogdata_6.md
+   - Missing date
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-untitled-post-blogdata_7.md
+   - Missing date
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-untitled-post-blogdata_8.md
+   - Missing date
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-untitled-post-blogdata_9.md
+   - Missing date
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\BlogData_1.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\BlogData_10.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\BlogData_11.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\BlogData_2.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\BlogData_3.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\BlogData_4.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\BlogData_5.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\BlogData_6.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\BlogData_7.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\BlogData_8.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\BlogData_9.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\creative.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\data.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\engineering.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\example-post.md
+   - Missing front matter start (---)
+   - Missing date
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\example.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\finance.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\language.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\law.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\medicine.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\misc.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\operations.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\sciences.md
+   - Missing or invalid layout
+❌ Invalid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\tech.md
+   - Missing or invalid layout
+✅ QA Validation complete.
+=== Orchestration ===
+--- Batch Blog Generation ---
+❌ Batch blog generation failed: The term '.\scripts\BatchCreateBlogs.ps1' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+--- QA Validation ---
+❌ QA validation failed: The term '.\scripts\QAValidator.ps1' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+--- Eleventy Build ---
+❌ Eleventy build failed: This command cannot be run due to the error: %1 is not a valid Win32 application.
+✅ Orchestration complete.

@@ -1,0 +1,19 @@
+{% set posts = collections[category] %}
+{% if posts and posts | length > 0 %}
+  <ul class="category-list">
+    {% for post in posts %}
+      <li class="category-item">
+        <a href="{{ post.url }}">
+          {% if post.data.thumbnail %}
+            <img src="{{ post.data.thumbnail | url }}" alt="{{ post.data.title }} thumbnail" class="thumb">
+          {% endif %}
+          <h3>{{ post.data.title }}</h3>
+        </a>
+        <p class="post-date">{{ post.date | date("yyyy-MM-dd") }}</p>
+        <p class="post-description">{{ post.data.description }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No posts found for {{ category }}.</p>
+{% endif %}

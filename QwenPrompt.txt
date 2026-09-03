@@ -1,0 +1,17 @@
+You are a PowerShell expert. I will provide you with a PowerShell script.
+
+Tasks:
+1. Fix all parser errors and syntax issues so the script runs cleanly.
+   - Function calls must use correct syntax: Log("message") or Log -message "message".
+   - Add-Content must always use -Path and -Value.
+   - No bare strings or invalid pipelines.
+2. Ensure logging is consistent:
+   - Define a Log() function that writes both to console and to a report file.
+   - Replace all logging lines with proper Log() calls.
+3. Keep automation intact:
+   - Do not remove existing logic (sanitization, analyzer, orchestrator, error parsing).
+4. Return the corrected script only, no summary.
+
+Goal:
+A working PowerShell script that runs without parser errors and logs all actions correctly.
+ 

@@ -1,0 +1,70 @@
+Orchestrator Report - 09/02/2026 21:46:51
+=== Batch Blog Generation ===
+✅ Batch Blog Generation complete.
+=== QA Validation ===
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-blogdata_1.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-blogdata_10.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-blogdata_11.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-blogdata_2.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-blogdata_3.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-blogdata_4.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-blogdata_5.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-blogdata_6.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-blogdata_7.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-blogdata_8.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-blogdata_9.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-creative-role.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-data-role.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-engineering-role.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-finance-role.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-language-role.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-law-role.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-medicine-role.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-misc-role.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-operations-role.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-sciences-role.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-01-tech-role.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-ai-tools-transforming-finance.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-creative-careers-in-2026.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-data-roles-in-modern-enterprises.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-untitled-post-1.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-untitled-post-2.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-untitled-post-3.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-untitled-post-4.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-untitled-post-5.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-untitled-post-blogdata_10.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-untitled-post-blogdata_11.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-untitled-post-blogdata_6.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-untitled-post-blogdata_7.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-untitled-post-blogdata_8.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\2026-09-02-untitled-post-blogdata_9.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\BlogData_1.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\BlogData_10.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\BlogData_11.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\BlogData_2.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\BlogData_3.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\BlogData_4.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\BlogData_5.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\BlogData_6.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\BlogData_7.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\BlogData_8.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\BlogData_9.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\creative.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\data.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\engineering.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\example-post.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\example.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\finance.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\language.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\law.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\medicine.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\misc.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\operations.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\sciences.md
+✅ Valid: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\tech.md
+✅ QA Validation complete.
+--- Eleventy Build ---
+❌ Eleventy server did not start in time after 60 seconds.
+Check eleventy.err for details.

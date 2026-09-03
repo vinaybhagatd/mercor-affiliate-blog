@@ -1,0 +1,8 @@
+<header>
+  <nav>
+    <a href="/">Home</a>
+    @for cat in ['creative','data','engineering','finance','language','law','medicine','misc','operations','sciences','tech']
+      <a href="/categories/{{ cat }}/">{{ cat | capitalize }}</a>
+    @endfor
+  </nav>
+</header>
