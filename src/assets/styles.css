@@ -1,0 +1,20 @@
+/* Starter stylesheet for MABS */
+body#site-body { margin:0; font-family:'Segoe UI',Arial,sans-serif; line-height:1.6; background:#f9f9f9; color:#333; }
+#site-header { background:#222; color:#fff; padding:1rem; }
+#site-title a { color:#fff; text-decoration:none; }
+#site-nav .nav-list { list-style:none; display:flex; flex-wrap:wrap; margin:0; padding:0; }
+#site-nav .nav-item { margin-right:1rem; }
+#site-nav .nav-link { color:#ddd; text-decoration:none; }
+#site-nav .nav-link:hover { color:#fff; }
+#site-main { max-width:800px; margin:2rem auto; padding:0 1rem; }
+.post-title { font-size:2rem; margin-bottom:0.5rem; }
+.post-meta { font-size:0.9rem; color:#666; margin-bottom:1rem; }
+.post-body { font-size:1rem; line-height:1.7; }
+.category-title { font-size:1.8rem; margin-bottom:1rem; }
+.category-list { list-style:none; padding:0; }
+.category-item { margin-bottom:2rem; border-bottom:1px solid #ddd; padding-bottom:1rem; }
+.excerpt { font-size:0.95rem; color:#444; }
+.read-more { font-weight:bold; color:#0066cc; text-decoration:none; }
+.read-more:hover { text-decoration:underline; }
+#site-footer { background:#222; color:#fff; text-align:center; padding:1rem; }
+.footer-text { margin:0; font-size:0.85rem; }

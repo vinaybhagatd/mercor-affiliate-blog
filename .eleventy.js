@@ -1,21 +1,50 @@
-module.exports = function(eleventyConfig) {
-  // Copy assets directly
-  eleventyConfig.addPassthroughCopy("assets");
-  eleventyConfig.addPassthroughCopy(".nojekyll");
+const { DateTime } = require("luxon");
 
-  // Create collections for each category
-  const categories = [
-    "creative", "engineering", "data", "finance", "operations",
-    "medicine", "law", "sciences", "arts", "language", "misc"
+module.exports = function(eleventyConfig) {
+  eleventyConfig.addPassthroughCopy("src/assets");
+
+  // Allowed categories
+  const allowedCategories = [
+    "misc",
+    "creative",
+    "engineering",
+    "finance",
+    "data",
+    "law",
+    "medicine",
+    "language",
+    "operations",
+    "sciences",
+    "tech"
   ];
 
-  categories.forEach(cat => {
-    eleventyConfig.addCollection(cat, function(collectionApi) {
-      return collectionApi.getFilteredByTag(cat).sort((a, b) => b.date - a.date);
-    });
+  // Dynamic category collections with whitelist
+  eleventyConfig.addCollection("categories", function(collection) {
+    return collection.getAll().reduce((cats, item) => {
+      if(item.data.tags) {
+        item.data.tags.forEach(tag => {
+          if (allowedCategories.includes(tag)) {
+            const slug = eleventyConfig.getFilter("slug")(tag);
+            if(!cats[slug]) cats[slug] = [];
+            cats[slug].push(item);
+          }
+        });
+      }
+      return cats;
+    }, {});
   });
 
-  // Directory and template engine settings
+  // Render body safely
+  eleventyConfig.addFilter("renderBody", function(data) {
+    if(data && data.body) return data.body;
+    return "";
+  });
+
+  // Date filter
+  eleventyConfig.addFilter("date", function(dateObj, format = "dd LLL yyyy") {
+    return DateTime.fromJSDate(new Date(dateObj)).toFormat(format);
+  });
+
   return {
     dir: {
       input: "src",
@@ -25,7 +54,6 @@ module.exports = function(eleventyConfig) {
     },
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
-    dataTemplateEngine: "njk",
-    templateFormats: ["njk", "md"]
+    dataTemplateEngine: "njk"
   };
 };

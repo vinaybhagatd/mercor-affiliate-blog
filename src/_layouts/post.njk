@@ -1,9 +1,10 @@
-{% extends "base.njk" %}
-
-{% block content %}
-  <article>
-    <h1>{{ title }}</h1>
-    <p><small>{{ date | date("yyyy-MM-dd") }}</small></p>
-    {{ content | safe }}
-  </article>
+---
+layout: base.njk
+---
+{% block body %}
+<article class="post">
+  <h1 class="post-title">{{ title }}</h1>
+  <p class="post-meta">Published on {{ date | date("dd LLL yyyy") }}</p>
+  <div class="post-body">{{ body | renderBody | safe }}</div>
+</article>
 {% endblock %}

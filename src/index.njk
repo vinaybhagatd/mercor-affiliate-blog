@@ -1,23 +1,19 @@
 ---
-layout: base
-title: Home
+layout: base.njk
+title: "Mercor Affiliate Blog"
 ---
-
-{% block content %}
-  <h1>Welcome to Mercor Affiliate Blog</h1>
-  <p>Explore remote career insights across our categories.</p>
-
-  <h2>Categories</h2>
-  <ul>
-    {% for cat in collections %}
-      <li><a href="/categories/{{ cat }}/">{{ cat }}</a></li>
+{% block body %}
+<section class="home-page">
+  <h1>Latest Posts</h1>
+  <ul class="post-list">
+    {% for post in collections.all | reverse | slice(0,10) %}
+      <li class="post-item">
+        <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+        <p class="post-meta">Published on {{ post.data.date | date("dd LLL yyyy") }}</p>
+        <div class="excerpt">{{ post.data.body | renderBody | safe | truncate(200, true, "...") }}</div>
+        <p><a class="read-more" href="{{ post.url }}">Read more →</a></p>
+      </li>
     {% endfor %}
   </ul>
-
-  <h2>Latest Posts</h2>
-  <ul>
-    {% for post in collections.all | reverse | slice(0,5) %}
-      <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
-    {% endfor %}
-  </ul>
+</section>
 {% endblock %}
