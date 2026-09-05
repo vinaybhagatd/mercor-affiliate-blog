@@ -7,3 +7,8 @@ date: 2026-09-01
 ---
 This is an example post tagged as creative.
 
+
+
+
+
+

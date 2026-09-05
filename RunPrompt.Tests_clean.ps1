@@ -1,4 +1,4 @@
-﻿Describe "RunPrompt.ps1 Parameter Binding and Output Files" {
+Describe "RunPrompt.ps1 Parameter Binding and Output Files" {
 
     Context "PromptFile parameter" {
         It "Throws when PromptFile is missing" {
@@ -72,4 +72,10 @@
         }
     }
 }
+
+
+
+
+
+
 

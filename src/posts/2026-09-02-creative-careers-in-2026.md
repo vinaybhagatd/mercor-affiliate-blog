@@ -9,3 +9,8 @@ description: "Explore new creative career paths in the digital age."
 
 From digital art to content automation, creative careers are evolving...
 
+
+
+
+
+

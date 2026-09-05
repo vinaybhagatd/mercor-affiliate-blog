@@ -41,3 +41,9 @@ if ($errors -and $errors.Count -gt 0) {
 
 Write-Output "✅ No blocking errors found. Commit allowed."
 exit 0
+
+
+
+
+
+

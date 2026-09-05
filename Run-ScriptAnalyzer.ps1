@@ -1,5 +1,5 @@
-﻿#
-.SYNOPSIS
+#
+<# <# <# <# <# .SYNOPSIS #> #> #> #> #>
     Wrapper for running ScriptAnalyzer in isolated sessions per file.
     Skips known problematic files, restricts severity to Error/Warning, and saves results into a timestamped consolidated report.
 
@@ -40,4 +40,10 @@ Get-ChildItem -Path . -Filter *.ps1 -Recurse | ForEach-Object {
 }
 
 Write-Output "`u{2705} ScriptAnalyzer run complete. Results saved to $reportPath"
+
+
+
+
+
+
 

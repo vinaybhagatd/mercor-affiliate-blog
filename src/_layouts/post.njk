@@ -1,10 +1,26 @@
----
-layout: base.njk
----
-{% block body %}
-<article class="post">
-  <h1 class="post-title">{{ title }}</h1>
-  <p class="post-meta">Published on {{ date | date("dd LLL yyyy") }}</p>
-  <div class="post-body">{{ body | renderBody | safe }}</div>
-</article>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="/assets/styles/main.css">
+</head>
+<body>
+  <header>
+    <h1>{{ title }}</h1>
+    {% if date %}
+      <p class="post-date">{{ date | date("MMMM dd, yyyy") }}</p>
+    {% else %}
+      <p class="post-date">Date not specified</p>
+    {% endif %}
+  </header>
+
+  <main>
+    {{ content | safe }}
+  </main>
+
+  <footer>
+    <p>&copy; {{ "now" | date("yyyy") }} Mercor Affiliate Blog</p>
+  </footer>
+</body>
+</html>

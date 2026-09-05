@@ -41,3 +41,9 @@ Log "This is a test message"
 ```
 When you run this script, it will display `This is a test message` on the console and append it to `Report.txt`.
 
+
+
+
+
+
+

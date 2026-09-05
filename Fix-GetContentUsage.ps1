@@ -1,5 +1,5 @@
-﻿#
-.SYNOPSIS
+#
+<# <# <# <# <# .SYNOPSIS #> #> #> #> #>
     Sanitizes PowerShell scripts for ScriptAnalyzer compliance.
 
 .DESCRIPTION
@@ -53,4 +53,10 @@
 
     Write-Output "??? Sanitization complete. Scripts rewritten for analyzer compliance."
 }
+
+
+
+
+
+
 

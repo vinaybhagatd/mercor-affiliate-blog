@@ -1,4 +1,4 @@
-﻿param(
+param(
     [switch]$Restore
 )
 
@@ -106,4 +106,10 @@ else {
     Write-Output "
 No non-ASCII characters found in project."
 }
+
+
+
+
+
+
 

@@ -1,4 +1,4 @@
-﻿function Send-OllamaRequest {
+function Send-OllamaRequest {
     param(
         [string]$Prompt, [string]$Model = "hermes", # adjust to the model you want
         [string]$LmsPath = "C:\Users\LMTest\.lmstudio\bin\lms.exe"
@@ -155,4 +155,10 @@ function Repair-PowerShellFormatting {
 
 # Call the function as part of QAValidator workflow
 Repair-PowerShellFormatting -RootPath $ProjectDir -ReportFile (Join-Path $LogDir "FormatterReport.txt")
+
+
+
+
+
+
 

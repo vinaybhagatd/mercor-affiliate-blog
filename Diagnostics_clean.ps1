@@ -1,4 +1,4 @@
-﻿# Diagnostics.ps1
+# Diagnostics.ps1
 param(
     [string]$ProjectDir = "C:\Users\LMTest\promotional\mercor-affiliate-blog", [string]$DiagnosticsFile = "diagnostics.log"
 )
@@ -48,4 +48,10 @@ function Invoke-Diagnostics {
 # Run diagnostics
 $outputPath = Join-Path $ProjectDir $DiagnosticsFile
 Invoke-Diagnostics -OutputPath $outputPath
+
+
+
+
+
+
 

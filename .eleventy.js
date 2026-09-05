@@ -1,48 +1,50 @@
 const { DateTime } = require("luxon");
 
 module.exports = function(eleventyConfig) {
+  // ✅ Passthrough copy for static assets
   eleventyConfig.addPassthroughCopy("src/assets");
 
-  // Allowed categories
+  // ✅ Custom date filter using Luxon
+  eleventyConfig.addFilter("date", (dateObj, format = "yyyy-LL-dd") => {
+    if (!dateObj) return "";
+    try {
+      if (dateObj instanceof Date) {
+        return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat(format);
+      }
+      return DateTime.fromISO(dateObj, { zone: "utc" }).toFormat(format);
+    } catch {
+      return "";
+    }
+  });
+
+  // ✅ Strict dynamic categories collection (only 11 allowed)
   const allowedCategories = [
-    "misc",
-    "creative",
-    "engineering",
-    "finance",
-    "data",
-    "law",
-    "medicine",
-    "language",
-    "operations",
-    "sciences",
-    "tech"
+    "creative","data","engineering","finance","language",
+    "law","medicine","misc","operations","sciences","tech"
   ];
 
-  // Dynamic category collections with whitelist
-  eleventyConfig.addCollection("categories", function(collection) {
-    return collection.getAll().reduce((cats, item) => {
-      if(item.data.tags) {
+  eleventyConfig.addCollection("categories", function(collectionApi) {
+    const categories = {};
+    collectionApi.getAll().forEach(item => {
+      if (item.data && item.data.tags) {
         item.data.tags.forEach(tag => {
           if (allowedCategories.includes(tag)) {
-            const slug = eleventyConfig.getFilter("slug")(tag);
-            if(!cats[slug]) cats[slug] = [];
-            cats[slug].push(item);
+            if (!categories[tag]) {
+              categories[tag] = [];
+            }
+            categories[tag].push(item);
           }
         });
       }
-      return cats;
-    }, {});
+    });
+    return categories;
   });
 
-  // Render body safely
-  eleventyConfig.addFilter("renderBody", function(data) {
-    if(data && data.body) return data.body;
-    return "";
-  });
-
-  // Date filter
-  eleventyConfig.addFilter("date", function(dateObj, format = "dd LLL yyyy") {
-    return DateTime.fromJSDate(new Date(dateObj)).toFormat(format);
+  // ✅ Explicit collections for the 11 canonical categories
+  allowedCategories.forEach(cat => {
+    eleventyConfig.addCollection(cat, function(collectionApi) {
+      return collectionApi.getFilteredByTag(cat);
+    });
   });
 
   return {

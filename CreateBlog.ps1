@@ -1,5 +1,5 @@
-﻿<#
-.SYNOPSIS
+<#
+<# <# <# <# <# .SYNOPSIS #> #> #> #> #>
 CreateBlog.ps1
 Generates a single blog post in HTML format for a given category and title.
 #>
@@ -51,3 +51,9 @@ $htmlContent = @"
 Set-Content -Path $filename -Value $htmlContent -Encoding UTF8
 
 Write-Host "Blog created: $filename"
+
+
+
+
+
+

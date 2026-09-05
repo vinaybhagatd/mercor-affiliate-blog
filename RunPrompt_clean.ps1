@@ -1,4 +1,4 @@
-﻿[CmdletBinding()]
+[CmdletBinding()]
 param (
     [string]$PromptFile, [string]$Model = "md-coder-qwen3-8b", [switch]$Help = $false
 )
@@ -48,4 +48,10 @@ catch {
     Write-Error ("Error executing RunPrompt.ps1: {0}" -f $errMsg)
     throw
 }
+
+
+
+
+
+
 

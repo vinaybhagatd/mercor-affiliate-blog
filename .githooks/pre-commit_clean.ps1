@@ -13,7 +13,7 @@ Get-ChildItem -Recurse -Filter *.ps1 |
     } | ForEach-Object {
         Write-Output "Analyzing $($_.FullName)..."
         $result = Invoke-ScriptAnalyzer $_.FullName -Severity ParseError, Error
-        if ($result) { $errors + = $result }
+        if ($result) { $errors += $result }
     }
 
 if ($errors.Count -gt 0) {
@@ -50,7 +50,7 @@ foreach ($file in $stagedFiles) {
     if (Test-Path $file) {
         $size = (Get-Item $file).Length
         if ($size -gt 5MB) {
-            $largeFiles + = $file
+            $largeFiles += $file
         }
     }
 }
@@ -62,3 +62,9 @@ if ($largeFiles.Count -gt 0) {
 
 Write-Output " All checks passed. Commit allowed." -ForegroundColor Green
 exit 0
+
+
+
+
+
+

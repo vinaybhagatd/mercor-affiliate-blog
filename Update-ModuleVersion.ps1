@@ -1,4 +1,4 @@
-﻿param(
+param(
     [string]$ManifestPath = ".\BulkFix.psd1"
 )
 
@@ -16,4 +16,10 @@ Write-Host "Bumping ModuleVersion from $currentVersion to $newVersion"
 # Update the manifest file
 (Get-Content $ManifestPath) -replace "ModuleVersion\s*=\s*'[^']+'", "ModuleVersion = '$newVersion'" |
     Set-Content $ManifestPath -Encoding UTF8
+
+
+
+
+
+
 

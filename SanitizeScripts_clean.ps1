@@ -1,4 +1,4 @@
-﻿function Get-BadCharInfo {
+function Get-BadCharInfo {
     param([string]$Text)
 
     $info = [System.Collections.Generic.List[object]]::new()
@@ -99,4 +99,10 @@ Write-Output " Summary Report =  =  = "
 Write-Output "Total .ps1 files scanned : $totalFiles"
 Write-Output "Files cleaned            : $totalCleaned"
 Write-Output "Total bad characters removed : $totalBadChars"
+
+
+
+
+
+
 

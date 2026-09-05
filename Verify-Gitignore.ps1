@@ -1,5 +1,5 @@
 <# 
-.SYNOPSIS
+<# <# <# <# <# .SYNOPSIS #> #> #> #> #>
     Verify that .gitignore rules are correctly ignoring noisy files.
 .DESCRIPTION
     Auto-creates dummy files/folders for known artifacts, runs git check-ignore,
@@ -63,3 +63,9 @@ Write-Host "`nVerification complete." -ForegroundColor Cyan
 # Cleanup dummy files/folders after verification
 Remove-Item -Force BulkFixReport.txt, QAReport.txt, PreCommitReport.txt, WarningsReport.txt, ScriptAnalyzerReport_123.txt, FormatterReport_123.txt, UnicodeMasterReport.log, deploy.yml, build.log, createblog.log, diagnostics.log, .DS_Store, Thumbs.db -ErrorAction SilentlyContinue
 Remove-Item -Recurse -Force _site, node_modules, pipeline-logs, hermes-logs -ErrorAction SilentlyContinue
+
+
+
+
+
+

@@ -1,5 +1,5 @@
-﻿#
-.SYNOPSIS
+#
+<# <# <# <# <# .SYNOPSIS #> #> #> #> #>
     RepoCleanup.ps1 - Automatically rename unapproved verbs in PowerShell functions.
 
 .DESCRIPTION
@@ -43,4 +43,10 @@ Get-ChildItem -Path $RepoRoot -Recurse -Filter *.ps1 | ForEach-Object {
 }
 
 Write-Output " =  =  = Cleanup complete. All unapproved verbs replaced with approved verbs. =  =  = "
+
+
+
+
+
+
 

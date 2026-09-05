@@ -1,5 +1,5 @@
-﻿<#
-.SYNOPSIS
+<#
+<# <# <# <# <# .SYNOPSIS #> #> #> #> #>
     Format-Scripts.ps1 - Enforces Mercor Affiliate Blog System best practices
 .DESCRIPTION
     Runs PSScriptAnalyzer and Invoke-Formatter on all PowerShell scripts.
@@ -29,8 +29,8 @@ foreach ($file in $ps1Files) {
     # Quote wildcards in -Filter
     $content = $content -replace '-Filter\s+\*\.md', '-Filter "*.md"'
 
-    # Wrap bare .SYNOPSIS/.DESCRIPTION in comment block if needed
-    if ($content -match '^\s*\.SYNOPSIS') {
+    # Wrap bare <# <# <# <# <# .SYNOPSIS/.DESCRIPTION in comment block if needed #> #> #> #> #>
+    if ($content -match '^\s*\<# <# <# <# <# .SYNOPSIS') { #> #> #> #> #>
         $content = "<#`n" + $content + "`n#>"
     }
 
@@ -65,4 +65,10 @@ foreach ($file in $ps1Files) {
 
 Write-Host "âœ… Formatting complete. Scripts are sanitized and analyzer-compliant."
 exit 0
+
+
+
+
+
+
 

@@ -1,4 +1,4 @@
-﻿# Orchestrator.ps1
+# Orchestrator.ps1
 # Logs, backups, diffs, and summaries are written inside mercor-affiliate-blog folder
 # Passes -LogFile into Diagnostics.ps1 and MercorDebug.ps1
 
@@ -210,4 +210,10 @@ catch {
 finally {
     Log "Orchestrator script cleanup complete."
 }
+
+
+
+
+
+
 
