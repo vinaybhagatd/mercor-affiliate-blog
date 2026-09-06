@@ -1,0 +1,24 @@
+name: Blog Creation
+
+on:
+  schedule:
+    - cron: "0 3 * * *"   # run daily at 3 AM UTC
+  workflow_dispatch:       # manual trigger
+
+jobs:
+  generate:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run Blog Creation Script
+        run: pwsh ./BatchCreateBlogs.ps1
+
+      - name: Commit new posts
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add src/posts
+          git commit -m "Automated blog creation"
+          git push

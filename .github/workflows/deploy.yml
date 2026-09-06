@@ -1,67 +1,24 @@
-name: Deploy Mercor Affiliate Blog
+name: Deploy MABS
 
 on:
-  workflow_dispatch:
   push:
-    branches:
-      - main
-
-permissions:
-  contents: write
-  pages: write
-  id-token: write
+    branches: [ "main" ]
 
 jobs:
-  build-and-validate:
-    runs-on: windows-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Run BatchCreateBlogs.ps1
-        shell: pwsh
-        run: .\BatchCreateBlogs.ps1
-
-      - name: Run QAValidator.ps1
-        shell: pwsh
-        run: .\QAValidator.ps1
-
-      - name: Upload QA Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: QAReport
-          path: QAReport.txt
-
-      - name: Upload site folder
-        uses: actions/upload-artifact@v4
-        with:
-          name: site
-          path: _site
-
-  deploy:
-    needs: build-and-validate
+  build-deploy:
     runs-on: ubuntu-latest
-    if: success()
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
-      - name: Download site artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: site
-          path: _site
+      - name: Validate scripts
+        run: pwsh ./QAValidator.ps1
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload site artifact to Pages
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
+      - name: Build site
+        run: npx eleventy
 
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
