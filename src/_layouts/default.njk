@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">MABS</div>
+    <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+    <nav class="nav">
+      <a href="/">Home</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    {{ content | safe }}
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p class="footer-note">Powered by MABS Automation</p>
+  </footer>
+
+  <!-- Collapsible Mobile Nav Script -->
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.nav');
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
+  </script>
+
+</body>
+</html>

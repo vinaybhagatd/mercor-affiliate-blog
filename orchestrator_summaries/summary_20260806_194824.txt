@@ -1,6 +1,0 @@
-﻿===================================
-Orchestrator Run Summary
-Timestamp: 20260806_194824
-Status: FAILED
-Details: Error occurred: Missing config.json
-===================================

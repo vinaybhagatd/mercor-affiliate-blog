@@ -12,13 +12,13 @@ title: Mercor Remote Job Application Links
 
 
 
-This page collects all Mercor application links in one place — organized by category for quick access.  
+This page collects all Mercor application links in one place — organized by category for quick access.
 
 If you're exploring remote work or applying across multiple fields, this is your central hub.
 
 
 
-Mercor connects you directly with startups and global companies hiring for remote roles —  
+Mercor connects you directly with startups and global companies hiring for remote roles —
 
 no fees, no middlemen, no friction.
 
@@ -28,69 +28,69 @@ no fees, no middlemen, no friction.
 
 
 
-\## 🩺 Medicine  
+\## 🩺 Medicine
 
 👉 \[Apply for Remote Medicine Roles](https://t.mercor.com/rOCAC)
 
 
 
-\## ⚖️ Law  
+\## ⚖️ Law
 
-👉 \[Apply for Remote Law Roles](https://t.mercor.com/rOCAC)
-
-
-
-\## 🛠️ Engineering  
-
-👉 \[Apply for Remote Engineering Roles](https://t.mercor.com/rOCAC)
+👉 \[Apply for Remote Law Roles](https://t.mercor.com/JUeeY)
 
 
 
-\## 📊 Data  
+\## 🛠️ Engineering
 
-👉 \[Apply for Remote Data Roles](https://t.mercor.com/rOCAC)
-
-
-
-\## 💰 Finance  
-
-👉 \[Apply for Remote Finance Roles](https://t.mercor.com/rOCAC)
+👉 \[Apply for Remote Engineering Roles](https://t.mercor.com/zXlkz)
 
 
 
-\## ⚙️ Operations  
+\## 📊 Data
 
-👉 \[Apply for Remote Operations Roles](https://t.mercor.com/rOCAC)
-
-
-
-\## 🔬 Sciences  
-
-👉 \[Apply for Remote Science Roles](https://t.mercor.com/rOCAC)
+👉 \[Apply for Remote Data Roles](https://t.mercor.com/OdnbV)
 
 
 
-\## 🎨 Creative  
+\## 💰 Finance
 
-👉 \[Apply for Remote Creative Roles](https://t.mercor.com/rOCAC)
-
-
-
-\## 🗣️ Language  
-
-👉 \[Apply for Remote Language Roles](https://t.mercor.com/rOCAC)
+👉 \[Apply for Remote Finance Roles](https://t.mercor.com/n2RUe)
 
 
 
-\## 💻 Tech  
+\## ⚙️ Operations
 
-👉 \[Apply for Remote Tech Roles](https://t.mercor.com/rOCAC)
+👉 \[Apply for Remote Operations Roles](https://t.mercor.com/glSQ4)
 
 
 
-\## 🧩 Misc  
+\## 🔬 Sciences
 
-👉 \[Apply for Remote Misc Roles](https://t.mercor.com/rOCAC)
+👉 \[Apply for Remote Science Roles](https://t.mercor.com/GxHUO)
+
+
+
+\## 🎨 Creative
+
+👉 \[Apply for Remote Creative Roles](https://t.mercor.com/a2rcw)
+
+
+
+\## 🗣️ Language
+
+👉 \[Apply for Remote Language Roles](https://t.mercor.com/YXC8B)
+
+
+
+\## 💻 Tech
+
+👉 \[Apply for Remote Tech Roles](https://t.mercor.com/01sof)
+
+
+
+\## 🧩 Misc
+
+👉 \[Apply for Remote Misc Roles](https://t.mercor.com/fPwmL)
 
 
 
@@ -102,15 +102,15 @@ no fees, no middlemen, no friction.
 
 
 
-\- Direct access to global remote jobs  
+\- Direct access to global remote jobs
 
-\- No fees or hidden charges  
+\- No fees or hidden charges
 
-\- Startup‑friendly and candidate‑friendly  
+\- Startup‑friendly and candidate‑friendly
 
-\- Weekly new roles across 11 categories  
+\- Weekly new roles across 11 categories
 
-\- Fast, frictionless application process  
+\- Fast, frictionless application process
 
 
 
@@ -151,6 +151,4 @@ Explore detailed breakdowns, stories, and weekly updates:
 \- \[Tech]({{ site.baseurl }}/tech/)
 
 \- \[Misc]({{ site.baseurl }}/misc/)
-
-
 
