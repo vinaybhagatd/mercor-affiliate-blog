@@ -77,3 +77,18 @@ logs/
 # =========================
 .DS_Store
 Thumbs.db
+
+# =========================
+# PowerShell scripts
+# =========================
+# Ignore all .ps1 by default
+*.ps1
+
+# Whitelist critical automation scripts
+!FixFrontMatter.ps1
+!QAValidator.ps1
+!MABSValidator.ps1
+!Create-Release.ps1
+!Cleanup-All.ps1
+!Cleanup-Blogs.ps1
+!Cleanup-Repo.ps1
