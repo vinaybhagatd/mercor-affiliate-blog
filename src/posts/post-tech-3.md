@@ -3,9 +3,9 @@ title: "Tech Innovations"
 date: "2026-09-07"
 tags: [tech]
 layout: post.njk
-description: "Innovations in computing."
+description: "AI trends reshaping industries."
 thumbnail: "tech.png"
-permalink: "posts/post-tech-1.md/index.html"
+permalink: "posts/post-tech-3.md/index.html"
 ---
 # Tech Innovations
 

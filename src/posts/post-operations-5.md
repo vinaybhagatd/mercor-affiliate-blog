@@ -1,13 +1,13 @@
 ---
-title: "Efficiency in Practice"
+title: "Operations Excellence"
 date: "2026-09-07"
 tags: [operations]
 layout: post.njk
 description: "Efficiency tips for workflows."
 thumbnail: "operations.png"
-permalink: "posts/post-operations-3.md/index.html"
+permalink: "posts/post-operations-5.md/index.html"
 ---
-# Efficiency in Practice
+# Operations Excellence
 
 🌟 Why This Matters  
 Operations excellence is about efficiency and workflow optimization. This post explores strategies for streamlining processes.

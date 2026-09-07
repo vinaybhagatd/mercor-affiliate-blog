@@ -1,13 +1,13 @@
 ---
-title: "Exploring Diverse Topics"
+title: "Miscellaneous Insights"
 date: "2026-09-07"
 tags: [misc]
 layout: post.njk
-description: "Random thoughts with impact."
+description: "Miscellaneous insights worth sharing."
 thumbnail: "misc.png"
-permalink: "posts/post-misc-4.md/index.html"
+permalink: "posts/post-misc-5.md/index.html"
 ---
-# Exploring Diverse Topics
+# Miscellaneous Insights
 
 🌟 Why This Matters  
 Miscellaneous ideas often spark unexpected insights. Here we share diverse thoughts and creative explorations.

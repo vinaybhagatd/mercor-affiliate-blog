@@ -2,59 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>{{ title }}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/assets/css/styles.css">
+  <title>{{ title }} - Mercor Affiliate Blog</title>
+  <link rel="stylesheet" href="/assets/styles/main.css">
 </head>
 <body>
-
-  <!-- HEADER -->
-  <header class="header">
-    <div class="logo">MABS</div>
-    <nav class="nav">
-      <a href="/">Home</a>
-      <a href="/#blog">Blog</a>
-      <a href="/#pricing">Pricing</a>
-      <a href="/#contact">Contact</a>
-    </nav>
+  <header>
+    <h1><a href="/">Mercor Affiliate Blog System</a></h1>
   </header>
 
-  <!-- MAIN CONTENT -->
-  <main class="post">
-    <article>
-      <h1>{{ title }}</h1>
+  <main>
+    <article class="post">
+      <header class="post-header">
+        <h1>{{ title }}</h1>
+        {% if date %}
+          <p class="post-date">{{ date | date("dd LLL yyyy") }}</p>
+        {% endif %}
+      </header>
 
-      {% if date %}
-        <p class="post-date">
-          <time datetime="{{ date | date('yyyy-LL-dd') }}">
-            {{ date | date("dd LLL yyyy") }}
-          </time>
-        </p>
-      {% endif %}
-
-      {% if description %}
-        <p class="post-description">{{ description }}</p>
-      {% endif %}
-
-      <div class="post-content">
+      <section class="post-content">
         {{ content | safe }}
-      </div>
+      </section>
 
       {% if tags %}
-        <p class="post-tags">
-          Categories:
-          {% for tag in tags %}
-            <a href="/categories/{{ tag }}/">{{ tag | capitalize }}</a>
-          {% endfor %}
-        </p>
+        <footer class="post-tags">
+          <p>Filed under:
+            {% for tag in tags %}
+              <a href="/categories/{{ tag }}/">{{ tag }}</a>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+          </p>
+        </footer>
       {% endif %}
     </article>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <p class="footer-note">Powered by MABS Automation</p>
+  <footer>
+    <p>&copy; Mercor Affiliate Blog System</p>
   </footer>
-
 </body>
 </html>

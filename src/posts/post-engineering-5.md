@@ -3,9 +3,9 @@ title: "Building Smarter Systems"
 date: "2026-09-07"
 tags: [engineering]
 layout: post.njk
-description: "Engineering solutions for modern challenges."
+description: "Innovations driving mechanical progress."
 thumbnail: "engineering.png"
-permalink: "posts/post-engineering-3.md/index.html"
+permalink: "posts/post-engineering-5.md/index.html"
 ---
 # Building Smarter Systems
 

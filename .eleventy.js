@@ -7,16 +7,30 @@ module.exports = function(eleventyConfig) {
   // ✅ Date filter (fixes "filter not found: date")
   eleventyConfig.addNunjucksFilter("date", function(dateObj, format = "yyyy-LL-dd") {
     if (!dateObj) return "";
-    return DateTime.fromJSDate(dateObj).toFormat(format);
+    try {
+      if (dateObj instanceof Date) {
+        return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat(format);
+      }
+      return DateTime.fromISO(dateObj, { zone: "utc" }).toFormat(format);
+    } catch {
+      return "";
+    }
   });
 
   // ✅ Year filter (optional, if used in layouts)
   eleventyConfig.addNunjucksFilter("year", function(dateObj) {
     if (!dateObj) return "";
-    return DateTime.fromJSDate(dateObj).toFormat("yyyy");
+    try {
+      if (dateObj instanceof Date) {
+        return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("yyyy");
+      }
+      return DateTime.fromISO(dateObj, { zone: "utc" }).toFormat("yyyy");
+    } catch {
+      return "";
+    }
   });
 
-  // ✅ Categories collection (builds category pages dynamically)
+  // ✅ Dynamic categories collection (builds category list automatically)
   eleventyConfig.addCollection("categories", function(collectionApi) {
     let categories = new Set();
     collectionApi.getAll().forEach(item => {
@@ -25,6 +39,18 @@ module.exports = function(eleventyConfig) {
       }
     });
     return [...categories];
+  });
+
+  // ✅ Explicit category collections (ensures all 11 categories exist)
+  const categoryList = [
+    "creative","data","engineering","finance","language",
+    "law","medicine","misc","operations","sciences","tech"
+  ];
+
+  categoryList.forEach(category => {
+    eleventyConfig.addCollection(category, function(collectionApi) {
+      return collectionApi.getFilteredByTag(category);
+    });
   });
 
   return {

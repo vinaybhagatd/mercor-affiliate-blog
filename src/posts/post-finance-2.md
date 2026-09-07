@@ -1,13 +1,13 @@
 ---
-title: "Future of Digital Banking"
+title: "Smart Investing Strategies"
 date: "2026-09-07"
 tags: [finance]
 layout: post.njk
-description: "Smart investing strategies."
+description: "Tips for financial growth."
 thumbnail: "finance.png"
-permalink: "posts/post-finance-4.md/index.html"
+permalink: "posts/post-finance-2.md/index.html"
 ---
-# Future of Digital Banking
+# Smart Investing Strategies
 
 🌟 Why This Matters  
 Finance is evolving rapidly with digital banking and smart investing. We explore strategies for growth and financial resilience.

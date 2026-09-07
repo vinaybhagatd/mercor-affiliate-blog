@@ -28,3 +28,85 @@
 2026-09-06 14:05:10 - Removed artifact: C:\Users\LMTest\promotional\mercor-affiliate-blog\ScriptAnalyzerReport.txt
 2026-09-06 14:05:10 - Removed artifact: C:\Users\LMTest\promotional\mercor-affiliate-blog\SelfHealReport.txt
 2026-09-06 14:05:10 - Repo cleanup completed successfully. 378 files deleted, 9 skipped.
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-creative-1.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-creative-2.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-creative-3.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-creative-4.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-creative-5.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-data-1.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-data-2.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-data-3.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-data-5.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-engineering-1.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-engineering-2.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-engineering-3.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-engineering-4.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-finance-1.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-finance-3.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-finance-4.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-finance-5.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-language-1.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-language-2.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-language-3.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-language-4.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-law-2.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-law-4.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-law-5.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-medicine-3.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-medicine-5.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-misc-2.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-misc-3.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-misc-4.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-operations-1.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-operations-3.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-operations-4.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-operations-5.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-sciences-2.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-sciences-5.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-tech-1.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-tech-2.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-tech-3.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-tech-4.md
+2026-09-07 17:19:02 - Dry-run: would remove blog C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-tech-5.md
+2026-09-07 17:19:02 - Blog cleanup dry-run completed.
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-creative-1.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-creative-2.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-creative-3.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-creative-4.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-creative-5.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-data-1.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-data-2.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-data-3.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-data-5.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-engineering-1.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-engineering-2.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-engineering-3.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-engineering-4.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-finance-1.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-finance-3.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-finance-4.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-finance-5.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-language-1.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-language-2.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-language-3.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-language-4.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-law-2.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-law-4.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-law-5.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-medicine-3.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-medicine-5.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-misc-2.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-misc-3.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-misc-4.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-operations-1.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-operations-3.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-operations-4.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-operations-5.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-sciences-2.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-sciences-5.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-tech-1.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-tech-2.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-tech-3.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-tech-4.md
+2026-09-07 17:19:47 - Removed blog post: C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts\post-tech-5.md
+2026-09-07 17:19:47 - Blog cleanup completed successfully.

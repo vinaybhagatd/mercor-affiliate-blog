@@ -1,13 +1,13 @@
 ---
-title: "Design Thinking in Action"
+title: "Unlocking Creative Potential"
 date: "2026-09-07"
 tags: [creative]
 layout: post.njk
 description: "Exploring creativity in everyday life."
 thumbnail: "creative.png"
-permalink: "posts/post-creative-4.md/index.html"
+permalink: "posts/post-creative-3.md/index.html"
 ---
-# Design Thinking in Action
+# Unlocking Creative Potential
 
 🌟 Why This Matters  
 Creativity fuels innovation and problem-solving. In this post, we explore how imagination can drive new solutions and inspire design thinking.

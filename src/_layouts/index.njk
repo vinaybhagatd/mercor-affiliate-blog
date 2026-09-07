@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home - Mercor Affiliate Blog</title>
+  <link rel="stylesheet" href="/assets/styles/main.css">
+</head>
+<body>
+  <header>
+    <h1><a href="/">Mercor Affiliate Blog System</a></h1>
+  </header>
+
+  <main>
+    <section class="homepage">
+      <header class="homepage-header">
+        <h1>Welcome to the Mercor Affiliate Blog System</h1>
+      </header>
+
+      <section class="homepage-posts">
+        <h2>Latest Posts</h2>
+        <ul>
+          {% for post in collections.posts | reverse | slice(0,5) %}
+            <li>
+              <a href="{{ post.url }}">{{ post.data.title }}</a>
+              <span class="post-date">{{ post.date | date("dd LLL yyyy") }}</span>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+
+      <section class="homepage-categories">
+        <h2>Explore Blogs</h2>
+        <ul>
+          {% for category in ["creative","data","engineering","finance","language","law","medicine","misc","operations","sciences","tech"] %}
+            <li><a href="/categories/{{ category }}/">{{ category | capitalize }}</a></li>
+          {% endfor %}
+        </ul>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; Mercor Affiliate Blog System</p>
+  </footer>
+</body>
+</html>

@@ -1,13 +1,13 @@
 ---
-title: "Tech Innovations"
+title: "Future of Computing"
 date: "2026-09-07"
 tags: [tech]
 layout: post.njk
-description: "Innovations in computing."
+description: "AI trends reshaping industries."
 thumbnail: "tech.png"
-permalink: "posts/post-tech-1.md/index.html"
+permalink: "posts/post-tech-5.md/index.html"
 ---
-# Tech Innovations
+# Future of Computing
 
 🌟 Why This Matters  
 Technology is reshaping industries with AI and automation. This post explores innovations in computing and future trends.

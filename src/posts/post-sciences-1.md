@@ -3,9 +3,9 @@ title: "Scientific Discoveries"
 date: "2026-09-07"
 tags: [sciences]
 layout: post.njk
-description: "Exploring scientific breakthroughs."
+description: "Discoveries changing the world."
 thumbnail: "sciences.png"
-permalink: "posts/post-sciences-2.md/index.html"
+permalink: "posts/post-sciences-1.md/index.html"
 ---
 # Scientific Discoveries
 

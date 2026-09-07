@@ -2,10 +2,9 @@
 .SYNOPSIS
   Safely cleans up existing blog posts in src/posts.
 .DESCRIPTION
-  Deletes only markdown blog files after user confirmation.
-  Leaves folder intact for regeneration by BatchCreateBlogs.ps1.
-  Supports dry-run mode to preview deletions.
-  Logs all actions to CleanupReport.txt for audit.
+  Deletes only non‑canonical blog posts (those missing the "🌟 Why This Matters" section).
+  Provides dry‑run mode for preview before deletion.
+  Leaves canonical posts intact.
 #>
 
 param(
@@ -13,44 +12,38 @@ param(
 )
 
 $postsDir = "C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts"
-$logFile = "C:\Users\LMTest\promotional\mercor-affiliate-blog\CleanupReport.txt"
+$reportFile = Join-Path $postsDir "CleanupReport.txt"
 
-function Log($text) {
-    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-    "$timestamp - $text" | Out-File -FilePath $logFile -Append
-}
+Write-Output "⚠️ This will delete NON‑CANONICAL blog posts (*.md) in $postsDir."
+Write-Output "Canonical posts (with '🌟 Why This Matters') will be preserved."
 
-Write-Output "⚠️ This will delete ALL existing blog posts (*.md) in $postsDir."
-if (-not $DryRun) {
-    $confirm = Read-Host "Do you want to proceed? (Y/N)"
+if (Test-Path $reportFile) {
+    Remove-Item $reportFile -Force
 }
 
 if (Test-Path $postsDir) {
-    Get-ChildItem -Path $postsDir -Filter *.md |
-        ForEach-Object {
+    Get-ChildItem -Path $postsDir -Filter *.md | ForEach-Object {
+        $fileContent = Get-Content $_.FullName -Raw
+        if ($fileContent -notmatch "🌟 Why This Matters") {
             if ($DryRun) {
-                Write-Output "🔎 Would remove blog: $($_.FullName)"
-                Log "Dry-run: would remove blog $($_.FullName)"
+                Write-Output "🔎 Would remove non‑canonical blog: $($_.FullName)"
+                Add-Content -Path $reportFile -Value "Would remove: $($_.FullName)"
             } else {
-                if ($confirm -eq "Y") {
-                    Write-Output "🗑️ Removing blog: $($_.FullName)"
-                    Log "Removed blog post: $($_.FullName)"
-                    Remove-Item $_.FullName -Force
-                }
+                Write-Output "🗑️ Removing non‑canonical blog: $($_.FullName)"
+                Remove-Item $_.FullName -Force
+                Add-Content -Path $reportFile -Value "Removed: $($_.FullName)"
             }
+        } else {
+            Write-Output "✅ Preserved canonical blog: $($_.FullName)"
+            Add-Content -Path $reportFile -Value "Preserved: $($_.FullName)"
         }
+    }
 
     if ($DryRun) {
-        Write-Output "✅ Dry-run complete. No blogs deleted. See CleanupReport.txt for preview."
-        Log "Blog cleanup dry-run completed."
-    } elseif ($confirm -eq "Y") {
-        Write-Output "✅ Blog cleanup complete. See CleanupReport.txt for audit trail."
-        Log "Blog cleanup completed successfully."
+        Write-Output "✅ Dry‑run complete. No blogs deleted. See CleanupReport.txt for preview."
     } else {
-        Write-Output "❌ Blog cleanup aborted by user."
-        Log "Blog cleanup aborted by user."
+        Write-Output "✅ Cleanup complete. See CleanupReport.txt for details."
     }
 } else {
     Write-Output "⚠️ Blog posts directory not found: $postsDir"
-    Log "Blog cleanup failed: directory not found."
 }

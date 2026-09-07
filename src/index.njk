@@ -3,89 +3,107 @@ layout: default
 title: MABS — Monetize Affiliate Blogging Automatically
 ---
 
-<section class="hero">
-  <h1>Affiliate Blogging Without Writing</h1>
-  <p>Powered by MABS Automation</p>
-  <div class="cta-buttons">
-    <a href="#pricing" class="btn-primary">Get Started</a>
-    <a href="#learn" class="btn-secondary">Learn More</a>
-  </div>
-</section>
+<header>
+  <h1><a href="/">Mercor Affiliate Blog System</a></h1>
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/categories/">Explore Categories</a></li>
+      <li><a href="/pricing/">Pricing</a></li>
+      <li><a href="/contact/">Contact</a></li>
+    </ul>
+  </nav>
+</header>
 
-<section class="features">
-  <div class="feature">
-    <h3>Auto‑Generate Posts</h3>
-    <p>Instantly create affiliate blog posts with valid categories and links.</p>
-  </div>
-  <div class="feature">
-    <h3>Built‑In QA Checks</h3>
-    <p>Validate every post automatically for quality and compliance.</p>
-  </div>
-  <div class="feature">
-    <h3>Centralized Links</h3>
-    <p>Manage all affiliate links from one file — no duplication.</p>
-  </div>
-  <div class="feature">
-    <h3>Easy Publishing</h3>
-    <p>Deploy directly to GitHub Pages or your preferred host.</p>
-  </div>
-</section>
-
-<section class="pricing" id="pricing">
-  <h2>Pricing Plans</h2>
-  <div class="pricing-grid">
-    <div class="plan">
-      <h3>Starter</h3>
-      <p class="price">$199 Setup + $49/mo</p>
-      <ul>
-        <li>Basic Automation</li>
-        <li>Mercor Links</li>
-        <li>QA Reports</li>
-        <li>GitHub Hosting</li>
-      </ul>
-      <a href="#" class="btn-primary">Choose Plan</a>
+<main>
+  <section class="hero">
+    <h1>Affiliate Blogging Without Writing</h1>
+    <p>Powered by MABS Automation</p>
+    <div class="cta-buttons">
+      <a href="#pricing" class="btn-primary">Get Started</a>
+      <a href="#learn" class="btn-secondary">Learn More</a>
     </div>
+  </section>
 
-    <div class="plan highlight">
-      <h3>Pro</h3>
-      <p class="price">$499 Setup + $99/mo</p>
-      <ul>
-        <li>Advanced Automation</li>
-        <li>SEO + Analytics</li>
-        <li>Custom Links</li>
-        <li>Priority Support</li>
-      </ul>
-      <a href="#" class="btn-primary">Choose Plan</a>
+  <section class="features">
+    <div class="feature">
+      <h3>Auto‑Generate Posts</h3>
+      <p>Instantly create affiliate blog posts with valid categories and links.</p>
     </div>
-
-    <div class="plan">
-      <h3>Agency</h3>
-      <p class="price">$999 Setup + $199/mo</p>
-      <ul>
-        <li>White‑Label Solution</li>
-        <li>Bulk Client Sites</li>
-        <li>CI/CD Pipeline</li>
-        <li>Dedicated Support</li>
-      </ul>
-      <a href="#" class="btn-primary">Choose Plan</a>
+    <div class="feature">
+      <h3>Built‑In QA Checks</h3>
+      <p>Validate every post automatically for quality and compliance.</p>
     </div>
-  </div>
-</section>
+    <div class="feature">
+      <h3>Centralized Links</h3>
+      <p>Manage all affiliate links from one file — no duplication.</p>
+    </div>
+    <div class="feature">
+      <h3>Easy Publishing</h3>
+      <p>Deploy directly to GitHub Pages or your preferred host.</p>
+    </div>
+  </section>
 
-<section class="testimonials">
-  <h2>Trusted by creators and agencies worldwide</h2>
-  <blockquote>“MABS helped us launch affiliate blogs in hours, not weeks.”</blockquote>
-</section>
-<section id="blog">
-  <h2>Explore Blogs</h2>
-  <ul>
-    {% for category in collections.categories %}
-      <li>
-        <a href="/categories/{{ category }}/">
-          {{ category | capitalize }}
-        </a>
-      </li>
-    {% endfor %}
-  </ul>
-</section>
+  <section class="pricing" id="pricing">
+    <h2>Pricing Plans</h2>
+    <div class="pricing-grid">
+      <div class="plan">
+        <h3>Starter</h3>
+        <p class="price">$199 Setup + $49/mo</p>
+        <ul>
+          <li>Basic Automation</li>
+          <li>Mercor Links</li>
+          <li>QA Reports</li>
+          <li>GitHub Hosting</li>
+        </ul>
+        <a href="#" class="btn-primary">Choose Plan</a>
+      </div>
 
+      <div class="plan highlight">
+        <h3>Pro</h3>
+        <p class="price">$499 Setup + $99/mo</p>
+        <ul>
+          <li>Advanced Automation</li>
+          <li>SEO + Analytics</li>
+          <li>Custom Links</li>
+          <li>Priority Support</li>
+        </ul>
+        <a href="#" class="btn-primary">Choose Plan</a>
+      </div>
+
+      <div class="plan">
+        <h3>Agency</h3>
+        <p class="price">$999 Setup + $199/mo</p>
+        <ul>
+          <li>White‑Label Solution</li>
+          <li>Bulk Client Sites</li>
+          <li>CI/CD Pipeline</li>
+          <li>Dedicated Support</li>
+        </ul>
+        <a href="#" class="btn-primary">Choose Plan</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h2>Trusted by creators and agencies worldwide</h2>
+    <blockquote>“MABS helped us launch affiliate blogs in hours, not weeks.”</blockquote>
+  </section>
+
+  <section id="blog">
+    <h2>Explore Blogs</h2>
+    <ul>
+      {% for category in collections.categories %}
+        <li>
+          <a href="/categories/{{ category }}/">
+            {{ category | capitalize }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; Mercor Affiliate Blog System</p>
+</footer>
