@@ -92,3 +92,10 @@ Thumbs.db
 !Cleanup-All.ps1
 !Cleanup-Blogs.ps1
 !Cleanup-Repo.ps1
+
+# =========================
+# Generated reports to ignore
+# =========================
+QAValidatorReport.txt
+CleanupReport.txt
+MABSHealthReport.txt
