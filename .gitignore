@@ -60,6 +60,8 @@ hermes-logs/
 # =========================
 *.log
 logs/
+reports/*.log
+outputs/*.log
 
 # =========================
 # Editor / IDE artifacts
@@ -94,31 +96,31 @@ Thumbs.db
 !Cleanup-Repo.ps1
 
 # =========================
-# Generated reports to ignore
+# Catch-all for generated artifacts
 # =========================
-QAValidatorReport.txt
-CleanupReport.txt
-MABSHealthReport.txt
-
-# Catch-all for any future report files
 *_Report.txt
-
-# Catch-all for logs inside reports/ or outputs/ directories
-reports/*.log
-outputs/*.log
-
-# Catch-all for notes and out files inside outputs/
-outputs/*.notes.txt
-outputs/*.out.txt
-
-# Optional: ignore notes/out files globally
 *.notes.txt
 *.out.txt
-
-# Catch-all for diff artifacts
-outputs/*.diff.txt
 *.diff.txt
-
-# Catch-all for summary artifacts
-outputs/*.summary.txt
 *.summary.txt
+*.analysis.txt
+outputs/*.notes.txt
+outputs/*.out.txt
+outputs/*.diff.txt
+outputs/*.summary.txt
+outputs/*.analysis.txt
+
+# =========================
+# Future generated directories
+# =========================
+outputs/
+reports/
+artifacts/
+temp/
+cache/
+logs/
+
+# Allow whitelisted automation scripts inside these dirs
+!outputs/*.ps1
+!reports/*.ps1
+!artifacts/*.ps1
