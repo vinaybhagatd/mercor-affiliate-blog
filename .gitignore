@@ -118,3 +118,7 @@ outputs/*.out.txt
 # Catch-all for diff artifacts
 outputs/*.diff.txt
 *.diff.txt
+
+# Catch-all for summary artifacts
+outputs/*.summary.txt
+*.summary.txt
