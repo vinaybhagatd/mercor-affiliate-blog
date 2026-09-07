@@ -1,7 +1,10 @@
 ---
-title: "Understanding Modern Law"
-date: "2026-09-06"
-category: law
+title: "Understanding Modern Law"
+date: "2026-09-07"
+
+
+
+tags: ["law"]
 description: "Insights into modern law."
 ---
 Law underpins society and governance. We examine compliance, modern regulations, and how legal frameworks adapt to change.

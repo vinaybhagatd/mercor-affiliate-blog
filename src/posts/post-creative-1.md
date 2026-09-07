@@ -1,10 +1,13 @@
 ---
-title: "Exploring creative Careers in AI"
+title: "Exploring creative Careers in AI"
+date: "2026-09-07"
+
+
 description: "High-conversion insights into creative jobs with Mercor.ai"
 tags: ["creative"]
 thumbnail: "/assets/images/thumbnails/creative.png"
 layout: post.njk
-date: 2026-09-06
+
 ---
 
 # Exploring creative Careers in AI

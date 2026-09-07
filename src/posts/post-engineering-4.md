@@ -1,10 +1,13 @@
 ---
-title: "Exploring engineering Careers in AI"
+title: "Exploring engineering Careers in AI"
+date: "2026-09-07"
+
+
 description: "High-conversion insights into engineering jobs with Mercor.ai"
 tags: ["engineering"]
 thumbnail: "/assets/images/thumbnails/engineering.png"
 layout: post.njk
-date: 2026-09-06
+
 ---
 
 # Exploring engineering Careers in AI

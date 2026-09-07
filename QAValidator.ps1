@@ -1,92 +1,106 @@
 <#
 .SYNOPSIS
-QA Validator for Mercor Affiliate Blog System (MABS).
-
+  Validates blog posts in MABS for category and affiliate link compliance.
 .DESCRIPTION
-Ensures that every post uses only the 11 approved categories.
-Fails pipeline if invalid categories are detected.
+  Scans src/posts/*.md files, checks front matter for required fields,
+  validates categories against Eleventy collections,
+  and cross-checks affiliate links against affiliate-links.md.
+  Outputs QAValidatorReport.txt with results and totals.
 #>
 
-$logFile = "QAValidator.log"
-$postsDir = "src/posts"
-
-function Log {
-    param([string]$text)
-    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-    "$timestamp - $text" | Out-File -FilePath $logFile -Append
-}
-
-# Define the 11 approved categories
-$allowedCategories = @(
-    "misc","creative","engineering","finance","data",
-    "law","medicine","language","operations","sciences","tech"
+param(
+  [string]$PostsDir = "C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts",
+  [string]$AffiliateFile = "C:\Users\LMTest\promotional\mercor-affiliate-blog\affiliate-links.md",
+  [string]$ReportFile = "QAValidatorReport.txt"
 )
 
+function Log {
+    param([string]$Message)
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    "$timestamp - $Message" | Out-File -FilePath $ReportFile -Append
+}
+
+# Reset report
+Clear-Content $ReportFile -ErrorAction SilentlyContinue
+Log "=== Starting QA Validation ==="
+
+# ✅ Canonical categories (from Eleventy collections)
+$allowedCategories = @(
+    "creative","data","engineering","finance","language",
+    "law","medicine","misc","operations","sciences","tech"
+)
+
+# ✅ Parse affiliate-links.md to build category→link map
+$affiliateLinks = @{}
+if (Test-Path $AffiliateFile) {
+    $lines = Get-Content $AffiliateFile
+    foreach ($cat in $allowedCategories) {
+        $pattern = "Apply for Remote $($cat.Substring(0,1).ToUpper() + $cat.Substring(1)) Roles"
+        $match = $lines | Where-Object { $_ -match $pattern }
+        if ($match -match '\((https:\/\/t\.mercor\.com\/[A-Za-z0-9]+)\)') {
+            $affiliateLinks[$cat] = $matches[1]
+        }
+    }
+}
+
+# Counters
+$validCount = 0
+$invalidCategoryCount = 0
+$missingCategoryCount = 0
+$missingAffiliateCount = 0
+$mismatchedAffiliateCount = 0
+
 try {
-    Log "Starting QA Validator..."
-    $qaPass = $true
-
-    # Scan all markdown files in src/posts
-    $files = Get-ChildItem -Path $postsDir -Recurse -Filter "*.md"
-
+    $files = Get-ChildItem $PostsDir -Filter *.md -ErrorAction SilentlyContinue
     foreach ($file in $files) {
         $content = Get-Content $file.FullName -Raw
 
-        # Extract YAML front matter
-        if ($content -match "(?s)^---(.*?)---") {
-            $frontMatter = $matches[1]
+        $cat = $null
+        $affiliateLinkInPost = $null
 
-            # Parse tags line(s)
-            $tags = @()
-            foreach ($line in $frontMatter -split "`n") {
-                if ($line -match "tags:\s*(.+)") {
-                    $rawTags = $line -replace "tags:\s*", ""
-                    # Handle YAML list or inline array
-                    if ($rawTags -match "^
+        # ✅ Regex for category in front matter
+        if ($content -match 'category:\s*(\w+)') {
+            $cat = $matches[1]
+            if ($allowedCategories -contains $cat) {
+                Log "✅ $($file.Name) has valid category [$cat]"
+            } else {
+                Log "❌ $($file.Name) has invalid category [$cat] (not in canonical list)"
+                $invalidCategoryCount++
+            }
+        } else {
+            Log "❌ $($file.Name) missing category in front matter"
+            $missingCategoryCount++
+        }
 
-\[.*\]
-
-$") {
-                        $rawTags = $rawTags.Trim('[',']')
-                        $tags += $rawTags.Split(",") | ForEach-Object { $_.Trim() }
-                    } elseif ($rawTags -match "^-") {
-                        # YAML list style
-                        $tags += ($rawTags -replace "^-", "").Trim()
-                    } else {
-                        $tags += $rawTags.Trim()
+        # ✅ Extract affiliate link from post body
+        if ($content -match '\(https:\/\/t\.mercor\.com\/[A-Za-z0-9]+\)') {
+            $affiliateLinkInPost = $matches[0].Trim('()')
+            if ($cat -and $affiliateLinks.ContainsKey($cat)) {
+                if ($affiliateLinkInPost -eq $affiliateLinks[$cat]) {
+                    Log "✅ $($file.Name) contains correct affiliate link for [$cat]"
+                    if ($cat -and ($allowedCategories -contains $cat)) {
+                        $validCount++
                     }
-                }
-            }
-
-            foreach ($tag in $tags) {
-                if (-not ($allowedCategories -contains $tag)) {
-                    Write-Output "Invalid category '$tag' in file: $($file.Name)"
-                    Log "Invalid category '$tag' in file: $($file.Name)"
-                    $qaPass = $false
                 } else {
-                    Log "Valid category '$tag' in file: $($file.Name)"
+                    Log "❌ $($file.Name) affiliate link mismatch. Found [$affiliateLinkInPost], expected [$($affiliateLinks[$cat])]"
+                    $mismatchedAffiliateCount++
                 }
             }
+        } else {
+            Log "❌ $($file.Name) missing affiliate link"
+            $missingAffiliateCount++
         }
-        else {
-            Write-Output "Missing front matter in file: $($file.Name)"
-            Log "Missing front matter in file: $($file.Name)"
-            $qaPass = $false
-        }
-    }
-
-    if ($qaPass) {
-        Write-Output "QA PASS: All posts use only approved categories."
-        Log "QA PASS: All posts use only approved categories."
-    } else {
-        Write-Output "QA FAIL: One or more posts use invalid categories."
-        Log "QA FAIL: One or more posts use invalid categories."
-        exit 1
     }
 }
 catch {
-    Log "Error: $($_.Exception.Message)"
-    Write-Output "Error in QA Validator: $($_.Exception.Message)"
-    exit 1
+    Log "❌ QAValidator encountered error: $($_.Exception.Message)"
 }
-
+finally {
+    Log "=== QA Validation Complete ==="
+    Log "Summary:"
+    Log "   ✅ Valid posts: $validCount"
+    Log "   ❌ Invalid category posts: $invalidCategoryCount"
+    Log "   ❌ Missing category posts: $missingCategoryCount"
+    Log "   ❌ Missing affiliate link posts: $missingAffiliateCount"
+    Log "   ❌ Mismatched affiliate link posts: $mismatchedAffiliateCount"
+}

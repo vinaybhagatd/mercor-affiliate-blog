@@ -3,24 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <title>{{ title }}</title>
-  <link rel="stylesheet" href="/assets/styles/main.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 <body>
-  <header>
-    <h1>{{ title }}</h1>
-    {% if date %}
-      <p class="post-date">{{ date | date("MMMM dd, yyyy") }}</p>
-    {% else %}
-      <p class="post-date">Date not specified</p>
-    {% endif %}
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">MABS</div>
+    <nav class="nav">
+      <a href="/">Home</a>
+      <a href="/#blog">Blog</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/#contact">Contact</a>
+    </nav>
   </header>
 
-  <main>
-    {{ content | safe }}
+  <!-- MAIN CONTENT -->
+  <main class="post">
+    <article>
+      <h1>{{ title }}</h1>
+
+      {% if date %}
+        <p class="post-date">
+          <time datetime="{{ date | date('yyyy-LL-dd') }}">
+            {{ date | date("dd LLL yyyy") }}
+          </time>
+        </p>
+      {% endif %}
+
+      {% if description %}
+        <p class="post-description">{{ description }}</p>
+      {% endif %}
+
+      <div class="post-content">
+        {{ content | safe }}
+      </div>
+
+      {% if tags %}
+        <p class="post-tags">
+          Categories:
+          {% for tag in tags %}
+            <a href="/categories/{{ tag }}/">{{ tag | capitalize }}</a>
+          {% endfor %}
+        </p>
+      {% endif %}
+    </article>
   </main>
 
-  <footer>
-    <p>&copy; {{ "now" | date("yyyy") }} Mercor Affiliate Blog</p>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p class="footer-note">Powered by MABS Automation</p>
   </footer>
+
 </body>
 </html>

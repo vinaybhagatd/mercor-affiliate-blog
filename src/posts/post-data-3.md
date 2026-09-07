@@ -1,10 +1,13 @@
 ---
-title: "Exploring data Careers in AI"
+title: "Exploring data Careers in AI"
+date: "2026-09-07"
+
+
 description: "High-conversion insights into data jobs with Mercor.ai"
 tags: ["data"]
 thumbnail: "/assets/images/thumbnails/data.png"
 layout: post.njk
-date: 2026-09-06
+
 ---
 
 # Exploring data Careers in AI

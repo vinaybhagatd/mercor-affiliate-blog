@@ -1,10 +1,13 @@
 ---
-title: "Exploring sciences Careers in AI"
+title: "Exploring sciences Careers in AI"
+date: "2026-09-07"
+
+
 description: "High-conversion insights into sciences jobs with Mercor.ai"
 tags: ["sciences"]
 thumbnail: "/assets/images/thumbnails/sciences.png"
 layout: post.njk
-date: 2026-09-06
+
 ---
 
 # Exploring sciences Careers in AI

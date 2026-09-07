@@ -1,10 +1,13 @@
 ---
-title: "Exploring finance Careers in AI"
+title: "Exploring finance Careers in AI"
+date: "2026-09-07"
+
+
 description: "High-conversion insights into finance jobs with Mercor.ai"
 tags: ["finance"]
 thumbnail: "/assets/images/thumbnails/finance.png"
 layout: post.njk
-date: 2026-09-06
+
 ---
 
 # Exploring finance Careers in AI

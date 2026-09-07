@@ -1,58 +1,38 @@
 const { DateTime } = require("luxon");
 
 module.exports = function(eleventyConfig) {
-  // ✅ Passthrough copy for static assets
+  // ✅ Passthrough assets (CSS, images, etc.)
   eleventyConfig.addPassthroughCopy("src/assets");
 
-  // ✅ Custom date filter using Luxon
-  eleventyConfig.addFilter("date", (dateObj, format = "yyyy-LL-dd") => {
+  // ✅ Date filter (fixes "filter not found: date")
+  eleventyConfig.addNunjucksFilter("date", function(dateObj, format = "yyyy-LL-dd") {
     if (!dateObj) return "";
-    try {
-      if (dateObj instanceof Date) {
-        return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat(format);
-      }
-      return DateTime.fromISO(dateObj, { zone: "utc" }).toFormat(format);
-    } catch {
-      return "";
-    }
+    return DateTime.fromJSDate(dateObj).toFormat(format);
   });
 
-  // ✅ Strict dynamic categories collection (only 11 allowed)
-  const allowedCategories = [
-    "creative","data","engineering","finance","language",
-    "law","medicine","misc","operations","sciences","tech"
-  ];
+  // ✅ Year filter (optional, if used in layouts)
+  eleventyConfig.addNunjucksFilter("year", function(dateObj) {
+    if (!dateObj) return "";
+    return DateTime.fromJSDate(dateObj).toFormat("yyyy");
+  });
 
+  // ✅ Categories collection (builds category pages dynamically)
   eleventyConfig.addCollection("categories", function(collectionApi) {
-    const categories = {};
+    let categories = new Set();
     collectionApi.getAll().forEach(item => {
-      if (item.data && item.data.tags) {
-        item.data.tags.forEach(tag => {
-          if (allowedCategories.includes(tag)) {
-            if (!categories[tag]) {
-              categories[tag] = [];
-            }
-            categories[tag].push(item);
-          }
-        });
+      if (item.data.tags) {
+        item.data.tags.forEach(tag => categories.add(tag));
       }
     });
-    return categories;
-  });
-
-  // ✅ Explicit collections for the 11 canonical categories
-  allowedCategories.forEach(cat => {
-    eleventyConfig.addCollection(cat, function(collectionApi) {
-      return collectionApi.getFilteredByTag(cat);
-    });
+    return [...categories];
   });
 
   return {
     dir: {
       input: "src",
+      output: "_site",
       includes: "_includes",
-      layouts: "_layouts",
-      output: "_site"
+      layouts: "_layouts"
     },
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",

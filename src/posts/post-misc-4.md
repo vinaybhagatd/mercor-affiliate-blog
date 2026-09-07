@@ -1,5 +1,5 @@
 ---
-title: "Random Ideas Worth Sharing"
+title: "Exploring Diverse Topics"
 date: "2026-09-07"
 
 
