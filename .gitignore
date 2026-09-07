@@ -102,3 +102,15 @@ MABSHealthReport.txt
 
 # Catch-all for any future report files
 *_Report.txt
+
+# Catch-all for logs inside reports/ or outputs/ directories
+reports/*.log
+outputs/*.log
+
+# Catch-all for notes and out files inside outputs/
+outputs/*.notes.txt
+outputs/*.out.txt
+
+# Optional: ignore notes/out files globally if desired
+*.notes.txt
+*.out.txt
