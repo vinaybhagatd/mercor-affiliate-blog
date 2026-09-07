@@ -1,28 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>{{ title }}</title>
-  <link rel="stylesheet" href="/assets/css/main.css">
-</head>
-<body>
-  <header id="site-header">
-    <h1 id="site-title"><a href="/">Mercor Affiliate Blog System</a></h1>
-    <nav id="site-nav">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/categories/">Categories</a></li>
-        <li><a href="/about/">About</a></li>
-      </ul>
-    </nav>
-  </header>
+{# Base partial for reusable site components #}
 
-  <main id="site-main">
-    {% block content %}{% endblock %}
-  </main>
+{# Header + Navigation #}
+{% macro header() %}
 
-  <footer id="site-footer">
-    <p>&copy; Mercor Affiliate Blog System</p>
-  </footer>
-</body>
-</html>
+{% endmacro %}
+
+{# Footer #}
+{% macro footer() %}
+
+{% endmacro %}
+
