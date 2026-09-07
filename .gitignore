@@ -111,6 +111,10 @@ outputs/*.log
 outputs/*.notes.txt
 outputs/*.out.txt
 
-# Optional: ignore notes/out files globally if desired
+# Optional: ignore notes/out files globally
 *.notes.txt
 *.out.txt
+
+# Catch-all for diff artifacts
+outputs/*.diff.txt
+*.diff.txt
