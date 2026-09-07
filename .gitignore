@@ -99,3 +99,6 @@ Thumbs.db
 QAValidatorReport.txt
 CleanupReport.txt
 MABSHealthReport.txt
+
+# Catch-all for any future report files
+*_Report.txt
