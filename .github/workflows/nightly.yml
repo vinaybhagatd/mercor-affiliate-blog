@@ -1,0 +1,76 @@
+name: Nightly Smoke Tests
+
+on:
+  schedule:
+    # Run every night at 2 AM UTC (7:30 AM IST)
+    - cron: "0 2 * * *"
+
+jobs:
+  nightly-smoke-test:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 🔹 Run ScriptAnalyzer for Errors (blocking)
+      - name: Run ScriptAnalyzer for Errors
+        run: pwsh -Command "Invoke-ScriptAnalyzer -Path . -Recurse -Settings .\\PSScriptAnalyzerSettings.psd1 -Severity Error"
+
+      # 🔹 Collect Warnings (non-blocking)
+      - name: Run ScriptAnalyzer for Warnings
+        run: pwsh -Command "
+          $settingsPath = '.\\PSScriptAnalyzerSettings.psd1';
+          $warnings = Invoke-ScriptAnalyzer -Path . -Recurse -Settings $settingsPath -Severity Warning;
+          if ($warnings) {
+            $warnings | Format-Table RuleName, Severity, ScriptName, Line, Message -AutoSize |
+              Out-String | Set-Content .\\WarningsReport.txt -Encoding UTF8
+          } else {
+            'No warnings found.' | Set-Content .\\WarningsReport.txt -Encoding UTF8
+          }
+        "
+
+      - name: Upload Warnings Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: nightly-warnings-report
+          path: WarningsReport.txt
+
+      # 🔹 Run LM Studio Smoke Test
+      - name: Run LM Studio Smoke Test
+        shell: pwsh
+        run: |
+          Write-Host "=== Nightly LM Studio Smoke Test ==="
+          $ports = 1234,1235,1236
+          $found = $false
+          foreach ($port in $ports) {
+              try {
+                  $url = "http://127.0.0.1:$port/v1/models"
+                  $response = Invoke-RestMethod -Uri $url -TimeoutSec 5
+                  if ($response.data) {
+                      Write-Host "✅ LM Studio is running on port $port"
+                      foreach ($model in $response.data) {
+                          Write-Host "Model available: $($model.id)"
+                      }
+                      if ($response.data.id -contains "qwen2.5-coder-1.5b-instruct" -or
+                          $response.data.id -contains "qwen2.5-7b-instruct") {
+                          Write-Host "🎉 Qwen is online and ready!"
+                      }
+                      $found = $true
+                      break
+                  }
+              } catch {
+                  Write-Host "No response on port $port"
+              }
+          }
+          if (-not $found) {
+              Write-Error "❌ LM Studio API not detected on ports 1234–1236. Failing nightly smoke test."
+              exit 1
+          }
+
+      # 🔹 Upload Smoke Test Log
+      - name: Upload Smoke Test Log
+        uses: actions/upload-artifact@v3
+        with:
+          name: nightly-smoke-log
+          path: QAValidatorReport.txt

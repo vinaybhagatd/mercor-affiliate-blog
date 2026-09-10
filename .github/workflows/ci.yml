@@ -1,24 +1,15 @@
-name: CI Pipeline
-
-on:
-  push:
-    branches:
-      - main
-
 jobs:
   validate:
     runs-on: windows-latest
 
     steps:
-      # Step 1: Checkout repo
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Step 2: Run ScriptAnalyzer for Errors (blocking)
+      # Analyzer checks
       - name: Run ScriptAnalyzer for Errors
         run: pwsh -Command "Invoke-ScriptAnalyzer -Path . -Recurse -Settings .\\PSScriptAnalyzerSettings.psd1 -Severity Error"
 
-      # Step 3: Collect Warnings (non-blocking)
       - name: Run ScriptAnalyzer for Warnings
         run: pwsh -Command "
           $settingsPath = '.\\PSScriptAnalyzerSettings.psd1';
@@ -31,54 +22,21 @@ jobs:
           }
         "
 
-      # Step 4: Upload Warnings Artifact
       - name: Upload Warnings Report
         uses: actions/upload-artifact@v3
         with:
           name: warnings-report
           path: WarningsReport.txt
 
-      # Step 5: Run LM Studio Smoke Test
+      # LM Studio smoke test
       - name: Run LM Studio Smoke Test
         shell: pwsh
-        run: |
-          Write-Host "=== LM Studio Smoke Test ==="
-          $ports = 1234,1235,1236
-          $found = $false
-          foreach ($port in $ports) {
-              try {
-                  $url = "http://127.0.0.1:$port/v1/models"
-                  $response = Invoke-RestMethod -Uri $url -TimeoutSec 5
-                  if ($response.data) {
-                      Write-Host "✅ LM Studio is running on port $port"
-                      foreach ($model in $response.data) {
-                          Write-Host "Model available: $($model.id)"
-                      }
-                      if ($response.data.id -contains "qwen2.5-coder-1.5b-instruct" -or
-                          $response.data.id -contains "qwen2.5-7b-instruct") {
-                          Write-Host "🎉 Qwen is online and ready!"
-                      }
-                      $found = $true
-                      break
-                  }
-              } catch {
-                  Write-Host "No response on port $port"
-              }
-          }
-          if (-not $found) {
-              Write-Error "❌ LM Studio API not detected on ports 1234–1236. Failing pipeline."
-              exit 1
-          }
+        run: .\RunAll-Tests.ps1
 
-      # Step 6: Build Eleventy site
-      - name: Build Eleventy site
+      # 🔹 Category validation
+      - name: Validate Category Pages
+        shell: pwsh
         run: |
-          npm install
-          npx @11ty/eleventy
-
-      # Step 7: Deploy to GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
+          Write-Host "=== Category Validation ==="
+          .\Test-CategoryPagesWithPosts.ps1
+          .\QAValidator.ps1

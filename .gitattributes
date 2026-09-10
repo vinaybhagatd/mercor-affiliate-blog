@@ -40,3 +40,7 @@ README.md text eol=lf
 # GitHub Actions workflows
 # LF line endings for CI/CD YAML
 .github/**/*.yml text eol=lf
+
+*.md text eol=lf
+*.ps1 text eol=crlf
+

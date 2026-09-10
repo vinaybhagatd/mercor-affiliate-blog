@@ -65,3 +65,7 @@ module.exports = function(eleventyConfig) {
     dataTemplateEngine: "njk"
   };
 };
+
+eleventyConfig.addShortcode("affLink", function(productId, text) {
+  return `<a href="https://affiliate.example.com/${productId}?affid=12345" target="_blank">${text}</a>`;
+});
