@@ -1,0 +1,42 @@
+# =========================
+# Default text handling
+# =========================
+* text=auto eol=lf
+
+# =========================
+# PowerShell scripts (Windows-friendly)
+# Force CRLF line endings for .ps1 scripts
+*.ps1 text eol=crlf
+
+# =========================
+# Markdown / Documentation
+# Force LF line endings for Markdown and docs
+*.md text eol=lf
+*.markdown text eol=lf
+README.md text eol=lf
+
+# =========================
+# Eleventy / Nunjucks layouts
+# LF line endings for templates
+*.njk text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+
+# =========================
+# JSON / YAML configs
+# LF line endings for configs
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# =========================
+# Logs / Reports
+# LF line endings for generated logs
+*.log text eol=lf
+*.txt text eol=lf
+
+# =========================
+# GitHub Actions workflows
+# LF line endings for CI/CD YAML
+.github/**/*.yml text eol=lf
