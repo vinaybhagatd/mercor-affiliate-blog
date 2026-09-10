@@ -243,5 +243,8 @@ GitHub Actions handles everything.
 | Eleventy Build        | ![Eleventy](https://github.com/vinaybhagatd/mercor-affiliate-blog/actions/workflows/eleventy.yml/badge.svg) |
 | RunPrompt Tests       | ![RunPrompt Tests](https://github.com/vinaybhagatd/mercor-affiliate-blog/actions/workflows/runprompt-tests.yml/badge.svg) |
 
+# Mercor Affiliate Blog System (MABS)
+
+[![CI/CD - Deploy](https://github.com/vinaybhagatd/mercor-affiliate-blog/actions/workflows/deploy.yml/badge.svg)](https://github.com/vinaybhagatd/mercor-affiliate-blog/actions/workflows/deploy.yml)
 
 

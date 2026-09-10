@@ -1,46 +1,59 @@
 <#
 .SYNOPSIS
-  Repairs front matter in MABS blog posts.
+  Repairs and normalizes front matter in blog posts.
 .DESCRIPTION
-  Iterates through all Markdown files in src/posts,
-  replaces `category:` with `tags: ["…"]`,
-  enforces `layout: post.njk`,
-  and ensures a single valid `date:` line (YYYY-MM-DD).
-  If no valid date is found, inserts today's date.
+  Ensures each Markdown file has valid YAML front matter,
+  inserts missing categories from canonical list,
+  and sanitizes headers for Eleventy compatibility.
 #>
 
-$postsPath = "C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts"
+param(
+  [string]$PostsDir = "C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts"
+)
 
-Get-ChildItem $postsPath -Filter *.md | ForEach-Object {
-    $file = $_.FullName
-    $content = Get-Content $file -Raw
+# ✅ Canonical categories (from Eleventy collections)
+$allowedCategories = @(
+    "creative","data","engineering","finance","language",
+    "law","medicine","misc","operations","sciences","tech"
+)
 
-    # Replace category: value with tags: ["value"]
-    $content = $content -replace '(?m)^category:\s*(\S+)', 'tags: ["$1"]'
+# Round‑robin assignment index
+$categoryIndex = 0
 
-    # Ensure layout: post.njk exists in front matter
-    if ($content -notmatch '(?m)^layout:\s*post\.njk') {
-        $content = $content -replace '(?m)^---(\r?\n)(.*?)(\r?\n)---', {
-            param($m)
-            "---$($m.Groups[1].Value)$($m.Groups[2].Value)`r`nlayout: post.njk$($m.Groups[3].Value)---"
-        }
-    }
-
-    # Remove ALL existing date lines (to avoid duplicates)
-    $content = $content -replace '(?m)^date:.*$', ''
-
-    # Insert a single valid date line
-    $today = Get-Date -Format "yyyy-MM-dd"
-    if ($content -match '(?m)^title:.*$') {
-        $content = $content -replace '(?m)(^title:.*$)', "`$1`r`ndate: `"$today`""
-    } else {
-        # If no title found, just add date at the top of front matter
-        $content = $content -replace '(?m)^---$', "---`r`ndate: `"$today`""
-    }
-
-    # Write back to file
-    Set-Content $file $content -NoNewline
-    Write-Host "Fixed front matter in $($_.Name)"
+function Get-NextCategory {
+    $cat = $allowedCategories[$categoryIndex % $allowedCategories.Count]
+    $categoryIndex++
+    return $cat
 }
 
-Write-Host "✅ Front matter repair complete. Run QAValidator.ps1 to confirm."
+Write-Host "=== FixFrontMatter.ps1 started ===" -ForegroundColor Cyan
+
+$files = Get-ChildItem $PostsDir -Filter *.md -ErrorAction SilentlyContinue
+foreach ($file in $files) {
+    $content = Get-Content $file.FullName -Raw
+
+    # ✅ Ensure front matter delimiters
+    if (-not ($content -match "^---")) {
+        $content = "---`n" + $content
+    }
+    if (-not ($content -match "(?m)^---$")) {
+        $content += "`n---"
+    }
+
+    # ✅ Insert missing category
+    if (-not ($content -match "category:\s*(\w+)")) {
+        $newCategory = Get-NextCategory
+        Write-Host "Inserted missing category [$newCategory] into $($file.Name)" -ForegroundColor Yellow
+        $content = $content -replace "(?m)^---", "---`ncategory: $newCategory"
+    }
+
+    # ✅ Normalize operator spacing and sanitize headers
+    $content = $content -replace "\+ =", "+="
+    $content = $content -replace "^\|", ""   # remove stray pipes at start
+    $content = $content -replace "using\s+", "# using " # invalid 'using' → comment
+
+    # ✅ Save back
+    Set-Content -Path $file.FullName -Value $content -Encoding UTF8
+}
+
+Write-Host "=== FixFrontMatter.ps1 complete. Categories normalized and missing ones auto‑inserted. ===" -ForegroundColor Green

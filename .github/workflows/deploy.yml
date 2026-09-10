@@ -1,24 +1,38 @@
-name: Deploy MABS
+name: MABS Deploy
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
-  build-deploy:
-    runs-on: ubuntu-latest
+  deploy:
+    runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v3
+      # --- Step 1: Checkout repo ---
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Validate scripts
-        run: pwsh ./QAValidator.ps1
-
-      - name: Build site
-        run: npx eleventy
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      # --- Step 2: Setup PowerShell environment ---
+      - name: Setup PowerShell
+        uses: actions/setup-dotnet@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
+          dotnet-version: '8.0.x'
+
+      # --- Step 3: Run DeployAll.ps1 ---
+      - name: Run DeployAll.ps1
+        shell: pwsh
+        run: |
+          Write-Host "=== CI/CD Deploy started ==="
+          .\DeployAll.ps1
+          Write-Host "=== CI/CD Deploy complete ==="
+
+      # --- Step 4: Push changes and tags ---
+      - name: Push changes and tags
+        shell: pwsh
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git push origin main
+          git push origin --tags

@@ -94,6 +94,11 @@ Thumbs.db
 !Cleanup-All.ps1
 !Cleanup-Blogs.ps1
 !Cleanup-Repo.ps1
+!RunAll.ps1
+!SelfHeal.ps1
+!BulkFix-Posts.ps1
+!ReleaseAudit.ps1
+!DeployAll.ps1
 
 # =========================
 # Catch-all for generated artifacts
