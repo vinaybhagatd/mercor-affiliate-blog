@@ -1,33 +1,33 @@
-2026-09-10 16:10:00 - === Starting QA Validation ===
-2026-09-10 16:10:00 - ❌ post-creative-3.md missing category in front matter
-2026-09-10 16:10:00 - ❌ post-creative-4.md missing category in front matter
-2026-09-10 16:10:00 - ❌ post-engineering-3.md missing category in front matter
-2026-09-10 16:10:00 - ❌ post-engineering-5.md missing category in front matter
-2026-09-10 16:10:00 - ❌ post-finance-2.md missing category in front matter
-2026-09-10 16:10:00 - ❌ post-finance-4.md missing category in front matter
-2026-09-10 16:10:00 - ❌ post-language-4.md missing category in front matter
-2026-09-10 16:10:00 - ❌ post-law-5.md missing category in front matter
-2026-09-10 16:10:00 - ❌ post-medicine-1.md missing category in front matter
-2026-09-10 16:10:00 - ❌ post-medicine-2.md missing category in front matter
-2026-09-10 16:10:00 - ❌ post-medicine-4.md missing category in front matter
-2026-09-10 16:10:00 - ❌ post-misc-1.md missing category in front matter
-2026-09-10 16:10:00 - ❌ post-misc-4.md missing category in front matter
-2026-09-10 16:10:00 - ❌ post-misc-5.md missing category in front matter
-2026-09-10 16:10:00 - ❌ post-operations-1.md missing category in front matter
-2026-09-10 16:10:00 - ❌ post-operations-3.md missing category in front matter
-2026-09-10 16:10:00 - ❌ post-operations-5.md missing category in front matter
-2026-09-10 16:10:00 - ❌ post-sciences-1.md missing category in front matter
-2026-09-10 16:10:00 - ❌ post-sciences-1.md missing affiliate link
-2026-09-10 16:10:00 - ❌ post-sciences-2.md missing category in front matter
-2026-09-10 16:10:00 - ❌ post-sciences-2.md missing affiliate link
-2026-09-10 16:10:00 - ❌ post-tech-1.md missing category in front matter
-2026-09-10 16:10:00 - ❌ post-tech-2.md missing category in front matter
-2026-09-10 16:10:00 - ❌ post-tech-3.md missing category in front matter
-2026-09-10 16:10:00 - ❌ post-tech-5.md missing category in front matter
-2026-09-10 16:10:00 - === QA Validation Complete ===
-2026-09-10 16:10:00 - Summary:
-2026-09-10 16:10:00 -    ✅ Valid posts: 0
-2026-09-10 16:10:00 -    ❌ Invalid category posts: 0
-2026-09-10 16:10:00 -    ❌ Missing category posts: 23
-2026-09-10 16:10:00 -    ❌ Missing affiliate link posts: 2
-2026-09-10 16:10:00 -    ❌ Mismatched affiliate link posts: 0
+2026-09-10 16:59:58 - === Starting QA Validation ===
+2026-09-10 16:59:58 - ❌ post-creative-3.md missing category in front matter
+2026-09-10 16:59:58 - ❌ post-creative-4.md missing category in front matter
+2026-09-10 16:59:58 - ❌ post-engineering-3.md missing category in front matter
+2026-09-10 16:59:58 - ❌ post-engineering-5.md missing category in front matter
+2026-09-10 16:59:58 - ❌ post-finance-2.md missing category in front matter
+2026-09-10 16:59:58 - ❌ post-finance-4.md missing category in front matter
+2026-09-10 16:59:58 - ❌ post-language-4.md missing category in front matter
+2026-09-10 16:59:58 - ❌ post-law-5.md missing category in front matter
+2026-09-10 16:59:58 - ❌ post-medicine-1.md missing category in front matter
+2026-09-10 16:59:58 - ❌ post-medicine-2.md missing category in front matter
+2026-09-10 16:59:58 - ❌ post-medicine-4.md missing category in front matter
+2026-09-10 16:59:58 - ❌ post-misc-1.md missing category in front matter
+2026-09-10 16:59:58 - ❌ post-misc-4.md missing category in front matter
+2026-09-10 16:59:58 - ❌ post-misc-5.md missing category in front matter
+2026-09-10 16:59:58 - ❌ post-operations-1.md missing category in front matter
+2026-09-10 16:59:58 - ❌ post-operations-3.md missing category in front matter
+2026-09-10 16:59:58 - ❌ post-operations-5.md missing category in front matter
+2026-09-10 16:59:58 - ❌ post-sciences-1.md missing category in front matter
+2026-09-10 16:59:58 - ❌ post-sciences-1.md missing affiliate link
+2026-09-10 16:59:58 - ❌ post-sciences-2.md missing category in front matter
+2026-09-10 16:59:58 - ❌ post-sciences-2.md missing affiliate link
+2026-09-10 16:59:58 - ❌ post-tech-1.md missing category in front matter
+2026-09-10 16:59:58 - ❌ post-tech-2.md missing category in front matter
+2026-09-10 16:59:58 - ❌ post-tech-3.md missing category in front matter
+2026-09-10 16:59:58 - ❌ post-tech-5.md missing category in front matter
+2026-09-10 16:59:58 - === QA Validation Complete ===
+2026-09-10 16:59:58 - Summary:
+2026-09-10 16:59:58 -    ✅ Valid posts: 0
+2026-09-10 16:59:58 -    ❌ Invalid category posts: 0
+2026-09-10 16:59:58 -    ❌ Missing category posts: 23
+2026-09-10 16:59:58 -    ❌ Missing affiliate link posts: 2
+2026-09-10 16:59:58 -    ❌ Mismatched affiliate link posts: 0
