@@ -5,13 +5,16 @@
   - Runs PSScriptAnalyzer on all active PowerShell scripts
   - Executes LM Studio smoke test (ports 1234–1236)
   - Prints summary of results
+  - Emits structured output for wrapper scripts
 #>
 
 $ErrorActionPreference = "Stop"
 
 function Log {
     param([string]$Message)
+    # Keep host logging for human readability
     Write-Host $Message
+    # Append to QA report file
     Add-Content -Path "QAValidatorReport.txt" -Value $Message
 }
 
@@ -69,7 +72,9 @@ if (-not $lmStudioFound) {
 }
 
 # -------------------------------
-# 3. Summary
+# 3. Summary (structured output)
 # -------------------------------
-Log "=== RunAll-Tests.ps1 complete ==="
-Log "Summary: Analyzer errors = $errors, LM Studio found = $lmStudioFound"
+Write-Output @{
+    AnalyzerErrors = $errors
+    LMStudioFound  = $lmStudioFound
+}
