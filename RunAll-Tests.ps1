@@ -3,7 +3,7 @@
   Unified test harness for Mercor Affiliate Blog System.
 .DESCRIPTION
   - Runs PSScriptAnalyzer on all active PowerShell scripts
-  - Executes LM Studio smoke test (ports 1234–1236)
+  - Executes LM Studio smoke test (ports 1234, 1235, 1236)
   - Prints summary of results
   - Emits structured output for wrapper scripts
 #>
@@ -33,7 +33,8 @@ foreach ($script in $scripts) {
         Log "❌ Errors in $($script.Name):"
         $results | ForEach-Object { Log "   $($_.RuleName): $($_.Message)" }
         $errors++
-    } else {
+    }
+    else {
         Log "✅ $($script.Name) passed analyzer checks."
     }
 }
@@ -42,7 +43,7 @@ foreach ($script in $scripts) {
 # 2. LM Studio Smoke Test
 # -------------------------------
 Log "Running LM Studio smoke test..."
-$ports = 1234,1235,1236
+$ports = 1234, 1235, 1236
 $lmStudioFound = $false
 
 foreach ($port in $ports) {
@@ -61,7 +62,8 @@ foreach ($port in $ports) {
             $lmStudioFound = $true
             break
         }
-    } catch {
+    }
+    catch {
         Log "No response on port $port"
     }
 }
