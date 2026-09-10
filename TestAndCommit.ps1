@@ -1,11 +1,11 @@
 <#
 .SYNOPSIS
-  Run full MABS validation, commit changes, and tag release.
+  Run full MABS validation, commit changes, and tag release sequentially.
 .DESCRIPTION
   - Executes RunAll-Tests.ps1
   - Consumes structured output object
   - If errors = 0 and LM Studio found, commits changes
-  - Automatically tags release for rollback safety
+  - Automatically increments sequential tag (mabs-v16.x)
 #>
 
 $ErrorActionPreference = "Stop"
@@ -25,14 +25,20 @@ Write-Host "=== END DEBUG ===" -ForegroundColor Yellow
 if ($result.AnalyzerErrors -eq 0 -and $result.LMStudioFound -eq $true) {
     Write-Host "✅ Validation passed. Staging and committing..." -ForegroundColor Green
 
-    git add .eleventy.js .gitattributes .github/workflows/ci.yml .github/workflows/nightly.yml README.md RunAll-Tests.ps1 QAValidatorReport.txt
+    git add .eleventy.js .gitattributes .github/workflows/ci.yml .github/workflows/nightly.yml README.md RunAll-Tests.ps1 QAValidatorReport.txt TestAndCommit.ps1
     git commit -m "Validated MABS update: CI + nightly workflow + README + Eleventy config"
 
     git push origin main
     if ($LASTEXITCODE -eq 0) {
-        # Generate automatic tag name based on date/time
-        $timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
-        $tagName = "mabs-v" + (Get-Date -Format "yy") + "." + (Get-Date -Format "MM") + "." + $timestamp
+        # Sequential tag logic
+        $latestTag = git tag --list "mabs-v16.*" | Sort-Object | Select-Object -Last 1
+        if ($latestTag) {
+            $parts = $latestTag -split "\."
+            $version = [int]$parts[-1] + 1
+        } else {
+            $version = 1
+        }
+        $tagName = "mabs-v16.$version"
 
         git tag -a $tagName -m "Release ${tagName}: Validated commit checkpoint"
         git push origin $tagName
