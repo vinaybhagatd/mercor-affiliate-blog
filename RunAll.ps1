@@ -52,6 +52,10 @@ Write-Host "Generating release notes..."
 .\Create-Release.ps1 -Tag $newTag
 
 # --- Step 7: Deployment ---
+
+Write-Host "Syncing with remote before push..."
+git pull --rebase origin main || git rebase --abort
+
 Write-Host "Deploying to GitHub Pages..."
 git push origin main
 

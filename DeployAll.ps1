@@ -15,6 +15,10 @@ Write-Host "Running ReleaseAudit.ps1..."
 .\ReleaseAudit.ps1
 
 # --- Step 2: Push to GitHub Pages ---
+
+Write-Host "Syncing with remote before push..."
+git pull --rebase origin main || git rebase --abort
+
 Write-Host "Deploying to GitHub Pages..."
 git push origin main
 git push origin --tags
