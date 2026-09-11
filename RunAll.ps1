@@ -53,10 +53,35 @@ Write-Host "Generating release notes..."
 
 # --- Step 7: Deployment ---
 
-Write-Host "Syncing with remote before push..."
+Log ">>> Committing changes..."
+git add .
+git commit -m "Automated commit from RunAll.ps1" || Log "⚠️ Nothing to commit."
+
+# Create a new timestamped tag
+$timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
+$TagName = "release-$timestamp"
+Log ">>> Creating new tag: $TagName"
+git tag -a $TagName -m "Automated release $TagName"
+git push origin $TagName
+
+# Guardrail: verify tag exists on remote before creating release
+Log ">>> Verifying tag $TagName exists on remote..."
+Start-Sleep -Seconds 5
+$remoteTag = git ls-remote origin refs/tags/$TagName
+if (-not $remoteTag) {
+    throw "❌ Tag $TagName not found on remote. Aborting release creation."
+}
+
+# Create GitHub release
+Log ">>> Generating release notes..."
+pwsh ./Create-Release.ps1 -TagName $TagName -ReleaseTitle "Mercor Affiliate Blog Release" -ReleaseBody "Automated release created by RunAll.ps1"
+
+# Sync with remote before final push
+Log ">>> Syncing with remote before push..."
 git pull --rebase origin main || git rebase --abort
 
-Write-Host "Deploying to GitHub Pages..."
+# Deploy to GitHub Pages
+Log ">>> Deploying to GitHub Pages..."
 git push origin main
 
-Write-Host "=== RunAll.ps1 complete. Release $newTag deployed. ===" -ForegroundColor Green
+Log "=== RunAll.ps1 complete. Release $TagName deployed. ==="
