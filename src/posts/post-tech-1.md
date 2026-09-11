@@ -1,4 +1,6 @@
 ---
+category: creative
+affiliate: https://t.mercor.com/a2rcw
 title: "Tech Innovations"
 date: "2026-09-07"
 tags: [tech]
@@ -7,6 +9,8 @@ description: "Innovations in computing."
 thumbnail: "tech.png"
 permalink: "posts/post-tech-1.md/index.html"
 ---
+category: creative
+affiliate: https://t.mercor.com/a2rcw
 # Tech Innovations
 
 🌟 Why This Matters  
@@ -22,11 +26,15 @@ Emphasize trust and transparency.
 
 🔗 Call to Action  
 👉 Ready to land your next tech contract?  
-[Explore tech roles on Mercor](https://t.mercor.com/01sof)
+[Explore tech roles on Mercor](https://t.mercor.com/a2rcw)
 
 Filed under: tech
 
 © Mercor Affiliate Blog System
+
+
+
+
 
 
 

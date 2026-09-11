@@ -1,4 +1,6 @@
 ---
+category: creative
+affiliate: https://t.mercor.com/a2rcw
 title: "Wellness and Preventive Care"
 date: "2026-09-07"
 tags: [medicine]
@@ -7,6 +9,8 @@ description: "Preventive care strategies."
 thumbnail: "medicine.png"
 permalink: "posts/post-medicine-2.md/index.html"
 ---
+category: creative
+affiliate: https://t.mercor.com/a2rcw
 # Wellness and Preventive Care
 
 🌟 Why This Matters  
@@ -22,11 +26,15 @@ Emphasize trust and transparency.
 
 🔗 Call to Action  
 👉 Ready to land your next medicine contract?  
-[Explore medicine roles on Mercor](https://t.mercor.com/rOCAC)
+[Explore medicine roles on Mercor](https://t.mercor.com/a2rcw)
 
 Filed under: medicine
 
 © Mercor Affiliate Blog System
+
+
+
+
 
 
 

@@ -6,17 +6,29 @@
   - Inserts missing categories from canonical list
   - Inserts missing affiliate links from affiliate-links.md
   - Normalizes front matter delimiters and sanitizes headers
+  - Logs all repair actions to BulkFixReport.txt
   - Can be run standalone outside the pipeline
 #>
 
 param(
   [string]$PostsDir = "C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts",
-  [string]$AffiliateFile = "C:\Users\LMTest\promotional\mercor-affiliate-blog\affiliate-links.md"
+  [string]$AffiliateFile = "C:\Users\LMTest\promotional\mercor-affiliate-blog\affiliate-links.md",
+  [string]$ReportFile = "BulkFixReport.txt"
 )
 
 $ErrorActionPreference = "Stop"
 
-Write-Host "=== BulkFix-Posts.ps1 started ===" -ForegroundColor Cyan
+# --- Logging function ---
+function Log {
+    param([string]$Message)
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    "$timestamp - $Message" | Out-File -FilePath $ReportFile -Append
+    Write-Host $Message
+}
+
+# Reset report
+Clear-Content $ReportFile -ErrorAction SilentlyContinue
+Log "=== BulkFix-Posts.ps1 started ==="
 
 # ✅ Canonical categories
 $allowedCategories = @(
@@ -55,17 +67,19 @@ foreach ($file in $files) {
     # ✅ Ensure front matter delimiters
     if (-not ($content -match "^---")) {
         $content = "---`n" + $content
+        Log "[BulkFix] Added missing front matter start delimiter to $($file.Name)"
         $modified = $true
     }
     if (-not ($content -match "(?m)^---$")) {
         $content += "`n---"
+        Log "[BulkFix] Added missing front matter end delimiter to $($file.Name)"
         $modified = $true
     }
 
     # ✅ Insert missing category
     if (-not ($content -match "category:\s*(\w+)")) {
         $newCategory = Get-NextCategory
-        Write-Host "[BulkFix] Inserted missing category [$newCategory] into $($file.Name)" -ForegroundColor Yellow
+        Log "[BulkFix] Inserted missing category [$newCategory] into $($file.Name)"
         $content = $content -replace "(?m)^---", "---`ncategory: $newCategory"
         $cat = $newCategory
         $modified = $true
@@ -73,12 +87,12 @@ foreach ($file in $files) {
         $cat = $matches[1]
     }
 
-    # ✅ Insert missing affiliate link
-    if (-not ($content -match "\(https:\/\/t\.mercor\.com\/[A-Za-z0-9]+\)")) {
+    # ✅ Insert missing affiliate link (YAML front matter style)
+    if (-not ($content -match "affiliate:\s*(https:\/\/t\.mercor\.com\/[A-Za-z0-9]+)")) {
         if ($cat -and $affiliateLinks.ContainsKey($cat)) {
             $link = $affiliateLinks[$cat]
-            Write-Host "[BulkFix] Inserted missing affiliate link [$link] into $($file.Name)" -ForegroundColor Yellow
-            $content += "`n[Apply for Remote $($cat.Substring(0,1).ToUpper() + $cat.Substring(1)) Roles]($link)`n"
+            Log "[BulkFix] Inserted missing affiliate link [$link] into $($file.Name)"
+            $content = $content -replace "(?m)^category:\s*\w+", "category: $cat`naffiliate: $link"
             $modified = $true
         }
     }
@@ -90,7 +104,9 @@ foreach ($file in $files) {
 
     if ($modified) {
         Set-Content -Path $file.FullName -Value $content -Encoding UTF8
+        Log "[BulkFix] Saved repaired file $($file.Name)"
     }
 }
 
+Log "=== BulkFix-Posts.ps1 complete. All posts repaired. ==="
 Write-Host "=== BulkFix-Posts.ps1 complete. All posts repaired. ===" -ForegroundColor Green

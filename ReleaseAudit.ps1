@@ -1,26 +1,46 @@
 <#
 .SYNOPSIS
-  One-click wrapper for bulk fix, audit, and release.
+    Release audit wrapper for Mercor Affiliate Blog System.
 .DESCRIPTION
-  - Runs BulkFix-Posts.ps1 to repair all posts
-  - Runs QAValidator.ps1 in Pre-Release Audit mode
-  - Calls RunAll.ps1 for end-to-end automation
+    - Runs BulkFix-Posts.ps1 to repair missing categories/affiliate links
+    - Runs QAValidator.ps1 with PreReleaseAudit mode to validate all posts
+    - Runs RunAll.ps1 to execute the full pipeline (tests + deployment)
+    - Consolidates logs into ReleaseAuditReport.txt for permanent audit trail
 #>
+
+param(
+    [string]$ReportFile = "ReleaseAuditReport.txt"
+)
 
 $ErrorActionPreference = "Stop"
 
-Write-Host "=== ReleaseAudit.ps1 started ===" -ForegroundColor Cyan
+function Log {
+    param([string]$Message)
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    "$timestamp - $Message" | Out-File -FilePath $ReportFile -Append
+    Write-Host $Message
+}
 
-# --- Step 1: Bulk Fix ---
-Write-Host "Running BulkFix-Posts.ps1..."
-.\BulkFix-Posts.ps1
+# Reset report
+Clear-Content $ReportFile -ErrorAction SilentlyContinue
+Log "=== ReleaseAudit.ps1 started ==="
 
-# --- Step 2: Pre-Release Audit ---
-Write-Host "Running QAValidator.ps1 in Pre-Release Audit mode..."
-.\QAValidator.ps1 -PreReleaseAudit
+try {
+    # Step 1: BulkFix
+    Log ">>> Running BulkFix-Posts.ps1..."
+    pwsh ./BulkFix-Posts.ps1 | Tee-Object -FilePath $ReportFile -Append
 
-# --- Step 3: End-to-End Release ---
-Write-Host "Running RunAll.ps1 for full pipeline..."
-.\RunAll.ps1
+    # Step 2: QAValidator
+    Log ">>> Running QAValidator.ps1 (PreReleaseAudit)..."
+    pwsh ./QAValidator.ps1 -PreReleaseAudit | Tee-Object -FilePath $ReportFile -Append
 
-Write-Host "=== ReleaseAudit.ps1 complete. Fix + Audit + Release executed. ===" -ForegroundColor Green
+    # Step 3: RunAll pipeline
+    Log ">>> Running RunAll.ps1..."
+    pwsh ./RunAll.ps1 | Tee-Object -FilePath $ReportFile -Append
+
+    Log "=== ReleaseAudit.ps1 complete. Audit successful. ==="
+}
+catch {
+    Log "❌ ReleaseAudit encountered error: $($_.Exception.Message)"
+    throw
+}

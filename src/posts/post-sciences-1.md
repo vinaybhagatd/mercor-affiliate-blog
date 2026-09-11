@@ -1,12 +1,7 @@
 ---
-title: "Scientific Discoveries"
-date: "2026-09-07"
-tags: [sciences]
-layout: post.njk
-description: "Discoveries changing the world."
-thumbnail: "sciences.png"
-permalink: "posts/post-sciences-1.md/index.html"
+affiliate: https://t.mercor.com/a2rcw
 ---
+category: creative
 # Scientific Discoveries
 
 🌟 Why This Matters  
@@ -28,5 +23,12 @@ Filed under: sciences
 
 © Mercor Affiliate Blog System
 
+
+
+
+
+
+
+[Apply for Remote Creative Roles](https://t.mercor.com/a2rcw)
 
 

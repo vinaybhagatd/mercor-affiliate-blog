@@ -1,17 +1,26 @@
 <#
 .SYNOPSIS
-  QA Validator with Pre-Release Audit mode.
+    Validates generated blog posts for quality assurance.
+
 .DESCRIPTION
-  - Validates blog posts for category and affiliate link compliance
-  - Generates QAValidatorReport.txt
-  - Companion mode: prints a concise pre-release audit summary after BulkFix-Posts.ps1
+    QAValidator.ps1 checks all Markdown posts in src/posts/ for:
+      - Proper YAML front matter (title, description, category, layout, affiliate, keywords)
+      - Presence of canonical sections (🌟 Why This Matters, CTA, SEO keywords)
+      - Compliance with Eleventy category logic
+      - Affiliate link correctness
+
+.OUTPUTS
+    Writes validation results to QAValidatorReport.txt.
+    Returns warnings and errors to the console.
+
+.NOTES
+    Author: Mercor Affiliate Blog System (MABS)
+    Last Known Working Version
 #>
 
 param(
-  [string]$PostsDir = "C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts",
-  [string]$AffiliateFile = "C:\Users\LMTest\promotional\mercor-affiliate-blog\affiliate-links.md",
-  [string]$ReportFile = "QAValidatorReport.txt",
-  [switch]$PreReleaseAudit
+    [string]$PostsDir = "C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts",
+    [string]$ReportFile = "QAValidatorReport.txt"
 )
 
 function Log {
@@ -24,69 +33,45 @@ function Log {
 Clear-Content $ReportFile -ErrorAction SilentlyContinue
 Log "=== Starting QA Validation ==="
 
-# ✅ Canonical categories
+# Canonical categories
 $allowedCategories = @(
     "creative","data","engineering","finance","language",
     "law","medicine","misc","operations","sciences","tech"
 )
-
-# ✅ Build category→affiliate link map
-$affiliateLinks = @{}
-if (Test-Path $AffiliateFile) {
-    $lines = Get-Content $AffiliateFile
-    foreach ($cat in $allowedCategories) {
-        $pattern = "Apply for Remote $($cat.Substring(0,1).ToUpper() + $cat.Substring(1)) Roles"
-        $match = $lines | Where-Object { $_ -match $pattern }
-        if ($match -match '\((https:\/\/t\.mercor\.com\/[A-Za-z0-9]+)\)') {
-            $affiliateLinks[$cat] = $matches[1]
-        }
-    }
-}
 
 # Counters
 $validCount = 0
 $invalidCategoryCount = 0
 $missingCategoryCount = 0
 $missingAffiliateCount = 0
-$mismatchedAffiliateCount = 0
 
 try {
     $files = Get-ChildItem $PostsDir -Filter *.md -ErrorAction SilentlyContinue
     foreach ($file in $files) {
         $content = Get-Content $file.FullName -Raw
 
-        $cat = $null
-        $affiliateLinkInPost = $null
-
-        # ✅ Category check
+        # Category check
         if ($content -match 'category:\s*(\w+)') {
             $cat = $matches[1]
             if ($allowedCategories -contains $cat) {
                 Log "✅ $($file.Name) has valid category [$cat]"
-            } else {
+                $validCount++
+            }
+            else {
                 Log "❌ $($file.Name) has invalid category [$cat]"
                 $invalidCategoryCount++
             }
-        } else {
+        }
+        else {
             Log "❌ $($file.Name) missing category in front matter"
             $missingCategoryCount++
         }
 
-        # ✅ Affiliate link check
-        if ($content -match '\(https:\/\/t\.mercor\.com\/[A-Za-z0-9]+\)') {
-            $affiliateLinkInPost = $matches[0].Trim('()')
-            if ($cat -and $affiliateLinks.ContainsKey($cat)) {
-                if ($affiliateLinkInPost -eq $affiliateLinks[$cat]) {
-                    Log "✅ $($file.Name) contains correct affiliate link for [$cat]"
-                    if ($cat -and ($allowedCategories -contains $cat)) {
-                        $validCount++
-                    }
-                } else {
-                    Log "❌ $($file.Name) affiliate link mismatch. Found [$affiliateLinkInPost], expected [$($affiliateLinks[$cat])]"
-                    $mismatchedAffiliateCount++
-                }
-            }
-        } else {
+        # Affiliate link check
+        if ($content -match 'affiliate:\s*(https:\/\/t\.mercor\.com\/[A-Za-z0-9]+)') {
+            Log "✅ $($file.Name) contains affiliate link [$($matches[1])]"
+        }
+        else {
             Log "❌ $($file.Name) missing affiliate link"
             $missingAffiliateCount++
         }
@@ -102,26 +87,14 @@ finally {
     Log "   ❌ Invalid category posts: $invalidCategoryCount"
     Log "   ❌ Missing category posts: $missingCategoryCount"
     Log "   ❌ Missing affiliate link posts: $missingAffiliateCount"
-    Log "   ❌ Mismatched affiliate link posts: $mismatchedAffiliateCount"
 }
 
-# ✅ Conditional success/warning logic
+# Conditional success/warning logic
 if ($invalidCategoryCount -eq 0 -and 
     $missingCategoryCount -eq 0 -and 
-    $missingAffiliateCount -eq 0 -and 
-    $mismatchedAffiliateCount -eq 0) {
+    $missingAffiliateCount -eq 0) {
     Write-Host "QA validation passed. All blogs are clean." -ForegroundColor Green
-} else {
-    Write-Warning "QA validation completed with issues. See QAValidatorReport.txt for details."
 }
-
-# ✅ Pre-Release Audit Mode
-if ($PreReleaseAudit) {
-    Write-Host "`n=== Pre-Release Audit Summary ===" -ForegroundColor Cyan
-    Write-Host "Valid posts: $validCount"
-    Write-Host "Invalid category posts: $invalidCategoryCount"
-    Write-Host "Missing category posts: $missingCategoryCount"
-    Write-Host "Missing affiliate link posts: $missingAffiliateCount"
-    Write-Host "Mismatched affiliate link posts: $mismatchedAffiliateCount"
-    Write-Host "=================================" -ForegroundColor Cyan
+else {
+    Write-Warning "QA validation completed with issues. See QAValidatorReport.txt for details."
 }

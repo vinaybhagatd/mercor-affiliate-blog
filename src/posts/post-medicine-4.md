@@ -1,4 +1,6 @@
 ---
+category: creative
+affiliate: https://t.mercor.com/a2rcw
 title: "Healthcare Innovations"
 date: "2026-09-07"
 tags: [medicine]
@@ -7,6 +9,8 @@ description: "Medical innovations shaping the future."
 thumbnail: "medicine.png"
 permalink: "posts/post-medicine-4.md/index.html"
 ---
+category: creative
+affiliate: https://t.mercor.com/a2rcw
 # Healthcare Innovations
 
 🌟 Why This Matters  
@@ -22,11 +26,15 @@ Emphasize trust and transparency.
 
 🔗 Call to Action  
 👉 Ready to land your next medicine contract?  
-[Explore medicine roles on Mercor](https://t.mercor.com/rOCAC)
+[Explore medicine roles on Mercor](https://t.mercor.com/a2rcw)
 
 Filed under: medicine
 
 © Mercor Affiliate Blog System
+
+
+
+
 
 
 

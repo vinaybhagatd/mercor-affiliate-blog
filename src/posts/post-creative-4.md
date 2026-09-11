@@ -1,4 +1,6 @@
 ---
+category: creative
+affiliate: https://t.mercor.com/a2rcw
 title: "Design Thinking in Action"
 date: "2026-09-07"
 tags: [creative]
@@ -7,6 +9,8 @@ description: "Exploring creativity in everyday life."
 thumbnail: "creative.png"
 permalink: "posts/post-creative-4.md/index.html"
 ---
+category: creative
+affiliate: https://t.mercor.com/a2rcw
 # Design Thinking in Action
 
 🌟 Why This Matters  
@@ -27,6 +31,9 @@ Emphasize trust and transparency.
 Filed under: creative
 
 © Mercor Affiliate Blog System
+
+
+
 
 
 

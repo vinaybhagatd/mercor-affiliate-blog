@@ -1,4 +1,6 @@
 ---
+category: creative
+affiliate: https://t.mercor.com/a2rcw
 title: "Miscellaneous Insights"
 date: "2026-09-07"
 tags: [misc]
@@ -7,6 +9,8 @@ description: "Miscellaneous insights worth sharing."
 thumbnail: "misc.png"
 permalink: "posts/post-misc-5.md/index.html"
 ---
+category: creative
+affiliate: https://t.mercor.com/a2rcw
 # Miscellaneous Insights
 
 🌟 Why This Matters  
@@ -22,11 +26,15 @@ Emphasize trust and transparency.
 
 🔗 Call to Action  
 👉 Ready to land your next misc contract?  
-[Explore misc roles on Mercor](https://t.mercor.com/fPwmL)
+[Explore misc roles on Mercor](https://t.mercor.com/a2rcw)
 
 Filed under: misc
 
 © Mercor Affiliate Blog System
+
+
+
+
 
 
 
