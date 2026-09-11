@@ -1,83 +1,83 @@
-2026-09-11 17:19:59 - === QAValidator.ps1 started ===
-2026-09-11 17:19:59 - ✅ finance-apps.md has valid category [creative]
-2026-09-11 17:19:59 - ✅ finance-apps.md contains affiliate link [https://t.mercor.com/a2rcw]
-2026-09-11 17:19:59 - [QAValidator] finance-apps.md passed validation.
-2026-09-11 17:19:59 - ✅ post-creative-3.md has valid category [creative]
-2026-09-11 17:19:59 - ✅ post-creative-3.md contains affiliate link [https://t.mercor.com/a2rcw]
-2026-09-11 17:19:59 - [QAValidator] post-creative-3.md passed validation.
-2026-09-11 17:19:59 - ✅ post-creative-4.md has valid category [creative]
-2026-09-11 17:19:59 - ✅ post-creative-4.md contains affiliate link [https://t.mercor.com/a2rcw]
-2026-09-11 17:19:59 - [QAValidator] post-creative-4.md passed validation.
-2026-09-11 17:19:59 - ✅ post-engineering-3.md has valid category [creative]
-2026-09-11 17:19:59 - ✅ post-engineering-3.md contains affiliate link [https://t.mercor.com/a2rcw]
-2026-09-11 17:19:59 - [QAValidator] post-engineering-3.md passed validation.
-2026-09-11 17:19:59 - ✅ post-engineering-5.md has valid category [creative]
-2026-09-11 17:19:59 - ✅ post-engineering-5.md contains affiliate link [https://t.mercor.com/a2rcw]
-2026-09-11 17:19:59 - [QAValidator] post-engineering-5.md passed validation.
-2026-09-11 17:19:59 - ✅ post-finance-2.md has valid category [creative]
-2026-09-11 17:19:59 - ✅ post-finance-2.md contains affiliate link [https://t.mercor.com/a2rcw]
-2026-09-11 17:19:59 - [QAValidator] post-finance-2.md passed validation.
-2026-09-11 17:19:59 - ✅ post-finance-4.md has valid category [creative]
-2026-09-11 17:19:59 - ✅ post-finance-4.md contains affiliate link [https://t.mercor.com/a2rcw]
-2026-09-11 17:19:59 - [QAValidator] post-finance-4.md passed validation.
-2026-09-11 17:19:59 - ✅ post-language-4.md has valid category [creative]
-2026-09-11 17:19:59 - ✅ post-language-4.md contains affiliate link [https://t.mercor.com/a2rcw]
-2026-09-11 17:19:59 - [QAValidator] post-language-4.md passed validation.
-2026-09-11 17:19:59 - ✅ post-law-5.md has valid category [creative]
-2026-09-11 17:19:59 - ✅ post-law-5.md contains affiliate link [https://t.mercor.com/a2rcw]
-2026-09-11 17:19:59 - [QAValidator] post-law-5.md passed validation.
-2026-09-11 17:19:59 - ✅ post-medicine-1.md has valid category [creative]
-2026-09-11 17:19:59 - ✅ post-medicine-1.md contains affiliate link [https://t.mercor.com/a2rcw]
-2026-09-11 17:19:59 - [QAValidator] post-medicine-1.md passed validation.
-2026-09-11 17:19:59 - ✅ post-medicine-2.md has valid category [creative]
-2026-09-11 17:19:59 - ✅ post-medicine-2.md contains affiliate link [https://t.mercor.com/a2rcw]
-2026-09-11 17:19:59 - [QAValidator] post-medicine-2.md passed validation.
-2026-09-11 17:19:59 - ✅ post-medicine-4.md has valid category [creative]
-2026-09-11 17:19:59 - ✅ post-medicine-4.md contains affiliate link [https://t.mercor.com/a2rcw]
-2026-09-11 17:19:59 - [QAValidator] post-medicine-4.md passed validation.
-2026-09-11 17:19:59 - ✅ post-misc-1.md has valid category [creative]
-2026-09-11 17:19:59 - ✅ post-misc-1.md contains affiliate link [https://t.mercor.com/a2rcw]
-2026-09-11 17:19:59 - [QAValidator] post-misc-1.md passed validation.
-2026-09-11 17:19:59 - ✅ post-misc-4.md has valid category [creative]
-2026-09-11 17:19:59 - ✅ post-misc-4.md contains affiliate link [https://t.mercor.com/a2rcw]
-2026-09-11 17:19:59 - [QAValidator] post-misc-4.md passed validation.
-2026-09-11 17:19:59 - ✅ post-misc-5.md has valid category [creative]
-2026-09-11 17:19:59 - ✅ post-misc-5.md contains affiliate link [https://t.mercor.com/a2rcw]
-2026-09-11 17:19:59 - [QAValidator] post-misc-5.md passed validation.
-2026-09-11 17:19:59 - ✅ post-operations-1.md has valid category [creative]
-2026-09-11 17:19:59 - ✅ post-operations-1.md contains affiliate link [https://t.mercor.com/a2rcw]
-2026-09-11 17:19:59 - [QAValidator] post-operations-1.md passed validation.
-2026-09-11 17:19:59 - ✅ post-operations-3.md has valid category [creative]
-2026-09-11 17:19:59 - ✅ post-operations-3.md contains affiliate link [https://t.mercor.com/a2rcw]
-2026-09-11 17:19:59 - [QAValidator] post-operations-3.md passed validation.
-2026-09-11 17:19:59 - ✅ post-operations-5.md has valid category [creative]
-2026-09-11 17:19:59 - ✅ post-operations-5.md contains affiliate link [https://t.mercor.com/a2rcw]
-2026-09-11 17:19:59 - [QAValidator] post-operations-5.md passed validation.
-2026-09-11 17:19:59 - ✅ post-sciences-1.md has valid category [creative]
-2026-09-11 17:19:59 - ✅ post-sciences-1.md contains affiliate link [https://t.mercor.com/a2rcw]
-2026-09-11 17:19:59 - [QAValidator] post-sciences-1.md passed validation.
-2026-09-11 17:19:59 - ✅ post-sciences-2.md has valid category [creative]
-2026-09-11 17:19:59 - ✅ post-sciences-2.md contains affiliate link [https://t.mercor.com/a2rcw]
-2026-09-11 17:19:59 - [QAValidator] post-sciences-2.md passed validation.
-2026-09-11 17:19:59 - ✅ post-tech-1.md has valid category [creative]
-2026-09-11 17:19:59 - ✅ post-tech-1.md contains affiliate link [https://t.mercor.com/a2rcw]
-2026-09-11 17:19:59 - [QAValidator] post-tech-1.md passed validation.
-2026-09-11 17:19:59 - ✅ post-tech-2.md has valid category [creative]
-2026-09-11 17:19:59 - ✅ post-tech-2.md contains affiliate link [https://t.mercor.com/a2rcw]
-2026-09-11 17:19:59 - [QAValidator] post-tech-2.md passed validation.
-2026-09-11 17:19:59 - ✅ post-tech-3.md has valid category [creative]
-2026-09-11 17:19:59 - ✅ post-tech-3.md contains affiliate link [https://t.mercor.com/a2rcw]
-2026-09-11 17:19:59 - [QAValidator] post-tech-3.md passed validation.
-2026-09-11 17:19:59 - ✅ post-tech-5.md has valid category [creative]
-2026-09-11 17:19:59 - ✅ post-tech-5.md contains affiliate link [https://t.mercor.com/a2rcw]
-2026-09-11 17:19:59 - [QAValidator] post-tech-5.md passed validation.
-2026-09-11 17:19:59 - ✅ remote-creative-jobs.md has valid category [creative]
-2026-09-11 17:19:59 - ✅ remote-creative-jobs.md contains affiliate link [https://t.mercor.com/a2rcw]
-2026-09-11 17:19:59 - [QAValidator] remote-creative-jobs.md passed validation.
-2026-09-11 17:19:59 - >>> Running PSScriptAnalyzer...
-2026-09-11 17:20:00 - === QA Validation Complete ===
-2026-09-11 17:20:00 - Summary:
-2026-09-11 17:20:00 -    ✅ Valid posts: 25
-2026-09-11 17:20:00 -    ❌ Invalid category posts: 0
-2026-09-11 17:20:00 -    ❌ Missing category posts: 0
-2026-09-11 17:20:00 -    ❌ Missing affiliate link posts: 0
+2026-09-11 17:22:59 - === QAValidator.ps1 started ===
+2026-09-11 17:22:59 - ✅ finance-apps.md has valid category [creative]
+2026-09-11 17:22:59 - ✅ finance-apps.md contains affiliate link [https://t.mercor.com/a2rcw]
+2026-09-11 17:22:59 - [QAValidator] finance-apps.md passed validation.
+2026-09-11 17:22:59 - ✅ post-creative-3.md has valid category [creative]
+2026-09-11 17:22:59 - ✅ post-creative-3.md contains affiliate link [https://t.mercor.com/a2rcw]
+2026-09-11 17:22:59 - [QAValidator] post-creative-3.md passed validation.
+2026-09-11 17:22:59 - ✅ post-creative-4.md has valid category [creative]
+2026-09-11 17:22:59 - ✅ post-creative-4.md contains affiliate link [https://t.mercor.com/a2rcw]
+2026-09-11 17:22:59 - [QAValidator] post-creative-4.md passed validation.
+2026-09-11 17:22:59 - ✅ post-engineering-3.md has valid category [creative]
+2026-09-11 17:22:59 - ✅ post-engineering-3.md contains affiliate link [https://t.mercor.com/a2rcw]
+2026-09-11 17:22:59 - [QAValidator] post-engineering-3.md passed validation.
+2026-09-11 17:22:59 - ✅ post-engineering-5.md has valid category [creative]
+2026-09-11 17:22:59 - ✅ post-engineering-5.md contains affiliate link [https://t.mercor.com/a2rcw]
+2026-09-11 17:22:59 - [QAValidator] post-engineering-5.md passed validation.
+2026-09-11 17:22:59 - ✅ post-finance-2.md has valid category [creative]
+2026-09-11 17:22:59 - ✅ post-finance-2.md contains affiliate link [https://t.mercor.com/a2rcw]
+2026-09-11 17:22:59 - [QAValidator] post-finance-2.md passed validation.
+2026-09-11 17:23:00 - ✅ post-finance-4.md has valid category [creative]
+2026-09-11 17:23:00 - ✅ post-finance-4.md contains affiliate link [https://t.mercor.com/a2rcw]
+2026-09-11 17:23:00 - [QAValidator] post-finance-4.md passed validation.
+2026-09-11 17:23:00 - ✅ post-language-4.md has valid category [creative]
+2026-09-11 17:23:00 - ✅ post-language-4.md contains affiliate link [https://t.mercor.com/a2rcw]
+2026-09-11 17:23:00 - [QAValidator] post-language-4.md passed validation.
+2026-09-11 17:23:00 - ✅ post-law-5.md has valid category [creative]
+2026-09-11 17:23:00 - ✅ post-law-5.md contains affiliate link [https://t.mercor.com/a2rcw]
+2026-09-11 17:23:00 - [QAValidator] post-law-5.md passed validation.
+2026-09-11 17:23:00 - ✅ post-medicine-1.md has valid category [creative]
+2026-09-11 17:23:00 - ✅ post-medicine-1.md contains affiliate link [https://t.mercor.com/a2rcw]
+2026-09-11 17:23:00 - [QAValidator] post-medicine-1.md passed validation.
+2026-09-11 17:23:00 - ✅ post-medicine-2.md has valid category [creative]
+2026-09-11 17:23:00 - ✅ post-medicine-2.md contains affiliate link [https://t.mercor.com/a2rcw]
+2026-09-11 17:23:00 - [QAValidator] post-medicine-2.md passed validation.
+2026-09-11 17:23:00 - ✅ post-medicine-4.md has valid category [creative]
+2026-09-11 17:23:00 - ✅ post-medicine-4.md contains affiliate link [https://t.mercor.com/a2rcw]
+2026-09-11 17:23:00 - [QAValidator] post-medicine-4.md passed validation.
+2026-09-11 17:23:00 - ✅ post-misc-1.md has valid category [creative]
+2026-09-11 17:23:00 - ✅ post-misc-1.md contains affiliate link [https://t.mercor.com/a2rcw]
+2026-09-11 17:23:00 - [QAValidator] post-misc-1.md passed validation.
+2026-09-11 17:23:00 - ✅ post-misc-4.md has valid category [creative]
+2026-09-11 17:23:00 - ✅ post-misc-4.md contains affiliate link [https://t.mercor.com/a2rcw]
+2026-09-11 17:23:00 - [QAValidator] post-misc-4.md passed validation.
+2026-09-11 17:23:00 - ✅ post-misc-5.md has valid category [creative]
+2026-09-11 17:23:00 - ✅ post-misc-5.md contains affiliate link [https://t.mercor.com/a2rcw]
+2026-09-11 17:23:00 - [QAValidator] post-misc-5.md passed validation.
+2026-09-11 17:23:00 - ✅ post-operations-1.md has valid category [creative]
+2026-09-11 17:23:00 - ✅ post-operations-1.md contains affiliate link [https://t.mercor.com/a2rcw]
+2026-09-11 17:23:00 - [QAValidator] post-operations-1.md passed validation.
+2026-09-11 17:23:00 - ✅ post-operations-3.md has valid category [creative]
+2026-09-11 17:23:00 - ✅ post-operations-3.md contains affiliate link [https://t.mercor.com/a2rcw]
+2026-09-11 17:23:00 - [QAValidator] post-operations-3.md passed validation.
+2026-09-11 17:23:00 - ✅ post-operations-5.md has valid category [creative]
+2026-09-11 17:23:00 - ✅ post-operations-5.md contains affiliate link [https://t.mercor.com/a2rcw]
+2026-09-11 17:23:00 - [QAValidator] post-operations-5.md passed validation.
+2026-09-11 17:23:00 - ✅ post-sciences-1.md has valid category [creative]
+2026-09-11 17:23:00 - ✅ post-sciences-1.md contains affiliate link [https://t.mercor.com/a2rcw]
+2026-09-11 17:23:00 - [QAValidator] post-sciences-1.md passed validation.
+2026-09-11 17:23:00 - ✅ post-sciences-2.md has valid category [creative]
+2026-09-11 17:23:00 - ✅ post-sciences-2.md contains affiliate link [https://t.mercor.com/a2rcw]
+2026-09-11 17:23:00 - [QAValidator] post-sciences-2.md passed validation.
+2026-09-11 17:23:00 - ✅ post-tech-1.md has valid category [creative]
+2026-09-11 17:23:00 - ✅ post-tech-1.md contains affiliate link [https://t.mercor.com/a2rcw]
+2026-09-11 17:23:00 - [QAValidator] post-tech-1.md passed validation.
+2026-09-11 17:23:00 - ✅ post-tech-2.md has valid category [creative]
+2026-09-11 17:23:00 - ✅ post-tech-2.md contains affiliate link [https://t.mercor.com/a2rcw]
+2026-09-11 17:23:00 - [QAValidator] post-tech-2.md passed validation.
+2026-09-11 17:23:00 - ✅ post-tech-3.md has valid category [creative]
+2026-09-11 17:23:00 - ✅ post-tech-3.md contains affiliate link [https://t.mercor.com/a2rcw]
+2026-09-11 17:23:00 - [QAValidator] post-tech-3.md passed validation.
+2026-09-11 17:23:00 - ✅ post-tech-5.md has valid category [creative]
+2026-09-11 17:23:00 - ✅ post-tech-5.md contains affiliate link [https://t.mercor.com/a2rcw]
+2026-09-11 17:23:00 - [QAValidator] post-tech-5.md passed validation.
+2026-09-11 17:23:00 - ✅ remote-creative-jobs.md has valid category [creative]
+2026-09-11 17:23:00 - ✅ remote-creative-jobs.md contains affiliate link [https://t.mercor.com/a2rcw]
+2026-09-11 17:23:00 - [QAValidator] remote-creative-jobs.md passed validation.
+2026-09-11 17:23:00 - >>> Running PSScriptAnalyzer...
+2026-09-11 17:23:00 - === QA Validation Complete ===
+2026-09-11 17:23:00 - Summary:
+2026-09-11 17:23:00 -    ✅ Valid posts: 25
+2026-09-11 17:23:00 -    ❌ Invalid category posts: 0
+2026-09-11 17:23:00 -    ❌ Missing category posts: 0
+2026-09-11 17:23:00 -    ❌ Missing affiliate link posts: 0
