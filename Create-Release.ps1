@@ -1,23 +1,23 @@
 <#
 .SYNOPSIS
-    Hardened GitHub release creation script for Mercor Affiliate Blog System.
+    GitHub release creation script for Mercor Affiliate Blog System.
 .DESCRIPTION
-    - Checks for GH_TOKEN or GitHub CLI authentication
+    - Checks GH_TOKEN authentication
     - Validates tag existence before creating
     - Creates annotated tag if missing
     - Pushes tag safely
-    - Calls GitHub API to create release
-    - Provides clear error handling and logging
+    - Creates GitHub release via API
+    - Skips release creation if it already exists
 .NOTES
     Author: Mercor Affiliate Blog System (MABS)
 #>
 
 param(
-    [string]$RepoOwner = "vinaybhagatd",
-    [string]$RepoName  = "mercor-affiliate-blog",
-    [string]$TagName   = "mabs-v16.4",
-    [string]$ReleaseTitle = "Mercor Affiliate Blog Release",
-    [string]$ReleaseBody  = "Automated release created by ReleaseAudit.ps1"
+    [string]$RepoOwner     = "vinaybhagatd",
+    [string]$RepoName      = "mercor-affiliate-blog",
+    [string]$TagName       = "mabs-v16.4",
+    [string]$ReleaseTitle  = "Mercor Affiliate Blog Release",
+    [string]$ReleaseBody   = "Automated release created by ReleaseAudit.ps1"
 )
 
 function Log {
@@ -29,17 +29,15 @@ function Log {
 try {
     Log "=== Create-Release.ps1 started ==="
 
-    # --- Check authentication ---
+    # --- Auth check ---
     if (-not $env:GH_TOKEN) {
-        Log "⚠️ GH_TOKEN not found. Attempting GitHub CLI authentication..."
-        if (-not (Get-Command gh -ErrorAction SilentlyContinue)) {
-            throw "GitHub CLI not installed. Install from https://cli.github.com/"
-        }
-        gh auth status 2>$null
-        if ($LASTEXITCODE -ne 0) {
-            Log "⚠️ GitHub CLI not authenticated. Run 'gh auth login' before retrying."
-            throw "Authentication required."
-        }
+        throw "GH_TOKEN not found. Please set GH_TOKEN environment variable."
+    }
+
+    $headers = @{
+        Authorization = "Bearer $env:GH_TOKEN"
+        Accept        = "application/vnd.github+json"
+        "User-Agent"  = "MercorAffiliateBlogSystem"
     }
 
     # --- Check if tag exists ---
@@ -52,26 +50,28 @@ try {
         git push origin $TagName
     }
 
-    # --- Create release via GitHub API ---
-    $headers = @{
-        Authorization = "Bearer $env:GH_TOKEN"
-        Accept        = "application/vnd.github+json"
-        "User-Agent"  = "MercorAffiliateBlogSystem"
+    # --- Check if release already exists ---
+    $existingRelease = Invoke-RestMethod -Uri "https://api.github.com/repos/$RepoOwner/$RepoName/releases/tags/$TagName" `
+        -Headers $headers -ErrorAction SilentlyContinue
+
+    if ($existingRelease) {
+        Log "⚠️ Release for tag [$TagName] already exists: $($existingRelease.html_url)"
+    } else {
+        # --- Create release ---
+        $releasePayload = @{
+            tag_name   = $TagName
+            name       = $ReleaseTitle
+            body       = $ReleaseBody
+            draft      = $false
+            prerelease = $false
+        } | ConvertTo-Json -Depth 3
+
+        Log ">>> Creating GitHub release for $TagName..."
+        $release = Invoke-RestMethod -Uri "https://api.github.com/repos/$RepoOwner/$RepoName/releases" `
+            -Method Post -Headers $headers -Body $releasePayload -ErrorAction Stop
+
+        Log "✅ Release created successfully: $($release.html_url)"
     }
-
-    $releasePayload = @{
-        tag_name   = $TagName
-        name       = $ReleaseTitle
-        body       = $ReleaseBody
-        draft      = $false
-        prerelease = $false
-    } | ConvertTo-Json -Depth 3
-
-    Log ">>> Creating GitHub release for $TagName..."
-    $response = Invoke-RestMethod -Uri "https://api.github.com/repos/$RepoOwner/$RepoName/releases" `
-        -Method Post -Headers $headers -Body $releasePayload -ErrorAction Stop
-
-    Log "✅ Release created successfully: $($response.html_url)"
 }
 catch {
     Log "❌ Create-Release.ps1 encountered error: $($_.Exception.Message)"
