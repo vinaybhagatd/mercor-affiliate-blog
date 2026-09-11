@@ -1,77 +1,81 @@
+<#
+.SYNOPSIS
+    Hardened GitHub release creation script for Mercor Affiliate Blog System.
+.DESCRIPTION
+    - Checks for GH_TOKEN or GitHub CLI authentication
+    - Validates tag existence before creating
+    - Creates annotated tag if missing
+    - Pushes tag safely
+    - Calls GitHub API to create release
+    - Provides clear error handling and logging
+.NOTES
+    Author: Mercor Affiliate Blog System (MABS)
+#>
+
 param(
     [string]$RepoOwner = "vinaybhagatd",
     [string]$RepoName  = "mercor-affiliate-blog",
-    [string]$TagName   = "",
-    [string]$GitHubToken = $env:GITHUB_TOKEN
+    [string]$TagName   = "mabs-v16.4",
+    [string]$ReleaseTitle = "Mercor Affiliate Blog Release",
+    [string]$ReleaseBody  = "Automated release created by ReleaseAudit.ps1"
 )
 
-if (-not $TagName) {
-    $TagName = git describe --tags --abbrev=0
+function Log {
+    param([string]$Message)
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    Write-Host "$timestamp - $Message"
 }
 
-$CommitHash    = git rev-parse HEAD
-$CommitMessage = git log -1 --pretty=%B
-$CommitDate    = git log -1 --date=short --pretty=%cd
+try {
+    Log "=== Create-Release.ps1 started ==="
 
-# Use plain ASCII multi-line string
-$ReleaseNotes = @"
-Release Notes – MABS $TagName
+    # --- Check authentication ---
+    if (-not $env:GH_TOKEN) {
+        Log "⚠️ GH_TOKEN not found. Attempting GitHub CLI authentication..."
+        if (-not (Get-Command gh -ErrorAction SilentlyContinue)) {
+            throw "GitHub CLI not installed. Install from https://cli.github.com/"
+        }
+        gh auth status 2>$null
+        if ($LASTEXITCODE -ne 0) {
+            Log "⚠️ GitHub CLI not authenticated. Run 'gh auth login' before retrying."
+            throw "Authentication required."
+        }
+    }
 
-Summary
--------
-Stable milestone for Mercor Affiliate Blog System.
-Canonical 11 categories enforced, layouts regenerated, QAValidator integrated.
+    # --- Check if tag exists ---
+    $existingTag = git tag -l $TagName
+    if ($existingTag) {
+        Log "⚠️ Tag [$TagName] already exists. Skipping tag creation."
+    } else {
+        Log ">>> Creating new tag: $TagName"
+        git tag -a $TagName -m "Release $TagName"
+        git push origin $TagName
+    }
 
-Included Updates
-----------------
-- .eleventy.js (slug whitelist + date filter)
-- base.njk, post.njk, category.njk layouts
-- index.njk and categories/index.njk
-- Starter styles.css
-- QAValidator.ps1
+    # --- Create release via GitHub API ---
+    $headers = @{
+        Authorization = "Bearer $env:GH_TOKEN"
+        Accept        = "application/vnd.github+json"
+        "User-Agent"  = "MercorAffiliateBlogSystem"
+    }
 
-Guardrails Implemented
-----------------------
-- Only 11 canonical categories allowed
-- QAValidator blocks invalid tags
-- Luxon date filter for clean formatting
-- Deterministic folder paths and automation scripts
+    $releasePayload = @{
+        tag_name   = $TagName
+        name       = $ReleaseTitle
+        body       = $ReleaseBody
+        draft      = $false
+        prerelease = $false
+    } | ConvertTo-Json -Depth 3
 
-Validation Status
------------------
-- Eleventy build passes
-- QAValidator returns only approved categories
-- _site renders with styled layouts
+    Log ">>> Creating GitHub release for $TagName..."
+    $response = Invoke-RestMethod -Uri "https://api.github.com/repos/$RepoOwner/$RepoName/releases" `
+        -Method Post -Headers $headers -Body $releasePayload -ErrorAction Stop
 
-Rollback Instructions
----------------------
-git checkout $TagName
-git reset --hard $TagName
-
-Release Metadata
-----------------
-- Tag: $TagName
-- Date: $CommitDate
-- Commit: $CommitHash
-- Message: $CommitMessage
-- Maintainer: Vinay
-"@
-
-$Headers = @{
-    Authorization = "token $GitHubToken"
-    Accept        = "application/vnd.github+json"
+    Log "✅ Release created successfully: $($response.html_url)"
 }
-
-$Body = @{
-    tag_name   = $TagName
-    name       = "MABS $TagName"
-    body       = $ReleaseNotes
-    draft      = $false
-    prerelease = $false
-} | ConvertTo-Json -Depth 5
-
-Invoke-RestMethod -Uri "https://api.github.com/repos/$RepoOwner/$RepoName/releases" `
-    -Method Post -Headers $Headers -Body $Body
-
-Write-Host "Release $TagName created successfully."
-
+catch {
+    Log "❌ Create-Release.ps1 encountered error: $($_.Exception.Message)"
+}
+finally {
+    Log "=== Create-Release.ps1 complete ==="
+}

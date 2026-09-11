@@ -1,10 +1,10 @@
-2026-09-11 15:26:12 - === ReleaseAudit.ps1 started ===
-2026-09-11 15:26:12 - >>> Running BulkFix-Posts.ps1...
+2026-09-11 15:30:15 - === ReleaseAudit.ps1 started ===
+2026-09-11 15:30:15 - >>> Running BulkFix-Posts.ps1...
 PowerShell profile loaded successfully.
 === BulkFix-Posts.ps1 started ===
 === BulkFix-Posts.ps1 complete. All posts repaired. ===
 === BulkFix-Posts.ps1 complete. All posts repaired. ===
-2026-09-11 15:26:13 - >>> Running QAValidator.ps1 (PreReleaseAudit)...
+2026-09-11 15:30:16 - >>> Running QAValidator.ps1 (PreReleaseAudit)...
 PowerShell profile loaded successfully.
 === QAValidator.ps1 started ===
 ? finance-apps.md has valid category [creative]
@@ -90,4 +90,4 @@ Summary:
    ? Missing category posts: 0
    ? Missing affiliate link posts: 0
 QA validation passed. All blogs are clean.
-2026-09-11 15:26:14 - >>> Running RunAll.ps1...
+2026-09-11 15:30:17 - >>> Running RunAll.ps1...
