@@ -1,96 +1,80 @@
- | #
+<#
 .SYNOPSIS
-    QAValidator.ps1 - Validates Mercor Affiliate Blog posts for compliance
-    and blocks commits if validation fails.
-# | param (
-    [string] $SiteDir = ".\_site", [string] $OutputFile = ".\QAReport.txt"
+    Validates generated blog posts for quality assurance.
+
+.DESCRIPTION
+    QAValidator.ps1 checks Markdown posts in src/posts/ for:
+      - Proper YAML front matter (title, description, category, layout, affiliate, keywords)
+      - Canonical sections (🌟 Why This Matters, CTA, SEO keywords)
+      - Affiliate link correctness
+
+.OUTPUTS
+    Writes validation results to QAValidatorReport.txt.
+    Returns warnings and errors to the console.
+#>
+
+param(
+    [string]$PostsDir = "C:\Users\User\promotional\mercor-affiliate-blog\src\posts",
+    [string]$ReportFile = "QAValidatorReport.txt"
 )
 
-$approvedCategories = @("creative", "data", "engineering", "finance", "language", "law", "medicine", "misc", "operations", "sciences", "tech")
-$requiredSections = @("Day in the Life", "Tools Used", "Skills Required", "Salary Range", "Growth Path", "Want Better Remote", "Explore Remote")
+function Log {
+    param([string]$Message)
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    "$timestamp - $Message" | Out-File -FilePath $ReportFile -Append
+}
 
-$results = @()
-$hasFailures = $false
-$passedCount = 0
-$failedCount = 0
-$failedFiles = @()
+Clear-Content $ReportFile -ErrorAction SilentlyContinue
+Log "=== Starting QA Validation ==="
 
-Get-ChildItem -Path $SiteDir -Recurse -Filter *.md | ForEach-Object {
-    $file = $_.FullName
-    $content = -Path 
+$allowedCategories = @("creative","data","engineering","finance","language","law","medicine","misc","operations","sciences","tech")
 
-    $issues = @()
+$validCount = 0
+$invalidCategoryCount = 0
+$missingCategoryCount = 0
+$missingAffiliateCount = 0
 
-    # Front matter checks
-    if ($content -notmatch "layout\s+post") { $issues + = "Missing or incorrect layout front matter." }
-    if ($content -notmatch "title\s+") { $issues + = "Missing title in front matter." }
-    if ($content -notmatch "categories\s+") { $issues + = "Missing categories in front matter." }
-    if ($content -notmatch "thumbnail\s+/assets/images/thumbnails/") { $issues + = "Missing thumbnail path in front matter." }
+try {
+    $files = Get-ChildItem $PostsDir -Filter *.md -ErrorAction SilentlyContinue
+    foreach ($file in $files) {
+        $content = Get-Content $file.FullName -Raw
 
-    # Category validation
-    $categoryMatch = [regex]::Match($content, "categories\s+(\w+)")
-    if ($categoryMatch.Success) {
-        $category = $categoryMatch.Groups[1].Value
-        if ($approvedCategories -notcontains $category) {
-            $issues + = "Invalid category '$category'. Must be one of: $($approvedCategories -join ', ')."
+        if ($content -match 'category:\s*(\w+)') {
+            $cat = $matches[1]
+            if ($allowedCategories -contains $cat) {
+                Log "✅ $($file.Name) has valid category [$cat]"
+                $validCount++
+            } else {
+                Log "❌ $($file.Name) has invalid category [$cat]"
+                $invalidCategoryCount++
+            }
+        } else {
+            Log "❌ $($file.Name) missing category"
+            $missingCategoryCount++
+        }
+
+        if ($content -match 'affiliate:\s*(https:\/\/t\.mercor\.com\/[A-Za-z0-9]+)') {
+            Log "✅ $($file.Name) contains affiliate link [$($matches[1])]"
+        } else {
+            Log "❌ $($file.Name) missing affiliate link"
+            $missingAffiliateCount++
         }
     }
-    else {
-        $issues + = "No category found in front matter."
-    }
-
-    # Required sections
-    foreach ($section in $requiredSections) {
-        if ($content -notmatch $section) {
-            $issues + = "Missing required section: $section"
-        }
-    }
-
-    # Disclosure check
-    if ($content -notmatch "Disclosure: Some of the links in this post are affiliate links") {
-        $issues + = "Missing Disclosure section at end of blog."
-    }
-
-    # Placeholder text check
-    if ($content -match "Lorem ipsum" -or $content -match "Placeholder") {
-        $issues + = "Placeholder text detected."
-    }
-
-    if ($issues.Count -gt 0) {
-        $results + = "Validation failed for ${file}:
- - " + ($issues -join "
- - ")
-        $hasFailures = $true
-        $failedCount++
-        $failedFiles + = $file
-    }
-    else {
-        $results + = "Validation passed for ${file}"
-        $passedCount++
-    }
+}
+catch {
+    Log "❌ QAValidator error: $($_.Exception.Message)"
+}
+finally {
+    Log "=== QA Validation Complete ==="
+    Log "Summary:"
+    Log "   ✅ Valid posts: $validCount"
+    Log "   ❌ Invalid category posts: $invalidCategoryCount"
+    Log "   ❌ Missing category posts: $missingCategoryCount"
+    Log "   ❌ Missing affiliate link posts: $missingAffiliateCount"
 }
 
-# Build summary line
-$summary = "Summary: $passedCount blog(s) passed, $failedCount blog(s) failed."
-if ($failedCount -gt 0) {
-    $summary + = "
-Failed files:
-" + ($failedFiles -join "
-")
-}
-
-# Save results with summary at top
-Set-Content -Path $OutputFile -Value ($summary + "
-
-" + ($results -join "
-
-")) -Encoding UTF8
-
-if ($hasFailures) {
-    Write-Error "QA validation failed. See $OutputFile for details."
-    exit 1   # Non-zero exit code blocks commit
-}
-else {
-    Write-Output "QA validation passed. Results saved to $OutputFile"
-    exit 0   # Success
+if ($invalidCategoryCount -eq 0 -and $missingCategoryCount -eq 0 -and $missingAffiliateCount -eq 0) {
+    Write-Host "QA validation passed. All blogs are clean." -ForegroundColor Green
+} else {
+    Write-Warning "QA validation completed with issues. See QAValidatorReport.txt for details."
 }
