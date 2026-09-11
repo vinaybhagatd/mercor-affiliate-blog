@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2026-09-11 09:42:11 - === Starting QA Validation ===
 2026-09-11 09:42:11 - ✅ finance-apps.md has valid category [creative]
 2026-09-11 09:42:11 - ✅ finance-apps.md contains affiliate link [https://t.mercor.com/a2rcw]
@@ -55,3 +56,36 @@
 2026-09-11 09:42:11 -    ❌ Invalid category posts: 0
 2026-09-11 09:42:11 -    ❌ Missing category posts: 0
 2026-09-11 09:42:11 -    ❌ Missing affiliate link posts: 0
+=======
+2026-09-11 09:23:05 - === Starting QA Validation ===
+2026-09-11 09:23:05 - ✅ creative.md has valid category [Creative]
+2026-09-11 09:23:05 - ❌ creative.md missing affiliate link
+2026-09-11 09:23:05 - ✅ data.md has valid category [Data]
+2026-09-11 09:23:05 - ❌ data.md missing affiliate link
+2026-09-11 09:23:05 - ✅ engineering.md has valid category [Engineering]
+2026-09-11 09:23:05 - ❌ engineering.md missing affiliate link
+2026-09-11 09:23:05 - ❌ example-post.md missing category
+2026-09-11 09:23:05 - ❌ example-post.md missing affiliate link
+2026-09-11 09:23:05 - ✅ finance.md has valid category [Finance]
+2026-09-11 09:23:05 - ❌ finance.md missing affiliate link
+2026-09-11 09:23:05 - ✅ language.md has valid category [Language]
+2026-09-11 09:23:05 - ❌ language.md missing affiliate link
+2026-09-11 09:23:05 - ✅ law.md has valid category [Law]
+2026-09-11 09:23:05 - ❌ law.md missing affiliate link
+2026-09-11 09:23:05 - ✅ medicine.md has valid category [Medicine]
+2026-09-11 09:23:05 - ❌ medicine.md missing affiliate link
+2026-09-11 09:23:05 - ✅ misc.md has valid category [Misc]
+2026-09-11 09:23:05 - ❌ misc.md missing affiliate link
+2026-09-11 09:23:05 - ✅ operations.md has valid category [Operations]
+2026-09-11 09:23:05 - ❌ operations.md missing affiliate link
+2026-09-11 09:23:05 - ✅ sciences.md has valid category [Sciences]
+2026-09-11 09:23:05 - ❌ sciences.md missing affiliate link
+2026-09-11 09:23:05 - ✅ tech.md has valid category [Tech]
+2026-09-11 09:23:05 - ❌ tech.md missing affiliate link
+2026-09-11 09:23:05 - === QA Validation Complete ===
+2026-09-11 09:23:05 - Summary:
+2026-09-11 09:23:05 -    ✅ Valid posts: 11
+2026-09-11 09:23:05 -    ❌ Invalid category posts: 0
+2026-09-11 09:23:05 -    ❌ Missing category posts: 1
+2026-09-11 09:23:05 -    ❌ Missing affiliate link posts: 12
+>>>>>>> 3ec2119 (BulkFix + ReleaseAudit: repaired affiliate links, validated posts, updated scripts)
