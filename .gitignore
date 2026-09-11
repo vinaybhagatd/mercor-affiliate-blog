@@ -32,6 +32,10 @@ FormatterReport_*.txt
 QAReport.txt
 BulkFixReport.txt
 UnicodeMasterReport.log
+# QA artifacts
+QAValidatorReport.txt
+ReleaseAuditReport.txt
+
 
 # =========================
 # Diagnostic logs
