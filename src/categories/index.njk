@@ -1,0 +1,30 @@
+---
+layout: base.njk
+title: "Browse All Categories"
+permalink: "categories/index.html"
+---
+
+{% block content %}
+<main class="categories-index">
+
+  <!-- Header -->
+  <section class="categories-header">
+    <h1>All Categories</h1>
+    <p>Explore every category in the Mercor Affiliate Blog System.</p>
+  </section>
+
+  <!-- Category Grid -->
+  <section class="categories-list">
+    <ul class="category-grid">
+      {% for category in collections.categories %}
+        <li class="category-item">
+          <a href="/categories/{{ category }}/" class="category-link">
+            {{ category | capitalize }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+</main>
+{% endblock %}
