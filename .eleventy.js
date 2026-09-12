@@ -1,43 +1,64 @@
+const { DateTime } = require("luxon");
+
 module.exports = function(eleventyConfig) {
-  eleventyConfig.addFilter("date", function(dateObj, format) {
-    return new Date(dateObj).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric"
-    });
-  });
-
+  // ✅ Passthrough assets (CSS, images, etc.)
   eleventyConfig.addPassthroughCopy("src/assets");
-  eleventyConfig.addPassthroughCopy("src/css");
-  eleventyConfig.addPassthroughCopy("src/js");
-  eleventyConfig.addWatchTarget("src/css");
 
-  eleventyConfig.addCollection("posts", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("src/posts/*.md");
+  // ✅ Date filter (fixes "filter not found: date")
+  eleventyConfig.addNunjucksFilter("date", function(dateObj, format = "yyyy-LL-dd") {
+    if (!dateObj) return "";
+    try {
+      if (dateObj instanceof Date) {
+        return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat(format);
+      }
+      return DateTime.fromISO(dateObj, { zone: "utc" }).toFormat(format);
+    } catch {
+      return "";
+    }
   });
 
+  // ✅ Year filter (optional, if used in layouts)
+  eleventyConfig.addNunjucksFilter("year", function(dateObj) {
+    if (!dateObj) return "";
+    try {
+      if (dateObj instanceof Date) {
+        return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("yyyy");
+      }
+      return DateTime.fromISO(dateObj, { zone: "utc" }).toFormat("yyyy");
+    } catch {
+      return "";
+    }
+  });
+
+  // ✅ Dynamic categories collection (builds category list automatically)
   eleventyConfig.addCollection("categories", function(collectionApi) {
     let categories = new Set();
-    collectionApi.getFilteredByGlob("src/posts/*.md").forEach(post => {
-      if (post.data.category) {
-        categories.add(post.data.category);
+    collectionApi.getAll().forEach(item => {
+      if (item.data.tags) {
+        item.data.tags.forEach(tag => categories.add(tag));
       }
     });
     return [...categories];
   });
 
-  eleventyConfig.addLayoutAlias("post", "layouts/post.njk");
-  eleventyConfig.addLayoutAlias("category", "layouts/category.njk");
+  // ✅ Explicit category collections (ensures all 11 categories exist)
+  const categoryList = [
+    "creative","data","engineering","finance","language",
+    "law","medicine","misc","operations","sciences","tech"
+  ];
 
-  let markdownIt = require("markdown-it");
-  eleventyConfig.setLibrary("md", markdownIt({ html: true, breaks: true, linkify: true }));
+  categoryList.forEach(category => {
+    eleventyConfig.addCollection(category, function(collectionApi) {
+      return collectionApi.getFilteredByTag(category);
+    });
+  });
 
   return {
     dir: {
       input: "src",
+      output: "_site",
       includes: "_includes",
-      layouts: "_layouts",
-      output: "_site"
+      layouts: "_layouts"
     },
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",

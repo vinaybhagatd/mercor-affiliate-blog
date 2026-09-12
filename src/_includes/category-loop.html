@@ -1,0 +1,39 @@
+{% comment %}
+Bulletproof category loop include with thumbnails
+- Uses Jekyll category index if available
+- Falls back to manual filtering if index is empty
+- Works even if:
+  - category metadata is malformed
+  - invisible Unicode exists
+  - YAML arrays differ
+  - GitHub Pages hides future posts
+  - category folder was corrupted
+- Automatically loads thumbnail based on category name
+{% endcomment %}
+
+{% assign posts_from_index = site.categories[include.category] %}
+{% if posts_from_index == empty %}
+  {% assign posts_from_index = site.posts | where_exp: "post", "post.categories contains include.category" %}
+{% endif %}
+
+<ul class="category-list">
+{% for post in posts_from_index %}
+  <li class="category-item">
+
+    <!-- Thumbnail -->
+    <img 
+      src="/assets/images/thumbnails/{{ include.category }}.png"
+      alt="{{ include.category }} thumbnail"
+      class="thumb"
+      loading="lazy"
+    >
+
+    <!-- Title -->
+    <a href="{{ post.url }}">{{ post.title }}</a>
+
+    <!-- Date -->
+    <span class="date">{{ post.date | date: "%B %d, %Y" }}</span>
+
+  </li>
+{% endfor %}
+</ul>

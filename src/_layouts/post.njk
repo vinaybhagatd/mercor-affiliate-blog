@@ -1,23 +1,28 @@
-{% extends "base.njk" %}
+---
+layout: default
+---
 
-{% block content %}
 <article class="post">
-  <header>
+  <header class="post-header">
     <h1>{{ title }}</h1>
-    <p class="description">{{ description }}</p>
+    {% if date %}
+      <p class="post-date">{{ date | date("dd LLL yyyy") }}</p>
+    {% endif %}
   </header>
 
-  <section class="affiliate">
-    <a href="{{ affiliate }}" class="cta-link">Explore via Affiliate</a>
-  </section>
-
-  <section class="why-this-matters">
-    <h2>🌟 Why This Matters</h2>
+  <section class="post-content">
     {{ content | safe }}
   </section>
 
-  <footer>
-    <p class="keywords">Keywords: {{ keywords }}</p>
-  </footer>
+  {% if tags %}
+    <footer class="post-tags">
+      <p>Filed under:
+        {% for tag in tags %}
+          <a href="/categories/{{ tag }}/">{{ tag }}</a>{% if not loop.last %}, {% endif %}
+        {% endfor %}
+      </p>
+    </footer>
+  {% endif %}
 </article>
-{% endblock %}
+
+
