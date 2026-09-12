@@ -32,10 +32,8 @@ FormatterReport_*.txt
 QAReport.txt
 BulkFixReport.txt
 UnicodeMasterReport.log
-# QA artifacts
 QAValidatorReport.txt
 ReleaseAuditReport.txt
-
 
 # =========================
 # Diagnostic logs
@@ -88,7 +86,6 @@ Thumbs.db
 # Automation scripts
 # =========================
 # DO NOT ignore .ps1 scripts — keep them tracked
-# (removed *.ps1 ignore rule)
 
 # =========================
 # Catch-all for generated artifacts
