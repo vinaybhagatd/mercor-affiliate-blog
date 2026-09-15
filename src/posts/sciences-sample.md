@@ -18,3 +18,4 @@ This placeholder ensures category pages display content correctly.
 ## Call to Action  
 Check back soon for real posts in the sciences category.
 
+
