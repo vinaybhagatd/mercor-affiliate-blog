@@ -25,3 +25,4 @@ foreach ($f in $folders) {
 # Launch Eleventy
 Write-Output "✅ Smoke test passed. Launching Eleventy..."
 npx @11ty/eleventy --serve
+

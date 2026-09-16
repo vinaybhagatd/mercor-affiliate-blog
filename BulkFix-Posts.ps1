@@ -110,3 +110,4 @@ foreach ($file in $files) {
 
 Log "=== BulkFix-Posts.ps1 complete. All posts repaired. ==="
 Write-Host "=== BulkFix-Posts.ps1 complete. All posts repaired. ===" -ForegroundColor Green
+

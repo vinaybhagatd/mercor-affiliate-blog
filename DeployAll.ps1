@@ -24,3 +24,4 @@ git push origin main
 git push origin --tags
 
 Write-Host "=== DeployAll.ps1 complete. Full deploy executed. ===" -ForegroundColor Green
+

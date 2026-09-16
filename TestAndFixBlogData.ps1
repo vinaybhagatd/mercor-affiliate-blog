@@ -56,3 +56,4 @@ Get-ChildItem -Path $postsPath -Filter "*.md" | ForEach-Object {
 }
 
 Write-Host "=== TestAndFixBlogData.ps1 complete. Affiliate links normalized. ==="
+

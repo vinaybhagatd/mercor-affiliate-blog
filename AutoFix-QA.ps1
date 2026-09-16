@@ -78,3 +78,4 @@ if ($All) {
     Log "Please specify -All or provide a file path."
 }
 
+

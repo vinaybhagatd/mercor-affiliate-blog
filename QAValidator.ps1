@@ -114,3 +114,4 @@ if ($invalidCategoryCount -eq 0 -and
 } else {
     Write-Warning "QA validation completed with issues. See QAValidatorReport.txt for details."
 }
+

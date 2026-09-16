@@ -106,3 +106,4 @@ Write-Output "Total bad characters removed : $totalBadChars"
 
 
 
+

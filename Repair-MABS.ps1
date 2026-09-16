@@ -162,3 +162,4 @@ nav a { margin-right: 1rem; }
 
 Log "=== Completed Repair-MABS.ps1 ==="
 Write-Output "Repair complete. See $LogFile for details."
+

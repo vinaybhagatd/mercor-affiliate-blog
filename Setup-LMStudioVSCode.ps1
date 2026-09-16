@@ -49,3 +49,4 @@ $settings | ConvertTo-Json -Depth 5 | Set-Content $settingsPath -Encoding UTF8
 Write-Host "VS Code configured to use LM Studio local API." -ForegroundColor Green
 
 Write-Host "=== Setup-LMStudioVSCode.ps1 complete ===" -ForegroundColor Cyan
+

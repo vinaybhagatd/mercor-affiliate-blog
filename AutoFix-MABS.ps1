@@ -1,4 +1,3 @@
-<#
 <# .SYNOPSIS #>
     Auto-fix common MABS errors and enforce guardrails.
 .DESCRIPTION
@@ -88,5 +87,6 @@ Write-Host "🚀 Running Eleventy build..." -ForegroundColor Cyan
 npx eleventy --serve
 
 Write-Host "🎉 AutoFix complete. Check http://localhost:8080/" -ForegroundColor Green
+
 
 

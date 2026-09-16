@@ -80,3 +80,4 @@ Write-Output @{
     AnalyzerErrors = $errors
     LMStudioFound  = $lmStudioFound
 }
+

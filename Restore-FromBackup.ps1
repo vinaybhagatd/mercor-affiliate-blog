@@ -40,3 +40,4 @@ foreach ($file in $filesToRestore) {
 }
 
 Write-Output "=== Restoration complete ==="
+

@@ -26,8 +26,9 @@ module.exports = function(eleventyConfig) {
     return [...categories];
   });
 
-  eleventyConfig.addLayoutAlias("post", "layouts/post.njk");
-  eleventyConfig.addLayoutAlias("category", "layouts/category.njk");
+  eleventyConfig.addLayoutAlias("post", "post.njk");
+  eleventyConfig.addLayoutAlias("category", "category.njk");
+
 
   let markdownIt = require("markdown-it");
   eleventyConfig.setLibrary("md", markdownIt({ html: true, breaks: true, linkify: true }));

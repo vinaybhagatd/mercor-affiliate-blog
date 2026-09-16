@@ -8,3 +8,4 @@ if (Test-Path $generatorPath) {
 } else {
     Write-Host "No generator file found at $generatorPath."
 }
+

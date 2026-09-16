@@ -142,3 +142,4 @@ try {
 # 6. Summary Report
 Log "=== MABS Validation Complete ==="
 Write-Output "✅ Validation finished. See $ReportFile for full details."
+

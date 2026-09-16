@@ -47,3 +47,4 @@ if (Test-Path $postsDir) {
 } else {
     Write-Output "⚠️ Blog posts directory not found: $postsDir"
 }
+

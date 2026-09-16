@@ -200,3 +200,4 @@ Set-Content -Path "$assetsPath\styles.css" -Value $cssContent -Encoding UTF8
 
 Write-Host "=== Setup complete. Run 'npx eleventy --serve' to start the site. ==="
 
+

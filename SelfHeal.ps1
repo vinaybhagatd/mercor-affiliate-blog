@@ -76,3 +76,4 @@ foreach ($file in $files) {
 }
 
 Write-Host "=== SelfHeal.ps1 complete. Categories and affiliate links repaired. ===" -ForegroundColor Green
+

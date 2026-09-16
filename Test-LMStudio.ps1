@@ -42,3 +42,4 @@ if (-not $found) {
 }
 
 Write-Host "=== Test-LMStudio.ps1 complete ===" -ForegroundColor Cyan
+

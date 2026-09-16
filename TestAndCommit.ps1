@@ -50,3 +50,4 @@ if ($result.AnalyzerErrors -eq 0 -and $result.LMStudioFound -eq $true) {
 } else {
     Write-Host "❌ Validation failed. Commit aborted." -ForegroundColor Red
 }
+

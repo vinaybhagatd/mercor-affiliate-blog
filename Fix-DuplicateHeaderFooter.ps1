@@ -48,3 +48,4 @@ if (Test-Path $footerPath) {
     Set-Content -Path $footerPath -Value $footerCleaned -Encoding UTF8
     Write-Host "Fixed footer.njk to remove Invalid DateTime text."
 }
+

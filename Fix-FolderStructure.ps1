@@ -100,3 +100,4 @@ foreach ($file in $allFiles) {
 
 Log "=== Completed Fix-FolderStructure.ps1 ==="
 Write-Output "Folder structure fixed. See $LogFile for details."
+

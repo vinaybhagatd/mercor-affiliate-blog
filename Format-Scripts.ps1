@@ -1,5 +1,5 @@
 <#
-<# <# <# <# <# .SYNOPSIS #> #> #> #> #>
+<# <# <# <# .SYNOPSIS #> #> #> #> #>
     Format-Scripts.ps1 - Enforces Mercor Affiliate Blog System best practices
 .DESCRIPTION
     Runs PSScriptAnalyzer and Invoke-Formatter on all PowerShell scripts.
@@ -65,6 +65,7 @@ foreach ($file in $ps1Files) {
 
 Write-Host "âœ… Formatting complete. Scripts are sanitized and analyzer-compliant."
 exit 0
+
 
 
 
