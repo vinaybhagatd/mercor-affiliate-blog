@@ -1,49 +1,55 @@
 #!/usr/bin/env pwsh
 <#
-Pre‑commit hook: Run PSScriptAnalyzer with custom settings.
-Blocks commits only on Error severity.
-Logs warnings separately to PreCommitReport.txt for hygiene tracking.
+Pre‑commit hook: Validate blog front matter and lint PowerShell scripts.
+Blocks commits if:
+  - Front matter validation fails
+  - ScriptAnalyzer finds Error/ParseError issues
+Logs warnings separately for hygiene tracking.
 #>
 
-Write-Output "Running PSScriptAnalyzer on active PowerShell scripts..."
+Write-Host "=== PreCommitHook.ps1 started ===" -ForegroundColor Cyan
 
+# Paths
+$repoRoot    = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
+$validator   = Join-Path $repoRoot "VerifyFrontMatter.ps1"
 $settingsPath = ".\PSScriptAnalyzerSettings.psd1"
-$reportPath = ".\PreCommitReport.txt"
-
-# Exclude the hook itself from analysis
+$reportPath   = ".\PreCommitReport.txt"
 $excludeFiles = @(".githooks\pre-commit.ps1")
 
-# Run analyzer for Errors only (blocking)
-$errors = Invoke-ScriptAnalyzer -Path . -Recurse -Settings .\PSScriptAnalyzerSettings.psd1 -Severity Error |
-Where-Object { $_.ScriptName -ne 'pre-commit.ps1' }
+# --- Front Matter Validation ---
+& $validator
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "❌ Front matter validation failed. Commit blocked." -ForegroundColor Red
+    exit 1
+}
 
-# Run analyzer for Warnings (non‑blocking, logged)
+# --- ScriptAnalyzer Enforcement ---
+Write-Host "Running PSScriptAnalyzer on active PowerShell scripts..." -ForegroundColor Cyan
+
+# Errors (blocking)
+$errors = Invoke-ScriptAnalyzer -Path . -Recurse -Settings $settingsPath -Severity ParseError,Error |
+    Where-Object { $excludeFiles -notcontains $_.ScriptName }
+
+# Warnings (non-blocking, logged)
 $warnings = Invoke-ScriptAnalyzer -Path . -Recurse -Settings $settingsPath -Severity Warning |
-Where-Object { $excludeFiles -notcontains $_.ScriptName }
+    Where-Object { $excludeFiles -notcontains $_.ScriptName }
 
-# Log warnings to report file
+# Log warnings
 if ($warnings -and $warnings.Count -gt 0) {
     $warnings | Format-Table RuleName, Severity, ScriptName, Line, Message -AutoSize |
-    Out-String | Set-Content $reportPath -Encoding UTF8
-    Write-Output "Warnings logged to $reportPath"
-}
-else {
+        Out-String | Set-Content $reportPath -Encoding UTF8
+    Write-Host "⚠ Warnings logged to $reportPath" -ForegroundColor Yellow
+} else {
     "No warnings found." | Set-Content $reportPath -Encoding UTF8
-    Write-Output "No warnings found."
+    Write-Host "No warnings found." -ForegroundColor Green
 }
 
 # Block commit if errors exist
 if ($errors -and $errors.Count -gt 0) {
     $errors | Format-Table RuleName, Severity, ScriptName, Line, Message -AutoSize
-    Write-Output "❌ Commit blocked: ScriptAnalyzer found errors."
+    Write-Host "❌ Commit blocked: ScriptAnalyzer found errors." -ForegroundColor Red
     exit 1
 }
 
-Write-Output "✅ No blocking errors found. Commit allowed."
+Write-Host "✅ All validations passed. Commit allowed." -ForegroundColor Green
 exit 0
-
-
-
-
-
-

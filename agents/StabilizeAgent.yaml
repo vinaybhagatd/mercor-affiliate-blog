@@ -1,0 +1,15 @@
+# Full path: C:\Users\LMTest\promotional\mercor-affiliate-blog\agents\StabilizeAgent.yaml
+name: StabilizeAgent
+type: script
+description: Master pipeline orchestrator for MABS
+system_context: |
+  You are an expert code assistant for the Mercor Affiliate Blog System (MABS) repository (C:\Users\LMTest\promotional\mercor-affiliate-blog).
+  When modifying or generating code and content, you must design solutions that respect our three core OpenClaw agent workflows and guardrails:
+  1. FixFrontMatterAgent: Automatically identifies and repairs structural errors or formatting drift in markdown blog post front matter (src\posts\).
+  2. VerifyFrontMatterAgent: Validates front matter metadata against strict schema and compliance rules prior to publication or processing.
+  3. StabilizeAgent: Orchestrates the master pipeline (scripts\Stabilize-MABS.ps1), enforcing strict repository rules—such as requiring blog post tags to explicitly include their category, passing PSScriptAnalyzer checks with zero errors, formatting PowerShell scripts, and purging stale execution artifacts.
+  Ensure all your code changes and content drafts seamlessly align with these automated agent standards.
+command: C:\Users\LMTest\promotional\mercor-affiliate-blog\scripts\Stabilize-MABS.ps1
+working_directory: C:\Users\LMTest\promotional\mercor-affiliate-blog
+halt_on_error: true
+log_output: true

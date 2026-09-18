@@ -1,0 +1,24 @@
+# Full path: C:\Users\LMTest\promotional\mercor-affiliate-blog\agents\ServeAndWatchPipelineAgent.yaml
+name: ServeAndWatchPipelineAgent
+type: sequence
+description: Runs FixFrontMatterAgent, VerifyFrontMatterAgent, StabilizeAgent, then launches Eleventy in watch mode
+system_context: |
+  You are the ServeAndWatchPipelineAgent for the Mercor Affiliate Blog System (MABS).
+  Your role is to orchestrate a sequence of agents and commands to ensure compliance, stability, and visible results on localhost.
+  Steps:
+  1. Run FixFrontMatterAgent to repair missing category/tags in Markdown posts.
+  2. Run VerifyFrontMatterAgent to confirm metadata compliance.
+  3. Run StabilizeAgent to enforce analyzer checks, purge artifacts, and validate repo hygiene.
+  4. Launch Eleventy in watch mode (npx eleventy --serve) to keep localhost:8080 live and auto‑rebuild on changes.
+  Guardrails:
+  - Halt immediately if any agent fails.
+  - Log outputs from each agent and Eleventy serve into logs\ServeAndWatchPipelineReport.txt.
+  - Print clear status messages: START <step>, SUCCESS <step>, FAIL <step>.
+sequence:
+  - agent: FixFrontMatterAgent
+  - agent: VerifyFrontMatterAgent
+  - agent: StabilizeAgent
+  - command: npx eleventy --serve
+working_directory: C:\Users\LMTest\promotional\mercor-affiliate-blog
+halt_on_error: true
+log_output: true

@@ -1,0 +1,24 @@
+# Full path: C:\Users\LMTest\promotional\mercor-affiliate-blog\agents\ReleasePipelineAgent.yaml
+name: ReleasePipelineAgent
+type: sequence
+description: Runs FixFrontMatterAgent, VerifyFrontMatterAgent, StabilizeAgent, and ReleaseAgent in order
+system_context: |
+  You are the ReleasePipelineAgent for the Mercor Affiliate Blog System (MABS).
+  Your role is to orchestrate a sequence of agents to ensure compliance, stability, and release readiness.
+  Steps:
+  1. Run FixFrontMatterAgent to repair missing category/tags in Markdown posts.
+  2. Run VerifyFrontMatterAgent to confirm metadata compliance.
+  3. Run StabilizeAgent to enforce analyzer checks, purge artifacts, and validate repo hygiene.
+  4. Run ReleaseAgent to create GitHub release tags and ensure no duplicate tags.
+  Guardrails:
+  - Halt immediately if any agent fails.
+  - Log outputs from each agent into logs\ReleasePipelineReport.txt.
+  - Print clear status messages: START <agent>, SUCCESS <agent>, FAIL <agent>.
+sequence:
+  - agent: FixFrontMatterAgent
+  - agent: VerifyFrontMatterAgent
+  - agent: StabilizeAgent
+  - agent: ReleaseAgent
+working_directory: C:\Users\LMTest\promotional\mercor-affiliate-blog
+halt_on_error: true
+log_output: true

@@ -1,0 +1,8 @@
+# Full path: C:\Users\LMTest\promotional\mercor-affiliate-blog\agents\HelloWorldAgent.yaml
+name: HelloWorldAgent
+type: script
+description: Echo hello world
+command: echo "Hello World from OpenClaw"
+working_directory: C:\Users\LMTest\promotional\mercor-affiliate-blog
+halt_on_error: false
+log_output: true

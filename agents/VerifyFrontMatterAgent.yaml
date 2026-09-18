@@ -1,0 +1,7 @@
+name: VerifyFrontMatterAgent
+type: script
+description: Validate that each post has category and tags, and tags include category
+command: pwsh ./VerifyFrontMatter.ps1
+working_directory: C:\Users\LMTest\promotional\mercor-affiliate-blog
+halt_on_error: true
+log_output: true

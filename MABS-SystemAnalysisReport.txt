@@ -1,0 +1,139 @@
+==================================================
+        MABS SYSTEM ANALYSIS & HEALTH REPORT      
+==================================================
+Generated: 09/17/2026 22:01:29
+Repository Root: C:\Users\LMTest\promotional\mercor-affiliate-blog
+
+--- 1. FILE INVENTORY & STRUCTURE ---
+  - File Type '[No Extension]': 46 files
+  - File Type '.avif': 1 files
+  - File Type '.bak': 8 files
+  - File Type '.base64': 1 files
+  - File Type '.bat': 1 files
+  - File Type '.bin': 1 files
+  - File Type '.browser': 1 files
+  - File Type '.cjs': 7 files
+  - File Type '.common': 1 files
+  - File Type '.css': 148 files
+  - File Type '.csv': 1 files
+  - File Type '.cts': 1 files
+  - File Type '.diff': 2 files
+  - File Type '.Dockerfile': 3 files
+  - File Type '.dockerignore': 1 files
+  - File Type '.editorconfig': 1 files
+  - File Type '.entitlements': 3 files
+  - File Type '.example': 4 files
+  - File Type '.expected': 2 files
+  - File Type '.gitattributes': 2 files
+  - File Type '.gitignore': 11 files
+  - File Type '.gitkeep': 1 files
+  - File Type '.go': 30 files
+  - File Type '.gz': 1 files
+  - File Type '.h': 2 files
+  - File Type '.html': 63 files
+  - File Type '.icns': 13 files
+  - File Type '.ico': 2 files
+  - File Type '.in': 1 files
+  - File Type '.jar': 1 files
+  - File Type '.jpeg': 3 files
+  - File Type '.jpg': 11 files
+  - File Type '.js': 51 files
+  - File Type '.json': 786 files
+  - File Type '.jsonc': 5 files
+  - File Type '.jsonl': 61 files
+  - File Type '.key': 2 files
+  - File Type '.kt': 534 files
+  - File Type '.kts': 6 files
+  - File Type '.LICENSE': 1 files
+  - File Type '.lobster': 2 files
+  - File Type '.lock': 5 files
+  - File Type '.log': 5 files
+  - File Type '.m': 1 files
+  - File Type '.md': 1982 files
+  - File Type '.mdx': 3 files
+  - File Type '.mjs': 476 files
+  - File Type '.mod': 1 files
+  - File Type '.modulemap': 1 files
+  - File Type '.mp4': 1 files
+  - File Type '.mts': 458 files
+  - File Type '.njk': 28 files
+  - File Type '.nojekyll': 1 files
+  - File Type '.npmignore': 3 files
+  - File Type '.npmrc': 1 files
+  - File Type '.patch': 4 files
+  - File Type '.plist': 7 files
+  - File Type '.png': 327 files
+  - File Type '.pro': 2 files
+  - File Type '.properties': 5 files
+  - File Type '.ps1': 173 files
+  - File Type '.psd1': 1 files
+  - File Type '.psm1': 1 files
+  - File Type '.pub': 2 files
+  - File Type '.py': 50 files
+  - File Type '.ql': 2 files
+  - File Type '.qlref': 2 files
+  - File Type '.qml': 3 files
+  - File Type '.qr-import': 1 files
+  - File Type '.rb': 1 files
+  - File Type '.resolved': 2 files
+  - File Type '.rs': 50 files
+  - File Type '.ruby-version': 2 files
+  - File Type '.sb': 1 files
+  - File Type '.semgrepignore': 1 files
+  - File Type '.service': 1 files
+  - File Type '.sh': 257 files
+  - File Type '.sha256': 2 files
+  - File Type '.snap': 1 files
+  - File Type '.sql': 3 files
+  - File Type '.sqlite': 4 files
+  - File Type '.strings': 84 files
+  - File Type '.sum': 1 files
+  - File Type '.svg': 348 files
+  - File Type '.swift': 1321 files
+  - File Type '.tar': 4 files
+  - File Type '.tgz': 3 files
+  - File Type '.timer': 1 files
+  - File Type '.toml': 28 files
+  - File Type '.ts': 35646 files
+  - File Type '.tsv': 2 files
+  - File Type '.ttf': 10 files
+  - File Type '.txt': 230 files
+  - File Type '.webmanifest': 1 files
+  - File Type '.webp': 20 files
+  - File Type '.woff2': 52 files
+  - File Type '.xcconfig': 2 files
+  - File Type '.xcstrings': 2 files
+  - File Type '.xml': 125 files
+  - File Type '.yaml': 611 files
+  - File Type '.yml': 177 files
+  - File Type '.zip': 3 files
+  - Total Tracked Files: 44364
+
+--- 2. CORE SYSTEM FILES AUDIT ---
+  [OK] Found: StabilizeAgent.yaml (at agents\StabilizeAgent.yaml)
+  [OK] Found: Stabilize-MABS.ps1 (at Stabilize-MABS.ps1)
+  [OK] Found: FixFrontMatter.ps1 (at FixFrontMatter.ps1)
+  [OK] Found: VerifyFrontMatter.ps1 (at VerifyFrontMatter.ps1)
+  [OK] Found: PSScriptAnalyzerSettings.psd1 (at PSScriptAnalyzerSettings.psd1)
+
+--- 3. BLOG POSTS ANALYSIS (src\posts) ---
+  - Total Blog Posts Found: 11
+  - Total Estimated Word Count: 1586 words
+  - Posts Missing Front Matter Blocks: 0
+
+  Categories Distribution:
+    * language : 1 post(s)
+    * creative : 1 post(s)
+    * tech : 1 post(s)
+    * finance : 1 post(s)
+    * engineering : 1 post(s)
+    * misc : 1 post(s)
+    * data : 1 post(s)
+    * medicine : 1 post(s)
+    * operations : 1 post(s)
+    * law : 1 post(s)
+    * sciences : 1 post(s)
+
+==================================================
+ ANALYSIS COMPLETE: System is operational.
+==================================================

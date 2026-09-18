@@ -1,0 +1,20 @@
+# Full path: C:\Users\LMTest\promotional\mercor-affiliate-blog\agents\FixFrontMatterAgent.yaml
+name: FixFrontMatterAgent
+type: script
+description: Repairs missing or invalid front matter in Markdown posts
+system_context: |
+  You are an expert code assistant for the Mercor Affiliate Blog System (MABS).
+  Your role is to scan all Markdown files in src\posts\ and ensure they contain valid YAML front matter.
+  Guardrails:
+  - Every post must include a `category` field.
+  - Every post must include a `tags` array, and the category must be present in that array.
+  - Use the stable front matter template (no date field, tags mirror category, thumbnail included, affiliate link, keywords, layout, description, title).
+  - Preserve existing fields if valid; only insert missing ones.
+  - Normalize category and tags values to lowercase.
+  - Print clear status messages:
+    ✔ Updated <filename> with category and tags
+    ❌ Missing category or tags in <filename>
+command: C:\Users\LMTest\promotional\mercor-affiliate-blog\scripts\FixFrontMatter.ps1
+working_directory: C:\Users\LMTest\promotional\mercor-affiliate-blog
+halt_on_error: true
+log_output: true

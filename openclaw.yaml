@@ -1,0 +1,10 @@
+workspace: C:\Users\LMTest\promotional\mercor-affiliate-blog
+agents_dir: agents
+scripts_dir: scripts
+
+workflows:
+  blog_pipeline:
+    steps:
+      - FixFrontMatterAgent
+      - VerifyFrontMatterAgent
+      - StabilizeAgent
