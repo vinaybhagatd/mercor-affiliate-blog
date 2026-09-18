@@ -1,63 +1,69 @@
+#!/usr/bin/env pwsh
 <#
 .SYNOPSIS
-Verifies the front matter of Markdown posts for categories and tags.
+  VerifyFrontMatter.ps1 — Validates YAML front matter in Markdown posts.
 
 .DESCRIPTION
-This script checks each Markdown file in the 'src/posts' directory for valid category and tag fields.
-It ensures that categories are correctly formatted and that tags include a mandatory category field, followed by optional tags.
-
-.EXAMPLE
-VerifyFrontMatter.ps1
-
-.NOTES
-- This script uses regex to validate front matter fields. It is designed to be efficient and easy to understand.
-- The script does not use external modules, ensuring it can run on any Windows system.
-- The script prints detailed rules indicating whether each file's front matter is valid or not.
-
+  Scans src\posts\ for .md files and ensures each has valid YAML front matter.
+  - Confirms presence of opening/closing delimiters.
+  - Checks required fields: title, description, category, tags, thumbnail, affiliate, keywords, layout.
+  - Ensures tags include the category.
+  - Normalizes category/tags to lowercase for comparison.
+  - Logs all outcomes into logs\VerifyFrontMatterReport.txt
 #>
-param()
 
-# Define the path to the source directory containing Markdown files
-$sourceFolderPath = "C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts"
+$repoRoot   = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
+$postsPath  = Join-Path $repoRoot "src\posts"
+$logsPath   = Join-Path $repoRoot "logs"
+$reportFile = Join-Path $logsPath "VerifyFrontMatterReport.txt"
 
-# Get a list of all .md files in the source folder
-$files = Get-ChildItem -Path $sourceFolderPath -Filter *.md
+if (-not (Test-Path $logsPath)) { New-Item -ItemType Directory -Path $logsPath | Out-Null }
 
-foreach ($file in $files) {
-    Write-Output "▶ Verifying front matter: $($file.Name)"
+Write-Host "=== VerifyFrontMatter.ps1 started ===" -ForegroundColor Cyan
+"=== Run started: $(Get-Date) ===" | Out-File -FilePath $reportFile -Encoding UTF8
 
-    # Read and parse the content of the Markdown file using regex
-    $content = [regex]::Matches((Get-Content $file.FullName -Raw), '<%.*?>(.*?)</%.*?>')
-    if ($content.Count -eq 0) {
-        Write-Output "❌ Missing front matter in $($file.Name)"
-        continue
-    }
+Get-ChildItem -Path $postsPath -Recurse -Filter *.md | ForEach-Object {
+    $file = $_.FullName
+    $content = Get-Content $file -Raw
+    $logEntry = "▶ Verifying front matter: $($_.Name)`n"
 
-    # Extract and normalize the category and tags from the front matter
-    $categoryMatch = $content[1].Groups["Category"]
-    $tagsMatch = $content[1].Groups["Tags"]
+    if ($content -match "(?s)^---(.*?)---") {
+        $yamlBlock = $matches[1]
 
-    if (-not $categoryMatch.Success) {
-        Write-Output "⚠ <filename> tags do not include category [<category>]"
-        continue
-    }
+        $required = @("title","description","category","tags","thumbnail","affiliate","keywords","layout")
+        foreach ($field in $required) {
+            if ($yamlBlock -notmatch "(?m)^${field}:") {
+                $logEntry += "❌ Missing $field in $($_.Name)`n"
+            }
+        }
 
-    $category = $categoryMatch.Groups[1].Value.ToLower()
-    $tags = $tagsMatch.Groups[1].Value.ToLower().Split(',')
+        # Ensure category is present in tags
+        $categoryMatch = [regex]::Match($yamlBlock, "(?m)^category:\s*(\w+)")
+        $tagsMatch     = [regex]::Match($yamlBlock, "(?m)^tags:\s*
 
-    # Check if the category field is present and contains a mandatory tag
-    if (-not $category) {
-        Write-Output "❌ Missing category or tags in <filename>"
-        continue
-    }
+\[(.*?)\]
 
-    # Output the status of each file's front matter
-    if ($tags -contains $category) {
-        Write-Output "✅ <filename> front matter valid"
+")
+        if ($categoryMatch.Success -and $tagsMatch.Success) {
+            $categoryNorm = $categoryMatch.Groups[1].Value.Trim().ToLower()
+            $tagsNorm = $tagsMatch.Groups[1].Value.Split(',') | ForEach-Object { $_.Trim().ToLower() }
+            if (-not ($tagsNorm -contains $categoryNorm)) {
+                $logEntry += "❌ Tags missing category in $($_.Name)`n"
+            }
+        }
+
+        if ($logEntry -notmatch "❌") {
+            Write-Host "✔ Valid: $($_.Name)" -ForegroundColor Green
+            "Valid: $($_.Name)" | Out-File -FilePath $reportFile -Encoding UTF8 -Append
+        } else {
+            Write-Host $logEntry -ForegroundColor Red
+            $logEntry | Out-File -FilePath $reportFile -Encoding UTF8 -Append
+        }
     } else {
-        Write-Output "⚠ <filename> tags do not include category [<category>]"
+        Write-Host "❌ Missing front matter in $($_.Name)" -ForegroundColor Red
+        "❌ Missing front matter in $($_.Name)" | Out-File -FilePath $reportFile -Encoding UTF8 -Append
     }
 }
 
-# Completion message
-Write-Output "=== VerifyFrontMatter.ps1 complete. ==="
+"=== Run complete: $(Get-Date) ===`n" | Out-File -FilePath $reportFile -Encoding UTF8 -Append
+Write-Host "=== VerifyFrontMatter.ps1 complete ===" -ForegroundColor Cyan

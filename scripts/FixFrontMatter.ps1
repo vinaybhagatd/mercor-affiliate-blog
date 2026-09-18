@@ -33,22 +33,22 @@ Get-ChildItem -Path $postsPath -Recurse -Filter *.md | ForEach-Object {
         $fixed = $false
 
         # Ensure category
-        if ($yamlBlock -notmatch "category:") {
+        if ($yamlBlock -notmatch "(?m)^category:") {
             $yamlBlock += "`ncategory: general"
             $fixed = $true
             $logEntry += "Added category to $($_.Name)`n"
         }
 
         # Ensure tags
-        if ($yamlBlock -notmatch "tags:") {
+        if ($yamlBlock -notmatch "(?m)^tags:") {
             $yamlBlock += "`ntags: [general]"
             $fixed = $true
             $logEntry += "Added tags to $($_.Name)`n"
         } else {
-            $categoryMatch = [regex]::Match($yamlBlock, "category:\s*(\w+)")
+            $categoryMatch = [regex]::Match($yamlBlock, "(?m)^category:\s*(\w+)")
             if ($categoryMatch.Success) {
                 $categoryNorm = $categoryMatch.Groups[1].Value.Trim().ToLower()
-                $tagsMatch = [regex]::Match($yamlBlock, "tags:\s*
+                $tagsMatch = [regex]::Match($yamlBlock, "(?m)^tags:\s*
 
 \[(.*?)\]
 
@@ -56,7 +56,7 @@ Get-ChildItem -Path $postsPath -Recurse -Filter *.md | ForEach-Object {
                 if ($tagsMatch.Success) {
                     $tagsNorm = $tagsMatch.Groups[1].Value.Split(',') | ForEach-Object { $_.Trim().ToLower() }
                     if (-not ($tagsNorm -contains $categoryNorm)) {
-                        $yamlBlock = $yamlBlock -replace "tags:\s*
+                        $yamlBlock = $yamlBlock -replace "(?m)^tags:\s*
 
 \[(.*?)\]
 
@@ -86,7 +86,7 @@ description: "Auto-generated description"
 category: general
 tags: [general]
 thumbnail: /assets/images/thumbnails/default.png
-affiliate_link: "https://example.com/product"
+affiliate: "https://example.com/product"
 keywords: ["keyword1","keyword2"]
 layout: post.njk
 ---
