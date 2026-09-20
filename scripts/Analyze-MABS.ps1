@@ -1,5 +1,11 @@
 #!/usr/bin/env pwsh
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   Analyze-MABS.ps1 — System review and analysis pipeline for Mercor Affiliate Blog System.
 
@@ -11,9 +17,9 @@
 Write-Host "=== MABS System Analysis Started ===" -ForegroundColor Cyan
 
 # Paths
-$repoRoot     = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
-$blogPath     = Join-Path $repoRoot "src\posts"
-$reportPath   = Join-Path $repoRoot "MABS-SystemAnalysisReport.txt"
+$repoRoot = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
+$blogPath = Join-Path $repoRoot "src\posts"
+$reportPath = Join-Path $repoRoot "MABS-SystemAnalysisReport.txt"
 
 $reportContent = [System.Collections.Generic.List[string]]::new()
 $reportContent.Add("==================================================")
@@ -32,9 +38,9 @@ $fileCounts = $allFiles | Group-Object Extension | Select-Object Name, Count
 
 foreach ($group in $fileCounts) {
     $ext = if ([string]::IsNullOrEmpty($group.Name)) { "[No Extension]" } else { $group.Name }
-    $reportContent.Add("  - File Type '$ext': $($group.Count) files")
+    $reportContent.Add(" - File Type '$ext': $($group.Count) files")
 }
-$reportContent.Add("  - Total Tracked Files: $($allFiles.Count)")
+$reportContent.Add(" - Total Tracked Files: $($allFiles.Count)")
 $reportContent.Add("")
 
 # --- 2. Core System Files Audit ---
@@ -66,7 +72,7 @@ $reportContent.Add("--- 3. BLOG POSTS ANALYSIS (`src\posts`) ---")
 
 if (Test-Path $blogPath) {
     $posts = Get-ChildItem -Path $blogPath -Recurse -Filter *.md
-    $reportContent.Add("  - Total Blog Posts Found: $($posts.Count)")
+    $reportContent.Add(" - Total Blog Posts Found: $($posts.Count)")
 
     $categories = @{}
     $totalWords = 0
@@ -88,8 +94,8 @@ if (Test-Path $blogPath) {
         }
     }
 
-    $reportContent.Add("  - Total Estimated Word Count: $totalWords words")
-    $reportContent.Add("  - Posts Missing Front Matter Blocks: $issuesCount")
+    $reportContent.Add(" - Total Estimated Word Count: $totalWords words")
+    $reportContent.Add(" - Posts Missing Front Matter Blocks: $issuesCount")
     $reportContent.Add("")
     $reportContent.Add("  Categories Distribution:")
     foreach ($cat in $categories.Keys) {
@@ -109,3 +115,15 @@ $reportContent.Add("==================================================")
 # Write report to disk
 $reportContent | Set-Content $reportPath -Encoding UTF8
 Write-Host "✅ Analysis report successfully updated at: $reportPath" -ForegroundColor Green
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

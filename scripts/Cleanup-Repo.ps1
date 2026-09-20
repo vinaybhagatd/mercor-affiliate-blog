@@ -1,4 +1,10 @@
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   Safely cleans up non-essential artifacts from Mercor Affiliate Blog repo.
 .DESCRIPTION
@@ -15,8 +21,8 @@ param(
   [switch]$DryRun
 )
 
-$repoRoot   = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
-$logFile    = "$repoRoot\CleanupReport.txt"
+$repoRoot = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
+$logFile = "$repoRoot\CleanupReport.txt"
 $archiveDir = "$repoRoot\cleanup-archive"
 
 # ✅ Critical folders to skip
@@ -51,7 +57,7 @@ if (-not $DryRun) {
 $patterns = @("*.log","*.txt")
 
 $archivedCount = 0
-$skippedCount  = 0
+$skippedCount = 0
 
 foreach ($pattern in $patterns) {
     Get-ChildItem -Path $repoRoot -Recurse -Include $pattern -ErrorAction SilentlyContinue |
@@ -99,3 +105,15 @@ if ($DryRun) {
     Log "Repo cleanup aborted by user. $skippedCount skipped."
 }
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

@@ -39,8 +39,8 @@ try {
     $notesFile = Join-Path $outputDir ("blog-template-$timestamp.notes.txt")
     $updatedFile = Join-Path $scriptDir ("blog-template-$timestamp.updated.ps1")
 
-    Set-Content -Path $outFile     -Value "Simulated output for $Model at $timestamp"
-    Set-Content -Path $notesFile   -Value "Notes for $PromptFile"
+    Set-Content -Path $outFile -Value "Simulated output for $Model at $timestamp"
+    Set-Content -Path $notesFile -Value "Notes for $PromptFile"
     Set-Content -Path $updatedFile -Value "# Updated script for $PromptFile"
 }
 catch {
@@ -56,3 +56,12 @@ catch {
 
 
 
+}
+
+}
+
+}
+
+}
+
+}

@@ -51,7 +51,8 @@ function Analyze-And-Fix($file) {
             Log "$($file.Name) passed ScriptAnalyzer validation."
             Move-Item -Force $tempFile $file.FullName
             $success = $true
-        } else {
+        }
+        else {
             Log "Errors found in $($file.Name):"
             $results | ForEach-Object { Log $_.Message }
             # Attempt auto-fix: sanitize headers/comments
@@ -79,3 +80,12 @@ if ($All) {
 }
 
 
+}
+
+}
+
+}
+
+}
+
+}

@@ -1,9 +1,15 @@
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   One-click wrapper for full deploy.
 .DESCRIPTION
-  - Runs ReleaseAudit.ps1 (BulkFix + Audit + Release)
-  - Pushes latest changes and tags to GitHub Pages
+ - Runs ReleaseAudit.ps1 (BulkFix + Audit + Release)
+ - Pushes latest changes and tags to GitHub Pages
 #>
 
 $ErrorActionPreference = "Stop"
@@ -25,3 +31,15 @@ git push origin --tags
 
 Write-Host "=== DeployAll.ps1 complete. Full deploy executed. ===" -ForegroundColor Green
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

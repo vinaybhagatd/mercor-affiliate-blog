@@ -1,11 +1,17 @@
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   Run full MABS validation, commit changes, and tag release sequentially.
 .DESCRIPTION
-  - Executes RunAll-Tests.ps1
-  - Consumes structured output object
-  - If errors = 0 and LM Studio found, commits changes
-  - Automatically increments sequential tag (mabs-v16.x)
+ - Executes RunAll-Tests.ps1
+ - Consumes structured output object
+ - If errors = 0 and LM Studio found, commits changes
+ - Automatically increments sequential tag (mabs-v16.x)
 #>
 
 $ErrorActionPreference = "Stop"
@@ -51,3 +57,15 @@ if ($result.AnalyzerErrors -eq 0 -and $result.LMStudioFound -eq $true) {
     Write-Host "❌ Validation failed. Commit aborted." -ForegroundColor Red
 }
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

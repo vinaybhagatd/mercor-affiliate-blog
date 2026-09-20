@@ -22,9 +22,9 @@ param(
     [string]$ProjectDir = "C:\Users\LMTest\promotional\mercor-affiliate-blog", [string]$LogDir = "C:\Users\LMTest\promotional\mercor-affiliate-blog\hermes-logs"
 )
 
-# =  =  = Sanity Check =  =  = if (-not (Test-Path $ProjectDir)) {
-    Write-Error "Project directory not found: $ProjectDir"
-    exit 1
+# = = = Sanity Check = = = if (-not (Test-Path $ProjectDir)) {
+Write-Error "Project directory not found: $ProjectDir"
+exit 1
 }
 
 if (-not (Test-Path $LogDir)) {
@@ -43,14 +43,14 @@ if (-not (Test-Path $LogDir)) {
 $ps1Files = Get-ChildItem -Path $ProjectDir -Filter "*.ps1" -Recurse
 
 # Build prompt with issues, Hermes analysis, and script snippets
-$issuesPrompt = @"
+$issuesPrompt = @""
 You are an expert PowerShell coder with 10+ years of experience.
-Analyze and fix issues in the Mercor Affiliate Blog system. =  =  = Known Issues & Hermes Analysis Report =  =  = (... diagnostics and analysis text ...) =  =  = Script Snippets =  =  = "@
+Analyze and fix issues in the Mercor Affiliate Blog system. = = = Known Issues & Hermes Analysis Report = = = (... diagnostics and analysis text ...) = = = Script Snippets = = = "@"
 
 foreach ($file in $ps1Files) {
     $content = Get-Content -Path -Path -Path -Path -Path -Path -Path -Path -Path -Path -Path -Path -Path -Path -Path $file.FullName -Raw
-    $issuesPrompt += " $($file.Name) =  =  = $content
-"
+    $issuesPrompt += " $($file.Name) = = = $content"
+    ""
 }
 
 # Timestamped log file
@@ -79,20 +79,20 @@ if ($null -ne $category) {
         }
         else {
             Write-Error "Monetization hooks missing in blog: $blogPath"
-            $fixedContent = @"
-## ${category} Blog
+            $fixedContent = @""
+            ## ${category} Blog
 
-### Solution & Takeaways
-AFFILIATE_LINK_PLACEHOLDER
+            ### Solution & Takeaways
+            AFFILIATE_LINK_PLACEHOLDER
 
-### Call to Action
-Free Resource: [Download our UX Case Study Template](EMAIL_CAPTURE_PLACEHOLDER)
+            ### Call to Action
+            Free Resource: [Download our UX Case Study Template](EMAIL_CAPTURE_PLACEHOLDER)
 
-### Disclosure
-Disclosure: Some of the links in this post are affiliate links. This means if you click and purchase, we may earn a commission at no extra cost to you. We only recommend products we trust and use ourselves.
+            ### Disclosure
+            Disclosure: Some of the links in this post are affiliate links. This means if you click and purchase, we may earn a commission at no extra cost to you. We only recommend products we trust and use ourselves.
 
-### Conclusion
-"@
+            ### Conclusion
+            "@"
             Set-Content -Path $blogPath -Value $fixedContent -Encoding UTF8
             Write-Output "Blog updated with monetization hooks."
         }
@@ -118,7 +118,7 @@ function Repair-PowerShellFormatting {
     }
 
     # Step 2: Run ScriptAnalyzer after formatting
-    $log += " ScriptAnalyzer Results =  =  = "
+    $log += " ScriptAnalyzer Results = = = "
     $results = Invoke-ScriptAnalyzer -Path $RootPath -Recurse -Severity Warning, Error, Information
     if ($results) {
         foreach ($r in $results) {
@@ -130,7 +130,7 @@ function Repair-PowerShellFormatting {
         $warningCount = ($results | Where-Object { $_.Severity -eq 'Warning' }).Count
         $infoCount = ($results | Where-Object { $_.Severity -eq 'Information' }).Count
 
-        $log += " Summary =  =  = "
+        $log += " Summary = = = "
         $log += "Errors: $errorCount"
         $log += "Warnings: $warningCount"
         $log += "Information: $infoCount"
@@ -142,7 +142,7 @@ function Repair-PowerShellFormatting {
     }
     else {
         $log += "No ScriptAnalyzer issues found."
-        $log += " Summary =  =  = "
+        $log += " Summary = = = "
         $log += "Errors: 0"
         $log += "Warnings: 0"
         $log += "Information: 0"
@@ -163,3 +163,12 @@ Repair-PowerShellFormatting -RootPath $ProjectDir -ReportFile (Join-Path $LogDir
 
 
 
+}
+
+}
+
+}
+
+}
+
+}

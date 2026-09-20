@@ -1,4 +1,10 @@
 <# 
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
 Automates setup of Mercor Affiliate Blog System (MABS).
 .DESCRIPTION
@@ -16,7 +22,7 @@ Write-Host "Installing Eleventy and Luxon..."
 npm install @11ty/eleventy luxon --save-dev
 
 # Step 2: Regenerate .eleventy.js
-$eleventyConfig = @"
+$eleventyConfig = @""
 const { DateTime } = require("luxon");
 
 module.exports = function(eleventyConfig) {
@@ -60,7 +66,7 @@ module.exports = function(eleventyConfig) {
     dataTemplateEngine: "njk"
   };
 };
-"@
+"@"
 Set-Content -Path ".eleventy.js" -Value $eleventyConfig -Encoding UTF8
 Write-Host "Regenerated .eleventy.js"
 
@@ -69,7 +75,7 @@ $layoutsPath = "src\_layouts"
 New-Item -ItemType Directory -Force -Path $layoutsPath | Out-Null
 
 # base.njk
-$baseLayout = @"
+$baseLayout = @""
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -92,11 +98,11 @@ $baseLayout = @"
   <footer id="site-footer" class="footer"><p class="footer-text">&copy; {{ "now" | date("yyyy") }} Mercor Affiliate Blog System</p></footer>
 </body>
 </html>
-"@
+"@"
 Set-Content -Path "$layoutsPath\base.njk" -Value $baseLayout -Encoding UTF8
 
 # post.njk
-$postLayout = @"
+$postLayout = @""
 ---
 layout: base.njk
 ---
@@ -107,11 +113,11 @@ layout: base.njk
   <div class="post-body">{{ body | renderBody | safe }}</div>
 </article>
 {% endblock %}
-"@
+"@"
 Set-Content -Path "$layoutsPath\post.njk" -Value $postLayout -Encoding UTF8
 
 # category.njk
-$categoryLayout = @"
+$categoryLayout = @""
 ---
 layout: base.njk
 ---
@@ -130,11 +136,11 @@ layout: base.njk
   </ul>
 </section>
 {% endblock %}
-"@
+"@"
 Set-Content -Path "$layoutsPath\category.njk" -Value $categoryLayout -Encoding UTF8
 
 # Step 4: Regenerate index.njk
-$indexLayout = @"
+$indexLayout = @""
 ---
 layout: base.njk
 title: "Mercor Affiliate Blog"
@@ -154,11 +160,11 @@ title: "Mercor Affiliate Blog"
   </ul>
 </section>
 {% endblock %}
-"@
+"@"
 Set-Content -Path "src\index.njk" -Value $indexLayout -Encoding UTF8
 
 # Step 5: Regenerate categories/index.njk
-$categoriesIndex = @"
+$categoriesIndex = @""
 ---
 layout: category.njk
 pagination:
@@ -167,14 +173,14 @@ pagination:
   alias: category
 permalink: "categories/{{ category }}/index.html"
 ---
-"@
+"@"
 New-Item -ItemType Directory -Force -Path "src\categories" | Out-Null
 Set-Content -Path "src\categories\index.njk" -Value $categoriesIndex -Encoding UTF8
 
 # Step 6: Starter CSS
 $assetsPath = "src\assets"
 New-Item -ItemType Directory -Force -Path $assetsPath | Out-Null
-$cssContent = @"
+$cssContent = @""
 /* Starter stylesheet for MABS */
 body#site-body { margin:0; font-family:'Segoe UI',Arial,sans-serif; line-height:1.6; background:#f9f9f9; color:#333; }
 #site-header { background:#222; color:#fff; padding:1rem; }
@@ -195,9 +201,21 @@ body#site-body { margin:0; font-family:'Segoe UI',Arial,sans-serif; line-height:
 .read-more:hover { text-decoration:underline; }
 #site-footer { background:#222; color:#fff; text-align:center; padding:1rem; }
 .footer-text { margin:0; font-size:0.85rem; }
-"@
+"@"
 Set-Content -Path "$assetsPath\styles.css" -Value $cssContent -Encoding UTF8
 
 Write-Host "=== Setup complete. Run 'npx eleventy --serve' to start the site. ==="
 
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

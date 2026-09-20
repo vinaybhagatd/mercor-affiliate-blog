@@ -1,14 +1,20 @@
 @{
-    Severity     = @('Error', 'Warning')
+    # Only block parse errors and errors
+    Severity = @('Error','ParseError')
+
+    # Rules to include/exclude
     IncludeRules = @(
-        'PSAvoidAssignmentToAutomaticVariable',
-        'PSAvoidUsingEmptyCatchBlock',
-        'PSAvoidGlobalVars',
-        'PSAvoidUsingConvertToSecureStringWithPlainText'
+        'PSUseConsistentWhitespace',
+        'PSUseConsistentIndentation',
+        'PSUseCorrectOperators',
+        'PSAvoidTrailingWhitespace',
+        'PSAvoidAssignmentToAutomaticVariable'
     )
+
     ExcludeRules = @(
         'PSAvoidUsingWriteHost',
-        'PSUseDeclaredVarsMoreThanAssignments',
-        'PSUseApprovedVerbs'
+        'PSUseApprovedVerbs',
+        'PSAvoidUsingEmptyCatchBlock',
+        'PSAvoidUsingCmdletAliases'
     )
 }

@@ -1,6 +1,12 @@
 <# 
 <# <# <# <# .SYNOPSIS #> #> #> #> #>
     Verify that .gitignore rules are correctly ignoring noisy files.
+<#
+<#
+<#
+<#
+<#
+<#
 .DESCRIPTION
     Auto-creates dummy files/folders for known artifacts, runs git check-ignore,
     reports results, then cleans up afterwards.
@@ -70,3 +76,15 @@ Remove-Item -Recurse -Force _site, node_modules, pipeline-logs, hermes-logs -Err
 
 
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

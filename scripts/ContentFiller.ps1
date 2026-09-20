@@ -1,4 +1,10 @@
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   Fills generated blog skeletons with complete body sections.
 .DESCRIPTION
@@ -6,7 +12,7 @@
 #>
 
 $projectRoot = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
-$postsPath   = Join-Path $projectRoot "src\posts"
+$postsPath = Join-Path $projectRoot "src\posts"
 
 Write-Host "Filling blog content in $postsPath..."
 
@@ -25,7 +31,7 @@ Get-ChildItem -Path $postsPath -Include *.md, *.html -Recurse | ForEach-Object {
     $category = $_.BaseName -replace "-blogs",""
 
     # Build filler content
-    $filler = @"
+    $filler = @""
 <section>
   <h2>Persona & Context</h2>
   <p>This blog is written for professionals exploring opportunities in $category. It sets the context and audience clearly.</p>
@@ -57,7 +63,7 @@ Get-ChildItem -Path $postsPath -Include *.md, *.html -Recurse | ForEach-Object {
 <footer>
   <p>⚖️ Disclosure: Some links may be affiliate links. We only recommend products we trust.</p>
 </footer>
-"@
+"@"
 
     # Replace placeholder or append filler
     if ($content -match "<section>") {
@@ -71,3 +77,15 @@ Get-ChildItem -Path $postsPath -Include *.md, *.html -Recurse | ForEach-Object {
 }
 
 Write-Host "Content filling complete."
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

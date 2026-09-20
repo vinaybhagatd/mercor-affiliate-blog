@@ -1,17 +1,23 @@
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
     Full automation pipeline for Mercor Affiliate Blog System (MABS).
 .DESCRIPTION
-    - Runs self-heal scripts
-    - Generates blogs
-    - Fixes front matter
-    - Runs QA validation
-    - Commits changes
-    - Creates timestamped tag
-    - Verifies tag exists on remote
-    - Calls Create-Release.ps1
-    - Syncs with remote before push
-    - Deploys to GitHub Pages
+ - Runs self-heal scripts
+ - Generates blogs
+ - Fixes front matter
+ - Runs QA validation
+ - Commits changes
+ - Creates timestamped tag
+ - Verifies tag exists on remote
+ - Calls Create-Release.ps1
+ - Syncs with remote before push
+ - Deploys to GitHub Pages
 .NOTES
     Author: Mercor Affiliate Blog System (MABS)
 #>
@@ -69,3 +75,15 @@ git push origin main
 
 Write-Host "=== RunAll.ps1 complete. Release $TagName deployed. ==="
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

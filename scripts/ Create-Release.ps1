@@ -1,10 +1,16 @@
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   Creates a GitHub release with auto-generated notes.
 .DESCRIPTION
-  - Uses commit metadata for release notes
-  - Pulls latest QA summary from QAValidatorReport.txt
-  - Publishes release under the provided tag
+ - Uses commit metadata for release notes
+ - Pulls latest QA summary from QAValidatorReport.txt
+ - Publishes release under the provided tag
 #>
 
 param(
@@ -40,7 +46,7 @@ if (Test-Path "QAValidatorReport.txt") {
 }
 
 # --- Step 4: Build release notes ---
-$releaseNotes = @"
+$releaseNotes = @""
 ## Release $Tag
 
 ### Commit Metadata
@@ -48,7 +54,7 @@ $commitLog
 
 ### QA Validation Summary
 $qaSummary
-"@
+"@"
 
 # --- Step 5: Create GitHub release ---
 Write-Host "Publishing release $Tag..."
@@ -56,3 +62,15 @@ gh release create $Tag --notes "$releaseNotes"
 
 Write-Host "=== Create-Release.ps1 complete. Release $Tag published with QA summary. ===" -ForegroundColor Green
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

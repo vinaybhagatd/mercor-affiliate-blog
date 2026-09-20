@@ -20,19 +20,19 @@ function Write-Summary($status, $details, $scriptStatuses) {
 
     $scriptBlock = ""
     foreach ($s in $scriptStatuses.Keys) {
-        $scriptBlock += "Script: $s
-Status: $($scriptStatuses[$s])
+        $scriptBlock += "Script: $s"
+        Status: $($scriptStatuses[$s])
 
-"
+        ""
     }
 
-    $content = @" =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  = Orchestrator Run Summary
-Timestamp: $timestamp
-Overall Status: $status
-Details: $details
+    $content = @" = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = Orchestrator Run Summary"
+    Timestamp: $timestamp
+    Overall Status: $status
+    Details: $details
 
---- Per-Script Status ---
-$scriptBlock =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  = "@
+    -- - Per-Script Status ---
+    $scriptBlock = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = "@"
     $content | Out-File -FilePath $summaryFile -Encoding UTF8
     Log "Summary written to $summaryFile"
 }
@@ -41,7 +41,7 @@ function Invoke-Task {
     try {
         Log "Starting orchestration sequence..."
 
-        # =  =  = Step 1: Validate Inputs =  =  = Log "Step 1: Validating inputs..."
+        # = = = Step 1: Validate Inputs = = = Log "Step 1: Validating inputs..."
         $configFile = Join-Path $baseDir "config.json"
         if (-not (Test-Path $configFile)) {
             throw "Missing config.json"
@@ -50,7 +50,7 @@ function Invoke-Task {
         $outputDir = $config.settings.outputDirectory
         Write-Output "Inputs validated."
 
-        # =  =  = Step 2: Backup Orchestrator =  =  = Log "Step 2: Creating backup..."
+        # = = = Step 2: Backup Orchestrator = = = Log "Step 2: Creating backup..."
         $backupDir = Join-Path $baseDir "orchestrator_backups"
         if (-not (Test-Path $backupDir)) { New-Item -ItemType Directory -Path $backupDir | Out-Null }
         $timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
@@ -58,147 +58,148 @@ function Invoke-Task {
         Copy-Item (Join-Path $baseDir "Orchestrator.ps1") $backupFile -Force
         Log "Backup saved to $backupFile"
 
-        # =  =  = Step 3: Healing / Invoke-AutoCorrection =  =  = Log "Step 3: Healing script..."
+        # = = = Step 3: Healing / Invoke-AutoCorrection = = = Log "Step 3: Healing script..."
         $content = -Path 
         $openBraces = ([regex]::Matches($content, '{')).Count
         $closeBraces = ([regex]::Matches($content, '}')).Count
         if ($openBraces -gt $closeBraces) {
             $diff = $openBraces - $closeBraces
-            $content += "
-" + ("}" * $diff)
-            Log "Added $diff closing brace(s)."
+            $content += ""
+            " + ("
+        }" * $diff)"
+        Log "Added $diff closing brace(s)."
+    }
+    Set-Content (Join-Path $baseDir "Orchestrator.ps1") $content
+
+    # = = = Step 4: Execute Core Logic = = = Log "Step 4: Executing core orchestration in parallel from config.json..."
+
+    $scriptStatuses = @{}
+    try {
+        $scripts = $config.subscripts
+        if (-not $scripts -or $scripts.Count -eq 0) {
+            throw "No subscripts defined in config.json"
         }
-        Set-Content (Join-Path $baseDir "Orchestrator.ps1") $content
 
-        # =  =  = Step 4: Execute Core Logic =  =  = Log "Step 4: Executing core orchestration in parallel from config.json..."
-
-        $scriptStatuses = @{}
-        try {
-            $scripts = $config.subscripts
-            if (-not $scripts -or $scripts.Count -eq 0) {
-                throw "No subscripts defined in config.json"
+        $jobs = @()
+        foreach ($script in $scripts) {
+            $resolvedPath = Resolve-Path $script
+            if ($resolvedPath -eq $null) {
+                $scriptStatuses[$script] = "MISSING"
+                continue
             }
 
-            $jobs = @()
-            foreach ($script in $scripts) {
-                $resolvedPath = Resolve-Path $script
-                if ($resolvedPath -eq $null) {
-                    $scriptStatuses[$script] = "MISSING"
-                    continue
-                }
-
-                if ($script -like "*CreateBlog.ps1") {
-                    Log "Blog generation started via CreateBlog.ps1..."
-                    $job = Start-Job -ScriptBlock {
-                        param($s, $outDir)
-                        try {
-                            & $s -OutputDirectory $outDir
-                            return "Blog generation completed successfully."
-                        }
-                        catch {
-                            return "FAILED: $($_.Exception.Message)"
-                        }
-                    } -ArgumentList $resolvedPath, $outputDir
-                }
-                elseif ($script -like "*MercorDebug.ps1") {
-                    Log "Starting MercorDebug.ps1 with -LogFile..."
-                    $debugLogFile = Join-Path $baseDir "mercordebug.log"
-                    $job = Start-Job -ScriptBlock {
-                        param($s, $logFile)
-                        try {
-                            & $s -LogFile $logFile
-                            return "SUCCESS"
-                        }
-                        catch {
-                            return "FAILED: $($_.Exception.Message)"
-                        }
-                    } -ArgumentList $resolvedPath, $debugLogFile
-                }
-                elseif ($script -like "*Diagnostics.ps1") {
-                    Log "Starting Diagnostics.ps1 with -LogFile..."
-                    $diagLogFile = Join-Path $baseDir "diagnostics.log"
-                    $job = Start-Job -ScriptBlock {
-                        param($s, $logFile)
-                        try {
-                            & $s -LogFile $logFile
-                            return "SUCCESS"
-                        }
-                        catch {
-                            return "FAILED: $($_.Exception.Message)"
-                        }
-                    } -ArgumentList $resolvedPath, $diagLogFile
-                }
-                else {
-                    Log "Starting $script as a job..."
-                    $job = Start-Job -ScriptBlock {
-                        param($s)
-                        try {
-                            & $s
-                            return "SUCCESS"
-                        }
-                        catch {
-                            return "FAILED: $($_.Exception.Message)"
-                        }
-                    } -ArgumentList $resolvedPath
-                }
-                $jobs += $job
+            if ($script -like "*CreateBlog.ps1") {
+                Log "Blog generation started via CreateBlog.ps1..."
+                $job = Start-Job -ScriptBlock {
+                    param($s, $outDir)
+                    try {
+                        & $s -OutputDirectory $outDir
+                        return "Blog generation completed successfully."
+                    }
+                    catch {
+                        return "FAILED: $($_.Exception.Message)"
+                    }
+                } -ArgumentList $resolvedPath, $outputDir
             }
-
-            Log "Waiting for jobs to complete..."
-            Wait-Job -Job $jobs
-
-            foreach ($job in $jobs) {
-                $result = Receive-Job -Job $job
-                $scriptName = ($job.ChildJobs[0].Command)
-                $scriptStatuses[$scriptName] = $result
-                Log "Output from ${scriptName}: $result"
+            elseif ($script -like "*MercorDebug.ps1") {
+                Log "Starting MercorDebug.ps1 with -LogFile..."
+                $debugLogFile = Join-Path $baseDir "mercordebug.log"
+                $job = Start-Job -ScriptBlock {
+                    param($s, $logFile)
+                    try {
+                        & $s -LogFile $logFile
+                        return "SUCCESS"
+                    }
+                    catch {
+                        return "FAILED: $($_.Exception.Message)"
+                    }
+                } -ArgumentList $resolvedPath, $debugLogFile
             }
-
-            Remove-Job -Job $jobs
-            Write-Output "All configured sub-scripts executed successfully in parallel."
+            elseif ($script -like "*Diagnostics.ps1") {
+                Log "Starting Diagnostics.ps1 with -LogFile..."
+                $diagLogFile = Join-Path $baseDir "diagnostics.log"
+                $job = Start-Job -ScriptBlock {
+                    param($s, $logFile)
+                    try {
+                        & $s -LogFile $logFile
+                        return "SUCCESS"
+                    }
+                    catch {
+                        return "FAILED: $($_.Exception.Message)"
+                    }
+                } -ArgumentList $resolvedPath, $diagLogFile
+            }
+            else {
+                Log "Starting $script as a job..."
+                $job = Start-Job -ScriptBlock {
+                    param($s)
+                    try {
+                        & $s
+                        return "SUCCESS"
+                    }
+                    catch {
+                        return "FAILED: $($_.Exception.Message)"
+                    }
+                } -ArgumentList $resolvedPath
+            }
+            $jobs += $job
         }
-        catch {
-            $errMsg = $_.Exception.Message
-            Log "Error in Step 4: $errMsg"
-            throw
+
+        Log "Waiting for jobs to complete..."
+        Wait-Job -Job $jobs
+
+        foreach ($job in $jobs) {
+            $result = Receive-Job -Job $job
+            $scriptName = ($job.ChildJobs[0].Command)
+            $scriptStatuses[$scriptName] = $result
+            Log "Output from ${scriptName}: $result"
         }
 
-        # =  =  = Step 5: Diff Generator =  =  = Log "Step 5: Generating diff..."
-        $diffDir = Join-Path $baseDir "orchestrator_diffs"
-        if (-not (Test-Path $diffDir)) { New-Item -ItemType Directory -Path $diffDir | Out-Null }
-        $diffFile = Join-Path $diffDir ("diff_attempt_$timestamp.txt")
-
-        $beforeFile = Join-Path $baseDir "before.txt"
-        $afterFile = Join-Path $baseDir "after.txt"
-        if (Test-Path $beforeFile -and Test-Path $afterFile) {
-            $before = -Path 
-            $after = -Path 
-            $diff = Compare-Object -ReferenceObject $before -DifferenceObject $after
-            $diff | Out-File -FilePath $diffFile -Encoding UTF8
-            Log "Diff written to $diffFile"
-        }
-        else {
-            Log "Diff skipped: before/after files not found."
-        }
-
-        # =  =  = Step 6: Summary Report =  =  = Write-Summary "SUCCESS" "All orchestration steps executed successfully." $scriptStatuses
+        Remove-Job -Job $jobs
+        Write-Output "All configured sub-scripts executed successfully in parallel."
     }
     catch {
         $errMsg = $_.Exception.Message
-        Log "Error occurred: $errMsg"
-        $scriptStatuses["Overall"] = "FAILED"
-        Write-Summary "FAILED" "Error occurred: $errMsg" $scriptStatuses
-        Write-Output "Task failed."
+        Log "Error in Step 4: $errMsg"
+        throw
     }
-    finally {
-        Log "Final cleanup actions executed."
+
+    # = = = Step 5: Diff Generator = = = Log "Step 5: Generating diff..."
+    $diffDir = Join-Path $baseDir "orchestrator_diffs"
+    if (-not (Test-Path $diffDir)) { New-Item -ItemType Directory -Path $diffDir | Out-Null }
+    $diffFile = Join-Path $diffDir ("diff_attempt_$timestamp.txt")
+
+    $beforeFile = Join-Path $baseDir "before.txt"
+    $afterFile = Join-Path $baseDir "after.txt"
+    if (Test-Path $beforeFile -and Test-Path $afterFile) {
+        $before = -Path 
+        $after = -Path 
+        $diff = Compare-Object -ReferenceObject $before -DifferenceObject $after
+        $diff | Out-File -FilePath $diffFile -Encoding UTF8
+        Log "Diff written to $diffFile"
     }
+    else {
+        Log "Diff skipped: before/after files not found."
+    }
+
+    # = = = Step 6: Summary Report = = = Write-Summary "SUCCESS" "All orchestration steps executed successfully." $scriptStatuses
+}
+catch {
+    $errMsg = $_.Exception.Message
+    Log "Error occurred: $errMsg"
+    $scriptStatuses["Overall"] = "FAILED"
+    Write-Summary "FAILED" "Error occurred: $errMsg" $scriptStatuses
+    Write-Output "Task failed."
+}
+finally {
+    Log "Final cleanup actions executed."
+}
 }
 
-# =  =  = Main Execution =  =  = try {
-    Log "Orchestrator started."
-    Invoke-Task
-    Log "Orchestrator finished."
+# = = = Main Execution = = = try {
+Log "Orchestrator started."
+Invoke-Task
+Log "Orchestrator finished."
 }
 catch {
     $errMsg = $_.Exception.Message
@@ -218,3 +219,12 @@ finally {
 
 
 
+}
+
+}
+
+}
+
+}
+
+}

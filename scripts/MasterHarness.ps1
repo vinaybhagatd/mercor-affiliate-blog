@@ -1,4 +1,10 @@
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
 MasterHarness v13 – Unified orchestrator for MABS scripts.
 
@@ -26,7 +32,7 @@ param(
 # Counters for summary (script-scope)
 $script:RepairedCount = 0
 $script:SkippedCount = 0
-$script:ErrorCount   = 0
+$script:ErrorCount = 0
 
 function Log {
     param([string]$Message)
@@ -47,7 +53,7 @@ function Run-Analyzer {
 function AI-Repair {
     param([string]$Path)
     $content = Get-Content $Path -Raw
-    $prompt = @"
+    $prompt = @""
 Repair this PowerShell script for syntax errors and ScriptAnalyzer compliance.
 Ensure:
 - Function calls use parentheses (Log("message"))
@@ -57,15 +63,15 @@ Ensure:
 - Wrap stray numbered lines inside comments
 Return corrected script only.
 Note: UNICODE_ESCAPE means PowerShell-compliant Unicode escape in the form u{XXXX}.
-"@
+"@"
     $body = @{
-        model    = "qwen2.5-7b-instruct"
+        model = "qwen2.5-7b-instruct"
         messages = @(@{ role = "user"; content = $prompt + "`n`n" + $content })
     } | ConvertTo-Json -Depth 3 -Compress
 
     try {
         $response = Invoke-RestMethod -Uri "http://localhost:1234/v1/chat/completions" `
-            -Method Post -Body $body -ContentType "application/json"
+ -Method Post -Body $body -ContentType "application/json"
         $fixed = $response.choices[0].message.content
         $fixed | Set-Content $Path
         $script:RepairedCount++
@@ -189,3 +195,15 @@ Log ("Files skipped  : $script:SkippedCount")
 Log ("Errors detected: $script:ErrorCount")
 Log ("================================================")
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

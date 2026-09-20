@@ -1,4 +1,10 @@
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
 RunQwenFix v16 – Self-healing orchestrator for MABS scripts.
 
@@ -42,13 +48,13 @@ function AI-Repair {
     $prompt = "Repair this PowerShell script for syntax errors and ScriptAnalyzer compliance."
 
     $body = @{
-        model    = "qwen2.5-7b-instruct"
+        model = "qwen2.5-7b-instruct"
         messages = @(@{ role = "user"; content = $prompt + "`n`n" + $content })
     } | ConvertTo-Json -Depth 3 -Compress
 
     try {
         $response = Invoke-RestMethod -Uri "http://localhost:1234/v1/chat/completions" `
-            -Method Post -Body $body -ContentType "application/json"
+ -Method Post -Body $body -ContentType "application/json"
         $fixed = $response.choices[0].message.content
         $fixed | Set-Content $filePath
         Log ("${filePath} repaired successfully.")
@@ -120,3 +126,15 @@ else {
 }
 
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

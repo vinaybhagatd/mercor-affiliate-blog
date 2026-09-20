@@ -1,4 +1,10 @@
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   Batch creates blog posts with canonical template.
 
@@ -7,11 +13,11 @@
   MABS template format and CSS conventions. Ensures valid YAML front matter
   with affiliate link, description, category, layout, keywords, tags, and thumbnail.
   Body content is written in the blended style of Molly Keyser and Sam Browne:
-  - Story-driven narrative arc
-  - Punchy and emotional tone
-  - Persuasive marketing style
-  - Clear frameworks and actionable takeaways
-  - Recruiter-friendly insights
+ - Story-driven narrative arc
+ - Punchy and emotional tone
+ - Persuasive marketing style
+ - Clear frameworks and actionable takeaways
+ - Recruiter-friendly insights
 #>
 
 $repoRoot = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
@@ -39,7 +45,7 @@ foreach ($post in $posts) {
     $filePath = Join-Path $postsPath ("{0}.md" -f $post.Slug)
 
     # ✅ Stable front matter template (no date)
-    $frontMatter = @"
+    $frontMatter = @""
 ---
 title: $($post.Title)
 description: $($post.Description)
@@ -50,10 +56,10 @@ keywords: $($post.Keywords)
 tags: [$($post.Category)]
 thumbnail: "/assets/images/thumbnails/$($post.Category).png"
 ---
-"@
+"@"
 
     # ✅ Body content in Molly Keyser + Sam Browne blended style
-    $body = @"
+    $body = @""
 # $($post.Title)
 
 🌟 Why This Matters
@@ -71,7 +77,7 @@ $($post.Keywords)
 
 ## Call to Action
 Your next step matters. [Click here]($canonicalLink) to access exclusive resources, tools, and opportunities that will help you put these insights into practice today.
-"@
+"@"
 
     $content = $frontMatter + "`n" + $body
     Set-Content -Path $filePath -Value $content -Encoding UTF8
@@ -80,3 +86,15 @@ Your next step matters. [Click here]($canonicalLink) to access exclusive resourc
 }
 
 Write-Host "=== BatchCreateBlogs.ps1 complete ==="
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

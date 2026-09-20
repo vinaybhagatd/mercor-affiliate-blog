@@ -1,26 +1,35 @@
 #!/usr/bin/env pwsh
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   VerifyFrontMatter.ps1 — Validates YAML front matter in Markdown posts.
 
 .DESCRIPTION
   Scans src\posts\ for .md files and ensures each has valid YAML front matter.
-  - Confirms presence of opening/closing delimiters.
-  - Checks required fields: title, description, category, tags, thumbnail, affiliate, keywords, layout.
-  - Ensures tags include the category.
-  - Normalizes category/tags to lowercase for comparison.
-  - Logs all outcomes into logs\VerifyFrontMatterReport.txt
+ - Confirms presence of opening/closing delimiters.
+ - Checks required fields: title, description, category, tags, thumbnail, affiliate, keywords, layout.
+ - Ensures tags include the category.
+ - Normalizes category/tags to lowercase for comparison.
+ - Logs all outcomes into logs\VerifyFrontMatterReport.txt
+ - Exits with code 0 if all posts are valid, 1 if any fail.
 #>
 
-$repoRoot   = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
-$postsPath  = Join-Path $repoRoot "src\posts"
-$logsPath   = Join-Path $repoRoot "logs"
+$repoRoot = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
+$postsPath = Join-Path $repoRoot "src\posts"
+$logsPath = Join-Path $repoRoot "logs"
 $reportFile = Join-Path $logsPath "VerifyFrontMatterReport.txt"
 
 if (-not (Test-Path $logsPath)) { New-Item -ItemType Directory -Path $logsPath | Out-Null }
 
 Write-Host "=== VerifyFrontMatter.ps1 started ===" -ForegroundColor Cyan
 "=== Run started: $(Get-Date) ===" | Out-File -FilePath $reportFile -Encoding UTF8
+
+$hasErrors = $false
 
 Get-ChildItem -Path $postsPath -Recurse -Filter *.md | ForEach-Object {
     $file = $_.FullName
@@ -34,21 +43,23 @@ Get-ChildItem -Path $postsPath -Recurse -Filter *.md | ForEach-Object {
         foreach ($field in $required) {
             if ($yamlBlock -notmatch "(?m)^${field}:") {
                 $logEntry += "❌ Missing $field in $($_.Name)`n"
+                $hasErrors = $true
             }
         }
 
         # Ensure category is present in tags
         $categoryMatch = [regex]::Match($yamlBlock, "(?m)^category:\s*(\w+)")
-        $tagsMatch     = [regex]::Match($yamlBlock, "(?m)^tags:\s*
+        $tagsMatch = [regex]::Match($yamlBlock, "(?m)^tags:\s*"
 
 \[(.*?)\]
 
-")
+")"
         if ($categoryMatch.Success -and $tagsMatch.Success) {
             $categoryNorm = $categoryMatch.Groups[1].Value.Trim().ToLower()
             $tagsNorm = $tagsMatch.Groups[1].Value.Split(',') | ForEach-Object { $_.Trim().ToLower() }
             if (-not ($tagsNorm -contains $categoryNorm)) {
                 $logEntry += "❌ Tags missing category in $($_.Name)`n"
+                $hasErrors = $true
             }
         }
 
@@ -62,8 +73,27 @@ Get-ChildItem -Path $postsPath -Recurse -Filter *.md | ForEach-Object {
     } else {
         Write-Host "❌ Missing front matter in $($_.Name)" -ForegroundColor Red
         "❌ Missing front matter in $($_.Name)" | Out-File -FilePath $reportFile -Encoding UTF8 -Append
+        $hasErrors = $true
     }
 }
 
 "=== Run complete: $(Get-Date) ===`n" | Out-File -FilePath $reportFile -Encoding UTF8 -Append
 Write-Host "=== VerifyFrontMatter.ps1 complete ===" -ForegroundColor Cyan
+
+if ($hasErrors) {
+    exit 1
+} else {
+    exit 0
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

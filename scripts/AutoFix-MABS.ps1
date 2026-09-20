@@ -1,5 +1,11 @@
 <# .SYNOPSIS #>
     Auto-fix common MABS errors and enforce guardrails.
+<#
+<#
+<#
+<#
+<#
+<#
 .DESCRIPTION
     Cleans PowerShell scripts, validates with ScriptAnalyzer,
     sanitizes reserved keys in blog data, posts, and layouts,
@@ -63,7 +69,7 @@ Get-ChildItem -Path "$repoRoot\src\_layouts" -Filter *.njk -Recurse | ForEach-Ob
 # 7. Ensure Eleventy wiring
 $eleventyFile = "$repoRoot\.eleventy.js"
 if (-Not (Test-Path $eleventyFile)) {
-    @"
+    @""
 module.exports = function(eleventyConfig) {
   eleventyConfig.setFreezeReservedData(false); // allow reserved keys if needed
   eleventyConfig.addCollection("categories", function(collection) {
@@ -78,7 +84,7 @@ module.exports = function(eleventyConfig) {
     }, {});
   });
 };
-"@ | Set-Content $eleventyFile
+"@ | Set-Content $eleventyFile"
     Write-Host "✅ Regenerated .eleventy.js with dynamic categories" -ForegroundColor Green
 }
 
@@ -90,3 +96,15 @@ Write-Host "🎉 AutoFix complete. Check http://localhost:8080/" -ForegroundColo
 
 
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

@@ -1,4 +1,10 @@
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   Fix-FolderStructure.ps1
 .DESCRIPTION
@@ -9,7 +15,7 @@
   Run from project root: C:\Users\LMTest\promotional\mercor-affiliate-blog
 #>
 
-$Root   = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
+$Root = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
 $Backup = Join-Path $Root "mercor_backups\FolderStructureBackup_$(Get-Date -Format 'yyyyMMdd_HHmmss')"
 $LogFile = Join-Path $Root "Fix-FolderStructure.log"
 
@@ -101,3 +107,15 @@ foreach ($file in $allFiles) {
 Log "=== Completed Fix-FolderStructure.ps1 ==="
 Write-Output "Folder structure fixed. See $LogFile for details."
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

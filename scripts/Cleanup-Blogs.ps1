@@ -1,4 +1,10 @@
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   Safely cleans up existing blog posts in src/posts.
 .DESCRIPTION
@@ -48,3 +54,15 @@ if (Test-Path $postsDir) {
     Write-Output "⚠️ Blog posts directory not found: $postsDir"
 }
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

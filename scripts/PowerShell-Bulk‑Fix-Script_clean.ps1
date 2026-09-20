@@ -12,8 +12,8 @@ Get-ChildItem -Path $postsPath -Filter "*.md" | ForEach-Object {
     # categories: engineering
     # categories: data
     # etc.
-    $fixed = $content -replace '^categories:\s*([A-Za-z0-9_-]+)$', "categories:
-  - `$1"
+    $fixed = $content -replace '^categories:\s*([A-Za-z0-9_-]+)$', "categories:"
+    - `$1""
 
     # Save the updated file
     Set-Content -Path $file -Value $fixed
@@ -30,3 +30,12 @@ Write-Output "Bulk category fix complete."
 
 
 
+}
+
+}
+
+}
+
+}
+
+}

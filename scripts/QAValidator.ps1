@@ -1,16 +1,22 @@
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
     QA validation script for Mercor Affiliate Blog System.
 .DESCRIPTION
     QAValidator.ps1 checks all Markdown posts in src/posts/ for:
-      - Proper YAML front matter (title, description, category, layout, affiliate, keywords)
-      - Presence of canonical sections (🌟 Why This Matters, CTA, SEO keywords)
-      - Compliance with Eleventy category logic
-      - Affiliate link correctness
-      - Validates canonical categories
-      - Ensures affiliate links are present
-      - Runs PSScriptAnalyzer with guardrails
-      - Writes results to QAValidatorReport.txt
+ - Proper YAML front matter (title, description, category, layout, affiliate, keywords)
+ - Presence of canonical sections (🌟 Why This Matters, CTA, SEO keywords)
+ - Compliance with Eleventy category logic
+ - Affiliate link correctness
+ - Validates canonical categories
+ - Ensures affiliate links are present
+ - Runs PSScriptAnalyzer with guardrails
+ - Writes results to QAValidatorReport.txt
 
 .OUTPUTS
     Writes validation results to QAValidatorReport.txt.
@@ -22,7 +28,7 @@
 #>
 
 param(
-    [string]$PostsDir   = "C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts",
+    [string]$PostsDir = "C:\Users\LMTest\promotional\mercor-affiliate-blog\src\posts",
     [string]$ReportFile = "QAValidatorReport.txt"
 )
 
@@ -44,16 +50,16 @@ $allowedCategories = @(
 )
 
 # Counters
-$validCount            = 0
-$invalidCategoryCount  = 0
-$missingCategoryCount  = 0
+$validCount = 0
+$invalidCategoryCount = 0
+$missingCategoryCount = 0
 $missingAffiliateCount = 0
 
 try {
     $files = Get-ChildItem $PostsDir -Filter "*.md" -ErrorAction SilentlyContinue
     foreach ($file in $files) {
         $content = Get-Content $file.FullName -Raw
-        $valid   = $true
+        $valid = $true
 
         # Category check
         if ($content -match 'category:\s*(\w+)') {
@@ -89,9 +95,9 @@ try {
     # --- Run ScriptAnalyzer with guardrails ---
     Log ">>> Running PSScriptAnalyzer..."
     Invoke-ScriptAnalyzer -Path $PostsDir `
-        -Settings "PSScriptAnalyzerSettings.psd1" `
-        -Severity Error `
-        -ExcludeRule @("PSAvoidUsingWriteHost","PSUseDeclaredVarsMoreThanAssignments","PSUseApprovedVerbs") |
+ -Settings "PSScriptAnalyzerSettings.psd1" `
+ -Severity Error `
+ -ExcludeRule @("PSAvoidUsingWriteHost","PSUseDeclaredVarsMoreThanAssignments","PSUseApprovedVerbs") |
         Tee-Object -FilePath $ReportFile -Append
 }
 catch {
@@ -115,3 +121,15 @@ if ($invalidCategoryCount -eq 0 -and
     Write-Warning "QA validation completed with issues. See QAValidatorReport.txt for details."
 }
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

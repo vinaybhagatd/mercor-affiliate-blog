@@ -1,4 +1,10 @@
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   Validates Mercor Affiliate Blog System (MABS) stability.
 .DESCRIPTION
@@ -52,7 +58,7 @@ Get-ChildItem -Path $TargetDir -Recurse -Filter "*.ps1" | ForEach-Object {
     $results = Invoke-ScriptAnalyzer -Path $_.FullName -Severity Error -ErrorAction SilentlyContinue
     if ($results) {
         Log "❌ ScriptAnalyzer errors in $($_.Name)"
-        $results | ForEach-Object { Log "   -> $($_.Message)" }
+        $results | ForEach-Object { Log " -> $($_.Message)" }
     } else {
         Log "✅ Script clean: $($_.Name)"
     }
@@ -94,7 +100,7 @@ try {
     Push-Location $TargetDir
 
     Log "Running BatchCreateBlogs.ps1 smoke test..."
-    $batchScriptRoot   = Join-Path $TargetDir "BatchCreateBlogs.ps1"
+    $batchScriptRoot = Join-Path $TargetDir "BatchCreateBlogs.ps1"
     $batchScriptScript = Join-Path $TargetDir "scripts\BatchCreateBlogs.ps1"
 
     if (Test-Path $batchScriptScript) {
@@ -108,7 +114,7 @@ try {
     }
 
     Log "Running QAValidator.ps1 smoke test..."
-    $qaScriptRoot   = Join-Path $TargetDir "QAValidator.ps1"
+    $qaScriptRoot = Join-Path $TargetDir "QAValidator.ps1"
     $qaScriptScript = Join-Path $TargetDir "scripts\QAValidator.ps1"
     if (Test-Path $qaScriptScript) {
         . $qaScriptScript -ErrorAction SilentlyContinue
@@ -121,7 +127,7 @@ try {
     }
 
     Log "Running Orchestrator.ps1 smoke test..."
-    $orchScriptRoot   = Join-Path $TargetDir "Orchestrator.ps1"
+    $orchScriptRoot = Join-Path $TargetDir "Orchestrator.ps1"
     $orchScriptScript = Join-Path $TargetDir "scripts\Orchestrator.ps1"
     if (Test-Path $orchScriptScript) {
         . $orchScriptScript -ErrorAction SilentlyContinue
@@ -143,3 +149,15 @@ try {
 Log "=== MABS Validation Complete ==="
 Write-Output "✅ Validation finished. See $ReportFile for full details."
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

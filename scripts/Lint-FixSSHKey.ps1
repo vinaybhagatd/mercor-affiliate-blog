@@ -14,7 +14,7 @@ foreach ($line in $lines) {
 
     # Count single and double quotes
     $singleQuotes = ($line -split "'").Count - 1
-    $doubleQuotes = ($line -split '"').Count - 1
+    $doubleQuotes = ($line -split '"').Count - 1"
 
     if ($singleQuotes % 2 -ne 0) {
         $errors += "Line ${lineNumber}: Unbalanced single quotes -> ${line}"
@@ -34,4 +34,12 @@ if ($errors.Count -eq 0) {
 } else {
     Write-Host "⚠️ Potential issues detected:"
     $errors | ForEach-Object { Write-Host $_ }
+}
+
+}
+
+}
+
+}
+
 }

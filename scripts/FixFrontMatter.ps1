@@ -1,20 +1,26 @@
 #!/usr/bin/env pwsh
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   FixFrontMatter.ps1 — Repairs missing or invalid front matter in Markdown posts.
 
 .DESCRIPTION
   Scans src\posts\ for .md files and ensures each has valid YAML front matter.
-  - Adds category and tags if missing.
-  - Ensures tags include the category.
-  - Preserves existing fields if valid.
-  - Normalizes category/tags to lowercase.
-  - Logs all outcomes (fixed, inserted, already valid) into logs\FixFrontMatterReport.txt
+ - Adds category and tags if missing.
+ - Ensures tags include the category.
+ - Preserves existing fields if valid.
+ - Normalizes category/tags to lowercase.
+ - Logs all outcomes (fixed, inserted, already valid) into logs\FixFrontMatterReport.txt
 #>
 
-$repoRoot   = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
-$postsPath  = Join-Path $repoRoot "src\posts"
-$logsPath   = Join-Path $repoRoot "logs"
+$repoRoot = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
+$postsPath = Join-Path $repoRoot "src\posts"
+$logsPath = Join-Path $repoRoot "logs"
 $reportFile = Join-Path $logsPath "FixFrontMatterReport.txt"
 
 # Ensure logs folder exists
@@ -48,15 +54,15 @@ Get-ChildItem -Path $postsPath -Recurse -Filter *.md | ForEach-Object {
             $categoryMatch = [regex]::Match($yamlBlock, "(?m)^category:\s*(\w+)")
             if ($categoryMatch.Success) {
                 $categoryNorm = $categoryMatch.Groups[1].Value.Trim().ToLower()
-                $tagsMatch = [regex]::Match($yamlBlock, "(?m)^tags:\s*
+                $tagsMatch = [regex]::Match($yamlBlock, "(?m)^tags:\s*"
 
 \[(.*?)\]
 
-")
+")"
                 if ($tagsMatch.Success) {
                     $tagsNorm = $tagsMatch.Groups[1].Value.Split(',') | ForEach-Object { $_.Trim().ToLower() }
                     if (-not ($tagsNorm -contains $categoryNorm)) {
-                        $yamlBlock = $yamlBlock -replace "(?m)^tags:\s*
+                        $yamlBlock = $yamlBlock -replace "(?m)^tags:\s*"
 
 \[(.*?)\]
 
@@ -79,7 +85,7 @@ Get-ChildItem -Path $postsPath -Recurse -Filter *.md | ForEach-Object {
         }
     } else {
         # No front matter block at all — insert template
-        $template = @"
+        $template = @""
 ---
 title: "$($_.BaseName)"
 description: "Auto-generated description"
@@ -90,7 +96,7 @@ affiliate: "https://example.com/product"
 keywords: ["keyword1","keyword2"]
 layout: post.njk
 ---
-"@
+"@"
         $newContent = $template + "`n" + $content
         Set-Content -Path $file -Value $newContent -Encoding UTF8
         Write-Host "✔ Inserted template into $($_.Name)" -ForegroundColor Yellow
@@ -100,3 +106,15 @@ layout: post.njk
 
 "=== Run complete: $(Get-Date) ===`n" | Out-File -FilePath $reportFile -Encoding UTF8 -Append
 Write-Host "=== FixFrontMatter.ps1 complete ===" -ForegroundColor Cyan
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

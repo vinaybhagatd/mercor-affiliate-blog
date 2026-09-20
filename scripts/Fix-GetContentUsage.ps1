@@ -2,13 +2,19 @@
 <# <# <# <# .SYNOPSIS #> #> #> #> #>
     Sanitizes PowerShell scripts for ScriptAnalyzer compliance.
 
+<#
+<#
+<#
+<#
+<#
+<#
 .DESCRIPTION
-    - Fixes -Path 
-    - Removes invalid redirection operators ( |, | )
-    - Cleans up stray backticks and malformed strings
-    - Replaces Write-Output with Write-Output
-    - Normalizes whitespace around operators and commas
-    - Standardizes indentation (4 spaces)
+ - Fixes -Path 
+ - Removes invalid redirection operators ( |, | )
+ - Cleans up stray backticks and malformed strings
+ - Replaces Write-Output with Write-Output
+ - Normalizes whitespace around operators and commas
+ - Standardizes indentation (4 spaces)
 # | function Invoke-ScriptSanitizer {
     [CmdletBinding()]
     param(
@@ -33,9 +39,9 @@
         $content = $content -replace '\s* | \s*', ' '
 
         # 3. Remove stray backticks and malformed  markers
-        $content = $content -replace '`\n =  =  = ', ''
-        $content = $content -replace '`\n', "
-"
+        $content = $content -replace '`\n = = = ', ''
+        $content = $content -replace '`\n', ""
+""
 
         # 4. Replace Write-Output with Write-Output
         $content = $content -replace '\bWrite-Host\b', 'Write-Output'
@@ -61,3 +67,15 @@
 
 
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

@@ -1,4 +1,10 @@
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   Test-FolderStructure.ps1
 .DESCRIPTION
@@ -52,3 +58,15 @@ foreach ($f in $files) {
 Log "=== Completed Test-FolderStructure.ps1 ==="
 Write-Output "Validation complete. See $LogFile for details."
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

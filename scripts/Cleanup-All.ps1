@@ -1,4 +1,10 @@
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   Master cleanup orchestrator for Mercor Affiliate Blog System (MABS).
 .DESCRIPTION
@@ -51,3 +57,15 @@ if ($IncludeBlogs) {
 Write-Output "✅ Master cleanup complete. See CleanupReport.txt for audit trail."
 Log "Master cleanup completed successfully."
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

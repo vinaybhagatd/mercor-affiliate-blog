@@ -1,13 +1,19 @@
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
     Release audit wrapper for Mercor Affiliate Blog System.
 .DESCRIPTION
-    - Runs BulkFix-Posts.ps1 to repair missing categories/affiliate links
-    - Runs QAValidator.ps1 with PreReleaseAudit mode to validate all posts
-    - Runs RunAll.ps1 to execute the full pipeline (tests + deployment)
-    - Consolidates logs into ReleaseAuditReport.txt for permanent audit trail
-    - Creates release tags in the format mabs-v<major>.<minor>, auto-incrementing minor version
-    - Updates release notes body to include the new semantic tag
+ - Runs BulkFix-Posts.ps1 to repair missing categories/affiliate links
+ - Runs QAValidator.ps1 with PreReleaseAudit mode to validate all posts
+ - Runs RunAll.ps1 to execute the full pipeline (tests + deployment)
+ - Consolidates logs into ReleaseAuditReport.txt for permanent audit trail
+ - Creates release tags in the format mabs-v<major>.<minor>, auto-incrementing minor version
+ - Updates release notes body to include the new semantic tag
 #>
 
 param(
@@ -59,7 +65,7 @@ try {
     git push origin $newTag
 
     # Step 5: Create GitHub release with updated body including semantic tag
-    $releaseBody = @"
+    $releaseBody = @""
 Release Notes - $newTag
 
 Summary
@@ -98,7 +104,7 @@ Release Metadata
 - Tag: $newTag
 - Date: $(Get-Date -Format "yyyy-MM-dd")
 - Maintainer: Vinay
-"@
+"@"
 
     Log ">>> Creating GitHub release for $newTag"
     gh release create $newTag --notes "$releaseBody"
@@ -110,3 +116,15 @@ catch {
     throw
 }
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

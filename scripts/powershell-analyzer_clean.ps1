@@ -2,6 +2,12 @@
 <# <# <# <# .SYNOPSIS #> #> #> #> #>
     Runs PowerShell ScriptAnalyzer across the repository and enforces failures on warnings/errors.
 
+<#
+<#
+<#
+<#
+<#
+<#
 .DESCRIPTION
     This script installs PSScriptAnalyzer if missing, scans all PowerShell scripts and module definition files, and exits with code 1 if any violations are found. Intended for CI/CD pipelines or local validation.
 # | # Ensure PSScriptAnalyzer is available
@@ -48,3 +54,15 @@ else {
 
 
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

@@ -5,11 +5,11 @@ $categories = @(
 foreach ($cat in $categories) {
     $fileName = "$($cat.Name).html"
 
-    $content = @"
----
-layout: default
-title: "$($cat.Title)"
---- | h1 | $($cat.Heading) | /h1 | | ul | {% for post in site.categories.$($cat.Name) %} | li | | a href = "{{ post.url }}" | {{ post.title }} | /a | | /li | {% endfor %} | /ul | "@
+    $content = @""
+    -- -
+    layout: default
+    title: "$($cat.Title)"
+    -- - | h1 | $($cat.Heading) | /h1 | | ul | { % for post in site.categories.$($cat.Name) % } | li | | a href = "{{ post.url }}" | { { post.title } } | /a | | /li | { % endfor % } | /ul | "@
 
     Set-Content -Path $fileName -Value $content -Encoding UTF8
     Write-Output "Created $fileName"
@@ -22,3 +22,12 @@ title: "$($cat.Title)"
 
 
 
+}
+
+}
+
+}
+
+}
+
+}

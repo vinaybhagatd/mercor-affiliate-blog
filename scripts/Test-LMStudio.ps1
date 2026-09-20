@@ -1,10 +1,16 @@
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   Smoke test for LM Studio local API.
 .DESCRIPTION
-  - Probes common LM Studio ports (1234–1236)
-  - Confirms if LM Studio is serving models
-  - Prints a friendly status message
+ - Probes common LM Studio ports (1234–1236)
+ - Confirms if LM Studio is serving models
+ - Prints a friendly status message
 #>
 
 $ErrorActionPreference = "Stop"
@@ -43,3 +49,15 @@ if (-not $found) {
 
 Write-Host "=== Test-LMStudio.ps1 complete ===" -ForegroundColor Cyan
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

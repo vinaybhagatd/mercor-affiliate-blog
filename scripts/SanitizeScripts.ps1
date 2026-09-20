@@ -28,7 +28,7 @@ if ($Restore) {
             Write-Output "Restored $($file.Name) from backup."
         }
     }
-    Write-Output " Restore Complete =  =  = "
+    Write-Output " Restore Complete = = = "
     return
 }
 
@@ -77,15 +77,15 @@ if ($rawSelf -match '[^\x00-\x7F]') {
 }
 '@
         if ($clean -notmatch 'Pre-run ASCII validation guard') {
-            $clean = $guard + "
-" + $clean
+            $clean = $guard + ""
+            " + $clean"
         }
 
         Set-Content $file.FullName $clean -Encoding UTF8
 
         # Write per-file log
         $logFile = "$($file.FullName).removed.log"
-        $badLines + " Unicode Report =  =  = " + $charReport | Set-Content $logFile -Encoding UTF8
+        $badLines + " Unicode Report = = = " + $charReport | Set-Content $logFile -Encoding UTF8
 
         # Add to master report
         $masterReport += $charReport
@@ -99,12 +99,12 @@ if ($rawSelf -match '[^\x00-\x7F]') {
 # --- Master report ---
 if ($masterReport.Count -gt 0) {
     $masterReport | Set-Content ".\UnicodeMasterReport.log" -Encoding UTF8
-    Write-Output "
-Master report written to UnicodeMasterReport.log"
+    Write-Output ""
+    Master report written to UnicodeMasterReport.log""
 }
 else {
-    Write-Output "
-No non-ASCII characters found in project."
+    Write-Output ""
+    No non-ASCII characters found in project.""
 }
 
 
@@ -114,3 +114,12 @@ No non-ASCII characters found in project."
 
 
 
+}
+
+}
+
+}
+
+}
+
+}

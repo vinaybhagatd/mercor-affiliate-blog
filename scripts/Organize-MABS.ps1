@@ -1,5 +1,11 @@
 #!/usr/bin/env pwsh
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   Enhanced Organize-MABS.ps1 — Enforce guardrails and reorganize MABS project structure.
 
@@ -27,14 +33,14 @@ Get-ChildItem -Path $repoRoot -Recurse -Filter *.md | ForEach-Object {
     if ($content -match "(?s)^---(.*?)---") {
         $yamlBlock = $matches[1]
         $categoryMatch = [regex]::Match($yamlBlock, "category:\s*(\w+)")
-        $tagsMatch     = [regex]::Match($yamlBlock, "tags:\s*
+        $tagsMatch = [regex]::Match($yamlBlock, "tags:\s*"
 
 \[(.*?)\]
 
-")
+")"
         if ($categoryMatch.Success -and $tagsMatch.Success) {
             $categoryNorm = $categoryMatch.Groups[1].Value.Trim().ToLower()
-            $tagsNorm     = $tagsMatch.Groups[1].Value.Split(',') | ForEach-Object { $_.Trim().ToLower() }
+            $tagsNorm = $tagsMatch.Groups[1].Value.Split(',') | ForEach-Object { $_.Trim().ToLower() }
             if (-not ($tagsNorm -contains $categoryNorm)) {
                 Write-Host "❌ $($_.Name) tags missing category" -ForegroundColor Red
                 $sanityFail = $true
@@ -123,3 +129,15 @@ Write-Host "Third-party scripts moved: $($summary.thirdparty)" -ForegroundColor 
 Write-Host "Template scripts moved: $($summary.templates)" -ForegroundColor Blue
 Write-Host "Skipped (unclassified or duplicates): $($summary.skipped)" -ForegroundColor DarkGray
 Write-Host "=== Organize-MABS.ps1 complete ===" -ForegroundColor Cyan
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

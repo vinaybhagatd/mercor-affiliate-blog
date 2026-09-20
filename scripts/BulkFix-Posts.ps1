@@ -1,13 +1,19 @@
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   Bulk repair utility for blog posts.
 .DESCRIPTION
-  - Scans src/posts/*.md files
-  - Inserts missing categories from canonical list
-  - Inserts missing affiliate links from affiliate-links.md
-  - Normalizes front matter delimiters and sanitizes headers
-  - Logs all repair actions to BulkFixReport.txt
-  - Can be run standalone outside the pipeline
+ - Scans src/posts/*.md files
+ - Inserts missing categories from canonical list
+ - Inserts missing affiliate links from affiliate-links.md
+ - Normalizes front matter delimiters and sanitizes headers
+ - Logs all repair actions to BulkFixReport.txt
+ - Can be run standalone outside the pipeline
 #>
 
 param(
@@ -98,7 +104,7 @@ foreach ($file in $files) {
     }
 
     # ✅ Sanitize headers
-    $content = $content -replace "\+ =", "+="
+    $content = $content -replace "\+=", "+="
     $content = $content -replace "^\|", ""   # remove stray pipes
     $content = $content -replace "using\s+", "# using "
 
@@ -111,3 +117,15 @@ foreach ($file in $files) {
 Log "=== BulkFix-Posts.ps1 complete. All posts repaired. ==="
 Write-Host "=== BulkFix-Posts.ps1 complete. All posts repaired. ===" -ForegroundColor Green
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

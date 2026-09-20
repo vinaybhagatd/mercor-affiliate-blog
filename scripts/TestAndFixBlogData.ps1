@@ -1,4 +1,10 @@
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   Repairs blog post front matter by inserting or correcting affiliate links.
 
@@ -57,3 +63,15 @@ Get-ChildItem -Path $postsPath -Filter "*.md" | ForEach-Object {
 
 Write-Host "=== TestAndFixBlogData.ps1 complete. Affiliate links normalized. ==="
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

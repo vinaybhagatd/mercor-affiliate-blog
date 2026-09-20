@@ -1,4 +1,10 @@
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
 Analyze-And-Fix v2 – Auto-retry repair loop for PowerShell scripts.
 
@@ -31,7 +37,7 @@ function Run-Analyzer {
 function AI-Repair {
     param([string]$Path)
     $content = Get-Content $Path -Raw
-    $prompt = @"
+    $prompt = @""
 Repair this PowerShell script for syntax errors and ScriptAnalyzer compliance.
 Ensure:
 - Function calls use parentheses (Log("message"))
@@ -40,15 +46,15 @@ Ensure:
 - Unicode escapes use `u{XXXX}
 - Wrap stray numbered lines inside comments
 Return corrected script only.
-"@
+"@"
     $body = @{
-        model    = "qwen2.5-7b-instruct"
+        model = "qwen2.5-7b-instruct"
         messages = @(@{ role = "user"; content = $prompt + "`n`n" + $content })
     } | ConvertTo-Json -Depth 3 -Compress
 
     try {
         $response = Invoke-RestMethod -Uri "http://localhost:1234/v1/chat/completions" `
-            -Method Post -Body $body -ContentType "application/json"
+ -Method Post -Body $body -ContentType "application/json"
         $fixed = $response.choices[0].message.content
         $fixed | Set-Content $Path
         Log ("AI repair applied to $Path")
@@ -88,3 +94,15 @@ if ($retry -eq $MaxRetries) {
     }
 }
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

@@ -1,5 +1,11 @@
 #!/usr/bin/env pwsh
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   Stabilize-MABS.ps1 — Stabilization pipeline for Mercor Affiliate Blog System.
 
@@ -15,12 +21,12 @@
 Write-Host "=== Stabilize-MABS.ps1 started ===" -ForegroundColor Cyan
 
 # Paths
-$repoRoot     = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
-$blogPath     = Join-Path $repoRoot "src\posts"
-$fixer        = Join-Path $repoRoot "FixFrontMatter.ps1"
-$validator    = Join-Path $repoRoot "VerifyFrontMatter.ps1"
+$repoRoot = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
+$blogPath = Join-Path $repoRoot "src\posts"
+$fixer = Join-Path $repoRoot "FixFrontMatter.ps1"
+$validator = Join-Path $repoRoot "VerifyFrontMatter.ps1"
 $settingsPath = Join-Path $repoRoot "PSScriptAnalyzerSettings.psd1"
-$reportPath   = Join-Path $repoRoot "QAValidatorReport.txt"
+$reportPath = Join-Path $repoRoot "QAValidatorReport.txt"
 $excludeFiles = @("Stabilize-MABS.ps1")
 
 # --- Step 1: Run FixFrontMatter.ps1 ---
@@ -40,15 +46,15 @@ Get-ChildItem -Path $blogPath -Recurse -Filter *.md | ForEach-Object {
     if ($content -match "(?s)^---(.*?)---") {
         $yamlBlock = $matches[1]
         $categoryMatch = [regex]::Match($yamlBlock, "category:\s*(\w+)", [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
-        $tagsMatch     = [regex]::Match($yamlBlock, "tags:\s*
+        $tagsMatch = [regex]::Match($yamlBlock, "tags:\s*"
 
 \[(.*?)\]
 
-", [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
+", [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)"
 
         if ($categoryMatch.Success -and $tagsMatch.Success) {
             $categoryNorm = $categoryMatch.Groups[1].Value.Trim().ToLower()
-            $tagsNorm     = $tagsMatch.Groups[1].Value.Split(',') | ForEach-Object { $_.Trim().ToLower() }
+            $tagsNorm = $tagsMatch.Groups[1].Value.Split(',') | ForEach-Object { $_.Trim().ToLower() }
 
             if ($tagsNorm -contains $categoryNorm) {
                 Write-Host "✅ $($_.Name) passes sanity check" -ForegroundColor Green
@@ -114,3 +120,15 @@ foreach ($artifact in $artifacts) {
 
 Write-Host "✅ Stabilization complete. All guardrails passed." -ForegroundColor Green
 exit 0
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

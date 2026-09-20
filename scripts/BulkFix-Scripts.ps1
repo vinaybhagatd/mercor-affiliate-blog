@@ -3,6 +3,12 @@
     BulkFix-Scripts.ps1
     Provides Invoke-BulkFix function to sanitize PowerShell scripts and generate a summary report.
 
+<#
+<#
+<#
+<#
+<#
+<#
 .DESCRIPTION
     Iterates through all .ps1 files in the target directory, applies fixes (ASCII sanitization, whitespace cleanup),
     and writes a summary report with counts of changes per file.
@@ -81,3 +87,15 @@ if ($MyInvocation.InvocationName -eq $MyInvocation.MyCommand.Name) {
 
 
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

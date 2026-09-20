@@ -10,3 +10,12 @@ schtasks /Create /SC HOURLY /TN "MABS-Hourly" /TR "powershell.exe -File $root\Ru
 # Optional: every 15 minutes
 # schtasks /Create /SC MINUTE /MO 15 /TN "MABS-15Min" /TR "powershell.exe -File $root\RunEvery15Minutes.ps1"
 
+}
+
+}
+
+}
+
+}
+
+}

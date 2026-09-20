@@ -1,6 +1,12 @@
 <#
 <# <# <# <# .SYNOPSIS #> #> #> #> #>
     Format-Scripts.ps1 - Enforces Mercor Affiliate Blog System best practices
+<#
+<#
+<#
+<#
+<#
+<#
 .DESCRIPTION
     Runs PSScriptAnalyzer and Invoke-Formatter on all PowerShell scripts.
     Applies guardrails: fixes operator spacing, quotes wildcards, sanitizes headers,
@@ -73,3 +79,15 @@ exit 0
 
 
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

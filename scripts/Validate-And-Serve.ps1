@@ -1,4 +1,10 @@
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   Validate-And-Serve.ps1
 .DESCRIPTION
@@ -26,3 +32,15 @@ foreach ($f in $folders) {
 Write-Output "✅ Smoke test passed. Launching Eleventy..."
 npx @11ty/eleventy --serve
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

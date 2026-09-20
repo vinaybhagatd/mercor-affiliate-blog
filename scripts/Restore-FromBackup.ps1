@@ -1,4 +1,10 @@
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   Restore-FromBackup.ps1
 .DESCRIPTION
@@ -41,3 +47,15 @@ foreach ($file in $filesToRestore) {
 
 Write-Output "=== Restoration complete ==="
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

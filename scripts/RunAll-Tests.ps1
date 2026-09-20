@@ -1,11 +1,17 @@
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   Unified test harness for Mercor Affiliate Blog System.
 .DESCRIPTION
-  - Runs PSScriptAnalyzer on all active PowerShell scripts
-  - Executes LM Studio smoke test (ports 1234, 1235, 1236)
-  - Prints summary of results
-  - Emits structured output for wrapper scripts
+ - Runs PSScriptAnalyzer on all active PowerShell scripts
+ - Executes LM Studio smoke test (ports 1234, 1235, 1236)
+ - Prints summary of results
+ - Emits structured output for wrapper scripts
 #>
 
 $ErrorActionPreference = "Stop"
@@ -78,6 +84,18 @@ if (-not $lmStudioFound) {
 # -------------------------------
 Write-Output @{
     AnalyzerErrors = $errors
-    LMStudioFound  = $lmStudioFound
+    LMStudioFound = $lmStudioFound
 }
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

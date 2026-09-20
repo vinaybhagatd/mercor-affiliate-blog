@@ -1,5 +1,11 @@
 #!/usr/bin/env pwsh
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   Verify-Stabilize.ps1 — Post-run verification for StabilizeAgent.
 
@@ -12,10 +18,10 @@
 
 Write-Host "=== Verify-Stabilize.ps1 started ===" -ForegroundColor Cyan
 
-$repoRoot   = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
-$postsPath  = Join-Path $repoRoot "src\posts"
-$logsPath   = Join-Path $repoRoot "logs"
-$settings   = Join-Path $repoRoot "config\PSScriptAnalyzerSettings.psd1"
+$repoRoot = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
+$postsPath = Join-Path $repoRoot "src\posts"
+$logsPath = Join-Path $repoRoot "logs"
+$settings = Join-Path $repoRoot "config\PSScriptAnalyzerSettings.psd1"
 
 # --- Step 1: Front Matter Sanity Check ---
 Write-Host "Checking front matter integrity..." -ForegroundColor Cyan
@@ -26,15 +32,15 @@ Get-ChildItem -Path $postsPath -Recurse -Filter *.md | ForEach-Object {
     if ($content -match "(?s)^---(.*?)---") {
         $yamlBlock = $matches[1]
         $categoryMatch = [regex]::Match($yamlBlock, "category:\s*(\w+)", [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
-        $tagsMatch     = [regex]::Match($yamlBlock, "tags:\s*
+        $tagsMatch = [regex]::Match($yamlBlock, "tags:\s*"
 
 \[(.*?)\]
 
-", [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
+", [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)"
 
         if ($categoryMatch.Success -and $tagsMatch.Success) {
             $categoryNorm = $categoryMatch.Groups[1].Value.Trim().ToLower()
-            $tagsNorm     = $tagsMatch.Groups[1].Value.Split(',') | ForEach-Object { $_.Trim().ToLower() }
+            $tagsNorm = $tagsMatch.Groups[1].Value.Split(',') | ForEach-Object { $_.Trim().ToLower() }
             if (-not ($tagsNorm -contains $categoryNorm)) {
                 Write-Host "❌ $($_.Name) tags missing category" -ForegroundColor Red
                 $sanityFail = $true
@@ -84,3 +90,15 @@ foreach ($artifact in $artifacts) {
     }
 }
 Write-Host "=== Verification complete ===" -ForegroundColor Cyan
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

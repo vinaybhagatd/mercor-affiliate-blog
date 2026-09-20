@@ -1,4 +1,5 @@
-[K[?25h```powershell
+
+[K[?25h```powershell
 # Define a Log() function that writes both to console and to a report file
 function Log {
     param (
@@ -10,7 +11,8 @@ function Log {
     try {
         Add-Content -Path "log.txt" -Value "$message"
         Write-Output "Log entry added to log.txt: $message"
-    } catch {
+    }
+    catch {
         Write-Error "Failed to write to log.txt: $_"
     }
 }
@@ -50,7 +52,8 @@ function Orchestrator {
     # Log the result
     if ($analyzerResult) {
         Log "Analysis indicates potential issue: $sanitizedInput"
-    } else {
+    }
+    else {
         Log "No issues found in $sanitizedInput"
     }
 }
@@ -60,10 +63,10 @@ Orchestrator -inputString "This is a test input with some special characters and
 ```
 
 ### Explanation:
-1. **Log Function**: This function writes both to the console using `Write-Output` and to a report file named `log.txt`. It includes error handling for file writing issues.
-2. **SanitizeInput Function**: This function takes input, cleans it by removing special characters, and returns the sanitized string.
-3. **AnalyzeInput Function**: This function checks if the input contains specific words indicating an issue (e.g., "error" or "warning"). It returns a boolean value.
-4. **Orchestrator Function**: This function orchestrates the execution of `Log`, `SanitizeInput`, and `AnalyzeInput` by passing input, sanitizing it, analyzing it, and logging the results.
+1. * * Log Function**: This function writes both to the console using `Write-Output` and to a report file named `log.txt`. It includes error handling for file writing issues.
+2. * * SanitizeInput Function**: This function takes input, cleans it by removing special characters, and returns the sanitized string.
+3. * * AnalyzeInput Function**: This function checks if the input contains specific words indicating an issue (e.g., "error" or "warning"). It returns a boolean value.
+4. * * Orchestrator Function**: This function orchestrates the execution of `Log`, `SanitizeInput`, and `AnalyzeInput` by passing input, sanitizing it, analyzing it, and logging the results.
 
 ### Notes:
 - Ensure that the `log.txt` file exists in the same directory as the script or provide the full path to the log file.
@@ -76,3 +79,12 @@ Orchestrator -inputString "This is a test input with some special characters and
 
 
 
+}
+
+}
+
+}
+
+}
+
+}

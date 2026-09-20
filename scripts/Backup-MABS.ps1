@@ -1,4 +1,10 @@
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   Creates a dated backup archive of critical MABS files.
 .DESCRIPTION
@@ -6,7 +12,7 @@
 #>
 
 $projectRoot = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
-$backupRoot  = Join-Path $projectRoot "backups"
+$backupRoot = Join-Path $projectRoot "backups"
 
 # Ensure backup folder exists
 if (-not (Test-Path $backupRoot)) {
@@ -15,8 +21,8 @@ if (-not (Test-Path $backupRoot)) {
 
 # Timestamped archive name
 $timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
-$zipName   = "MABS-Backup-$timestamp.zip"
-$zipPath   = Join-Path $backupRoot $zipName
+$zipName = "MABS-Backup-$timestamp.zip"
+$zipPath = Join-Path $backupRoot $zipName
 
 # Critical files and folders to back up
 $itemsToBackup = @(
@@ -62,4 +68,16 @@ if ($fullPaths.Count -gt 0) {
     Write-Host "✅ Backup created: $zipPath"
 } else {
     Write-Host "❌ No files found to back up."
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
 }

@@ -25,7 +25,7 @@ function AutoFix {
     # Add actual Invoke-AutoCorrection logic here if needed
 }
 
-# =  =  = Main Execution =  =  = try {
+# = = = Main Execution = = = try {
 Log "MercorDebug script started."
 
 $success = Invoke-Orchestrator
@@ -52,3 +52,12 @@ catch {
 
 
 
+}
+
+}
+
+}
+
+}
+
+}

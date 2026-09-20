@@ -1,20 +1,26 @@
 <# 
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   Automates fix for blank landing page in MABS.
 .DESCRIPTION
-  - Restores canonical index.njk with dynamic loops.
-  - Ensures collections wiring in .eleventy.js.
-  - Creates canonical category.njk and post.njk.
-  - Cleans up invalid tags in Markdown posts.
+ - Restores canonical index.njk with dynamic loops.
+ - Ensures collections wiring in .eleventy.js.
+ - Creates canonical category.njk and post.njk.
+ - Cleans up invalid tags in Markdown posts.
 #>
 
 $projectRoot = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
-$srcPath     = Join-Path $projectRoot "src"
+$srcPath = Join-Path $projectRoot "src"
 
 Write-Host "Applying landing page fix in $projectRoot..."
 
 # --- Restore canonical index.njk ---
-$indexContent = @"
+$indexContent = @""
 ---
 layout: base.njk
 title: Mercor Affiliate Blog System
@@ -61,14 +67,14 @@ permalink: /index.html
 <footer>
   <p>© Mercor Affiliate Blog System</p>
 </footer>
-"@
+"@"
 
 $indexPath = Join-Path $srcPath "index.njk"
 $indexContent | Set-Content -Path $indexPath -Encoding UTF8
 Write-Host "Restored index.njk"
 
 # --- Restore canonical category.njk ---
-$categoryContent = @"
+$categoryContent = @""
 ---
 layout: base.njk
 pagination:
@@ -84,7 +90,7 @@ permalink: /categories/{{ category }}/index.html
     <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
   {% endfor %}
 </ul>
-"@
+"@"
 
 $categoryPath = Join-Path $srcPath "categories\category.njk"
 if (!(Test-Path (Split-Path $categoryPath -Parent))) { New-Item -ItemType Directory -Path (Split-Path $categoryPath -Parent) | Out-Null }
@@ -92,7 +98,7 @@ $categoryContent | Set-Content -Path $categoryPath -Encoding UTF8
 Write-Host "Restored category.njk"
 
 # --- Restore canonical post.njk ---
-$postContent = @"
+$postContent = @""
 ---
 layout: base.njk
 ---
@@ -104,7 +110,7 @@ layout: base.njk
     <p class="tags">Categories: {{ tags | join(", ") }}</p>
   {% endif %}
 </article>
-"@
+"@"
 
 $postPath = Join-Path $srcPath "posts\post.njk"
 if (!(Test-Path (Split-Path $postPath -Parent))) { New-Item -ItemType Directory -Path (Split-Path $postPath -Parent) | Out-Null }
@@ -112,7 +118,7 @@ $postContent | Set-Content -Path $postPath -Encoding UTF8
 Write-Host "Restored post.njk"
 
 # --- Ensure collections wiring in .eleventy.js ---
-$eleventyConfig = @"
+$eleventyConfig = @""
 module.exports = function(eleventyConfig) {
   eleventyConfig.addCollection("categories", function(collectionApi) {
     let categories = {};
@@ -140,7 +146,7 @@ module.exports = function(eleventyConfig) {
     }
   };
 };
-"@
+"@"
 
 $eleventyPath = Join-Path $projectRoot ".eleventy.js"
 $eleventyConfig | Set-Content -Path $eleventyPath -Encoding UTF8
@@ -165,3 +171,15 @@ Get-ChildItem -Path (Join-Path $srcPath "posts") -Filter *.md | ForEach-Object {
 }
 
 Write-Host "✅ Landing page fix complete. Run 'npx eleventy --clean --serve' to verify."
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

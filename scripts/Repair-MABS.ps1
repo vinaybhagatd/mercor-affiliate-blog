@@ -1,4 +1,10 @@
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   Repair-MABS.ps1
 .DESCRIPTION
@@ -8,7 +14,7 @@
   Run from project root: C:\Users\LMTest\promotional\mercor-affiliate-blog
 #>
 
-$Root   = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
+$Root = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
 $Backup = Join-Path $Root "mercor_backups\RepairBackup_$(Get-Date -Format 'yyyyMMdd_HHmmss')"
 $LogFile = Join-Path $Root "Repair-MABS.log"
 
@@ -163,3 +169,15 @@ nav a { margin-right: 1rem; }
 Log "=== Completed Repair-MABS.ps1 ==="
 Write-Output "Repair complete. See $LogFile for details."
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

@@ -1,11 +1,17 @@
 <#
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   Self-heals blog posts by repairing missing categories and affiliate links.
 .DESCRIPTION
-  - Scans src/posts/*.md files
-  - Inserts missing categories from canonical list
-  - Inserts missing affiliate links from affiliate-links.md
-  - Ensures posts are compliant before FixFrontMatter.ps1 runs
+ - Scans src/posts/*.md files
+ - Inserts missing categories from canonical list
+ - Inserts missing affiliate links from affiliate-links.md
+ - Ensures posts are compliant before FixFrontMatter.ps1 runs
 #>
 
 param(
@@ -77,3 +83,15 @@ foreach ($file in $files) {
 
 Write-Host "=== SelfHeal.ps1 complete. Categories and affiliate links repaired. ===" -ForegroundColor Green
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

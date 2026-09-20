@@ -49,3 +49,12 @@ if (Test-Path $footerPath) {
     Write-Host "Fixed footer.njk to remove Invalid DateTime text."
 }
 
+}
+
+}
+
+}
+
+}
+
+}

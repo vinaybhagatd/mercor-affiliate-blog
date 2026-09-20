@@ -2,6 +2,12 @@
 <# <# <# <# .SYNOPSIS #> #> #> #> #>
     RepoCleanup.ps1 - Automatically rename unapproved verbs in PowerShell functions.
 
+<#
+<#
+<#
+<#
+<#
+<#
 .DESCRIPTION
     Scans all .ps1 files in the repo and replaces unapproved verbs with approved ones:
       Invoke-*      ??' Invoke-*
@@ -15,7 +21,7 @@
     [string] $RepoRoot = "."
 )
 
-Write-Output " =  =  = Starting repo-wide cleanup =  =  = "
+Write-Output " = = = Starting repo-wide cleanup = = = "
 
 Get-ChildItem -Path $RepoRoot -Recurse -Filter *.ps1 | ForEach-Object {
     $file = $_.FullName
@@ -42,7 +48,7 @@ Get-ChildItem -Path $RepoRoot -Recurse -Filter *.ps1 | ForEach-Object {
     Set-Content -Path $file -Value $content -Encoding UTF8
 }
 
-Write-Output " =  =  = Cleanup complete. All unapproved verbs replaced with approved verbs. =  =  = "
+Write-Output " = = = Cleanup complete. All unapproved verbs replaced with approved verbs. = = = "
 
 
 
@@ -51,3 +57,15 @@ Write-Output " =  =  = Cleanup complete. All unapproved verbs replaced with appr
 
 
 
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}

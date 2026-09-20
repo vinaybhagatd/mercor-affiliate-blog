@@ -8,7 +8,7 @@ $createLog = Join-Path $projectPath "createblog.log"
 $orchLog = Join-Path $projectPath "orchestrator.log"
 $summaryDir = Join-Path $projectPath "orchestrator_summaries"
 
-Write-Output " =  =  = MercorDebugLoader starting =  =  = "
+Write-Output " = = = MercorDebugLoader starting = = = "
 
 # Run MercorDebug.ps1 (which calls Orchestrator)
 try {
@@ -44,7 +44,7 @@ else {
     Write-Output "Summary directory missing: $summaryDir"
 }
 
-Write-Output " =  =  = MercorDebugLoader complete =  =  = "
+Write-Output " = = = MercorDebugLoader complete = = = "
 
 
 
@@ -53,3 +53,12 @@ Write-Output " =  =  = MercorDebugLoader complete =  =  = "
 
 
 
+}
+
+}
+
+}
+
+}
+
+}

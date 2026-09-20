@@ -1,15 +1,21 @@
 <# 
+<#
+<#
+<#
+<#
+<#
+<#
 .SYNOPSIS
   Verifies that Fix-LandingPage.ps1 applied correctly.
 .DESCRIPTION
-  - Checks index.njk for category and post loops.
-  - Confirms category.njk and post.njk exist.
-  - Validates .eleventy.js collections wiring.
-  - Ensures Markdown posts have title and tags.
+ - Checks index.njk for category and post loops.
+ - Confirms category.njk and post.njk exist.
+ - Validates .eleventy.js collections wiring.
+ - Ensures Markdown posts have title and tags.
 #>
 
 $projectRoot = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
-$srcPath     = Join-Path $projectRoot "src"
+$srcPath = Join-Path $projectRoot "src"
 
 Write-Host "Verifying landing page fix in $projectRoot..."
 
@@ -61,7 +67,7 @@ if (Test-Path $postsPath) {
     Get-ChildItem -Path $postsPath -Filter *.md | ForEach-Object {
         $content = Get-Content $_.FullName -Raw
         $hasTitle = $content -match "title:"
-        $hasTags  = $content -match "tags:"
+        $hasTags = $content -match "tags:"
         if ($hasTitle -and $hasTags) {
             Write-Host "✅ $($_.Name) has title and tags."
         } else {
@@ -73,3 +79,15 @@ if (Test-Path $postsPath) {
 }
 
 Write-Host "Verification complete."
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
+#>
+}
