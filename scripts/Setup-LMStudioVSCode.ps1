@@ -1,11 +1,4 @@
-<#
-<#
-<#
-<#
-<#
-<#
-<#
-.SYNOPSIS
+<#.SYNOPSIS
   Configures VS Code AI extension to use LM Studio local API.
 .DESCRIPTION
  - Skips installation (assumes VS Code + LM Studio already installed)
@@ -27,7 +20,7 @@ Write-Host "Configuring VS Code to use LM Studio..."
 
 $settingsPath = "$env:APPDATA\Code\User\settings.json"
 
-if (-Not (Test-Path $settingsPath)) {
+if (-not (Test-Path $settingsPath)) {
     New-Item -ItemType File -Path $settingsPath -Force | Out-Null
 }
 
@@ -35,7 +28,8 @@ $settings = @{}
 if (Test-Path $settingsPath) {
     try {
         $settings = Get-Content $settingsPath | ConvertFrom-Json
-    } catch {
+    }
+    catch {
         Write-Warning "Existing settings.json is not valid JSON. Overwriting."
         $settings = @{}
     }
@@ -45,9 +39,9 @@ if (Test-Path $settingsPath) {
 $settings."continue.serverUrl" = "http://127.0.0.1:1234/v1"
 $settings."continue.models" = @(
     @{
-        "title" = "Qwen2.5-7B-Instruct (LM Studio)"
+        "title"    = "Qwen2.5-7B-Instruct (LM Studio)"
         "provider" = "openai"
-        "model" = "qwen2.5-7b-instruct"
+        "model"    = "qwen2.5-7b-instruct"
     }
 )
 
@@ -57,14 +51,3 @@ Write-Host "VS Code configured to use LM Studio local API." -ForegroundColor Gre
 Write-Host "=== Setup-LMStudioVSCode.ps1 complete ===" -ForegroundColor Cyan
 
 #>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}

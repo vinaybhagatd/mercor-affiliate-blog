@@ -1,11 +1,4 @@
-<#
-<#
-<#
-<#
-<#
-<#
-<#
-.SYNOPSIS
+<#.SYNOPSIS
   Validates Mercor Affiliate Blog System (MABS) stability.
 .DESCRIPTION
   Runs six checks:
@@ -19,8 +12,8 @@
 #>
 
 param(
-  [string]$TargetDir = "C:\Users\LMTest\promotional\mercor-affiliate-blog",
-  [string]$ReportFile = "MABSHealthReport.txt"
+    [string]$TargetDir = "C:\Users\LMTest\promotional\mercor-affiliate-blog",
+    [string]$ReportFile = "MABSHealthReport.txt"
 )
 
 function Log {
@@ -34,20 +27,22 @@ Clear-Content $ReportFile -ErrorAction SilentlyContinue
 Log "=== Starting MABS Stability Validation ==="
 
 # 1. Repo Structure
-$requiredDirs = @("src\posts","_layouts","_includes","_site","scripts")
+$requiredDirs = @("src\posts", "_layouts", "_includes", "_site", "scripts")
 foreach ($dir in $requiredDirs) {
     if (-not (Test-Path (Join-Path $TargetDir $dir))) {
         Log "❌ Missing directory: $dir"
-    } else {
+    }
+    else {
         Log "✅ Found directory: $dir"
     }
 }
 
-$requiredFiles = @(".eleventy.js","_layouts\post.njk","_layouts\category.njk")
+$requiredFiles = @(".eleventy.js", "_layouts\post.njk", "_layouts\category.njk")
 foreach ($file in $requiredFiles) {
     if (-not (Test-Path (Join-Path $TargetDir $file))) {
         Log "❌ Missing critical file: $file"
-    } else {
+    }
+    else {
         Log "✅ Found critical file: $file"
     }
 }
@@ -59,7 +54,8 @@ Get-ChildItem -Path $TargetDir -Recurse -Filter "*.ps1" | ForEach-Object {
     if ($results) {
         Log "❌ ScriptAnalyzer errors in $($_.Name)"
         $results | ForEach-Object { Log " -> $($_.Message)" }
-    } else {
+    }
+    else {
         Log "✅ Script clean: $($_.Name)"
     }
 }
@@ -69,9 +65,11 @@ try {
     Push-Location $TargetDir
     npx eleventy --dryrun | Out-File "$TargetDir\EleventyDryRun.log"
     Log "✅ Eleventy dry-run completed"
-} catch {
+}
+catch {
     Log "❌ Eleventy dry-run failed: $($_.Exception.Message)"
-} finally {
+}
+finally {
     Pop-Location
 }
 
@@ -79,7 +77,8 @@ try {
 $gitHook = "C:\Users\LMTest\promotional\mercor-affiliate-blog\.githooks\pre-commit.ps1"
 if (Test-Path $gitHook) {
     Log "✅ Pre-commit hook found at .githooks\pre-commit.ps1"
-} else {
+}
+else {
     Log "❌ Pre-commit hook missing at .githooks\pre-commit.ps1"
 }
 
@@ -88,10 +87,12 @@ if (Test-Path $gitIgnore) {
     $ignoreContent = Get-Content $gitIgnore
     if ($ignoreContent -match "QAReport.txt" -and $ignoreContent -match "PreCommitReport.txt") {
         Log "✅ .gitignore excludes artifacts"
-    } else {
+    }
+    else {
         Log "⚠️ .gitignore missing exclusions for QAReport.txt / PreCommitReport.txt"
     }
-} else {
+}
+else {
     Log "❌ .gitignore missing"
 }
 
@@ -106,10 +107,12 @@ try {
     if (Test-Path $batchScriptScript) {
         . $batchScriptScript -ErrorAction SilentlyContinue
         Log "✅ BatchCreateBlogs executed from scripts\"
-    } elseif (Test-Path $batchScriptRoot) {
+    }
+    elseif (Test-Path $batchScriptRoot) {
         . $batchScriptRoot -ErrorAction SilentlyContinue
         Log "✅ BatchCreateBlogs executed from repo root"
-    } else {
+    }
+    else {
         Log "❌ BatchCreateBlogs.ps1 not found in scripts\ or root"
     }
 
@@ -119,10 +122,12 @@ try {
     if (Test-Path $qaScriptScript) {
         . $qaScriptScript -ErrorAction SilentlyContinue
         Log "✅ QAValidator executed from scripts\"
-    } elseif (Test-Path $qaScriptRoot) {
+    }
+    elseif (Test-Path $qaScriptRoot) {
         . $qaScriptRoot -ErrorAction SilentlyContinue
         Log "✅ QAValidator executed from repo root"
-    } else {
+    }
+    else {
         Log "❌ QAValidator.ps1 not found"
     }
 
@@ -132,16 +137,20 @@ try {
     if (Test-Path $orchScriptScript) {
         . $orchScriptScript -ErrorAction SilentlyContinue
         Log "✅ Orchestrator executed from scripts\"
-    } elseif (Test-Path $orchScriptRoot) {
+    }
+    elseif (Test-Path $orchScriptRoot) {
         . $orchScriptRoot -ErrorAction SilentlyContinue
         Log "✅ Orchestrator executed from repo root"
-    } else {
+    }
+    else {
         Log "❌ Orchestrator.ps1 not found"
     }
 
-} catch {
+}
+catch {
     Log "❌ Smoke test failed: $($_.Exception.Message)"
-} finally {
+}
+finally {
     Pop-Location
 }
 
@@ -150,14 +159,3 @@ Log "=== MABS Validation Complete ==="
 Write-Output "✅ Validation finished. See $ReportFile for full details."
 
 #>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}

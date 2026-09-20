@@ -1,11 +1,4 @@
-<#
-<#
-<#
-<#
-<#
-<#
-<#
-.SYNOPSIS
+<#.SYNOPSIS
     QA validation script for Mercor Affiliate Blog System.
 .DESCRIPTION
     QAValidator.ps1 checks all Markdown posts in src/posts/ for:
@@ -45,8 +38,8 @@ Log "=== QAValidator.ps1 started ==="
 
 # ✅ Canonical categories
 $allowedCategories = @(
-    "creative","data","engineering","finance","language",
-    "law","medicine","misc","operations","sciences","tech"
+    "creative", "data", "engineering", "finance", "language",
+    "law", "medicine", "misc", "operations", "sciences", "tech"
 )
 
 # Counters
@@ -67,12 +60,14 @@ try {
             if ($allowedCategories -contains $cat) {
                 Log "✅ $($file.Name) has valid category [$cat]"
                 $validCount++
-            } else {
+            }
+            else {
                 Log "❌ $($file.Name) has invalid category [$cat]"
                 $invalidCategoryCount++
                 $valid = $false
             }
-        } else {
+        }
+        else {
             Log "❌ $($file.Name) missing category in front matter"
             $missingCategoryCount++
             $valid = $false
@@ -81,7 +76,8 @@ try {
         # Affiliate link check
         if ($content -match 'affiliate:\s*(https:\/\/t\.mercor\.com\/[A-Za-z0-9]+)') {
             Log "✅ $($file.Name) contains affiliate link [$($matches[1])]"
-        } else {
+        }
+        else {
             Log "❌ $($file.Name) missing affiliate link"
             $missingAffiliateCount++
             $valid = $false
@@ -95,9 +91,9 @@ try {
     # --- Run ScriptAnalyzer with guardrails ---
     Log ">>> Running PSScriptAnalyzer..."
     Invoke-ScriptAnalyzer -Path $PostsDir `
- -Settings "PSScriptAnalyzerSettings.psd1" `
- -Severity Error `
- -ExcludeRule @("PSAvoidUsingWriteHost","PSUseDeclaredVarsMoreThanAssignments","PSUseApprovedVerbs") |
+        -Settings "PSScriptAnalyzerSettings.psd1" `
+        -Severity Error `
+        -ExcludeRule @("PSAvoidUsingWriteHost", "PSUseDeclaredVarsMoreThanAssignments", "PSUseApprovedVerbs") |
         Tee-Object -FilePath $ReportFile -Append
 }
 catch {
@@ -117,19 +113,9 @@ if ($invalidCategoryCount -eq 0 -and
     $missingCategoryCount -eq 0 -and 
     $missingAffiliateCount -eq 0) {
     Write-Host "QA validation passed. All blogs are clean." -ForegroundColor Green
-} else {
+}
+else {
     Write-Warning "QA validation completed with issues. See QAValidatorReport.txt for details."
 }
 
 #>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}

@@ -1,10 +1,5 @@
 #!/usr/bin/env pwsh
-<#
-<#
-<#
-<#
-<#
-<#
+pwsh -NoProfile -ExecutionPolicy Bypass -File ".\scripts\pre-commit.ps1" "$@"
 <#
 .SYNOPSIS
   PreCommitHook.ps1 — Runs validation before allowing commit.
@@ -20,11 +15,13 @@
 Write-Host "PowerShell profile loaded successfully."
 Write-Host "=== PreCommitHook.ps1 started ==="
 
-$repoRoot = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
-$logsPath = Join-Path $repoRoot "logs"
+$repoRoot   = "C:\Users\LMTest\promotional\mercor-affiliate-blog"
+$logsPath   = Join-Path $repoRoot "logs"
 $reportFile = Join-Path $logsPath "PreCommitReport.txt"
 
-if (-not (Test-Path $logsPath)) { New-Item -ItemType Directory -Path $logsPath | Out-Null }
+if (-not (Test-Path $logsPath)) {
+    New-Item -ItemType Directory -Path $logsPath | Out-Null
+}
 "=== Pre-commit run: $(Get-Date) ===" | Out-File -FilePath $reportFile -Encoding UTF8
 
 # --- Front matter validation ---
@@ -39,8 +36,8 @@ if ($LASTEXITCODE -ne 0) {
 $analyzer = Join-Path $repoRoot "scripts\Run-ScriptAnalyzer.ps1"
 if (Test-Path $analyzer) {
     Write-Host "=== Running PSScriptAnalyzer ==="
-    $results = & $analyzer
-    $errors = $results | Where-Object { $_.Severity -eq "Error" -or $_.Severity -eq "ParseError" }
+    $results  = & $analyzer
+    $errors   = $results | Where-Object { $_.Severity -eq "Error" -or $_.Severity -eq "ParseError" }
     $warnings = $results | Where-Object { $_.Severity -eq "Warning" }
 
     if ($errors.Count -gt 0) {
@@ -57,15 +54,3 @@ if (Test-Path $analyzer) {
 
 Write-Host "=== PreCommitHook.ps1 complete ==="
 exit 0
-#>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}

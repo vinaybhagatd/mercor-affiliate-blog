@@ -1,11 +1,4 @@
-<#
-<#
-<#
-<#
-<#
-<#
-<#
-.SYNOPSIS
+<#.SYNOPSIS
   Batch creates blog posts with canonical template.
 
 .DESCRIPTION
@@ -46,25 +39,25 @@ foreach ($post in $posts) {
 
     # ✅ Stable front matter template (no date)
     $frontMatter = @""
----
-title: $($post.Title)
-description: $($post.Description)
-category: $($post.Category)
-layout: post
-affiliate: $canonicalLink
-keywords: $($post.Keywords)
-tags: [$($post.Category)]
-thumbnail: "/assets/images/thumbnails/$($post.Category).png"
----
-"@"
+    -- -
+    title: $($post.Title)
+    description: $($post.Description)
+    category: $($post.Category)
+    layout: post
+    affiliate: $canonicalLink
+    keywords: $($post.Keywords)
+    tags: [$($post.Category)]
+    thumbnail: "/assets/images/thumbnails/$($post.Category).png"
+    -- -
+    "@"
 
     # ✅ Body content in Molly Keyser + Sam Browne blended style
     $body = @""
-# $($post.Title)
+    # $($post.Title)
 
-🌟 Why This Matters
+    🌟 Why This Matters
 
-Imagine yourself facing the challenges of $($post.Title). This isn’t just about information — it’s about transformation. Readers want clarity, confidence, and a roadmap they can trust. That’s why this post speaks directly to their goals and frustrations, blending emotional resonance with practical frameworks.
+    Imagine yourself facing the challenges of $($post.Title). This isn’t just about information — it’s about transformation. Readers want clarity, confidence, and a roadmap they can trust. That’s why this post speaks directly to their goals and frustrations, blending emotional resonance with practical frameworks.
 
 ## Key Insights
 - Story-driven examples that connect emotionally
@@ -87,14 +80,3 @@ Your next step matters. [Click here]($canonicalLink) to access exclusive resourc
 
 Write-Host "=== BatchCreateBlogs.ps1 complete ==="
 #>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}

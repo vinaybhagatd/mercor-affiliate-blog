@@ -1,11 +1,4 @@
-<#
-<#
-<#
-<#
-<#
-<#
-<#
-.SYNOPSIS
+<#.SYNOPSIS
   One-click wrapper for full deploy.
 .DESCRIPTION
  - Runs ReleaseAudit.ps1 (BulkFix + Audit + Release)
@@ -32,14 +25,3 @@ git push origin --tags
 Write-Host "=== DeployAll.ps1 complete. Full deploy executed. ===" -ForegroundColor Green
 
 #>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}

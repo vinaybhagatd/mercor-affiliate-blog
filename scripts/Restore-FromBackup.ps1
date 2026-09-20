@@ -1,11 +1,4 @@
-<#
-<#
-<#
-<#
-<#
-<#
-<#
-.SYNOPSIS
+<#.SYNOPSIS
   Restore-FromBackup.ps1
 .DESCRIPTION
   Restores critical files (Eleventy config, Node metadata, PowerShell scripts)
@@ -19,7 +12,7 @@ $BackupRoot = Join-Path $Root "mercor_backups"
 
 # Find latest backup folder
 $latestBackup = Get-ChildItem -Path $BackupRoot -Directory -ErrorAction SilentlyContinue |
-                Sort-Object LastWriteTime -Descending | Select-Object -First 1
+    Sort-Object LastWriteTime -Descending | Select-Object -First 1
 
 if (-not $latestBackup) {
     Write-Output "No backup folder found under $BackupRoot. Aborting."
@@ -30,10 +23,10 @@ Write-Output "Using backup folder: $($latestBackup.FullName)"
 
 # Restore only critical files
 $filesToRestore = Get-ChildItem -Path $latestBackup.FullName -Recurse -File |
-                  Where-Object { $_.Name -eq ".eleventy.js" -or $_.Name -eq "package.json" -or $_.Name -eq "package-lock.json" -or $_.Extension -eq ".ps1" }
+    Where-Object { $_.Name -eq ".eleventy.js" -or $_.Name -eq "package.json" -or $_.Name -eq "package-lock.json" -or $_.Extension -eq ".ps1" }
 
 foreach ($file in $filesToRestore) {
-    $relativePath = $file.FullName.Substring($latestBackup.FullName.Length+1)
+    $relativePath = $file.FullName.Substring($latestBackup.FullName.Length + 1)
     $dest = Join-Path $Root $relativePath
 
     $destFolder = Split-Path $dest -Parent
@@ -48,14 +41,3 @@ foreach ($file in $filesToRestore) {
 Write-Output "=== Restoration complete ==="
 
 #>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}

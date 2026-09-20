@@ -1,11 +1,4 @@
-<#
-<#
-<#
-<#
-<#
-<#
-<#
-.SYNOPSIS
+<#.SYNOPSIS
     Release audit wrapper for Mercor Affiliate Blog System.
 .DESCRIPTION
  - Runs BulkFix-Posts.ps1 to repair missing categories/affiliate links
@@ -49,13 +42,14 @@ try {
 
     # Step 4: Auto-increment semantic version tag
     $latestTag = git tag --list "mabs-v$MajorVersion.*" | Sort-Object { 
-        [version]($_ -replace 'mabs-v','') 
+        [version]($_ -replace 'mabs-v', '') 
     } | Select-Object -Last 1
 
     if ($latestTag) {
-        $parts = $latestTag -replace 'mabs-v','' -split '\.'
+        $parts = $latestTag -replace 'mabs-v', '' -split '\.'
         $minor = [int]$parts[1] + 1
-    } else {
+    }
+    else {
         $minor = 1
     }
 
@@ -66,45 +60,45 @@ try {
 
     # Step 5: Create GitHub release with updated body including semantic tag
     $releaseBody = @""
-Release Notes - $newTag
+    Release Notes - $newTag
 
-Summary
--------
-Stable milestone for Mercor Affiliate Blog System.
-Canonical 11 categories enforced, layouts regenerated, QAValidator integrated.
+    Summary
+    ------ -
+    Stable milestone for Mercor Affiliate Blog System.
+    Canonical 11 categories enforced, layouts regenerated, QAValidator integrated.
 
-Included Updates
-----------------
-- .eleventy.js (slug whitelist + date filter)
-- base.njk, post.njk, category.njk layouts
-- index.njk and categories/index.njk
-- Starter styles.css
-- QAValidator.ps1
+    Included Updates
+    ----------------
+    - .eleventy.js (slug whitelist + date filter)
+    - base.njk, post.njk, category.njk layouts
+    - index.njk and categories/index.njk
+    - Starter styles.css
+    - QAValidator.ps1
 
-Guardrails Implemented
-----------------------
-- Only 11 canonical categories allowed
-- QAValidator blocks invalid tags
-- Luxon date filter for clean formatting
-- Deterministic folder paths and automation scripts
+    Guardrails Implemented
+    ----------------------
+    - Only 11 canonical categories allowed
+    - QAValidator blocks invalid tags
+    - Luxon date filter for clean formatting
+    - Deterministic folder paths and automation scripts
 
-Validation Status
------------------
-- Eleventy build passes
-- QAValidator returns only approved categories
-- _site renders with styled layouts
+    Validation Status
+    ---------------- -
+    - Eleventy build passes
+    - QAValidator returns only approved categories
+    - _site renders with styled layouts
 
-Rollback Instructions
----------------------
-git checkout $newTag
-git reset --hard $newTag
+    Rollback Instructions
+    -------------------- -
+    git checkout $newTag
+    git reset --hard $newTag
 
-Release Metadata
-----------------
-- Tag: $newTag
-- Date: $(Get-Date -Format "yyyy-MM-dd")
-- Maintainer: Vinay
-"@"
+    Release Metadata
+    ----------------
+    - Tag: $newTag
+    - Date: $(Get-Date -Format "yyyy-MM-dd")
+    - Maintainer: Vinay
+    "@"
 
     Log ">>> Creating GitHub release for $newTag"
     gh release create $newTag --notes "$releaseBody"
@@ -117,14 +111,3 @@ catch {
 }
 
 #>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}

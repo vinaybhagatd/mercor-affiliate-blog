@@ -1,13 +1,5 @@
-<#
-<# <# <# <# .SYNOPSIS #> #> #> #> #>
-    Format-Scripts.ps1 - Enforces Mercor Affiliate Blog System best practices
-<#
-<#
-<#
-<#
-<#
-<#
-.DESCRIPTION
+<#.SYNOPSIS #>Format-Scripts.ps1 - Enforces Mercor Affiliate Blog System best practices
+<#.DESCRIPTION
     Runs PSScriptAnalyzer and Invoke-Formatter on all PowerShell scripts.
     Applies guardrails: fixes operator spacing, quotes wildcards, sanitizes headers,
     removes stray pipes, and ensures comment-based help compliance.
@@ -35,9 +27,8 @@ foreach ($file in $ps1Files) {
     # Quote wildcards in -Filter
     $content = $content -replace '-Filter\s+\*\.md', '-Filter "*.md"'
 
-    # Wrap bare <# <# <# <# <# .SYNOPSIS/.DESCRIPTION in comment block if needed #> #> #> #> #>
-    if ($content -match '^\s*\<# <# <# <# <# .SYNOPSIS') { #> #> #> #> #>
-        $content = "<#`n" + $content + "`n#>"
+    # Wrap bare <#.SYNOPSIS/.DESCRIPTION in comment block if needed #>if ($content -match '^\s*\<#.SYNOPSIS') {
+        #>$content = "<#`n" + $content + "`n#>"
     }
 
     # Save sanitized content back
@@ -80,14 +71,3 @@ exit 0
 
 
 #>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}

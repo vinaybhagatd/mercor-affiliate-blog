@@ -1,12 +1,5 @@
 #!/usr/bin/env pwsh
-<#
-<#
-<#
-<#
-<#
-<#
-<#
-.SYNOPSIS
+<#.SYNOPSIS
   FixFrontMatter.ps1 — Repairs missing or invalid front matter in Markdown posts.
 
 .DESCRIPTION
@@ -50,23 +43,24 @@ Get-ChildItem -Path $postsPath -Recurse -Filter *.md | ForEach-Object {
             $yamlBlock += "`ntags: [general]"
             $fixed = $true
             $logEntry += "Added tags to $($_.Name)`n"
-        } else {
+        }
+        else {
             $categoryMatch = [regex]::Match($yamlBlock, "(?m)^category:\s*(\w+)")
             if ($categoryMatch.Success) {
                 $categoryNorm = $categoryMatch.Groups[1].Value.Trim().ToLower()
                 $tagsMatch = [regex]::Match($yamlBlock, "(?m)^tags:\s*"
 
-\[(.*?)\]
+                    \[(.*?)\]
 
-")"
-                if ($tagsMatch.Success) {
-                    $tagsNorm = $tagsMatch.Groups[1].Value.Split(',') | ForEach-Object { $_.Trim().ToLower() }
-                    if (-not ($tagsNorm -contains $categoryNorm)) {
-                        $yamlBlock = $yamlBlock -replace "(?m)^tags:\s*"
+                    ")"
+                    if ($tagsMatch.Success) {
+                        $tagsNorm = $tagsMatch.Groups[1].Value.Split(',') | ForEach-Object { $_.Trim().ToLower() }
+                        if (-not ($tagsNorm -contains $categoryNorm)) {
+                            $yamlBlock = $yamlBlock -replace "(?m)^tags:\s*"
 
-\[(.*?)\]
+                            \[(.*?)\]
 
-", "tags: [$($tagsNorm -join ', '), $categoryNorm]"
+                            ", "tags: [$($tagsNorm -join ', '), $categoryNorm]"
                         $fixed = $true
                         $logEntry += "Appended category to tags in $($_.Name)`n"
                     }
@@ -107,14 +101,6 @@ layout: post.njk
 "=== Run complete: $(Get-Date) ===`n" | Out-File -FilePath $reportFile -Encoding UTF8 -Append
 Write-Host "=== FixFrontMatter.ps1 complete ===" -ForegroundColor Cyan
 #>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}
+
+
+        }

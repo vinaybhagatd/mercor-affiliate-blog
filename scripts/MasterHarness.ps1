@@ -1,11 +1,4 @@
-<#
-<#
-<#
-<#
-<#
-<#
-<#
-.SYNOPSIS
+<#.SYNOPSIS
 MasterHarness v13 – Unified orchestrator for MABS scripts.
 
 .DESCRIPTION
@@ -44,7 +37,8 @@ function Run-Analyzer {
     param([string]$Path)
     try {
         return Invoke-ScriptAnalyzer -Path $Path -Severity Error -ErrorAction SilentlyContinue
-    } catch {
+    }
+    catch {
         Log ("Analyzer failed: $($_.Exception.Message)")
         return @()
     }
@@ -54,29 +48,30 @@ function AI-Repair {
     param([string]$Path)
     $content = Get-Content $Path -Raw
     $prompt = @""
-Repair this PowerShell script for syntax errors and ScriptAnalyzer compliance.
-Ensure:
-- Function calls use parentheses (Log("message"))
-- Param blocks use newlines or semicolons, not commas
-- Wildcards quoted ("*.md")
-- Unicode escapes use UNICODE_ESCAPE
-- Wrap stray numbered lines inside comments
-Return corrected script only.
-Note: UNICODE_ESCAPE means PowerShell-compliant Unicode escape in the form u{XXXX}.
-"@"
+    Repair this PowerShell script for syntax errors and ScriptAnalyzer compliance.
+    Ensure:
+    - function calls use parentheses (Log("message"))
+    - Param blocks use newlines or semicolons, not commas
+    - Wildcards quoted ("*.md")
+    - Unicode escapes use UNICODE_ESCAPE
+    - Wrap stray numbered lines inside comments
+    return corrected script only.
+    Note: UNICODE_ESCAPE means PowerShell-compliant Unicode escape in the form u { XXXX }.
+    "@"
     $body = @{
-        model = "qwen2.5-7b-instruct"
+        model    = "qwen2.5-7b-instruct"
         messages = @(@{ role = "user"; content = $prompt + "`n`n" + $content })
     } | ConvertTo-Json -Depth 3 -Compress
 
     try {
         $response = Invoke-RestMethod -Uri "http://localhost:1234/v1/chat/completions" `
- -Method Post -Body $body -ContentType "application/json"
+            -Method Post -Body $body -ContentType "application/json"
         $fixed = $response.choices[0].message.content
         $fixed | Set-Content $Path
         $script:RepairedCount++
         Log ("AI repair applied to $Path")
-    } catch {
+    }
+    catch {
         $script:ErrorCount++
         Log ("AI repair failed: $($_.Exception.Message)")
     }
@@ -94,7 +89,8 @@ function Analyze-And-Fix {
             $script:RepairedCount++
             Log ("${filePath} passed ScriptAnalyzer validation.")
             break
-        } else {
+        }
+        else {
             Log ("Errors detected in ${filePath}:")
             $results | ForEach-Object { Log ($_.Message) }
             $retry++
@@ -108,7 +104,8 @@ function Analyze-And-Fix {
         if ($results) {
             $script:ErrorCount++
             Log ("${filePath} still has errors after $MaxRetries retries.")
-        } else {
+        }
+        else {
             $script:RepairedCount++
             Log ("${filePath} passed validation after final retry.")
         }
@@ -122,7 +119,8 @@ function Process-Files {
         if (-not [string]::IsNullOrWhiteSpace($path)) {
             Log ("DEBUG: Found file $path")
             Analyze-And-Fix -filePath $path -MaxRetries $MaxRetries
-        } else {
+        }
+        else {
             $script:SkippedCount++
             Log ("Skipped: filePath was null.")
         }
@@ -182,7 +180,8 @@ elseif ($File) {
         Log ("DEBUG: Single file mode for $File")
         Analyze-And-Fix -filePath $File -MaxRetries $MaxRetries
         Log ("Single file repair complete.")
-    } else { Log ("File not found: ${File}") }
+    }
+    else { Log ("File not found: ${File}") }
 }
 else {
     Log ("Use -All, -RepairOnly, or -SelfHealOnly to control execution.")
@@ -196,14 +195,3 @@ Log ("Errors detected: $script:ErrorCount")
 Log ("================================================")
 
 #>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}

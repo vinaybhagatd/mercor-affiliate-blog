@@ -1,11 +1,4 @@
-<#
-<#
-<#
-<#
-<#
-<#
-<#
-.SYNOPSIS
+<#.SYNOPSIS
     GitHub release creation script for Mercor Affiliate Blog System.
 .DESCRIPTION
  - Checks GH_TOKEN authentication
@@ -42,15 +35,16 @@ try {
 
     $headers = @{
         Authorization = "Bearer $env:GH_TOKEN"
-        Accept = "application/vnd.github+json"
-        "User-Agent" = "MercorAffiliateBlogSystem"
+        Accept        = "application/vnd.github+json"
+        "User-Agent"  = "MercorAffiliateBlogSystem"
     }
 
     # --- Check if tag exists ---
     $existingTag = git tag -l $TagName
     if ($existingTag) {
         Log "⚠️ Tag [$TagName] already exists. Skipping tag creation."
-    } else {
+    }
+    else {
         Log ">>> Creating new tag: $TagName"
         git tag -a $TagName -m "Release $TagName"
         git push origin $TagName
@@ -58,23 +52,24 @@ try {
 
     # --- Check if release already exists ---
     $existingRelease = Invoke-RestMethod -Uri "https://api.github.com/repos/$RepoOwner/$RepoName/releases/tags/$TagName" `
- -Headers $headers -ErrorAction SilentlyContinue
+        -Headers $headers -ErrorAction SilentlyContinue
 
     if ($existingRelease) {
         Log "⚠️ Release for tag [$TagName] already exists: $($existingRelease.html_url)"
-    } else {
+    }
+    else {
         # --- Create release ---
         $releasePayload = @{
-            tag_name = $TagName
-            name = $ReleaseTitle
-            body = $ReleaseBody
-            draft = $false
+            tag_name   = $TagName
+            name       = $ReleaseTitle
+            body       = $ReleaseBody
+            draft      = $false
             prerelease = $false
         } | ConvertTo-Json -Depth 3
 
         Log ">>> Creating GitHub release for $TagName..."
         $release = Invoke-RestMethod -Uri "https://api.github.com/repos/$RepoOwner/$RepoName/releases" `
- -Method Post -Headers $headers -Body $releasePayload -ErrorAction Stop
+            -Method Post -Headers $headers -Body $releasePayload -ErrorAction Stop
 
         Log "✅ Release created successfully: $($release.html_url)"
     }
@@ -87,14 +82,3 @@ finally {
 }
 
 #>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}

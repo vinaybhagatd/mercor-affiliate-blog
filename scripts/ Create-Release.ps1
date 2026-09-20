@@ -1,11 +1,4 @@
-<#
-<#
-<#
-<#
-<#
-<#
-<#
-.SYNOPSIS
+<#.SYNOPSIS
   Creates a GitHub release with auto-generated notes.
 .DESCRIPTION
  - Uses commit metadata for release notes
@@ -14,8 +7,8 @@
 #>
 
 param(
-  [string]$Tag,
-  [string]$Repo = "origin"
+    [string]$Tag,
+    [string]$Repo = "origin"
 )
 
 $ErrorActionPreference = "Stop"
@@ -38,10 +31,12 @@ if (Test-Path "QAValidatorReport.txt") {
     $summaryStart = ($lines | Select-String "Summary:").LineNumber
     if ($summaryStart) {
         $qaSummary = ($lines | Select-Object -Skip ($summaryStart - 1) -First 6) -join "`n"
-    } else {
+    }
+    else {
         $qaSummary = "No QA summary found."
     }
-} else {
+}
+else {
     $qaSummary = "QAValidatorReport.txt not found."
 }
 
@@ -63,14 +58,3 @@ gh release create $Tag --notes "$releaseNotes"
 Write-Host "=== Create-Release.ps1 complete. Release $Tag published with QA summary. ===" -ForegroundColor Green
 
 #>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}

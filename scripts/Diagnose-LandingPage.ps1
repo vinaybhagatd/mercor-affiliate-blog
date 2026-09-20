@@ -1,11 +1,4 @@
-<# 
-<#
-<#
-<#
-<#
-<#
-<#
-.SYNOPSIS
+<#.SYNOPSIS
   Diagnose blank landing page in MABS.
 .DESCRIPTION
  - Checks index.njk for loops.
@@ -25,7 +18,8 @@ if (Test-Path $indexPath) {
     $hasCategoriesLoop = $indexContent -match "collections\.categories"
     $hasPostsLoop = $indexContent -match "collections\.posts"
     Write-Host "index.njk loops: Categories=$hasCategoriesLoop, Posts=$hasPostsLoop"
-} else {
+}
+else {
     Write-Host "❌ index.njk not found."
 }
 
@@ -36,7 +30,8 @@ if (Test-Path $eleventyPath) {
     $hasCategories = $eleventyContent -match 'addCollection\("categories"'
     $hasPosts = $eleventyContent -match 'addCollection\("posts"'
     Write-Host ".eleventy.js collections: Categories=$hasCategories, Posts=$hasPosts"
-} else {
+}
+else {
     Write-Host "❌ .eleventy.js not found."
 }
 
@@ -57,20 +52,10 @@ if (Test-Path $postsPath) {
         $tags = if ($tagsMatch.Success) { $tagsMatch.Groups[1].Value } else { "MISSING" }
         Write-Host "Post: $($post.Name) | Title=$title | Tags=$tags"
     }
-} else {
+}
+else {
     Write-Host "❌ posts folder not found."
 }
 
 Write-Host "Diagnosis complete."
 #>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}

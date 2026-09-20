@@ -1,17 +1,8 @@
-<#
-.SYNOPSIS
-    Bulletproof test harness for PowerShell profile validation
-.DESCRIPTION
-    - Confirms profile load and log entry
-    - Verifies ssh-agent service
-    - Tests Git helper functions
-    - Tests aliases and prompt
-    - Runs symlink setup script via $PSScriptRoot
-    - Validates symlink target correctness
-    - Prints consolidated summary
-#>
+# Test-Profile.ps1
+. .\scripts\Logging.ps1
 
 $ErrorActionPreference = "Stop"
+
 $results = @{}
 
 function Log {
@@ -60,18 +51,22 @@ Log ($results.Prompt -eq "OK" ? "✅ Prompt function defined" : "❌ Prompt func
 
 # --- 5. Symlink Setup & Validation ---
 Log "=== Running symlink setup ==="
-try {
-    $setupScript = Join-Path $PSScriptRoot "setup-hooks.ps1"
-if (Test-Path $setupScript) {
-    & $setupScript
-    Log "✅ Symlink setup executed: $setupScript"
-} else {
-    Log "❌ setup-hooks.ps1 not found at $setupScript"
-}
 
-} catch {
-    $results.Symlinks = "FAIL"
-    Log "❌ Symlink setup script failed: $($_.Exception.Message)"
+$hookPaths = @(
+    ".git\hooks\pre-commit.ps1",
+    ".git\hooks\commit-msg.ps1",
+    ".git\hooks\pre-push.ps1"
+)
+
+foreach ($hook in $hooks) {
+    $targetPath = Join-Path (Split-Path $PSScriptRoot -Parent) "..\.githooks\$hook"
+
+    if (Test-Path $targetPath) {
+        New-Item -ItemType SymbolicLink -Path ".git\hooks\$hook" -Target $targetPath
+        Log "✅ Symlink created: .git/hooks\$hook → $targetPath"
+    } else {
+        Log "❌ Target missing: $targetPath"
+    }
 }
 
 # --- Summary ---

@@ -1,11 +1,4 @@
-<#
-<#
-<#
-<#
-<#
-<#
-<#
-.SYNOPSIS
+<#.SYNOPSIS
   Repair-MABS.ps1
 .DESCRIPTION
   Validates, fixes, restores, and auto-generates missing Mercor Affiliate Blog files.
@@ -29,17 +22,17 @@ Log "=== Starting Repair-MABS.ps1 ==="
 
 # Canonical folders
 $canonicalFolders = @(
-    "src","src\_layouts","src\_includes","src\posts",
-    "src\categories","src\assets","src\assets\css","src\assets\images\thumbnails","src\assets\js"
+    "src", "src\_layouts", "src\_includes", "src\posts",
+    "src\categories", "src\assets", "src\assets\css", "src\assets\images\thumbnails", "src\assets\js"
 )
 
 # Canonical files (include helper scripts so they aren’t flagged)
 $canonicalFiles = @(
-    ".eleventy.js","package.json","package-lock.json",
-    "src\index.njk","src\pricing\index.njk","src\contact\index.njk",
-    "src\categories\index.njk","src\assets\css\styles.css",
-    "Repair-MABS.ps1","Validate-And-Serve.ps1","Fix-FolderStructure.ps1",
-    "Test-FolderStructure.ps1","Restore-FromBackup.ps1"
+    ".eleventy.js", "package.json", "package-lock.json",
+    "src\index.njk", "src\pricing\index.njk", "src\contact\index.njk",
+    "src\categories\index.njk", "src\assets\css\styles.css",
+    "Repair-MABS.ps1", "Validate-And-Serve.ps1", "Fix-FolderStructure.ps1",
+    "Test-FolderStructure.ps1", "Restore-FromBackup.ps1"
 )
 
 # Ensure canonical folders exist
@@ -48,19 +41,21 @@ foreach ($f in $canonicalFolders) {
     if (-not (Test-Path $path)) {
         New-Item -ItemType Directory -Force -Path $path | Out-Null
         Log "Created folder: $f"
-    } else {
+    }
+    else {
         Log "PASS: Found $f"
     }
 }
 
 # Auto-create missing critical files
-function EnsureFile($path,$content) {
+function EnsureFile($path, $content) {
     if (-not (Test-Path $path)) {
         $folder = Split-Path $path -Parent
         if (-not (Test-Path $folder)) { New-Item -ItemType Directory -Force -Path $folder | Out-Null }
         Set-Content -Path $path -Value $content -Force
         Log "Restored missing file: $path"
-    } else {
+    }
+    else {
         Log "PASS: Found $path"
     }
 }
@@ -170,14 +165,3 @@ Log "=== Completed Repair-MABS.ps1 ==="
 Write-Output "Repair complete. See $LogFile for details."
 
 #>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}

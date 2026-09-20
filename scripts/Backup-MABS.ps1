@@ -1,11 +1,4 @@
-<#
-<#
-<#
-<#
-<#
-<#
-<#
-.SYNOPSIS
+<#.SYNOPSIS
   Creates a dated backup archive of critical MABS files.
 .DESCRIPTION
   Collects automation scripts, layouts, configs, and guardrails into a ZIP file.
@@ -57,7 +50,8 @@ foreach ($item in $itemsToBackup) {
     $path = Join-Path $projectRoot $item
     if (Test-Path $path) {
         $fullPaths += $path
-    } else {
+    }
+    else {
         Write-Host "⚠️ Skipping missing item: $item"
     }
 }
@@ -66,18 +60,8 @@ foreach ($item in $itemsToBackup) {
 if ($fullPaths.Count -gt 0) {
     Compress-Archive -Path $fullPaths -DestinationPath $zipPath -Force
     Write-Host "✅ Backup created: $zipPath"
-} else {
+}
+else {
     Write-Host "❌ No files found to back up."
 }
 #>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}

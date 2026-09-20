@@ -1,11 +1,4 @@
-<#
-<#
-<#
-<#
-<#
-<#
-<#
-.SYNOPSIS
+<#.SYNOPSIS
   Installer script for Git hooks in Mercor Affiliate Blog System (MABS).
 .DESCRIPTION
   Creates shims in .git/hooks/ that call canonical PowerShell hook scripts
@@ -21,16 +14,17 @@ function Create-Shim($hookName) {
     $psScriptPath = Join-Path $customHooksDir "$hookName.ps1"
 
     $shimContent = @""
-#!/bin/sh
-# Git hook shim for $hookName
-pwsh -NoProfile -ExecutionPolicy Bypass -File "$(git rev-parse --show-toplevel)/.githooks/$hookName.ps1"
-"@"
+    #!/bin/sh
+    # Git hook shim for $hookName
+    pwsh -NoProfile -ExecutionPolicy Bypass -File "$(git rev-parse --show-toplevel)/.githooks/$hookName.ps1"
+    "@"
 
     Set-Content -Path $shimPath -Value $shimContent -Encoding UTF8
     # Make executable (for Unix-like environments)
     try {
         bash -c "chmod +x '$shimPath'" 2>$null
-    } catch {
+    }
+    catch {
         Write-Output "Note: chmod skipped (Windows environment)."
     }
 
@@ -42,14 +36,3 @@ Create-Shim "pre-commit"
 Create-Shim "post-commit"
 Write-Output "✅ Hooks setup complete. Pre-commit and post-commit now wired to .githooks/"
 #>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}

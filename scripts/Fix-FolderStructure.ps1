@@ -1,11 +1,4 @@
-<#
-<#
-<#
-<#
-<#
-<#
-<#
-.SYNOPSIS
+<#.SYNOPSIS
   Fix-FolderStructure.ps1
 .DESCRIPTION
   Reorganizes Mercor Affiliate Blog folders into canonical Eleventy structure.
@@ -36,8 +29,8 @@ if (-not (Test-Path (Join-Path $Root ".eleventy.js"))) {
 
 # Create canonical folders if missing
 $folders = @(
-    "src","src\_layouts","src\_includes","src\posts",
-    "src\categories","src\assets\css","src\assets\images\thumbnails","src\assets\js"
+    "src", "src\_layouts", "src\_includes", "src\posts",
+    "src\categories", "src\assets\css", "src\assets\images\thumbnails", "src\assets\js"
 )
 foreach ($f in $folders) {
     $path = Join-Path $Root $f
@@ -48,13 +41,14 @@ foreach ($f in $folders) {
 }
 
 # Safe move with backup
-function SafeMove($src,$dest) {
+function SafeMove($src, $dest) {
     if (Test-Path $src) {
         $backupDest = Join-Path $Backup (Split-Path $src -Leaf)
         Copy-Item $src $backupDest -Recurse -Force
         Move-Item $src $dest -Force
         Log "Moved $src -> $dest (backup at $backupDest)"
-    } else {
+    }
+    else {
         Log "Skipped missing: $src"
     }
 }
@@ -79,18 +73,18 @@ SafeMove (Join-Path $Root "assets\images\thumbnails") (Join-Path $Root "src\asse
 
 # Duplicate cleanup (report-only mode)
 $canonicalFolders = @(
-    "src","src\_layouts","src\_includes","src\posts",
-    "src\categories","src\assets","src\assets\css","src\assets\images\thumbnails","src\assets\js"
+    "src", "src\_layouts", "src\_includes", "src\posts",
+    "src\categories", "src\assets", "src\assets\css", "src\assets\images\thumbnails", "src\assets\js"
 )
 $canonicalFiles = @(
-    ".eleventy.js","package.json","package-lock.json",
-    "src\index.njk","src\pricing\index.njk","src\contact\index.njk",
-    "src\categories\index.njk","src\assets\css\styles.css"
+    ".eleventy.js", "package.json", "package-lock.json",
+    "src\index.njk", "src\pricing\index.njk", "src\contact\index.njk",
+    "src\categories\index.njk", "src\assets\css\styles.css"
 )
 
 $allFolders = Get-ChildItem -Path $Root -Directory
 foreach ($folder in $allFolders) {
-    $relativePath = $folder.FullName.Substring($Root.Length+1)
+    $relativePath = $folder.FullName.Substring($Root.Length + 1)
     if (-not ($canonicalFolders -contains $relativePath)) {
         Log "Would DELETE Folder: $relativePath"
     }
@@ -98,7 +92,7 @@ foreach ($folder in $allFolders) {
 
 $allFiles = Get-ChildItem -Path $Root -File
 foreach ($file in $allFiles) {
-    $relativePath = $file.FullName.Substring($Root.Length+1)
+    $relativePath = $file.FullName.Substring($Root.Length + 1)
     if (-not ($canonicalFiles -contains $relativePath)) {
         Log "Would DELETE File: $relativePath"
     }
@@ -108,14 +102,3 @@ Log "=== Completed Fix-FolderStructure.ps1 ==="
 Write-Output "Folder structure fixed. See $LogFile for details."
 
 #>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}

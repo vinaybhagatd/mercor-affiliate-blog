@@ -1,14 +1,7 @@
 #
-<# <# <# <# .SYNOPSIS #> #> #> #> #>
-    Sanitizes PowerShell scripts for ScriptAnalyzer compliance.
+<#.SYNOPSIS #>Sanitizes PowerShell scripts for ScriptAnalyzer compliance.
 
-<#
-<#
-<#
-<#
-<#
-<#
-.DESCRIPTION
+<#.DESCRIPTION
  - Fixes -Path 
  - Removes invalid redirection operators ( |, | )
  - Cleans up stray backticks and malformed strings
@@ -68,14 +61,6 @@
 
 
 #>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
-}
-#>
+
+
 }
