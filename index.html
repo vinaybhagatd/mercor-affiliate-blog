@@ -144,54 +144,78 @@
             <h2>Get Started</h2>
             <p>Enter your details and select a plan:</p>
 
-            <form id="leadForm" onsubmit="return false;">
+            <form id="leadForm">
                 <input type="text" id="name" placeholder="Your Name" required>
                 <input type="email" id="email" placeholder="Your Email" required>
-
                 <select id="plan" required>
                     <option value="">Select Plan</option>
                     <option value="starter">Starter - 149 USD Setup + 29 USD per month</option>
                     <option value="growth">Growth - 399 USD Setup + 99 USD per month</option>
                     <option value="pro">Pro - 999 USD Assessment + 2500 USD per month Retainer</option>
                 </select>
-
                 <button type="submit">Continue to Payment</button>
             </form>
 
-        </div>
-    </div>
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    console.log("DOM fully loaded");
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
+                    var btn = document.getElementById("getStartedBtn");
+                    var modal = document.getElementById("leadModal");
+                    var closeBtn = document.getElementById("closeModal");
+                    var form = document.getElementById("leadForm");
 
-            var btn = document.getElementById("getStartedBtn");
-            var modal = document.getElementById("leadModal");
-            var closeBtn = document.getElementById("closeModal");
-            var form = document.getElementById("leadForm");
+                    btn.onclick = function () {
+                        console.log("Get Started button clicked");
+                        modal.style.display = "block";
+                    };
 
-            btn.onclick = function () {
-                modal.style.display = "block";
-            };
+                    closeBtn.onclick = function () {
+                        console.log("Close button clicked");
+                        modal.style.display = "none";
+                    };
 
-            closeBtn.onclick = function () {
-                modal.style.display = "none";
-            };
+                    form.onsubmit = function (event) {
+                        event.preventDefault(); // stop default form reload
+                        console.log("Form submitted");
 
-            form.onsubmit = function () {
+                        var name = document.getElementById("name").value;
+                        var email = document.getElementById("email").value;
+                        var plan = document.getElementById("plan").value;
 
-                var plan = document.getElementById("plan").value;
-                var url = "";
+                        console.log("Collected values:", { name, email, plan });
 
-                if (plan === "starter") url = "https://paypal.me/VinayDBhagat/149";
-                if (plan === "growth") url = "https://paypal.me/VinayDBhagat/399";
-                if (plan === "pro") url = "https://paypal.me/VinayDBhagat/999";
+                        fetch("https://script.google.com/macros/s/AKfycbxUedzXPWbeYgY_vLZCR7pa00rbFgMXVIAC0MhqFwFkxhKzBooFp199VGSGacCBaKCQ/exec", {
+                            method: "POST",
+                            body: JSON.stringify({ name: name, email: email, plan: plan })
+                        })
+                            .then(r => {
+                                console.log("Fetch response object:", r);
+                                return r.text();
+                            })
+                            .then(t => {
+                                console.log("Fetch response text:", t);
+                                alert("Response from Sheets: " + t);
 
-                window.open(url, "_blank");
-                modal.style.display = "none";
-            };
+                                var url = "";
+                                if (plan === "starter") url = "https://paypal.me/VinayDBhagat/149";
+                                if (plan === "growth") url = "https://paypal.me/VinayDBhagat/399";
+                                if (plan === "pro") url = "https://paypal.me/VinayDBhagat/999";
 
-        });
-    </script>
+                                console.log("Redirecting to PayPal URL:", url);
+                                window.open(url, "_blank");
+                                modal.style.display = "none";
+                            })
+                            .catch(err => {
+                                console.error("Fetch error:", err);
+                                alert("Error: " + err);
+                            });
+                    };
+                });
+            </script>
+
+
+
 
 </body>
 
