@@ -303,7 +303,7 @@ Category pages validated against canonical set
 
 ---
 
-This regenerated README keeps all your original Eleventy setup details while integrating the **CI/CD automation, pipeline flow, badge legend,
+This regenerated README keeps all your original Eleventy setup details while integrating the **CI/CD automation, pipeline flow, badge legend.
 
 
 
