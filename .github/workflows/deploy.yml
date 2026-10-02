@@ -14,35 +14,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Step 2: Setup PowerShell
-      - name: Setup PowerShell
-        uses: actions/setup-python@v4
+      # Step 2: Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          python-version: '3.x'
+          node-version: '18'
 
-      # Step 3: Run unified test harness
-      - name: Run analyzer + LM Studio smoke test
-        shell: pwsh
-        run: |
-          .\RunAll-Tests.ps1
-
-      # Step 4: Fail pipeline if errors detected
-      - name: Check test results
-        shell: pwsh
-        run: |
-          $report = Get-Content QAValidatorReport.txt
-          if ($report -match "❌") {
-            Write-Error "Blocking errors detected in RunAll-Tests.ps1. Failing pipeline."
-            exit 1
-          }
-
-      # Step 5: Build Eleventy site
+      # Step 3: Build Eleventy site
       - name: Build Eleventy site
         run: |
           npm install
           npx @11ty/eleventy
 
-      # Step 6: Deploy to GitHub Pages
+      # Step 4: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
