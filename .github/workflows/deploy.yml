@@ -10,19 +10,23 @@ jobs:
     runs-on: windows-latest
 
     steps:
+      # Step 1: Checkout repo
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Step 2: Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
 
+      # Step 3: Build Eleventy site
       - name: Build Eleventy site
         run: |
           npm install
           npx @11ty/eleventy
 
+      # Step 4: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
