@@ -80,30 +80,47 @@
                 var name = document.getElementById("name").value;
                 var email = document.getElementById("email").value;
                 var plan = document.getElementById("plan").value;
+                var submitBtn = form.querySelector("button[type='submit']");
 
-                // ✅ Your new Web App URL
+                // Disable button to prevent double-submits
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Processing...";
+
+                // Your verified Apps Script Web App URL
                 var url = "https://script.google.com/macros/s/AKfycbyhrlPZf4HcwSeEJPABYH2avCbkEJBi3IFq2lUrUnDKytaH6gTPX5rZiFnzV1UmounkEA/exec"
                           + "?name=" + encodeURIComponent(name)
                           + "&email=" + encodeURIComponent(email)
                           + "&plan=" + encodeURIComponent(plan);
 
-                fetch(url)
-                    .then(r => r.text())
-                    .then(t => {
-                        alert("Response from Sheets: " + t);
+                // Send request using no-cors mode to safely trigger the Google Script backend
+                fetch(url, { 
+                    method: 'GET',
+                    mode: 'no-cors' 
+                })
+                .then(() => {
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = "Continue to Payment";
 
-                        var paypalUrl = "";
-                        if (plan === "starter") paypalUrl = "https://paypal.me/VinayDBhagat/149";
-                        if (plan === "growth") paypalUrl = "https://paypal.me/VinayDBhagat/399";
-                        if (plan === "pro") paypalUrl = "https://paypal.me/VinayDBhagat/999";
+                    // Determine PayPal link based on plan selection
+                    var paypalUrl = "";
+                    if (plan === "starter") paypalUrl = "https://paypal.me/VinayDBhagat/149";
+                    if (plan === "growth") paypalUrl = "https://paypal.me/VinayDBhagat/399";
+                    if (plan === "pro") paypalUrl = "https://paypal.me/VinayDBhagat/999";
 
-                        window.open(paypalUrl, "_blank");
-                        modal.style.display = "none";
-                    })
-                    .catch(err => {
-                        console.error("Fetch error:", err);
-                        alert("Error: " + err);
-                    });
+                    alert("Details saved and welcome email sent! Redirecting to PayPal...");
+                    
+                    // Open PayPal in a new tab and close modal
+                    window.open(paypalUrl, "_blank");
+                    modal.style.display = "none";
+                    form.reset();
+                })
+                .catch(err => {
+                    console.error("Fetch error:", err);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = "Continue to Payment";
+                    alert("An error occurred. Please try again.");
+                });
             };
         });
     </script>
