@@ -120,7 +120,7 @@
 
     <header>
         <h1>AutomateAffiliateBlogs</h1>
-        <p>Lifetime Affiliate Blog Generator on Autopilot</p>
+        <p>Lifetime Offline Affiliate Blog Generator on Autopilot</p>
     </header>
 
     <section>
@@ -168,54 +168,71 @@
             var form = document.getElementById("leadForm");
 
             btn.onclick = function () {
-                console.log("Get Started button clicked");
                 modal.style.display = "block";
             };
 
             closeBtn.onclick = function () {
-                console.log("Close button clicked");
                 modal.style.display = "none";
             };
 
             form.onsubmit = function (event) {
-                event.preventDefault(); // stop default form reload
-                console.log("Form submitted");
-
+                event.preventDefault();
+                
                 var name = document.getElementById("name").value;
                 var email = document.getElementById("email").value;
                 var plan = document.getElementById("plan").value;
+                var submitBtn = form.querySelector("button[type='submit']");
 
-                console.log("Collected values:", { name, email, plan });
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Processing...";
 
-                fetch("https://script.google.com/macros/s/AKfycbxUedzXPWbeYgY_vLZCR7pa00rbFgMXVIAC0MhqFwFkxhKzBooFp199VGSGacCBaKCQ/exec", {
-                    method: "POST",
-                    mode: "cors",
-                    body: JSON.stringify({ name: name, email: email, plan: plan }),
-                    headers: { "Content-Type": "application/json" }
-                })
-                    .then(r => {
-                        console.log("Fetch response object:", r);
-                        return r.text();
-                    })
-                    .then(t => {
-                        console.log("Fetch response text:", t);
-                        alert("Response from Sheets: " + t);
+                // Determine PayPal link
+                var paypalUrl = "";
+                if (plan === "starter") paypalUrl = "https://paypal.me/VinayDBhagat/149";
+                if (plan === "growth") paypalUrl = "https://paypal.me/VinayDBhagat/399";
+                if (plan === "pro") paypalUrl = "https://paypal.me/VinayDBhagat/999";
 
-                        var url = "";
-                        if (plan === "starter") url = "https://paypal.me/VinayDBhagat/149";
-                        if (plan === "growth") url = "https://paypal.me/VinayDBhagat/399";
-                        if (plan === "pro") url = "https://paypal.me/VinayDBhagat/999";
+                // Create a hidden iframe to catch the Google Apps Script response silently
+                var iframeName = "hidden_iframe_" + new Date().getTime();
+                var iframe = document.createElement("iframe");
+                iframe.name = iframeName;
+                iframe.style.display = "none";
+                document.body.appendChild(iframe);
 
-                        console.log("Redirecting to PayPal URL:", url);
-                        window.open(url, "_blank");
-                        modal.style.display = "none";
-                    })
-                    .catch(err => {
-                        console.error("Fetch error:", err);
-                        alert("Error: " + err);
-                    });
+                // Create a temporary hidden form that submits standard POST parameters to Google
+                var hiddenForm = document.createElement("form");
+                hiddenForm.action = "https://script.google.com/macros/s/AKfycbyuOUiF2uXd4aulDpj-SkQses9JsfcF_Wt32sM47VrYAHrxcxuXVezmD2HwFseOXEr3wQ/exec";
+                hiddenForm.method = "POST";
+                hiddenForm.target = iframeName;
+
+                // Add fields
+                var fields = { name: name, email: email, plan: plan };
+                for (var key in fields) {
+                    var input = document.createElement("input");
+                    input.type = "hidden";
+                    input.name = key;
+                    input.value = fields[key];
+                    hiddenForm.appendChild(input);
+                }
+
+                document.body.appendChild(hiddenForm);
+                hiddenForm.submit();
+
+                // Clean up and proceed to PayPal after a brief moment
+                setTimeout(function () {
+                    document.body.removeChild(hiddenForm);
+                    document.body.removeChild(iframe);
+                    
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = "Continue to Payment";
+
+                    alert("Details submitted! Redirecting to PayPal...");
+                    window.open(paypalUrl, "_blank");
+                    modal.style.display = "none";
+                    form.reset();
+                }, 1000);
             };
-        });
+        }); // <-- Properly closed DOMContentLoaded listener
     </script>
 
 </body>
